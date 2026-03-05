@@ -1,345 +1,242 @@
-# LUNA — Contexte Compressé pour Claude
+# LUNA — Contexte Claude (télégraphique)
 
-> App de suivi de cycle menstruel · Privacy-first · iOS + Android · Rust core
-
----
-
-## ARCHITECTURE
-
-```
-_FLO/
-  luna-core/          ← Noyau Rust partagé (UniFFI 0.28) — toute la logique métier
-  ios-app/            ← SwiftUI (iOS 16+, Xcode 26)
-  android-app/        ← Kotlin + Views (Android API 26+, AGP 8.10)
-  uniffi-bindgen/     ← Helper binary pour générer les bindings
-  luna-design-system/ ← Tokens, docs, icônes Feather
-  docs/               ← Science, benchmark, UX research
-```
-
-### Stack technique
-| Couche | Techno |
-|--------|--------|
-| Core métier | Rust (UniFFI 0.28, proc-macros, no .udl) |
-| Chiffrement DB | SQLCipher (rusqlite bundled-sqlcipher-vendored-openssl) |
-| Dérivation clé | Argon2id (64MB, 3 iter, 4 threads) → AES-256-GCM |
-| Backup chiffré | AES-256-GCM + HKDF-SHA256 (sous-clés distinctes) |
-| iOS UI | SwiftUI + Keychain (`Security.framework`, `kSecAttrAccessibleWhenUnlockedThisDeviceOnly`) |
-| Android UI | Kotlin Views (ViewBinding) + Android Keystore AES-256-GCM |
-| Bindings | UniFFI Swift + Kotlin (générés depuis dylib macOS) |
-| i18n | 40 langues (xcstrings iOS, strings.xml Android) — FR source |
-| a11y | WCAG 2.2 AA (TalkBack/VoiceOver, RTL, Dynamic Type) |
+> Suivi cycle menstruel · Privacy-first · iOS + Android · Rust core partagé
 
 ---
 
-## BUILD STATE ✅
+## STACK
 
-### Rust core
-```bash
-cd _FLO && cargo test    # 23/23 tests passent
-```
+| | |
+|--|--|
+| Core | Rust + UniFFI 0.28 (proc-macros, no .udl) |
+| DB | SQLCipher (rusqlite bundled-sqlcipher-vendored-openssl) |
+| Crypto | Argon2id(64MB/3iter/4t)→AES-256-GCM · HKDF-SHA256 sous-clés · zstd BLOB |
+| iOS | SwiftUI iOS 16+ · Keychain (Security.framework, ThisDeviceOnly) |
+| Android | Kotlin Views · Android Keystore AES-256-GCM · minSdk **23** (6.0 Marshmallow) |
+| i18n | 40 langues · xcstrings (FR source) · strings.xml · RTL complet |
+| a11y | WCAG 2.2 AA · Calm Mode · reduceMotion · TalkBack/VoiceOver |
 
-### iOS — BUILD SUCCEEDED ✅
+---
+
+## BUILD ✅ (2026-03-05 · commit 2f5a3e5)
+
 ```bash
-# Prérequis : xcodegen installé (/opt/homebrew/bin/xcodegen)
 cd _FLO
+cargo test                          # 23/23 ✅
 
-# 1. Build lib iOS sim (si API change)
-cargo build --release --target aarch64-apple-ios-sim
-cp target/aarch64-apple-ios-sim/release/libluna_core.a ios-app/LunaApp/Generated/
+# iOS sim (iPhone 16 Pro · 7A806776-2927-46EF-98F6-4D852C5AC671)
+cd ios-app && xcodegen generate
+xcodebuild build -scheme LunaApp \
+  -destination 'platform=iOS Simulator,id=7A806776-2927-46EF-98F6-4D852C5AC671' \
+  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=YES
 
-# 2. Régénérer bindings (si API Rust change)
+# Android (Pixel6_API34 · arm64-v8a)
+ANDROID_NDK_HOME=~/Library/Android/sdk/ndk/27.2.12479018 \
+  cargo ndk --target arm64-v8a --output-dir android-app/app/src/main/jniLibs -- build --release
+cd android-app && ./gradlew assembleDebug
+
+# Rebuild bindings (si API Rust change)
 cargo build --release
 cargo run -p uniffi-bindgen -- generate \
   --library target/release/libluna_core.dylib \
   --language swift --out-dir ios-app/LunaApp/Generated
 cp ios-app/LunaApp/Generated/luna_coreFFI.modulemap \
    ios-app/LunaApp/Generated/module.modulemap
-
-# 3. Build Xcode
-cd ios-app && xcodegen generate   # regénère .xcodeproj
-xcodebuild build -scheme LunaApp \
-  -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
-  -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-
-# 4. Install + run
-xcrun simctl install booted "$(find ios-app/build -name 'LunaApp.app' | head -1)"
-xcrun simctl launch booted com.macaron.luna
-```
-
-**Simulateur actif** : iPhone 16 Pro · UUID `7A806776-2927-46EF-98F6-4D852C5AC671`
-**App tournant** : `UIKitApplication:com.macaron.luna` (onboarding step 1 visible)
-
-### Android — BUILD SUCCEEDED ✅
-```bash
-# Prérequis : cargo-ndk, Android NDK 27.2.12479018, Gradle 8.10.2+
-cd _FLO
-
-# 1. Build .so arm64 (émulateur ARM64)
-ANDROID_NDK_HOME=~/Library/Android/sdk/ndk/27.2.12479018 \
-  cargo ndk --target arm64-v8a \
-  --output-dir android-app/app/src/main/jniLibs \
-  -- build --release
-
-# 2. Build .so x86_64 (si besoin émulateur x86)
-ANDROID_NDK_HOME=~/Library/Android/sdk/ndk/27.2.12479018 \
-  cargo ndk --target x86_64 \
-  --output-dir android-app/app/src/main/jniLibs \
-  -- build --release
-
-# 3. Régénérer bindings Kotlin (si API Rust change)
-cargo build --release
 cargo run -p uniffi-bindgen -- generate \
   --library target/release/libluna_core.dylib \
-  --language kotlin \
-  --out-dir android-app/app/src/main/generated
-
-# 4. Build APK
-cd android-app && ./gradlew assembleDebug
-
-# 5. Run émulateur
-~/Library/Android/sdk/emulator/emulator -avd Pixel6_API34 \
-  -gpu swiftshader_indirect -no-audio -no-boot-anim > /tmp/emu.log 2>&1 &
-sleep 60 && adb install -r app/build/outputs/apk/debug/app-debug.apk
-adb shell am start -a android.intent.action.MAIN \
-  -c android.intent.category.LAUNCHER -n app.luna/.ui.LockActivity
+  --language kotlin --out-dir android-app/app/src/main/generated
 ```
-
-**Émulateur** : `Pixel6_API34` (ARM64, API 34)  
-**App tournant** : LockActivity visible (PIN keyboard + lune jaune)
 
 ---
 
-## API RUST PUBLIQUE (UniFFI)
+## API RUST (UniFFI)
 
 ```rust
-// Constructeur (companion object Kotlin / static Swift)
-LunaEngine::open_vault(db_path: String, pin: String) -> Result<LunaEngine, LunaError>
-
-// Journalisation
-fn log_day(&self, log: DailyLog) -> Result<(), LunaError>
-fn get_log(&self, date: String) -> Result<Option<DailyLog>, LunaError>
-
-// Cycles
-fn get_cycles(&self, limit: u32) -> Result<Vec<Cycle>, LunaError>
-fn start_cycle(&self, start_date: String) -> Result<Cycle, LunaError>
-fn end_cycle(&self, cycle_id: String, end_date: String) -> Result<(), LunaError>
-
-// Prédictions & stats
-fn predict_next(&self) -> Result<Prediction, LunaError>
-fn get_cycle_summary(&self) -> Result<CycleSummary, LunaError>
-
-// Sécurité
-fn change_pin(&self, old_pin: String, new_pin: String) -> Result<(), LunaError>
-fn panic_wipe(&self) -> Result<(), LunaError>                  // → LunaError::WipedSuccessfully
-fn export_encrypted_backup(&self, pin: String) -> Result<Vec<u8>, LunaError>
-
-// Utilitaire (top-level)
-vault_exists(db_path: String) -> bool
+LunaEngine::open_vault(db_path, pin) -> Result<LunaEngine>
+.log_day(DailyLog)           .get_log(date) -> Option<DailyLog>
+.get_cycles(limit)           .start_cycle(date)  .end_cycle(id, date)
+.predict_next() -> Prediction  .get_cycle_summary() -> CycleSummary
+.change_pin(old, new)        .panic_wipe()        .export_encrypted_backup(pin)
+vault_exists(db_path) -> bool
 ```
 
-### Types de données
+### DailyLog (types.rs)
 ```
-Cycle        { id, start_date, end_date?, period_length?, notes? }
-DailyLog     { id, date, symptoms[], mood?, energy?, bbt?, lh_test?,
-               cervical_mucus?, sexual_activity?, flow?, notes? }
-Prediction   { next_period_start, confidence_days, fertile_window_start,
-               fertile_window_end, ovulation_day?, algorithm, confidence_score }
-CycleSummary { total_cycles, average_cycle_length, average_period_length,
-               min/max_cycle_length, cycle_std_dev, regularity }
-LunaError    { WrongPin, DatabaseCorrupted, CryptoError, IoError, InvalidData,
-               WipedSuccessfully, VaultNotOpen, CycleNotFound }
+id, date, symptoms: Vec<String>,
+mood?: u8(1-5), energy?: u8(1-5), sleep_quality?: u8(1-5), weight_kg?: f64,
+bbt?: f64, lh_test?: str, cervical_mucus?: str, sexual_activity?: str,
+flow?: str, notes?: str
 ```
+Symptoms : 43 constantes (cramps, SPM, ovulation, folliculaire, générale, péri-ménopause)
 
----
-
-## AUDIT PRIVACY ✅
-
-### Zero données captées — VÉRIFIÉ
-| Check | Status | Preuve |
-|-------|--------|--------|
-| Pas de `INTERNET` permission Android | ✅ | `AndroidManifest.xml` — commentaire explicite |
-| Pas de URLSession/Alamofire iOS | ✅ | grep 0 résultats (seul un `Link` statique vers policy) |
-| Pas de reqwest/socket dans Rust | ✅ | grep 0 résultats |
-| Pas de Firebase/Analytics/Amplitude | ✅ | build.gradle.kts grep 0 résultats |
-| Pas de télémétrie Swift | ✅ | grep 0 résultats |
-
-### Chiffrement — VÉRIFIÉ
-| Check | Status | Détail |
-|-------|--------|--------|
-| DB chiffrée SQLCipher | ✅ | `bundled-sqlcipher-vendored-openssl` |
-| Clé dérivée Argon2id | ✅ | 64MB/3iter/4threads (≈300ms mobile) |
-| AES-256-GCM + nonce CSPRNG | ✅ | `vault/crypto.rs` — nonce unique par chiffrement |
-| Sous-clés HKDF-SHA256 | ✅ | Clé DB ≠ clé sync — compromission isolée |
-| Zeroize sur clés en mémoire | ✅ | `secrecy::SecretVec` + `zeroize` |
-| Android Keystore PIN | ✅ | `KeystoreService.kt` — AES-256-GCM hardware-backed |
-| iOS Keychain PIN | ✅ | `KeychainService.swift` — `kSecAttrAccessibleWhenUnlockedThisDeviceOnly` |
-
-### Permissions Android utilisées
-```
-USE_BIOMETRIC, USE_FINGERPRINT          → déverrouillage biométrique
-POST_NOTIFICATIONS, SCHEDULE_EXACT_ALARM → rappels locaux uniquement
-RECEIVE_BOOT_COMPLETED                  → reprogrammer alarmes après reboot
-health.READ/WRITE_MENSTRUATION          → HealthConnect (optionnel)
-```
+### Storage
+- symptoms → serde_json → zstd compress → SQLCipher BLOB
+- décompression avec fallback `unwrap_or_default()` (compat)
 
 ---
 
 ## FICHIERS CLÉS
 
-### Rust
 ```
 luna-core/src/
-  api.rs              → Interface UniFFI publique (LunaEngine)
-  engine/types.rs     → Cycle, DailyLog, Prediction, CycleSummary, symptoms::*
-  engine/prediction.rs → PredictionEngine, CyclePhase (calendar|bbt|lh|combined)
-  vault/crypto.rs     → derive_key, encrypt, decrypt, compress_blob, decompress_blob, generate_salt, secure_zero
-  vault/database.rs   → SQLCipher init, PRAGMA key, migrations
-  error.rs            → LunaError (8 variants)
-  lib.rs              → uniffi::setup_scaffolding!("luna_core")
-```
+  api.rs              UniFFI public (LunaEngine)
+  engine/types.rs     DailyLog, Cycle, Prediction, CycleSummary, symptoms::*
+  engine/prediction.rs PredictionEngine (calendar|bbt|lh|combined)
+  vault/crypto.rs     derive_key, encrypt/decrypt, compress/decompress_blob, secure_zero
+  vault/database.rs   SQLCipher · upsert_log · get_log · get_logs_range
+  error.rs            LunaError (8 variants)
 
-### iOS (SwiftUI)
-```
 ios-app/
-  project.yml                            → xcodegen config (REBUILD si modifié)
-  LunaApp/Generated/
-    luna_core.swift                      → bindings UniFFI (NE PAS ÉDITER)
-    luna_coreFFI.h + luna_coreFFI.modulemap
-    module.modulemap                     → copie de luna_coreFFI.modulemap (Xcode)
-    libluna_core.a                       → lib statique iOS sim (aarch64-apple-ios-sim)
-  LunaApp/Views/
-    OnboardingView.swift, LockView.swift, HomeView.swift
-    CalendarView.swift, InsightsView.swift, SettingsView.swift
-  LunaApp/Resources/Localizable.xcstrings → 97+ clés, sourceLanguage="fr", 40 langues (RTL: ar✅ de✅ ja✅)
-  LunaApp/Services/KeychainService.swift  → ✅ SecItemAdd/CopyMatching/Delete, no iCloud sync
-```
+  project.yml                      xcodegen config — regénérer xcodeproj si modifié
+  LunaApp/Generated/               NE PAS ÉDITER (luna_core.swift, .a, .modulemap)
+  LunaApp/Views/                   OnboardingView, LockView, HomeView, Calendar,
+                                   Insights, Settings, LogSheetView, RootView
+  LunaApp/Resources/Localizable.xcstrings  100+ clés, 40 langues
+  LunaApp/Services/KeychainService.swift   SecItemAdd/CopyMatching/Delete
 
-### Android (Kotlin Views)
-```
 android-app/app/src/main/
-  generated/uniffi/luna_core/luna_core.kt  → bindings JNA (NE PAS ÉDITER)
-  jniLibs/arm64-v8a/libluna_core.so       → ✅ ARM64 (émulateur)
-  jniLibs/x86_64/libluna_core.so          → ✅ x86_64
+  generated/uniffi/luna_core/luna_core.kt  NE PAS ÉDITER
+  jniLibs/{arm64-v8a,x86_64}/libluna_core.so
   kotlin/app/luna/
-    LunaApplication.kt                     → System.loadLibrary("luna_core")
-    services/VaultService.kt               → singleton engine (uniffi.luna_core.LunaEngine)
-    services/KeystoreService.kt            → AES-256-GCM Android Keystore ✅
+    LunaApplication.kt             System.loadLibrary("luna_core")
+    services/VaultService.kt       singleton LunaEngine
+    services/KeystoreService.kt    Keystore AES-256-GCM
     ui/{LockActivity, OnboardingActivity, MainActivity}.kt
     ui/{LogBottomSheet, SettingsActivity}.kt
-    viewmodel/{HomeViewModel, InsightsViewModel}.kt
-  res/values/strings.xml                   → 40 langues
-  res/drawable/ic_luna_*.xml               → 11 icônes Vector (path-only, transparent fill)
-  res/mipmap-anydpi-v26/ic_launcher*.xml   → Adaptive icon (lune croissant)
+  res/values/strings.xml           40 langues
+  res/drawable/ic_luna_*.xml       11 icônes Vector
 ```
 
 ---
 
-## PROBLÈMES CONNUS / TODOs RESTANTS
+## UI — RÈGLES
 
-1. **Parcours utilisateur iOS non déroulé** — onboarding step 1 visible mais flux non testé end-to-end
-
-2. **`LunaApplication.kt` charge la lib au démarrage** — crash si `.so` absent pour l'ABI
-
-3. **`exportEncryptedBackup("")`** dans SettingsActivity — PIN vide, inutilisable en prod
-
-4. **Link statique `https://luna-app.privacy`** dans SettingsView.swift — URL fictive
-
-7. **arm64-v7a non buildé** — seul arm64-v8a et x86_64 présents (suffisant pour prod moderne)
+- **Zéro emoji dans l'interface** — MoodPicker = cercles numériques 1-5, logo = ImageView vectoriel
+- Light/Dark auto (`preferredColorScheme(nil)` · AppBackground = #FAFAFA/#0D0A14)
+- `LockBackground` toujours sombre (lock screen) · `AppBackground` pour onboarding/home
+- Calm Mode (UserDefaults `calm_mode`) → masque prédictions, affiche CalmModeBanner
+- `@Environment(\.accessibilityReduceMotion)` → désactive animations spring
 
 ---
 
-## GOTCHAS TECHNIQUES
+## PRIVACY — VÉRIFIÉ ✅
 
-### UniFFI 0.28 (proc-macros, no .udl)
-- Package est une **library**, pas un binary → wrapper `uniffi-bindgen/` requis
-- `cargo run -p uniffi-bindgen -- generate --library target/release/libluna_core.dylib ...`
-- Kotlin: `com.sun.jna.*` → ajouter `net.java.dev.jna:jna:5.14.0@aar` aux deps
-- Xcode: nommer `module.modulemap` (copie de `luna_coreFFI.modulemap`) dans `SWIFT_INCLUDE_PATHS`
-
-### iOS onChange compat iOS 16
-- `onChange(of: x) { _, new in }` → iOS 17+ seulement
-- iOS 16 : `onChange(of: x) { new in }` (un seul paramètre)
-
-### Android Material3 1.12.0 gotchas
-- `android:colorBackground` uniquement (pas sans préfixe)
-- `itemActiveIndicatorColor` n'existe pas dans cette version
-- `PreferenceThemeOverlay.Material3` n'existe pas
-- `android:fillColor="none"` invalide → `"@android:color/transparent"`
-
-### SQLCipher cross-compilation Android
-- `bundled-sqlcipher-vendored-openssl` requis (OpenSSL vendorisé)
-- NDK 27.2 sur Apple Silicon → toolchain `darwin-x86_64` via Rosetta 2
-
-### Émulateur Android
-- Démarrer avec `nohup ... > /tmp/emu.log 2>&1 &` pour persistance
-- GPU : `-gpu swiftshader_indirect` obligatoire (Vulkan via SwiftShader)
-- Attendre ~60s avant `adb devices` après `nohup`
+- Zéro `INTERNET` permission · zéro URLSession/reqwest · zéro Firebase/Analytics
+- DB chiffrée SQLCipher · clé Argon2id · nonce CSPRNG unique · secrecy::SecretVec zeroize
+- iOS Keychain `kSecAttrAccessibleWhenUnlockedThisDeviceOnly`
+- Android Keystore hardware-backed AES-256-GCM
+- Panic wipe (`panic_wipe()`) · export backup AES-256-GCM seul
 
 ---
 
-## ACCEPTANCE CRITERIA — ÉTAT
+## ACCEPTANCE CRITERIA
 
-| Critère | Statut |
-|---------|--------|
-| Zéro permission réseau | ✅ |
-| DB chiffrée AES-256 | ✅ |
-| PIN → Argon2id + SQLCipher | ✅ |
-| Android Keystore PIN | ✅ |
-| iOS Keychain PIN | ✅ |
-| Panic wipe | ✅ Rust `panic_wipe()` |
-| Export backup chiffré | ✅ API Rust (UI partielle) |
-| iOS build sur simulateur | ✅ iPhone 16 Pro (Xcode 26) |
-| Android build sur émulateur | ✅ Pixel6_API34 ARM64 |
+| Critère | |
+|---------|--|
+| Zéro réseau | ✅ |
+| DB chiffrée AES-256 + Argon2id | ✅ |
+| iOS Keychain + Android Keystore | ✅ |
+| Panic wipe | ✅ |
+| Backup chiffré | ✅ API (UI partielle) |
+| iOS build sim | ✅ iPhone 16 Pro |
+| Android build emu | ✅ Pixel6_API34 |
 | Rust 23 tests | ✅ |
-| i18n 40 langues | ✅ xcstrings + strings.xml — AR RTL ✅ DE ✅ JA ✅ testé sur sim |
-| Light/Dark mode auto | ✅ suit le système — bug LockBackground corrigé (OnboardingView) |
-| Compression blobs | ✅ zstd — symptoms stockés en BLOB compressé (database.rs) |
-| Calm Mode (psy a11y) | ✅ UserDefaults + SettingsView + HomeView (masque prédictions) |
-| Reduce Motion a11y | ✅ `@Environment(\.accessibilityReduceMotion)` dans HomeView |
-| WCAG 2.2 AA | ✅ contentDescription, a11yLabel, RTL |
-| Parcours utilisateur déroulé | ⚠️ Partiel (onboarding visible, flow non validé) |
+| i18n 40 langues · AR RTL · DE · JA | ✅ testé sim |
+| Light/Dark auto | ✅ |
+| zstd BLOB compression | ✅ |
+| Calm Mode + reduceMotion | ✅ |
+| Zéro emoji UI | ✅ |
+| minSdk Android 23 | ✅ |
+| sleep_quality + weight_kg | ✅ |
+| Parcours UI end-to-end | ⚠️ partiel |
+
+---
+
+## GAPS RESTANTS
+
+Haute priorité : notifications locales · mode TTC/grossesse
+Moyenne : HealthKit/HealthConnect bridge · export CSV · biométrie · pilule rappel · graphiques tendance
+Basse : Apple Watch · Wear OS
+
+---
+
+## GOTCHAS
+
+- UniFFI : library pas binary → wrapper `uniffi-bindgen/` obligatoire
+- `onChange(of:) { new in }` iOS 16 (un param) · deux params = iOS 17+
+- `NavigationStack` + `.presentationDetents` = iOS 16 min (pas de downgrade possible)
+- Android Material3 1.12 : `android:colorBackground` (avec préfixe) · `fillColor="@android:color/transparent"`
+- SQLCipher Android : `bundled-sqlcipher-vendored-openssl` · NDK 27.2 Rosetta2 toolchain
+- Émulateur Android : `-gpu swiftshader_indirect` · attendre 60s avant `adb devices`
+- i18n sim : `xcrun simctl launch $SIM com.macaron.luna -AppleLanguages "(ar)" -AppleLocale "ar_SA"`
 
 ---
 
 ## COMMANDES RAPIDES
 
 ```bash
-# Tests Rust
-cd _FLO && cargo test
-
-# Screenshot iOS sim
-xcrun simctl io booted screenshot /tmp/luna_ios.png
-
-# Screenshot Android emu
-adb -s emulator-5554 shell screencap -p /sdcard/s.png && adb -s emulator-5554 pull /sdcard/s.png /tmp/luna_android.png
-
-# Rebuild complet iOS
-cd _FLO && \
-  cargo build --release --target aarch64-apple-ios-sim && \
-  cp target/aarch64-apple-ios-sim/release/libluna_core.a ios-app/LunaApp/Generated/ && \
-  cd ios-app && xcodegen generate
-
-# Rebuild complet Android
-cd _FLO && \
-  ANDROID_NDK_HOME=~/Library/Android/sdk/ndk/27.2.12479018 \
-  cargo ndk --target arm64-v8a --output-dir android-app/app/src/main/jniLibs -- build --release && \
-  cd android-app && ./gradlew assembleDebug
-
-# Logcat crash Android
-adb -s emulator-5554 shell logcat -d | grep -E "FATAL|AndroidRuntime|app.luna"
+cargo test -p luna-core                                    # tests Rust
+xcrun simctl io 7A806776-... screenshot /tmp/s.png        # screenshot iOS
+xcrun simctl ui 7A806776-... appearance dark|light        # toggle theme
+adb -s emulator-5554 shell logcat -d | grep app.luna      # logcat Android
 ```
 
 ---
 
-## DESIGN SYSTEM
+## BENCHMARK vs CONCURRENTS
 
-- Tokens: `luna-design-system/tokens/` (colors, spacing, typography, shadows)
-- Couleurs primaires: `plum-600 = #7C3AED`, `coral-500 = #F87171`, `sage-400 = #6EE7B7`
-- Dark mode: fond `#0D0D14` (near-black), surface `#1A1A2E`
-- Icons: Feather SVG set (42 icônes, 24px stroke-only)
-- Cultural: couleur rouge menstruel désactivable (cultures où rouge = tabou)
-- RTL: support complet arabe/hébreu/persan/ourdou
+### Features implémentées
 
----
+| Feature | Flo | Clue | NatCycles | **LUNA** |
+|---------|-----|------|-----------|---------|
+| Période (date/durée/flux) | Oui | Oui | Oui | **Oui** |
+| Symptômes catégorisés | Partiel | Partiel | Non | **43** (mens/SPM/ovul/follicul/péri-méno) |
+| Humeur 1-5 | Emoji | Emoji | Non | **Oui** (cercles numériques) |
+| Energie 1-5 | Non | Oui | Non | **Oui** |
+| Sommeil 1-5 | Oui | Oui | Non | **Oui** |
+| Poids (kg) | Oui Premium | Non | Non | **Oui** |
+| BBT (température basale) | Oui | Oui | Oui | **Oui** |
+| Test LH ovulation | Oui | Oui | Oui | **Oui** |
+| Mucus cervical (5 types) | Oui | Oui | Oui | **Oui** |
+| Activité sexuelle | Oui | Oui | Non | **Oui** |
+| Notes libres | Oui | Oui | Oui | **Oui** |
+| Prédictions cycle/ovulation | IA cloud | IA cloud | Algo serveur | **On-device** |
+| Calendrier | Oui | Oui | Oui | **Oui** |
+| Insights / statistiques | Oui | Oui | Oui | **Oui** |
+| Export backup chiffré | Non | Non | Non | **Oui** AES-256 |
+| Dark mode auto | Oui | Oui | Oui | **Oui** |
+| i18n | 22 langues | 15 | 12 | **40 langues** |
+| RTL (arabe, hébreu, persan) | Partiel | Non | Non | **Oui** (testé) |
+| WCAG 2.2 AA | Partiel | Partiel | Non | **Oui** |
+| Mode Calm (psy a11y) | Non | Non | Non | **Oui** (unique) |
+| Reduce Motion | Non | Non | Non | **Oui** |
+| PIN + Keychain/Keystore | Non | Non | Non | **Oui** |
+| Panic wipe | Non | Non | Non | **Oui** (unique) |
+| Zéro réseau / zéro serveur | Non | Non | Non | **Oui** |
+| Données revendables | Oui (Flo) | Non | Non | **Impossible** |
+| Zéro emoji UI | Non | Non | Non | **Oui** |
 
-*Dernière mise à jour: 2026-03-05 — iOS ✅ Android ✅ Rust ✅ 23 tests · light/dark ✅ · i18n AR/DE/JA testé ✅ · zstd compression ✅*
+### Gaps vs concurrents — backlog priorisé
+
+| Feature | Priorité |
+|---------|----------|
+| Notifications locales (rappel période, ovulation) | Haute |
+| Mode TTC / grossesse (test hCG, suivi) | Haute |
+| HealthKit (iOS) / HealthConnect (Android) bridge | Moyenne |
+| Authentification biométrique (FaceID/empreinte) | Moyenne |
+| Export CSV / PDF | Moyenne |
+| Rappel pilule / contraception | Moyenne |
+| Graphiques tendance (BBT, poids, cycle) | Moyenne |
+| Mode péri-ménopause dédié | Basse |
+| Apple Watch / Wear OS companion | Basse |
+
+### Compatibilité appareils
+
+| Plateforme | Min OS | Couverture |
+|------------|--------|------------|
+| Android | **API 23** (6.0 Marshmallow, oct 2015) | ~98% appareils actifs |
+| iOS | **16.0** (sept 2022) | ~95% iPhones actifs |
+| ABI Android | arm64-v8a · armeabi-v7a · x86_64 | 32-bit ARM inclus |
+
+> iOS 16 minimum imposé par `NavigationStack` + `.presentationDetents` — descendre à iOS 15 nécessiterait remplacer par `NavigationView` (faible ROI, les utilisateurs iOS upgradent rapidement)
+
