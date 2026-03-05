@@ -1,0 +1,1 @@
+Suivi de cycle axé sur la vie privée. Chiffrement AES-256.

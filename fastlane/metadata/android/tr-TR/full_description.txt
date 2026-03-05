@@ -1,0 +1,10 @@
+LUNA — gizlilik odaklı adet döngüsü takip uygulaması. Verileriniz cihazınızı asla terk etmez, AES-256 ile şifrelidir.
+
+ÖZELLİKLER
+Dönem ve semptom takibi, BBT grafiği, ruh hali takibi
+4 mod: Normal, TTC, Gebelik, Perimenopoz
+Doğurganlık penceresi ve yumurtlama tahmini
+
+GİZLİLİK
+AES-256 yerel şifreleme, hesap gerekmez, reklam yok, izleyici yok
+Açık kaynak: https://github.com/macaron-software/luna

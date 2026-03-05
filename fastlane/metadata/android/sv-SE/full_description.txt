@@ -1,0 +1,10 @@
+LUNA — integritetsfokuserad app för menscykel. Din data lämnar aldrig enheten, krypterad med AES-256.
+
+FUNKTIONER
+Period- och symtomspårning, BBT-diagram, humörspårning
+4 lägen: Regelbunden, TTC, Graviditet, Perimenopaus
+Fertilitetsfönster och ägglossning
+
+INTEGRITET
+AES-256, inget konto, inget moln, ingen reklam, inga spårare
+Öppen källkod: https://github.com/macaron-software/luna

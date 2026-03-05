@@ -1,0 +1,10 @@
+LUNA — adatvédelmet előtérbe helyező menstruációs cikluskövető. Adatai soha nem hagyják el az eszközt, AES-256 titkosítással.
+
+FUNKCIÓK
+Menstruáció és tünetek követése, BBT diagram, hangulat követése
+4 mód: Normál, TTC, Terhesség, Perimenopauza
+Termékenységi ablak és ovuláció
+
+MAGÁNÉLET
+AES-256, nincs fiók, nincs felhő, nincs hirdetés, nincs követő
+Nyílt forráskód: https://github.com/macaron-software/luna

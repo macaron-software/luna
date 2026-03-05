@@ -1,0 +1,10 @@
+LUNA — ứng dụng theo dõi chu kỳ kinh nguyệt với quyền riêng tư tuyệt đối. Dữ liệu không rời thiết bị, mã hóa AES-256.
+
+TÍNH NĂNG
+Theo dõi kinh nguyệt và triệu chứng, biểu đồ BBT, tâm trạng
+4 chế độ: Thông thường, TTC, Thai kỳ, Tiền mãn kinh
+Cửa sổ thụ thai và rụng trứng
+
+QUYỀN RIÊNG TƯ
+AES-256, không tài khoản, không đám mây, không quảng cáo
+Mã nguồn mở: https://github.com/macaron-software/luna

@@ -1,0 +1,10 @@
+LUNA — yksityisyyteen keskittyvä kuukautiskierto-sovellus. Tietosi eivät koskaan poistu laitteeltasi, salattu AES-256:lla.
+
+OMINAISUUDET
+Kuukautisten ja oireiden seuranta, BBT-kaavio, mielialaseuranta
+4 tilaa: Säännöllinen, TTC, Raskaus, Perimenopaussi
+Hedelmällisyysikkuna ja ovulaatio
+
+YKSITYISYYS
+AES-256, ei tiliä, ei pilveä, ei mainoksia, ei seuraimia
+Avoin lähdekoodi: https://github.com/macaron-software/luna

@@ -1,0 +1,10 @@
+LUNA — app de seguimiento del ciclo menstrual con privacidad total. Tus datos nunca salen del dispositivo, cifrados con AES-256.
+
+CARACTERÍSTICAS
+Seguimiento de período y síntomas, gráfico TCB, estado de ánimo
+4 modos: Regular, TTC, Embarazo, Perimenopausia
+Ventana fértil y ovulación
+
+PRIVACIDAD
+AES-256, sin cuenta, sin nube, sin publicidad, sin rastreadores
+Código abierto: https://github.com/macaron-software/luna

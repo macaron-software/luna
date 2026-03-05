@@ -1,0 +1,1 @@
+Gizlilik odaklı döngü takibi. AES-256 şifreli. Bulut yok.

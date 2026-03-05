@@ -1,0 +1,1 @@
+Pelacak siklus berbasis privasi. Enkripsi AES-256. Tanpa cloud.

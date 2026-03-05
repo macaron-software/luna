@@ -1,0 +1,1 @@
+Praćenje ciklusa s fokusom na privatnost. AES-256 enkripcija.

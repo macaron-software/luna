@@ -1,0 +1,15 @@
+LUNA — rastreador de ciclo menstrual com privacidade total. Os seus dados ficam no dispositivo, encriptados com AES-256. Sem servidores, sem rastreamento, sem conta.
+
+FUNCIONALIDADES
+Registo de período e sintomas com previsões inteligentes
+Registo de temperatura basal (TBB)
+Registo de humor e energia
+4 modos: Regular, TTC, Gravidez, Perimenopausa
+Janela fértil e previsão da ovulação
+
+PRIVACIDADE POR DESIGN
+Encriptação AES-256 local — a sua chave, os seus dados
+Sem conta necessária
+Sem sincronização na nuvem
+Sem publicidade, sem rastreadores
+Código aberto: https://github.com/macaron-software/luna

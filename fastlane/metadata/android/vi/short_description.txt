@@ -1,0 +1,1 @@
+Theo dõi chu kỳ bảo mật. Mã hóa AES-256. Không đám mây.

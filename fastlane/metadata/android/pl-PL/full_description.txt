@@ -1,0 +1,10 @@
+LUNA — aplikacja do śledzenia cyklu z prywatnością. Twoje dane pozostają na urządzeniu zaszyfrowane AES-256.
+
+FUNKCJE
+Śledzenie okresu i objawów, wykres BTT, śledzenie nastroju
+4 tryby: Regularny, TTC, Ciąża, Perimenopauza
+Okno płodności i owulacji
+
+PRYWATNOŚĆ
+AES-256, bez konta, bez chmury, bez reklam, bez trackerów
+Otwarty kod: https://github.com/macaron-software/luna

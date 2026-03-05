@@ -1,0 +1,1 @@
+Sledování cyklu se zaměřením na soukromí. Šifrování AES-256.

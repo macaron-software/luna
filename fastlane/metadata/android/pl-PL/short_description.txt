@@ -1,0 +1,1 @@
+Śledzenie cyklu z prywatnością. Szyfrowanie AES-256. Bez chmury.

@@ -1,0 +1,10 @@
+LUNA — aplikacija za praćenje menstrualnog ciklusa s potpunom privatnošću. Vaši podaci nikada ne napuštaju uređaj, šifrirani AES-256.
+
+ZNAČAJKE
+Praćenje menstruacije i simptoma, grafikon BTT, raspoloženje
+4 načina: Redoviti, TTC, Trudnoća, Perimenopauza
+Prozor plodnosti i ovulacija
+
+PRIVATNOST
+AES-256, bez računa, bez oblaka, bez oglasa
+Otvoreni kod: https://github.com/macaron-software/luna

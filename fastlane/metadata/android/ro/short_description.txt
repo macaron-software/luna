@@ -1,0 +1,1 @@
+Urmărire ciclu axată pe confidențialitate. Criptare AES-256.
