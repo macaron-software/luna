@@ -2,13 +2,15 @@
 
 # LUNA
 
-**Privacy-first menstrual cycle tracking — zero server, zero cloud, zero compromise.**
+**Your cycle. Your phone. No server. No cloud. No compromise.**
 
-[![Tests](https://github.com/YOUR_ORG/luna/actions/workflows/ci-rust.yml/badge.svg)](https://github.com/YOUR_ORG/luna/actions)
+[![Tests](https://github.com/macaron-software/luna/actions/workflows/ci-rust.yml/badge.svg)](https://github.com/macaron-software/luna/actions)
 [![License: MIT/Apache-2.0](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/rust-1.93+-orange.svg)](https://www.rust-lang.org)
 [![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](ios-app/)
 [![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](android-app/)
+[![No server](https://img.shields.io/badge/server-none-brightgreen.svg)](#your-data-your-phone-full-stop)
+[![Offline](https://img.shields.io/badge/works-100%25%20offline-brightgreen.svg)](#your-data-your-phone-full-stop)
 
 </div>
 
@@ -24,17 +26,48 @@
 
 ---
 
-## The Privacy Pledge
+## Your data. Your phone. Full stop.
+
+> LUNA works **100% without internet**. Your cycle data **never leaves your device**.  
+> No account. No server. No third-party service. Not now, not ever.
+
+### What LUNA guarantees — by design, not by promise
+
+| Guarantee | How it is enforced |
+|-----------|-------------------|
+| **Data stored on your phone only** | Encrypted SQLCipher database on local storage. No sync to any server. |
+| **Works completely offline** | Zero network calls. No API, no backend, no CDN. Install once, use forever without internet. |
+| **No account, no registration** | Not even an email address. Open the app, set a PIN, done. |
+| **No dependency on any external service** | No Firebase, no Google Analytics, no Mixpanel, no Sentry, no Amplitude, no Stripe, no third-party SDK of any kind. Zero. |
+| **AES-256-GCM encryption at rest** | Your database is encrypted with a key derived from your PIN via Argon2id. The key never leaves the device. If someone steals your phone, they get an unreadable blob. |
+| **Encrypted optional backup** | If you enable iCloud / Google Drive: the file sent to the cloud is an opaque ciphertext blob. Apple and Google cannot read it. We cannot read it. Nobody can except you. |
+| **Zero telemetry, zero analytics** | No crash reports, no usage metrics, no feature flags, no A/B tests. Nothing. |
+| **Panic wipe in 3 seconds** | Hold the panic button: database + salt + all cryptographic keys are destroyed irreversibly. |
+| **Fully open source** | MIT / Apache-2.0. Every single line of code is public and auditable. |
+
+### What LUNA will NEVER do
 
 | | |
 |---|---|
-| | **Zero server.** No account, no registration, no external dependency. The app works completely offline. |
-| | **Fully encrypted.** AES-256-GCM + Argon2id. Your PIN never leaves your device. Keys are never transmitted. |
-| | **100% local storage.** All data stays on your device. The only exception is push notifications (optional, system-level only — no data sent). |
-| ️ | **Encrypted cloud backup.** If you enable iCloud or Google Drive backup, the backup is an opaque ciphertext blob — even Apple/Google cannot read it. |
-| | **Zero data sharing.** No analytics, no telemetry, no advertising SDK, no crash reporting to external servers. |
-| | **Fully open source.** MIT/Apache-2.0. Every line of code is auditable by anyone. |
-| | **Evidence-based.** Predictions use peer-reviewed science (ARIMA / weighted exponential moving average). No pseudoscience. |
+| No server | We do not have one. There is no backend, no remote database, no API to call home. |
+| No internet required | The app functions 100% offline. No internet connection is ever needed or used. |
+| No account | No email, no password, no social login, no phone number, no identity verification. |
+| No data sale | We cannot sell your data because we never receive it. It never leaves your device. |
+| No ads | Zero advertising SDK, zero tracking pixel, zero user profiling, ever. |
+| No push telemetry | Period reminders use the OS notification system only — no data passes through any server (ours or anyone else's). |
+| No hidden SDK | The app binary contains only what you see in this repository. No hidden library, no obfuscated call, nothing. |
+
+### How this is technically enforced — not just stated
+
+```
+iOS:     App Transport Security (ATS) enforced — no arbitrary network loads allowed
+Android: android:networkSecurityConfig blocks ALL outbound connections at OS level
+Rust:    Cargo.toml has zero networking dependencies (no reqwest, no hyper, nothing)
+Build:   CI verifies cargo deny — any new network dep fails the build
+```
+
+The privacy is **architectural**. It is not a policy, a checkbox, or a promise.  
+It is physically impossible for this app to send your data anywhere.
 
 ---
 

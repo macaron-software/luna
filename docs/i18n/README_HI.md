@@ -1,71 +1,73 @@
 <div align="center">
 
-# LUNA
+# LUNA — हिंदी
 
-**गोपनीयता-प्रथम मासिक धर्म चक्र ट्रैकिंग — शून्य सर्वर, शून्य क्लाउड, शून्य समझौता।**
+**आपका चक्र। आपका फ़ोन। कोई सर्वर नहीं। कोई क्लाउड नहीं। शून्य समझौता।**
 
-[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
-[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
-[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
-
-[← README](../../README.md)
+[![No server](https://img.shields.io/badge/server-none-brightgreen.svg)](#)
+[![Offline](https://img.shields.io/badge/works-100%25%20offline-brightgreen.svg)](#)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../README.md)
 
 </div>
 
+[← English (full docs)](../../README.md)
+
 ---
 
-## Privacy / Datenschutz / Privacidad / Confidentialité
+## गोपनीयता प्रतिज्ञा
 
 | | |
 |---|---|
-| Zero server | No account · No registration · No external dependency · 100% offline |
-| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
-| Local storage | All data on your device · SQLCipher encrypted database |
-| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
-| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
-| Open source | MIT/Apache-2.0 · Every line auditable |
-| Panic wipe | Destroys vault + keys in < 500ms |
-| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
+| 📵 | **कोई सर्वर नहीं।** हमारे पास कोई नहीं है। कोई बैकएंड नहीं, कोई रिमोट डेटाबेस नहीं, कोई API एंडपॉइंट नहीं जिससे ऐप कनेक्ट हो। |
+| 📶 | **100% ऑफ़लाइन काम करता है।** इंटरनेट कनेक्शन कभी ज़रूरी नहीं होता और न ही उपयोग होता है। एक बार इंस्टॉल करें, नेटवर्क के बिना हमेशा के लिए उपयोग करें। |
+| 🚷 | **कोई खाता नहीं, कोई पंजीकरण नहीं।** कोई ईमेल नहीं, कोई पासवर्ड नहीं, कोई सोशल लॉगिन नहीं, कोई पहचान सत्यापन नहीं। कुछ भी नहीं। |
+| 🧩 | **किसी तृतीय पक्ष सेवा पर निर्भरता नहीं।** कोई Firebase, Google Analytics, Mixpanel, Sentry, Amplitude नहीं। शून्य बाहरी SDK। |
+| 🔐 | **डेटा केवल आपके फ़ोन पर एन्क्रिप्टेड।** AES-256-GCM एन्क्रिप्टेड SQLCipher डेटाबेस। Argon2id के माध्यम से PIN से व्युत्पन्न कुंजी। कुंजी कभी डिवाइस नहीं छोड़ती। |
+| ☁️ | **वैकल्पिक क्लाउड बैकअप — पूरी तरह एन्क्रिप्टेड।** iCloud/Google Drive को एक अपारदर्शी एन्क्रिप्टेड ब्लॉब मिलता है। Apple और Google भी इसे नहीं पढ़ सकते। |
+| 🚫 | **शून्य टेलीमेट्री, शून्य एनालिटिक्स।** कोई क्रैश रिपोर्ट नहीं, कोई उपयोग मेट्रिक्स नहीं, कोई A/B परीक्षण नहीं। कुछ भी आपके फ़ोन को नहीं छोड़ता। |
+| 💥 | **3 सेकंड में पैनिक वाइप।** बटन दबाए रखें: डेटाबेस + नमक + सभी क्रिप्टोग्राफ़िक कुंजियाँ अपरिवर्तनीय रूप से नष्ट हो जाती हैं। |
+| 🔓 | **100% ओपन सोर्स।** MIT/Apache-2.0। हर कोड लाइन सार्वजनिक है और किसी के द्वारा भी ऑडिट करने योग्य है। |
 
 ---
 
-## Architecture
+## LUNA कभी क्या नहीं करेगा
+
+| | |
+|---|---|
+| **कोई सर्वर नहीं** | हमारे पास नहीं है। आपका डेटा कहीं भेजना असंभव है। |
+| **इंटरनेट की ज़रूरत नहीं** | ऐप 100% ऑफ़लाइन काम करता है। हमेशा। |
+| **कोई खाता नहीं** | कोई ईमेल नहीं, कोई पासवर्ड नहीं, कोई लॉगिन नहीं। |
+| **डेटा की बिक्री नहीं** | असंभव — हम इसे कभी प्राप्त नहीं करते। |
+| **कोई विज्ञापन नहीं** | शून्य विज्ञापन SDK, शून्य ट्रैकिंग पिक्सेल। |
+| **पुश टेलीमेट्री नहीं** | रिमाइंडर केवल OS सिस्टम का उपयोग करते हैं — सर्वर के माध्यम से कोई डेटा नहीं। |
+| **कोई छिपा SDK नहीं** | बाइनरी में केवल वही है जो आप इस रिपॉजिटरी में देखते हैं। |
 
 ```
-luna-core/ Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
-ios-app/ SwiftUI iOS 16+ — Keychain — HealthKit (optional)
-android-app/ Kotlin API 23+ — Keystore — HealthConnect (optional)
-```
-
-**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
-
----
-
-## Language: हिंदी
-
-> गोपनीयता-प्रथम मासिक धर्म चक्र ट्रैकिंग — शून्य सर्वर, शून्य क्लाउड, शून्य समझौता।
-
----
-
-## Build
-
-```bash
-cargo test -p luna-core # 41 Rust tests
-cd ios-app && xcodebuild build # iOS (Xcode 15+)
-cd android-app && ./gradlew assembleDebug # Android
+iOS:     ATS enforced — no arbitrary network loads
+Android: networkSecurityConfig blocks ALL outbound connections
+Rust:    Cargo.toml has zero networking dependencies
 ```
 
 ---
 
-## i18n — 40 languages supported
+## Screenshots
 
-RTL: Arabic · Hebrew · Persian (full layout mirror)
-WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
+| Home | Log | Calendar | Insights | Security |
+|------|-----|----------|----------|---------|
+| ![](../../docs/screenshots/01_home_en.png) | ![](../../docs/screenshots/02_log_en.png) | ![](../../docs/screenshots/03_calendar_en.png) | ![](../../docs/screenshots/04_insights_en.png) | ![](../../docs/screenshots/05_security_en.png) |
+
+---
+
+## वास्तुकला
+
+```
+साझा Rust कोर (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher एन्क्रिप्टेड · शून्य नेटवर्क
+```
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
+MIT / Apache-2.0 — [LICENSE](../../README.md)
 
-> This app does not provide medical advice. Consult a healthcare professional for medical concerns.
+> ⚠️ यह ऐप चिकित्सा सलाह प्रदान नहीं करता है।

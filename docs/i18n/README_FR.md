@@ -1,80 +1,73 @@
 <div align="center">
 
-# LUNA
+# LUNA — Français
 
-**Suivi du cycle menstruel respectueux de la vie privée — zéro serveur, zéro cloud, zéro compromis.**
+**Votre cycle. Votre téléphone. Aucun serveur. Aucun cloud. Zéro compromis.**
 
-[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
-[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
-[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
-
-[← README](../../README.md)
+[![No server](https://img.shields.io/badge/server-none-brightgreen.svg)](#)
+[![Offline](https://img.shields.io/badge/works-100%25%20offline-brightgreen.svg)](#)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../README.md)
 
 </div>
 
+[← English (full docs)](../../README.md)
+
 ---
 
-## Privacy / Datenschutz / Privacidad / Confidentialité
+## La promesse de confidentialité
 
 | | |
 |---|---|
-| Zero server | No account · No registration · No external dependency · 100% offline |
-| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
-| Local storage | All data on your device · SQLCipher encrypted database |
-| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
-| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
-| Open source | MIT/Apache-2.0 · Every line auditable |
-| Panic wipe | Destroys vault + keys in < 500ms |
-| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
+| 📵 | **Aucun serveur.** Nous n'en avons pas. Pas de backend, pas de base de données distante, aucun point d'API auquel l'application se connecte. |
+| 📶 | **Fonctionne 100 % hors ligne.** Aucune connexion internet n'est jamais requise ou utilisée. Installez une fois, utilisez à vie sans réseau. |
+| 🚷 | **Aucun compte, aucune inscription.** Pas d'e-mail, pas de mot de passe, pas de connexion sociale, pas de vérification d'identité. Rien. |
+| 🧩 | **Aucune dépendance à un service tiers.** Pas de Firebase, pas de Google Analytics, pas de Mixpanel, pas de Sentry, pas d'Amplitude. Zéro SDK externe. |
+| 🔐 | **Données chiffrées sur votre téléphone uniquement.** Base SQLCipher chiffrée AES-256-GCM. Clé dérivée de votre PIN via Argon2id. La clé ne quitte jamais l'appareil. |
+| ☁️ | **Sauvegarde cloud optionnelle — entièrement chiffrée.** iCloud/Google Drive reçoit un blob chiffré opaque. Même Apple et Google ne peuvent pas le lire. |
+| 🚫 | **Zéro télémétrie, zéro analytique.** Aucun rapport de crash, aucune métrique d'usage, aucun flag de fonctionnalité, aucun A/B test. Rien ne quitte votre téléphone. |
+| 💥 | **Effacement panique en 3 secondes.** Maintenez le bouton : base de données + sel + toutes les clés cryptographiques sont détruites de manière irréversible. |
+| 🔓 | **100 % open source.** MIT/Apache-2.0. Chaque ligne de code est publique et auditable par quiconque. |
+
+---
+
+## Ce que LUNA ne fera JAMAIS
+
+| | |
+|---|---|
+| **Aucun serveur** | Nous n'en avons pas. Impossible d'envoyer vos données quelque part. |
+| **Aucun internet requis** | L'application fonctionne 100 % hors ligne. Toujours. |
+| **Aucun compte** | Pas d'email, pas de mot de passe, pas de connexion. |
+| **Aucune vente de données** | Impossible — nous ne les recevons jamais. |
+| **Aucune pub** | Zéro SDK publicitaire, zéro pixel de tracking. |
+| **Aucune télémétrie push** | Les rappels utilisent uniquement le système OS — aucune donnée ne transite par un serveur. |
+| **Aucun SDK caché** | Le binaire ne contient que ce que vous voyez dans ce dépôt. |
+
+```
+iOS:     ATS enforced — no arbitrary network loads
+Android: networkSecurityConfig blocks ALL outbound connections
+Rust:    Cargo.toml has zero networking dependencies
+```
+
+---
+
+## Screenshots
+
+| Home | Log | Calendar | Insights | Security |
+|------|-----|----------|----------|---------|
+| ![](../../docs/screenshots/01_home_fr.png) | ![](../../docs/screenshots/02_log_fr.png) | ![](../../docs/screenshots/03_calendar_fr.png) | ![](../../docs/screenshots/04_insights_en.png) | ![](../../docs/screenshots/05_security_en.png) |
 
 ---
 
 ## Architecture
 
 ```
-luna-core/ Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
-ios-app/ SwiftUI iOS 16+ — Keychain — HealthKit (optional)
-android-app/ Kotlin API 23+ — Keystore — HealthConnect (optional)
+Noyau Rust partagé (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher chiffré · zéro réseau
 ```
-
-**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
-
----
-
-## Language: Français
-
-> Suivi du cycle menstruel respectueux de la vie privée — zéro serveur, zéro cloud, zéro compromis.
-
----
-
-
-## Captures d'ecran
-
-### Tableau de bord
-
-| Accueil | Journal | Calendrier | Analyses | Securite | Mode PMA |
-|---------|---------|-----------|---------|---------|---------|
-| ![](../../docs/screenshots/01_home_fr.png) | ![](../../docs/screenshots/02_log_fr.png) | ![](../../docs/screenshots/03_calendar_fr.png) | ![](../../docs/screenshots/04_insights_fr.png) | ![](../../docs/screenshots/05_security_fr.png) | ![](../../docs/screenshots/06_ttc_fr.png) |
-
-## Build
-
-```bash
-cargo test -p luna-core # 41 Rust tests
-cd ios-app && xcodebuild build # iOS (Xcode 15+)
-cd android-app && ./gradlew assembleDebug # Android
-```
-
----
-
-## i18n — 40 languages supported
-
-RTL: Arabic · Hebrew · Persian (full layout mirror)
-WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
+MIT / Apache-2.0 — [LICENSE](../../README.md)
 
-> This app does not provide medical advice. Consult a healthcare professional for medical concerns.
+> ⚠️ Cette application ne fournit pas de conseil médical.

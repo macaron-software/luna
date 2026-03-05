@@ -1,71 +1,73 @@
 <div align="center">
 
-# LUNA
+# LUNA — Türkçe
 
-**Gizlilik odaklı adet döngüsü takibi — sıfır sunucu, sıfır bulut, sıfır taviz.**
+**Döngünüz. Telefonunuz. Sunucu yok. Bulut yok. Taviz yok.**
 
-[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
-[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
-[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
-
-[← README](../../README.md)
+[![No server](https://img.shields.io/badge/server-none-brightgreen.svg)](#)
+[![Offline](https://img.shields.io/badge/works-100%25%20offline-brightgreen.svg)](#)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../README.md)
 
 </div>
 
+[← English (full docs)](../../README.md)
+
 ---
 
-## Privacy / Datenschutz / Privacidad / Confidentialité
+## Privacy Pledge
 
 | | |
 |---|---|
-| Zero server | No account · No registration · No external dependency · 100% offline |
-| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
-| Local storage | All data on your device · SQLCipher encrypted database |
-| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
-| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
-| Open source | MIT/Apache-2.0 · Every line auditable |
-| Panic wipe | Destroys vault + keys in < 500ms |
-| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
+| 📵 | **No server.** We do not have one. No backend, no remote database, no API endpoint the app ever calls. |
+| 📶 | **Works 100% offline.** No internet connection is ever required or used. Install once, use forever without a network. |
+| 🚷 | **No account, no registration.** No email, no password, no social login, no identity verification. Nothing. |
+| 🧩 | **No third-party service dependency.** No Firebase, no Google Analytics, no Mixpanel, no Sentry, no Amplitude. Zero external SDKs. |
+| 🔐 | **Data encrypted on your phone only.** AES-256-GCM encrypted SQLCipher database. Key derived from your PIN via Argon2id. The key never leaves the device. |
+| ☁️ | **Optional encrypted backup.** iCloud/Google Drive receives an opaque ciphertext blob. Even Apple and Google cannot read it. |
+| 🚫 | **Zero telemetry, zero analytics.** No crash reports, no usage metrics, no A/B tests. Nothing leaves your phone. |
+| 💥 | **Panic wipe in 3 seconds.** Hold the button: database + salt + all cryptographic keys destroyed irreversibly. |
+| 🔓 | **100% open source.** MIT/Apache-2.0. Every line of code is public and auditable by anyone. |
 
 ---
 
-## Architecture
+## LUNA'nın ASLA yapmayacağı
+
+| | |
+|---|---|
+| **No server** | We don't have one. Impossible to send your data anywhere. |
+| **No internet required** | The app works 100% offline. Always. |
+| **No account** | No email, no password, no login. |
+| **No data sale** | Impossible — we never receive it. |
+| **No ads** | Zero advertising SDK, zero tracking pixel. |
+| **No push telemetry** | Reminders use OS system only — no data via any server. |
+| **No hidden SDK** | The binary contains only what you see in this repository. |
 
 ```
-luna-core/ Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
-ios-app/ SwiftUI iOS 16+ — Keychain — HealthKit (optional)
-android-app/ Kotlin API 23+ — Keystore — HealthConnect (optional)
-```
-
-**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
-
----
-
-## Language: Türkçe
-
-> Gizlilik odaklı adet döngüsü takibi — sıfır sunucu, sıfır bulut, sıfır taviz.
-
----
-
-## Build
-
-```bash
-cargo test -p luna-core # 41 Rust tests
-cd ios-app && xcodebuild build # iOS (Xcode 15+)
-cd android-app && ./gradlew assembleDebug # Android
+iOS:     ATS enforced — no arbitrary network loads
+Android: networkSecurityConfig blocks ALL outbound connections
+Rust:    Cargo.toml has zero networking dependencies
 ```
 
 ---
 
-## i18n — 40 languages supported
+## Screenshots
 
-RTL: Arabic · Hebrew · Persian (full layout mirror)
-WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
+| Home | Log | Calendar | Insights | Security |
+|------|-----|----------|----------|---------|
+| ![](../../docs/screenshots/01_home_en.png) | ![](../../docs/screenshots/02_log_en.png) | ![](../../docs/screenshots/03_calendar_en.png) | ![](../../docs/screenshots/04_insights_en.png) | ![](../../docs/screenshots/05_security_en.png) |
+
+---
+
+## Mimari
+
+```
+Shared Rust Core (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher encrypted · zero network
+```
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
+MIT / Apache-2.0 — [LICENSE](../../README.md)
 
-> This app does not provide medical advice. Consult a healthcare professional for medical concerns.
+> ⚠️ This app does not provide medical advice.

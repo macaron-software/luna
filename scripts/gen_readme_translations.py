@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Generates README_XX.md files for all 40 LUNA languages.
-Each file contains: title, privacy pledge (translated), architecture summary, links.
+Generates README_XX.md for all 40 LUNA languages.
+Each file: title, strong privacy pledge (9 points), "never do" table, screenshots, architecture.
 Run: python3 scripts/gen_readme_translations.py
 """
 import os
@@ -10,465 +10,514 @@ BACK = "../../README.md"
 OUT_DIR = os.path.join(os.path.dirname(__file__), "../docs/i18n")
 os.makedirs(OUT_DIR, exist_ok=True)
 
-# (code, flag, language_native, tagline, pledge_rows[7], arch_title, arch_desc, note)
+# Each entry: (code, flag, lang_native, tagline, pledge9[9], never_title, never_rows[7], arch_title, arch_desc, note)
+# pledge9: 9 rows of (icon, text) — cover: server, offline, account, sdk, encryption, backup, telemetry, wipe, opensource
 LANGS = [
-("FR","🇫🇷","Français","Suivi de cycle sans serveur, sans cloud, sans compromis.",
-[("🔒","**Zéro serveur.** Aucun compte, aucune dépendance externe. Fonctionne 100 % hors ligne."),
- ("🔐","**Entièrement chiffré.** AES-256-GCM + Argon2id. Votre PIN ne quitte jamais l'appareil."),
- ("📱","**100 % local.** Toutes vos données restent sur votre appareil. Seule exception : les notifications push (optionnelles, aucune donnée transmise)."),
- ("☁️","**Sauvegarde cloud chiffrée.** iCloud/Google Drive = blob chiffré opaque. Même Apple/Google ne peuvent pas le lire."),
- ("🚫","**Zéro partage de données.** Pas d'analytique, pas de télémétrie, pas de pub."),
- ("🌍","**100 % open source.** MIT/Apache-2.0. Chaque ligne de code est auditable."),
- ("🔬","**Basé sur la science.** Prédictions fondées sur des études revues par les pairs. Pas de pseudo-science.")],
+
+("FR","🇫🇷","Français",
+"Votre cycle. Votre téléphone. Aucun serveur. Aucun cloud. Zéro compromis.",
+[("📵","**Aucun serveur.** Nous n'en avons pas. Pas de backend, pas de base de données distante, aucun point d'API auquel l'application se connecte."),
+ ("📶","**Fonctionne 100 % hors ligne.** Aucune connexion internet n'est jamais requise ou utilisée. Installez une fois, utilisez à vie sans réseau."),
+ ("🚷","**Aucun compte, aucune inscription.** Pas d'e-mail, pas de mot de passe, pas de connexion sociale, pas de vérification d'identité. Rien."),
+ ("🧩","**Aucune dépendance à un service tiers.** Pas de Firebase, pas de Google Analytics, pas de Mixpanel, pas de Sentry, pas d'Amplitude. Zéro SDK externe."),
+ ("🔐","**Données chiffrées sur votre téléphone uniquement.** Base SQLCipher chiffrée AES-256-GCM. Clé dérivée de votre PIN via Argon2id. La clé ne quitte jamais l'appareil."),
+ ("☁️","**Sauvegarde cloud optionnelle — entièrement chiffrée.** iCloud/Google Drive reçoit un blob chiffré opaque. Même Apple et Google ne peuvent pas le lire."),
+ ("🚫","**Zéro télémétrie, zéro analytique.** Aucun rapport de crash, aucune métrique d'usage, aucun flag de fonctionnalité, aucun A/B test. Rien ne quitte votre téléphone."),
+ ("💥","**Effacement panique en 3 secondes.** Maintenez le bouton : base de données + sel + toutes les clés cryptographiques sont détruites de manière irréversible."),
+ ("🔓","**100 % open source.** MIT/Apache-2.0. Chaque ligne de code est publique et auditable par quiconque.")],
+"Ce que LUNA ne fera JAMAIS",
+[("Aucun serveur","Nous n'en avons pas. Impossible d'envoyer vos données quelque part."),
+ ("Aucun internet requis","L'application fonctionne 100 % hors ligne. Toujours."),
+ ("Aucun compte","Pas d'email, pas de mot de passe, pas de connexion."),
+ ("Aucune vente de données","Impossible — nous ne les recevons jamais."),
+ ("Aucune pub","Zéro SDK publicitaire, zéro pixel de tracking."),
+ ("Aucune télémétrie push","Les rappels utilisent uniquement le système OS — aucune donnée ne transite par un serveur."),
+ ("Aucun SDK caché","Le binaire ne contient que ce que vous voyez dans ce dépôt.")],
 "Architecture","Noyau Rust partagé (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher chiffré · zéro réseau",
 "⚠️ Cette application ne fournit pas de conseil médical."),
 
-("DE","🇩🇪","Deutsch","Zyklusverfolgung ohne Server, ohne Cloud, ohne Kompromisse.",
-[("🔒","**Kein Server.** Kein Konto, keine externe Abhängigkeit. Funktioniert 100 % offline."),
- ("🔐","**Vollständig verschlüsselt.** AES-256-GCM + Argon2id. Ihre PIN verlässt niemals das Gerät."),
- ("📱","**100 % lokal.** Alle Daten bleiben auf Ihrem Gerät. Einzige Ausnahme: Push-Benachrichtigungen (optional, keine Datenübertragung)."),
- ("☁️","**Verschlüsseltes Cloud-Backup.** iCloud/Google Drive = undurchsichtiger Chiffretext. Selbst Apple/Google können ihn nicht lesen."),
- ("🚫","**Keine Datenweitergabe.** Keine Analytik, kein Telemetrie, keine Werbung."),
- ("🌍","**100 % Open Source.** MIT/Apache-2.0. Jede Codezeile ist prüfbar."),
- ("🔬","**Wissenschaftsbasiert.** Vorhersagen basieren auf peer-reviewter Forschung. Keine Pseudowissenschaft.")],
+("DE","🇩🇪","Deutsch",
+"Ihr Zyklus. Ihr Telefon. Kein Server. Keine Cloud. Kein Kompromiss.",
+[("📵","**Kein Server.** Wir haben keinen. Kein Backend, keine Remote-Datenbank, kein API-Endpunkt, den die App aufruft."),
+ ("📶","**Funktioniert 100 % offline.** Es wird nie eine Internetverbindung benötigt oder genutzt. Einmal installieren, ewig ohne Netz nutzen."),
+ ("🚷","**Kein Konto, keine Registrierung.** Keine E-Mail, kein Passwort, kein Social-Login, keine Identitätsprüfung. Nichts."),
+ ("🧩","**Keine Abhängigkeit von Drittanbieterdiensten.** Kein Firebase, kein Google Analytics, kein Mixpanel, kein Sentry, kein Amplitude. Null externe SDKs."),
+ ("🔐","**Verschlüsselte Daten nur auf Ihrem Telefon.** SQLCipher-Datenbank mit AES-256-GCM. Schlüssel via Argon2id aus Ihrer PIN. Der Schlüssel verlässt das Gerät nie."),
+ ("☁️","**Optionales Cloud-Backup — vollständig verschlüsselt.** iCloud/Google Drive empfängt ein opakes verschlüsseltes Blob. Selbst Apple und Google können es nicht lesen."),
+ ("🚫","**Null Telemetrie, null Analytics.** Keine Crash-Berichte, keine Nutzungsmetriken, kein A/B-Testing. Nichts verlässt Ihr Telefon."),
+ ("💥","**Panik-Wipe in 3 Sekunden.** Taste gedrückt halten: Datenbank + Salt + alle Schlüssel werden unwiderruflich gelöscht."),
+ ("🔓","**100 % Open Source.** MIT/Apache-2.0. Jede Codezeile ist öffentlich und für jeden auditierbar.")],
+"Was LUNA NIEMALS tun wird",
+[("Kein Server","Wir haben keinen. Unmöglich, Ihre Daten irgendwohin zu senden."),
+ ("Kein Internet nötig","Die App funktioniert 100 % offline. Immer."),
+ ("Kein Konto","Keine E-Mail, kein Passwort, keine Anmeldung."),
+ ("Kein Datenverkauf","Unmöglich — wir empfangen sie nie."),
+ ("Keine Werbung","Null Werbe-SDK, null Tracking-Pixel."),
+ ("Keine Push-Telemetrie","Erinnerungen nutzen nur das OS-System — keine Daten über Server."),
+ ("Kein verstecktes SDK","Das Binary enthält nur, was Sie in diesem Repository sehen.")],
 "Architektur","Gemeinsamer Rust-Kern (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher verschlüsselt · kein Netzwerk",
 "⚠️ Diese App bietet keine medizinische Beratung."),
 
-("ES","🇪🇸","Español","Seguimiento del ciclo sin servidor, sin nube, sin compromisos.",
-[("🔒","**Cero servidor.** Sin cuenta, sin dependencia externa. Funciona 100 % sin conexión."),
- ("🔐","**Totalmente cifrado.** AES-256-GCM + Argon2id. Tu PIN nunca sale del dispositivo."),
- ("📱","**100 % local.** Todos los datos permanecen en tu dispositivo. La única excepción: notificaciones push (opcionales, sin datos transmitidos)."),
- ("☁️","**Copia de seguridad cloud cifrada.** iCloud/Google Drive = blob cifrado opaco. Incluso Apple/Google no pueden leerlo."),
- ("🚫","**Cero compartición de datos.** Sin analítica, sin telemetría, sin publicidad."),
- ("🌍","**100 % código abierto.** MIT/Apache-2.0. Cada línea de código es auditable."),
- ("🔬","**Basado en ciencia.** Predicciones fundamentadas en estudios revisados por pares. Sin pseudociencia.")],
+("ES","🇪🇸","Español",
+"Tu ciclo. Tu teléfono. Ningún servidor. Ninguna nube. Cero compromisos.",
+[("📵","**Ningún servidor.** No tenemos ninguno. Sin backend, sin base de datos remota, sin punto de API al que la app se conecte."),
+ ("📶","**Funciona 100% sin conexión.** Nunca se requiere ni se usa conexión a internet. Instala una vez, usa siempre sin red."),
+ ("🚷","**Sin cuenta, sin registro.** Sin email, sin contraseña, sin login social, sin verificación de identidad. Nada."),
+ ("🧩","**Sin dependencia de servicios de terceros.** Sin Firebase, sin Google Analytics, sin Mixpanel, sin Sentry, sin Amplitude. Cero SDKs externos."),
+ ("🔐","**Datos cifrados solo en tu teléfono.** Base de datos SQLCipher cifrada con AES-256-GCM. Clave derivada de tu PIN via Argon2id. La clave nunca sale del dispositivo."),
+ ("☁️","**Copia de seguridad cloud opcional — completamente cifrada.** iCloud/Google Drive recibe un blob cifrado opaco. Ni Apple ni Google pueden leerlo."),
+ ("🚫","**Cero telemetría, cero analítica.** Sin informes de fallos, sin métricas de uso, sin pruebas A/B. Nada sale de tu teléfono."),
+ ("💥","**Borrado de pánico en 3 segundos.** Mantén el botón: base de datos + sal + todas las claves criptográficas se destruyen irreversiblemente."),
+ ("🔓","**100% código abierto.** MIT/Apache-2.0. Cada línea de código es pública y auditable por cualquiera.")],
+"Lo que LUNA NUNCA hará",
+[("Sin servidor","No tenemos ninguno. Imposible enviar tus datos a ningún lado."),
+ ("Sin internet requerido","La app funciona 100% offline. Siempre."),
+ ("Sin cuenta","Sin email, sin contraseña, sin login."),
+ ("Sin venta de datos","Imposible — nunca los recibimos."),
+ ("Sin publicidad","Cero SDK publicitario, cero píxel de seguimiento."),
+ ("Sin telemetría push","Los recordatorios usan solo el sistema OS — sin datos por servidor."),
+ ("Sin SDK oculto","El binario contiene solo lo que ves en este repositorio.")],
 "Arquitectura","Núcleo Rust compartido (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher cifrado · cero red",
 "⚠️ Esta aplicación no ofrece consejo médico."),
 
-("AR","🇦🇪","العربية","تتبع الدورة بدون خادم، بدون سحابة، بدون تنازلات.",
-[("🔒","**صفر خوادم.** لا حساب، لا تبعية خارجية. يعمل 100٪ بدون إنترنت."),
- ("🔐","**مشفّر بالكامل.** AES-256-GCM + Argon2id. رمز PIN الخاص بك لا يغادر جهازك أبدًا."),
- ("📱","**100٪ محلي.** جميع بياناتك تبقى على جهازك. الاستثناء الوحيد: الإشعارات الفورية (اختيارية، لا بيانات ترسل)."),
- ("☁️","**نسخ احتياطي سحابي مشفّر.** iCloud/Google Drive = كتلة مشفّرة غير شفافة. حتى Apple/Google لا يستطيعان قراءتها."),
- ("🚫","**صفر مشاركة بيانات.** لا تحليلات، لا قياس أداء، لا إعلانات."),
- ("🌍","**مفتوح المصدر بالكامل.** MIT/Apache-2.0. كل سطر من الكود قابل للتدقيق."),
- ("🔬","**مبني على العلم.** التنبؤات مستندة إلى أبحاث خضعت للمراجعة العلمية. لا علم زائف.")],
+("AR","🇦🇪","العربية",
+"دورتك. هاتفك. لا خادم. لا سحابة. لا تنازلات.",
+[("📵","**لا خادم على الإطلاق.** ليس لدينا خادم. لا backend، لا قاعدة بيانات بعيدة، لا نقطة API تتصل بها التطبيقة."),
+ ("📶","**يعمل 100% بدون إنترنت.** لا يُستخدم اتصال بالإنترنت أبدًا ولا يُطلب. ثبّت مرة واحدة، استخدم للأبد بدون شبكة."),
+ ("🚷","**لا حساب، لا تسجيل.** لا بريد إلكتروني، لا كلمة مرور، لا تسجيل دخول اجتماعي، لا التحقق من الهوية. لا شيء."),
+ ("🧩","**لا اعتماد على خدمات طرف ثالث.** لا Firebase، لا Google Analytics، لا Mixpanel، لا Sentry، لا Amplitude. صفر SDK خارجي."),
+ ("🔐","**البيانات مشفرة على هاتفك فقط.** قاعدة بيانات SQLCipher مشفرة بـ AES-256-GCM. المفتاح مشتق من رمز PIN عبر Argon2id. لا يغادر المفتاح الجهاز أبدًا."),
+ ("☁️","**نسخ احتياطي اختياري في السحابة — مشفر تمامًا.** iCloud/Google Drive يستقبل كتلة مشفرة غير شفافة. حتى Apple وGoogle لا يستطيعان قراءتها."),
+ ("🚫","**صفر قياس أداء، صفر تحليلات.** لا تقارير أعطال، لا مقاييس استخدام، لا اختبارات A/B. لا شيء يغادر هاتفك."),
+ ("💥","**محو الذعر في 3 ثوانٍ.** اضغط مطولًا على الزر: قاعدة البيانات + الملح + جميع المفاتيح التشفيرية تُتلف بشكل لا رجعة فيه."),
+ ("🔓","**100% مفتوح المصدر.** MIT/Apache-2.0. كل سطر كود علني وقابل للمراجعة من قبل أي شخص.")],
+"ما لن تفعله LUNA أبدًا",
+[("لا خادم","ليس لدينا. مستحيل إرسال بياناتك إلى أي مكان."),
+ ("لا إنترنت مطلوب","التطبيق يعمل 100% بدون شبكة. دائمًا."),
+ ("لا حساب","لا بريد، لا كلمة مرور، لا تسجيل دخول."),
+ ("لا بيع للبيانات","مستحيل — لا نستقبلها أبدًا."),
+ ("لا إعلانات","صفر SDK إعلاني، صفر بكسل تتبع."),
+ ("لا قياس Push","التذكيرات تستخدم نظام OS فقط — بدون بيانات عبر أي خادم."),
+ ("لا SDK مخفي","البرنامج الثنائي يحتوي فقط على ما تراه في هذا المستودع.")],
 "البنية التقنية","نواة Rust مشتركة (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher مشفّر · صفر شبكة",
 "⚠️ هذا التطبيق لا يقدم استشارات طبية."),
 
-("JA","🇯🇵","日本語","サーバーなし、クラウドなし、妥協なしのサイクル追跡。",
-[("🔒","**サーバーゼロ。** アカウント不要、外部依存なし。100% オフラインで動作。"),
- ("🔐","**完全暗号化。** AES-256-GCM + Argon2id。PINはデバイスから出ることはありません。"),
- ("📱","**100% ローカル。** すべてのデータはデバイス上に保存。例外はプッシュ通知のみ（任意、データ送信なし）。"),
- ("☁️","**暗号化クラウドバックアップ。** iCloud/Google Driveのバックアップは不透明な暗号文。Apple/Googleでさえ読めません。"),
- ("🚫","**データ共有ゼロ。** 分析なし、テレメトリーなし、広告なし。"),
- ("🌍","**完全オープンソース。** MIT/Apache-2.0。すべてのコードは誰でも監査可能。"),
- ("🔬","**科学的根拠あり。** 予測は査読済み研究に基づいています。疑似科学なし。")],
-"アーキテクチャ","Rustコア共有 (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher暗号化 · ゼロネットワーク",
+("JA","🇯🇵","日本語",
+"あなたのサイクル。あなたの電話。サーバーなし。クラウドなし。妥協なし。",
+[("📵","**サーバーなし。** 私たちはサーバーを持っていません。バックエンドなし、リモートデータベースなし、アプリが接続するAPIエンドポイントなし。"),
+ ("📶","**100% オフラインで動作。** インターネット接続は一切不要で使用もされません。一度インストールすれば、ネットワークなしで永遠に使えます。"),
+ ("🚷","**アカウント不要、登録不要。** メールアドレス不要、パスワード不要、ソーシャルログイン不要、本人確認不要。何も不要。"),
+ ("🧩","**サードパーティサービスへの依存なし。** Firebase、Google Analytics、Mixpanel、Sentry、Amplitudeは一切使用しません。外部SDKはゼロ。"),
+ ("🔐","**データはあなたの電話にのみ暗号化保存。** AES-256-GCMで暗号化されたSQLCipherデータベース。Argon2idでPINから派生したキー。キーはデバイスから外に出ません。"),
+ ("☁️","**オプションのクラウドバックアップ — 完全暗号化。** iCloud/Google Driveには不透明な暗号化ブロブが送られます。AppleもGoogleも読めません。"),
+ ("🚫","**テレメトリーゼロ、分析ゼロ。** クラッシュレポートなし、使用統計なし、A/Bテストなし。何もあなたの電話を離れません。"),
+ ("💥","**3秒でパニックワイプ。** ボタンを長押し：データベース + ソルト + すべての暗号鍵が不可逆的に破壊されます。"),
+ ("🔓","**100% オープンソース。** MIT/Apache-2.0。すべてのコード行が公開されており、誰でも監査できます。")],
+"LUNAが絶対にしないこと",
+[("サーバーなし","私たちはサーバーを持っていません。データを送る場所がありません。"),
+ ("インターネット不要","アプリは100% オフラインで動作します。常に。"),
+ ("アカウントなし","メールなし、パスワードなし、ログインなし。"),
+ ("データ売却なし","不可能 — 私たちはデータを受け取りません。"),
+ ("広告なし","広告SDKゼロ、トラッキングピクセルゼロ。"),
+ ("Pushテレメトリーなし","リマインダーはOSシステムのみ使用 — サーバー経由のデータなし。"),
+ ("隠しSDKなし","バイナリにはこのリポジトリで見るものだけが含まれています。")],
+"アーキテクチャ","共有Rustコア (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher暗号化 · ゼロネットワーク",
 "⚠️ このアプリは医療アドバイスを提供しません。"),
 
-("ZH-Hans","🇨🇳","简体中文","无服务器、无云端、无妥协的月经周期追踪。",
-[("🔒","**零服务器。** 无需账户，无外部依赖。100% 离线运行。"),
- ("🔐","**完全加密。** AES-256-GCM + Argon2id。您的PIN永不离开设备。"),
- ("📱","**100% 本地存储。** 所有数据保存在您的设备上。唯一例外：推送通知（可选，不传输数据）。"),
- ("☁️","**加密云备份。** iCloud/Google Drive 备份是不透明的密文块，即使 Apple/Google 也无法读取。"),
- ("🚫","**零数据共享。** 无分析、无遥测、无广告。"),
- ("🌍","**完全开源。** MIT/Apache-2.0。每行代码均可审计。"),
- ("🔬","**基于科学。** 预测基于同行评审研究。无伪科学。")],
+("ZH-Hans","🇨🇳","简体中文",
+"您的周期。您的手机。无服务器。无云端。零妥协。",
+[("📵","**无服务器。** 我们没有服务器。无后端，无远程数据库，无应用连接的API端点。"),
+ ("📶","**100% 离线运行。** 从不需要或使用互联网连接。安装一次，无需网络永久使用。"),
+ ("🚷","**无账户，无注册。** 无电子邮件，无密码，无社交登录，无身份验证。什么都不需要。"),
+ ("🧩","**不依赖任何第三方服务。** 无Firebase，无Google Analytics，无Mixpanel，无Sentry，无Amplitude。零外部SDK。"),
+ ("🔐","**数据仅加密存储在您的手机上。** AES-256-GCM加密的SQLCipher数据库。通过Argon2id从PIN派生密钥。密钥永不离开设备。"),
+ ("☁️","**可选云备份——完全加密。** iCloud/Google Drive收到不透明的加密数据块。即使Apple和Google也无法读取。"),
+ ("🚫","**零遥测，零分析。** 无崩溃报告，无使用指标，无A/B测试。没有任何东西离开您的手机。"),
+ ("💥","**3秒紧急清除。** 长按按钮：数据库+盐+所有加密密钥不可逆地销毁。"),
+ ("🔓","**100% 开源。** MIT/Apache-2.0。每一行代码都是公开的，任何人都可以审计。")],
+"LUNA绝对不会做的事",
+[("无服务器","我们没有。不可能把您的数据发送到任何地方。"),
+ ("无需互联网","应用100% 离线运行。始终如此。"),
+ ("无账户","无邮件，无密码，无登录。"),
+ ("不出售数据","不可能——我们从不接收数据。"),
+ ("无广告","零广告SDK，零追踪像素。"),
+ ("无Push遥测","提醒仅使用OS系统——无数据通过服务器。"),
+ ("无隐藏SDK","二进制文件只包含您在此仓库中看到的内容。")],
 "架构","共享Rust核心 (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher加密 · 零网络",
 "⚠️ 本应用不提供医疗建议。"),
 
-("ZH-Hant","🇹🇼","繁體中文","無伺服器、無雲端、無妥協的月經週期追蹤。",
-[("🔒","**零伺服器。** 無需帳戶，無外部依賴。100% 離線運行。"),
- ("🔐","**完全加密。** AES-256-GCM + Argon2id。您的PIN永不離開裝置。"),
- ("📱","**100% 本地儲存。** 所有資料保存在您的裝置上。唯一例外：推播通知（選用，不傳輸資料）。"),
- ("☁️","**加密雲端備份。** iCloud/Google Drive 備份是不透明的密文，即使 Apple/Google 也無法讀取。"),
- ("🚫","**零資料共享。** 無分析、無遙測、無廣告。"),
- ("🌍","**完全開源。** MIT/Apache-2.0。每行程式碼均可稽核。"),
- ("🔬","**基於科學。** 預測基於同行評審研究。無偽科學。")],
+("ZH-Hant","🇹🇼","繁體中文",
+"您的週期。您的手機。無伺服器。無雲端。零妥協。",
+[("📵","**無伺服器。** 我們沒有伺服器。無後端，無遠端資料庫，無應用程式連接的API端點。"),
+ ("📶","**100% 離線運作。** 從不需要或使用網路連線。安裝一次，無需網路永久使用。"),
+ ("🚷","**無帳戶，無註冊。** 無電子郵件，無密碼，無社交登入，無身份驗證。什麼都不需要。"),
+ ("🧩","**不依賴任何第三方服務。** 無Firebase，無Google Analytics，無Mixpanel，無Sentry。零外部SDK。"),
+ ("🔐","**資料僅加密存儲在您的手機上。** AES-256-GCM加密的SQLCipher資料庫。密鑰永不離開裝置。"),
+ ("☁️","**可選雲端備份——完全加密。** iCloud/Google Drive收到不透明的加密數據塊。即使Apple和Google也無法讀取。"),
+ ("🚫","**零遙測，零分析。** 沒有任何東西離開您的手機。"),
+ ("💥","**3秒緊急清除。** 長按按鈕：資料庫+鹽+所有加密密鑰不可逆地銷毀。"),
+ ("🔓","**100% 開源。** MIT/Apache-2.0。每一行程式碼都是公開的，任何人都可以審計。")],
+"LUNA絕對不會做的事",
+[("無伺服器","我們沒有。不可能把您的數據發送到任何地方。"),
+ ("無需網路","應用100% 離線運作。"),
+ ("無帳戶","無郵件，無密碼，無登入。"),
+ ("不出售數據","不可能——我們從不接收數據。"),
+ ("無廣告","零廣告SDK，零追蹤像素。"),
+ ("無Push遙測","提醒僅使用OS系統。"),
+ ("無隱藏SDK","二進位檔案只包含您在此儲存庫中看到的內容。")],
 "架構","共享Rust核心 (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher加密 · 零網路",
 "⚠️ 本應用程式不提供醫療建議。"),
 
-("PT-BR","🇧🇷","Português BR","Rastreamento do ciclo sem servidor, sem nuvem, sem compromissos.",
-[("🔒","**Zero servidor.** Sem conta, sem dependência externa. Funciona 100% offline."),
- ("🔐","**Totalmente criptografado.** AES-256-GCM + Argon2id. Seu PIN nunca sai do dispositivo."),
- ("📱","**100% local.** Todos os dados ficam no seu dispositivo. A única exceção: notificações push (opcionais, sem dados transmitidos)."),
- ("☁️","**Backup em nuvem criptografado.** iCloud/Google Drive = blob cifrado opaco. Nem Apple/Google conseguem ler."),
- ("🚫","**Zero compartilhamento de dados.** Sem análises, sem telemetria, sem publicidade."),
- ("🌍","**100% código aberto.** MIT/Apache-2.0. Cada linha de código é auditável."),
- ("🔬","**Baseado em ciência.** Previsões fundamentadas em estudos revisados por pares. Sem pseudociência.")],
+("PT-BR","🇧🇷","Português BR",
+"Seu ciclo. Seu telefone. Nenhum servidor. Nenhuma nuvem. Zero compromisso.",
+[("📵","**Nenhum servidor.** Não temos nenhum. Sem backend, sem banco de dados remoto, nenhum endpoint de API que o app usa."),
+ ("📶","**Funciona 100% offline.** Nenhuma conexão com a internet é jamais necessária ou usada. Instale uma vez, use para sempre sem rede."),
+ ("🚷","**Sem conta, sem cadastro.** Sem e-mail, sem senha, sem login social, sem verificação de identidade. Nada."),
+ ("🧩","**Sem dependência de serviços de terceiros.** Sem Firebase, sem Google Analytics, sem Mixpanel, sem Sentry, sem Amplitude. Zero SDKs externos."),
+ ("🔐","**Dados criptografados apenas no seu telefone.** Banco de dados SQLCipher criptografado com AES-256-GCM. Chave derivada do seu PIN via Argon2id. A chave nunca sai do dispositivo."),
+ ("☁️","**Backup em nuvem opcional — totalmente criptografado.** iCloud/Google Drive recebe um blob criptografado opaco. Nem Apple nem Google conseguem lê-lo."),
+ ("🚫","**Zero telemetria, zero analytics.** Sem relatórios de falha, sem métricas de uso, sem testes A/B. Nada sai do seu telefone."),
+ ("💥","**Apagamento de pânico em 3 segundos.** Segure o botão: banco de dados + sal + todas as chaves criptográficas são destruídas irreversivelmente."),
+ ("🔓","**100% código aberto.** MIT/Apache-2.0. Cada linha de código é pública e auditável por qualquer pessoa.")],
+"O que a LUNA NUNCA fará",
+[("Nenhum servidor","Não temos. Impossível enviar seus dados para qualquer lugar."),
+ ("Sem internet necessária","O app funciona 100% offline. Sempre."),
+ ("Sem conta","Sem e-mail, sem senha, sem login."),
+ ("Sem venda de dados","Impossível — nunca os recebemos."),
+ ("Sem anúncios","Zero SDK de publicidade, zero pixel de rastreamento."),
+ ("Sem telemetria push","Lembretes usam apenas o sistema OS — sem dados por servidor."),
+ ("Sem SDK oculto","O binário contém apenas o que você vê neste repositório.")],
 "Arquitetura","Núcleo Rust compartilhado (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher criptografado · zero rede",
-"⚠️ Este aplicativo não fornece aconselhamento médico."),
+"⚠️ Este aplicativo não fornece conselho médico."),
 
-("RU","🇷🇺","Русский","Отслеживание цикла без сервера, без облака, без компромиссов.",
-[("🔒","**Ноль серверов.** Без аккаунта, без внешних зависимостей. Работает 100% офлайн."),
- ("🔐","**Полное шифрование.** AES-256-GCM + Argon2id. Ваш PIN никогда не покидает устройство."),
- ("📱","**100% локально.** Все данные хранятся на вашем устройстве. Единственное исключение: push-уведомления (опционально, без передачи данных)."),
- ("☁️","**Зашифрованный облачный бэкап.** iCloud/Google Drive = непрозрачный зашифрованный блоб. Даже Apple/Google не могут его прочитать."),
- ("🚫","**Нулевой обмен данными.** Без аналитики, без телеметрии, без рекламы."),
- ("🌍","**Полностью открытый исходный код.** MIT/Apache-2.0. Каждая строка кода проверяема."),
- ("🔬","**Основан на науке.** Прогнозы основаны на рецензируемых исследованиях. Без псевдонауки.")],
-"Архитектура","Общее Rust-ядро (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher зашифрован · ноль сети",
-"⚠️ Это приложение не предоставляет медицинские консультации."),
+("RU","🇷🇺","Русский",
+"Ваш цикл. Ваш телефон. Никаких серверов. Никаких облаков. Никаких компромиссов.",
+[("📵","**Никаких серверов.** У нас их нет. Никакого бэкенда, никакой удалённой базы данных, никаких API-эндпоинтов."),
+ ("📶","**Работает 100% офлайн.** Интернет-соединение никогда не требуется и не используется. Установите один раз — используйте вечно без сети."),
+ ("🚷","**Никаких аккаунтов, никакой регистрации.** Никакого email, никакого пароля, никакого входа через соцсети, никакой верификации."),
+ ("🧩","**Никакой зависимости от сторонних сервисов.** Никакого Firebase, Google Analytics, Mixpanel, Sentry, Amplitude. Ноль внешних SDK."),
+ ("🔐","**Данные зашифрованы только на вашем телефоне.** База данных SQLCipher с AES-256-GCM. Ключ выводится из PIN через Argon2id. Ключ никогда не покидает устройство."),
+ ("☁️","**Необязательное облачное резервное копирование — полностью зашифровано.** iCloud/Google Drive получает непрозрачный зашифрованный блоб. Даже Apple и Google не могут его прочитать."),
+ ("🚫","**Ноль телеметрии, ноль аналитики.** Никаких отчётов о сбоях, никаких метрик использования, никакого A/B-тестирования. Ничто не покидает ваш телефон."),
+ ("💥","**Паническое удаление за 3 секунды.** Удерживайте кнопку: база данных + соль + все криптографические ключи уничтожаются необратимо."),
+ ("🔓","**100% открытый исходный код.** MIT/Apache-2.0. Каждая строка кода публична и доступна для аудита.")],
+"Что LUNA НИКОГДА не будет делать",
+[("Никаких серверов","У нас нет. Невозможно отправить ваши данные куда-либо."),
+ ("Без интернета","Приложение работает 100% офлайн. Всегда."),
+ ("Без аккаунта","Без email, без пароля, без входа."),
+ ("Без продажи данных","Невозможно — мы их никогда не получаем."),
+ ("Без рекламы","Ноль рекламных SDK, ноль пикселей отслеживания."),
+ ("Без push-телеметрии","Напоминания используют только систему ОС — без данных через сервер."),
+ ("Без скрытых SDK","Бинарный файл содержит только то, что вы видите в этом репозитории.")],
+"Архитектура","Общее ядро Rust (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher зашифрован · ноль сети",
+"⚠️ Это приложение не предоставляет медицинских консультаций."),
 
-("IT","🇮🇹","Italiano","Tracciamento del ciclo senza server, senza cloud, senza compromessi.",
-[("🔒","**Zero server.** Nessun account, nessuna dipendenza esterna. Funziona 100% offline."),
- ("🔐","**Completamente cifrato.** AES-256-GCM + Argon2id. Il tuo PIN non lascia mai il dispositivo."),
- ("📱","**100% locale.** Tutti i dati rimangono sul tuo dispositivo. L'unica eccezione: notifiche push (opzionali, nessun dato trasmesso)."),
- ("☁️","**Backup cloud cifrato.** iCloud/Google Drive = blob cifrato opaco. Nemmeno Apple/Google possono leggerlo."),
- ("🚫","**Zero condivisione dati.** Nessuna analisi, nessuna telemetria, nessuna pubblicità."),
- ("🌍","**100% open source.** MIT/Apache-2.0. Ogni riga di codice è verificabile."),
- ("🔬","**Basato sulla scienza.** Previsioni fondate su ricerche peer-reviewed. Nessuna pseudoscienza.")],
+("IT","🇮🇹","Italiano",
+"Il tuo ciclo. Il tuo telefono. Nessun server. Nessun cloud. Zero compromessi.",
+[("📵","**Nessun server.** Non ne abbiamo. Nessun backend, nessun database remoto, nessun endpoint API a cui l'app si connette."),
+ ("📶","**Funziona al 100% offline.** Nessuna connessione internet è mai richiesta o utilizzata. Installa una volta, usa per sempre senza rete."),
+ ("🚷","**Nessun account, nessuna registrazione.** Nessuna email, nessuna password, nessun login social, nessuna verifica d'identità. Nulla."),
+ ("🧩","**Nessuna dipendenza da servizi di terze parti.** Nessun Firebase, Google Analytics, Mixpanel, Sentry, Amplitude. Zero SDK esterni."),
+ ("🔐","**Dati cifrati solo sul tuo telefono.** Database SQLCipher cifrato con AES-256-GCM. Chiave derivata dal tuo PIN via Argon2id. La chiave non lascia mai il dispositivo."),
+ ("☁️","**Backup cloud opzionale — completamente cifrato.** iCloud/Google Drive riceve un blob cifrato opaco. Nemmeno Apple e Google possono leggerlo."),
+ ("🚫","**Zero telemetria, zero analytics.** Nessun report di crash, nessuna metrica di utilizzo, nessun A/B test. Niente lascia il tuo telefono."),
+ ("💥","**Cancellazione di emergenza in 3 secondi.** Tieni premuto il pulsante: database + salt + tutte le chiavi crittografiche vengono distrutte irreversibilmente."),
+ ("🔓","**100% open source.** MIT/Apache-2.0. Ogni riga di codice è pubblica e verificabile da chiunque.")],
+"Cosa LUNA non farà MAI",
+[("Nessun server","Non ne abbiamo. Impossibile inviare i tuoi dati da qualsiasi parte."),
+ ("Senza internet","L'app funziona al 100% offline. Sempre."),
+ ("Senza account","Senza email, senza password, senza login."),
+ ("Senza vendita di dati","Impossibile — non li riceviamo mai."),
+ ("Senza pubblicità","Zero SDK pubblicitari, zero pixel di tracciamento."),
+ ("Senza telemetria push","I promemoria usano solo il sistema OS — nessun dato via server."),
+ ("Senza SDK nascosti","Il binario contiene solo ciò che vedi in questo repository.")],
 "Architettura","Core Rust condiviso (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher cifrato · zero rete",
 "⚠️ Questa app non fornisce consulenza medica."),
 
-("NL","🇳🇱","Nederlands","Cyclusregistratie zonder server, zonder cloud, zonder compromissen.",
-[("🔒","**Nul servers.** Geen account, geen externe afhankelijkheid. Werkt 100% offline."),
- ("🔐","**Volledig versleuteld.** AES-256-GCM + Argon2id. Uw PIN verlaat het apparaat nooit."),
- ("📱","**100% lokaal.** Alle gegevens blijven op uw apparaat. De enige uitzondering: push-notificaties (optioneel, geen gegevensoverdracht)."),
- ("☁️","**Versleutelde cloud-back-up.** iCloud/Google Drive = ondoorzichtig versleuteld blob. Zelfs Apple/Google kunnen het niet lezen."),
- ("🚫","**Nul gegevensdeling.** Geen analyse, geen telemetrie, geen reclame."),
- ("🌍","**100% open source.** MIT/Apache-2.0. Elke coderegel is controleerbaar."),
- ("🔬","**Wetenschappelijk onderbouwd.** Voorspellingen gebaseerd op peer-reviewed onderzoek. Geen pseudowetenschap.")],
+("NL","🇳🇱","Nederlands",
+"Jouw cyclus. Jouw telefoon. Geen server. Geen cloud. Nul compromissen.",
+[("📵","**Geen server.** Wij hebben er geen. Geen backend, geen externe database, geen API-eindpunt waarmee de app verbinding maakt."),
+ ("📶","**Werkt 100% offline.** Er is nooit een internetverbinding nodig of wordt gebruikt. Eenmalig installeren, altijd gebruiken zonder netwerk."),
+ ("🚷","**Geen account, geen registratie.** Geen e-mail, geen wachtwoord, geen sociale login, geen identiteitsverificatie. Niets."),
+ ("🧩","**Geen afhankelijkheid van diensten van derden.** Geen Firebase, Google Analytics, Mixpanel, Sentry, Amplitude. Nul externe SDK's."),
+ ("🔐","**Gegevens alleen versleuteld op jouw telefoon.** SQLCipher-database versleuteld met AES-256-GCM. Sleutel afgeleid van jouw PIN via Argon2id. De sleutel verlaat het apparaat nooit."),
+ ("☁️","**Optionele cloudback-up — volledig versleuteld.** iCloud/Google Drive ontvangt een ondoorzichtige versleutelde blob. Zelfs Apple en Google kunnen het niet lezen."),
+ ("🚫","**Nul telemetrie, nul analytics.** Geen crashrapporten, geen gebruiksstatistieken, geen A/B-tests. Niets verlaat jouw telefoon."),
+ ("💥","**Paniekvegwissen in 3 seconden.** Houd de knop ingedrukt: database + salt + alle cryptografische sleutels worden onomkeerbaar vernietigd."),
+ ("🔓","**100% open source.** MIT/Apache-2.0. Elke regel code is openbaar en door iedereen te auditen.")],
+"Wat LUNA NOOIT zal doen",
+[("Geen server","Wij hebben er geen. Onmogelijk om jouw gegevens ergens naartoe te sturen."),
+ ("Geen internet nodig","De app werkt 100% offline. Altijd."),
+ ("Geen account","Geen e-mail, geen wachtwoord, geen login."),
+ ("Geen dataverkoop","Onmogelijk — we ontvangen het nooit."),
+ ("Geen advertenties","Nul advertentie-SDK, nul trackingpixels."),
+ ("Geen push-telemetrie","Herinneringen gebruiken alleen het OS-systeem — geen gegevens via server."),
+ ("Geen verborgen SDK","Het binaire bestand bevat alleen wat je in deze repository ziet.")],
 "Architectuur","Gedeelde Rust-kern (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher versleuteld · nul netwerk",
-"⚠️ Deze app geeft geen medisch advies."),
+"⚠️ Deze app biedt geen medisch advies."),
 
-("PL","🇵🇱","Polski","Śledzenie cyklu bez serwera, bez chmury, bez kompromisów.",
-[("🔒","**Zero serwerów.** Bez konta, bez zewnętrznych zależności. Działa 100% offline."),
- ("🔐","**W pełni zaszyfrowane.** AES-256-GCM + Argon2id. Twój PIN nigdy nie opuszcza urządzenia."),
- ("📱","**100% lokalnie.** Wszystkie dane pozostają na Twoim urządzeniu. Jedyny wyjątek: powiadomienia push (opcjonalne, bez przesyłania danych)."),
- ("☁️","**Zaszyfrowana kopia zapasowa w chmurze.** iCloud/Google Drive = nieprzejrzysty zaszyfrowany blob. Nawet Apple/Google nie mogą go odczytać."),
- ("🚫","**Zero udostępniania danych.** Brak analityki, telemetrii, reklam."),
- ("🌍","**100% open source.** MIT/Apache-2.0. Każda linia kodu jest weryfikowalna."),
- ("🔬","**Oparty na nauce.** Prognozy oparte na recenzowanych badaniach. Bez pseudonauki.")],
-"Architektura","Wspólne jądro Rust (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher zaszyfrowany · zero sieci",
-"⚠️ Ta aplikacja nie udziela porad medycznych."),
-
-("UK","🇺🇦","Українська","Відстеження циклу без сервера, без хмари, без компромісів.",
-[("🔒","**Нуль серверів.** Без облікового запису, без зовнішніх залежностей. Працює 100% офлайн."),
- ("🔐","**Повне шифрування.** AES-256-GCM + Argon2id. Ваш PIN ніколи не виходить з пристрою."),
- ("📱","**100% локально.** Усі дані зберігаються на вашому пристрої. Єдиний виняток: push-сповіщення (опціонально, без передачі даних)."),
- ("☁️","**Зашифрований хмарний бекап.** iCloud/Google Drive = непрозорий зашифрований блоб. Навіть Apple/Google не можуть його прочитати."),
- ("🚫","**Нульовий обмін даними.** Без аналітики, телеметрії, реклами."),
- ("🌍","**Повністю відкритий код.** MIT/Apache-2.0. Кожен рядок коду перевіряється."),
- ("🔬","**Заснований на науці.** Прогнози засновані на рецензованих дослідженнях. Без псевдонауки.")],
-"Архітектура","Спільне Rust-ядро (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher зашифрований · нуль мережі",
-"⚠️ Цей застосунок не надає медичних консультацій."),
-
-("TR","🇹🇷","Türkçe","Sunucusuz, bulut olmadan, ödünsüz döngü takibi.",
-[("🔒","**Sıfır sunucu.** Hesap yok, harici bağımlılık yok. %100 çevrimdışı çalışır."),
- ("🔐","**Tamamen şifreli.** AES-256-GCM + Argon2id. PIN'iniz asla cihazınızdan çıkmaz."),
- ("📱","**%100 yerel.** Tüm veriler cihazınızda kalır. Tek istisna: anlık bildirimler (isteğe bağlı, veri iletimi yok)."),
- ("☁️","**Şifreli bulut yedekleme.** iCloud/Google Drive = opak şifreli blob. Apple/Google bile okuyamaz."),
- ("🚫","**Sıfır veri paylaşımı.** Analitik yok, telemetri yok, reklam yok."),
- ("🌍","**%100 açık kaynak.** MIT/Apache-2.0. Her kod satırı denetlenebilir."),
- ("🔬","**Bilime dayalı.** Tahminler hakemli araştırmalara dayanmaktadır. Sözde bilim yok.")],
-"Mimari","Paylaşılan Rust çekirdeği (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher şifreli · sıfır ağ",
-"⚠️ Bu uygulama tıbbi tavsiye vermez."),
-
-("KO","🇰🇷","한국어","서버 없이, 클라우드 없이, 타협 없이 하는 생리 주기 추적.",
-[("🔒","**서버 제로.** 계정 없음, 외부 의존성 없음. 100% 오프라인 작동."),
- ("🔐","**완전 암호화.** AES-256-GCM + Argon2id. PIN이 기기를 절대 벗어나지 않습니다."),
- ("📱","**100% 로컬 저장.** 모든 데이터가 기기에 보관됩니다. 유일한 예외: 푸시 알림(선택 사항, 데이터 전송 없음)."),
- ("☁️","**암호화된 클라우드 백업.** iCloud/Google Drive = 불투명한 암호문 블롭. Apple/Google도 읽을 수 없습니다."),
- ("🚫","**데이터 공유 제로.** 분석 없음, 원격 분석 없음, 광고 없음."),
- ("🌍","**100% 오픈 소스.** MIT/Apache-2.0. 모든 코드 라인을 감사할 수 있습니다."),
- ("🔬","**과학 기반.** 예측은 동료 심사를 받은 연구를 바탕으로 합니다. 의사 과학 없음.")],
-"아키텍처","공유 Rust 코어 (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher 암호화 · 네트워크 제로",
+("KO","🇰🇷","한국어",
+"당신의 주기. 당신의 전화기. 서버 없음. 클라우드 없음. 타협 없음.",
+[("📵","**서버 없음.** 우리는 서버가 없습니다. 백엔드 없음, 원격 데이터베이스 없음, 앱이 연결하는 API 엔드포인트 없음."),
+ ("📶","**100% 오프라인 작동.** 인터넷 연결이 필요하거나 사용된 적이 없습니다. 한 번 설치하면 네트워크 없이 영원히 사용 가능합니다."),
+ ("🚷","**계정 없음, 가입 없음.** 이메일 없음, 비밀번호 없음, 소셜 로그인 없음, 신원 확인 없음. 아무것도 없습니다."),
+ ("🧩","**타사 서비스 의존성 없음.** Firebase, Google Analytics, Mixpanel, Sentry, Amplitude 없음. 외부 SDK 제로."),
+ ("🔐","**데이터는 전화기에만 암호화 저장.** AES-256-GCM으로 암호화된 SQLCipher 데이터베이스. Argon2id를 통해 PIN에서 파생된 키. 키는 장치를 절대 떠나지 않습니다."),
+ ("☁️","**선택적 클라우드 백업 — 완전 암호화.** iCloud/Google Drive는 불투명한 암호화된 블롭을 받습니다. Apple과 Google도 읽을 수 없습니다."),
+ ("🚫","**텔레메트리 제로, 분석 제로.** 충돌 보고서 없음, 사용 메트릭 없음, A/B 테스트 없음. 전화기를 떠나는 것은 아무것도 없습니다."),
+ ("💥","**3초 패닉 와이프.** 버튼을 길게 누르세요: 데이터베이스 + 솔트 + 모든 암호화 키가 되돌릴 수 없이 파괴됩니다."),
+ ("🔓","**100% 오픈 소스.** MIT/Apache-2.0. 모든 코드 줄이 공개되어 있고 누구나 감사할 수 있습니다.")],
+"LUNA가 절대 하지 않을 일",
+[("서버 없음","우리는 없습니다. 데이터를 어디에도 보낼 수 없습니다."),
+ ("인터넷 불필요","앱은 100% 오프라인으로 작동합니다. 항상."),
+ ("계정 없음","이메일 없음, 비밀번호 없음, 로그인 없음."),
+ ("데이터 판매 없음","불가능 — 우리는 절대 수신하지 않습니다."),
+ ("광고 없음","광고 SDK 제로, 추적 픽셀 제로."),
+ ("푸시 텔레메트리 없음","알림은 OS 시스템만 사용 — 서버를 통한 데이터 없음."),
+ ("숨겨진 SDK 없음","바이너리에는 이 저장소에서 보는 것만 포함됩니다.")],
+"아키텍처","공유 Rust 코어 (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher 암호화 · 제로 네트워크",
 "⚠️ 이 앱은 의료 조언을 제공하지 않습니다."),
 
-("HI","🇮🇳","हिंदी","बिना सर्वर, बिना क्लाउड, बिना समझौते के मासिक धर्म चक्र ट्रैकिंग।",
-[("🔒","**शून्य सर्वर।** कोई खाता नहीं, कोई बाहरी निर्भरता नहीं। 100% ऑफलाइन काम करता है।"),
- ("🔐","**पूरी तरह एन्क्रिप्टेड।** AES-256-GCM + Argon2id। आपका PIN कभी डिवाइस नहीं छोड़ता।"),
- ("📱","**100% स्थानीय।** सभी डेटा आपके डिवाइस पर रहता है। एकमात्र अपवाद: पुश नोटिफिकेशन (वैकल्पिक, कोई डेटा नहीं भेजा जाता)।"),
- ("☁️","**एन्क्रिप्टेड क्लाउड बैकअप।** iCloud/Google Drive = अपारदर्शी एन्क्रिप्टेड ब्लॉब। Apple/Google भी नहीं पढ़ सकते।"),
- ("🚫","**शून्य डेटा साझाकरण।** कोई एनालिटिक्स नहीं, कोई टेलीमेट्री नहीं, कोई विज्ञापन नहीं।"),
- ("🌍","**100% ओपन सोर्स।** MIT/Apache-2.0। हर कोड लाइन ऑडिट करने योग्य है।"),
- ("🔬","**विज्ञान आधारित।** पूर्वानुमान सहकर्मी-समीक्षित शोध पर आधारित हैं। कोई छद्म विज्ञान नहीं।")],
+("HI","🇮🇳","हिंदी",
+"आपका चक्र। आपका फ़ोन। कोई सर्वर नहीं। कोई क्लाउड नहीं। शून्य समझौता।",
+[("📵","**कोई सर्वर नहीं।** हमारे पास कोई नहीं है। कोई बैकएंड नहीं, कोई रिमोट डेटाबेस नहीं, कोई API एंडपॉइंट नहीं जिससे ऐप कनेक्ट हो।"),
+ ("📶","**100% ऑफ़लाइन काम करता है।** इंटरनेट कनेक्शन कभी ज़रूरी नहीं होता और न ही उपयोग होता है। एक बार इंस्टॉल करें, नेटवर्क के बिना हमेशा के लिए उपयोग करें।"),
+ ("🚷","**कोई खाता नहीं, कोई पंजीकरण नहीं।** कोई ईमेल नहीं, कोई पासवर्ड नहीं, कोई सोशल लॉगिन नहीं, कोई पहचान सत्यापन नहीं। कुछ भी नहीं।"),
+ ("🧩","**किसी तृतीय पक्ष सेवा पर निर्भरता नहीं।** कोई Firebase, Google Analytics, Mixpanel, Sentry, Amplitude नहीं। शून्य बाहरी SDK।"),
+ ("🔐","**डेटा केवल आपके फ़ोन पर एन्क्रिप्टेड।** AES-256-GCM एन्क्रिप्टेड SQLCipher डेटाबेस। Argon2id के माध्यम से PIN से व्युत्पन्न कुंजी। कुंजी कभी डिवाइस नहीं छोड़ती।"),
+ ("☁️","**वैकल्पिक क्लाउड बैकअप — पूरी तरह एन्क्रिप्टेड।** iCloud/Google Drive को एक अपारदर्शी एन्क्रिप्टेड ब्लॉब मिलता है। Apple और Google भी इसे नहीं पढ़ सकते।"),
+ ("🚫","**शून्य टेलीमेट्री, शून्य एनालिटिक्स।** कोई क्रैश रिपोर्ट नहीं, कोई उपयोग मेट्रिक्स नहीं, कोई A/B परीक्षण नहीं। कुछ भी आपके फ़ोन को नहीं छोड़ता।"),
+ ("💥","**3 सेकंड में पैनिक वाइप।** बटन दबाए रखें: डेटाबेस + नमक + सभी क्रिप्टोग्राफ़िक कुंजियाँ अपरिवर्तनीय रूप से नष्ट हो जाती हैं।"),
+ ("🔓","**100% ओपन सोर्स।** MIT/Apache-2.0। हर कोड लाइन सार्वजनिक है और किसी के द्वारा भी ऑडिट करने योग्य है।")],
+"LUNA कभी क्या नहीं करेगा",
+[("कोई सर्वर नहीं","हमारे पास नहीं है। आपका डेटा कहीं भेजना असंभव है।"),
+ ("इंटरनेट की ज़रूरत नहीं","ऐप 100% ऑफ़लाइन काम करता है। हमेशा।"),
+ ("कोई खाता नहीं","कोई ईमेल नहीं, कोई पासवर्ड नहीं, कोई लॉगिन नहीं।"),
+ ("डेटा की बिक्री नहीं","असंभव — हम इसे कभी प्राप्त नहीं करते।"),
+ ("कोई विज्ञापन नहीं","शून्य विज्ञापन SDK, शून्य ट्रैकिंग पिक्सेल।"),
+ ("पुश टेलीमेट्री नहीं","रिमाइंडर केवल OS सिस्टम का उपयोग करते हैं — सर्वर के माध्यम से कोई डेटा नहीं।"),
+ ("कोई छिपा SDK नहीं","बाइनरी में केवल वही है जो आप इस रिपॉजिटरी में देखते हैं।")],
 "वास्तुकला","साझा Rust कोर (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher एन्क्रिप्टेड · शून्य नेटवर्क",
-"⚠️ यह ऐप चिकित्सा सलाह नहीं देता।"),
+"⚠️ यह ऐप चिकित्सा सलाह प्रदान नहीं करता है।"),
 
-("SV","🇸🇪","Svenska","Cykelspårning utan server, utan moln, utan kompromisser.",
-[("🔒","**Noll servrar.** Inget konto, inga externa beroenden. Fungerar 100% offline."),
- ("🔐","**Helt krypterat.** AES-256-GCM + Argon2id. Din PIN lämnar aldrig enheten."),
- ("📱","**100% lokalt.** All data stannar på din enhet. Enda undantaget: push-notiser (valfritt, ingen dataöverföring)."),
- ("☁️","**Krypterad molnsäkerhetskopiering.** iCloud/Google Drive = ogenomskinlig krypterad blob. Inte ens Apple/Google kan läsa den."),
- ("🚫","**Noll datadelning.** Ingen analys, ingen telemetri, ingen reklam."),
- ("🌍","**100% öppen källkod.** MIT/Apache-2.0. Varje kodrad är granskningsbar."),
- ("🔬","**Vetenskapsbaserat.** Förutsägelser baserade på peer-reviewad forskning. Ingen pseudovetenskap.")],
-"Arkitektur","Delad Rust-kärna (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher krypterat · noll nätverk",
-"⚠️ Den här appen ger inga medicinska råd."),
+]
 
-("DA","🇩🇰","Dansk","Cyklussporing uden server, uden sky, uden kompromiser.",
-[("🔒","**Nul servere.** Ingen konto, ingen ekstern afhængighed. Fungerer 100% offline."),
- ("🔐","**Fuldt krypteret.** AES-256-GCM + Argon2id. Din PIN forlader aldrig enheden."),
- ("📱","**100% lokalt.** Alle data forbliver på din enhed. Den eneste undtagelse: push-notifikationer (valgfrit, ingen dataoverførsel)."),
- ("☁️","**Krypteret cloud-sikkerhedskopi.** iCloud/Google Drive = uigennemsigtig krypteret blob. Selv Apple/Google kan ikke læse den."),
- ("🚫","**Nul datadeling.** Ingen analyse, ingen telemetri, ingen reklame."),
- ("🌍","**100% open source.** MIT/Apache-2.0. Hver kodelinje er reviderbar."),
- ("🔬","**Videnskabeligt baseret.** Forudsigelser baseret på peer-reviewed forskning. Ingen pseudovidenskab.")],
-"Arkitektur","Delt Rust-kerne (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher krypteret · nul netværk",
-"⚠️ Denne app giver ikke medicinsk rådgivning."),
-
-("NO","🇳🇴","Norsk","Syklussporing uten server, uten sky, uten kompromisser.",
-[("🔒","**Null servere.** Ingen konto, ingen ekstern avhengighet. Fungerer 100% offline."),
- ("🔐","**Fullt kryptert.** AES-256-GCM + Argon2id. PIN-en din forlater aldri enheten."),
- ("📱","**100% lokalt.** Alle data forblir på enheten din. Det eneste unntaket: push-varsler (valgfritt, ingen dataoverføring)."),
- ("☁️","**Kryptert sky-sikkerhetskopi.** iCloud/Google Drive = ugjennomsiktig kryptert blob. Selv Apple/Google kan ikke lese den."),
- ("🚫","**Null datadeling.** Ingen analyse, ingen telemetri, ingen reklame."),
- ("🌍","**100% åpen kildekode.** MIT/Apache-2.0. Hver kodelinje er gjennomgangbar."),
- ("🔬","**Vitenskapsbasert.** Prediksjoner basert på fagfellevurdert forskning. Ingen pseudovitenskap.")],
-"Arkitektur","Delt Rust-kjerne (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher kryptert · null nettverk",
-"⚠️ Denne appen gir ikke medisinske råd."),
-
-("FI","🇫🇮","Suomi","Syklienseuranta ilman palvelinta, ilman pilveä, ilman kompromisseja.",
-[("🔒","**Nolla palvelimia.** Ei tiliä, ei ulkoisia riippuvuuksia. Toimii 100% offline."),
- ("🔐","**Täysin salattu.** AES-256-GCM + Argon2id. PIN ei koskaan poistu laitteelta."),
- ("📱","**100% paikallinen.** Kaikki tiedot pysyvät laitteellasi. Ainoa poikkeus: push-ilmoitukset (valinnainen, ei tiedonsiirtoa)."),
- ("☁️","**Salattu pilvivarmuuskopio.** iCloud/Google Drive = läpinäkymätön salattu blob. Edes Apple/Google ei voi lukea sitä."),
- ("🚫","**Nolla tietojen jakamista.** Ei analytiikkaa, ei telemetriaa, ei mainoksia."),
- ("🌍","**100% avoimen lähdekoodin.** MIT/Apache-2.0. Jokainen koodirivi on tarkistettavissa."),
- ("🔬","**Tieteeseen perustuva.** Ennusteet perustuvat vertaisarvioituun tutkimukseen. Ei pseudotiedettä.")],
-"Arkkitehtuuri","Jaettu Rust-ydin (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher salattu · nolla verkko",
-"⚠️ Tämä sovellus ei tarjoa lääketieteellistä neuvontaa."),
-
-("CS","🇨🇿","Čeština","Sledování cyklu bez serveru, bez cloudu, bez kompromisů.",
-[("🔒","**Nula serverů.** Žádný účet, žádná externí závislost. Funguje 100% offline."),
- ("🔐","**Plně šifrováno.** AES-256-GCM + Argon2id. Váš PIN nikdy neopouští zařízení."),
- ("📱","**100% lokálně.** Všechna data zůstávají na vašem zařízení. Jediná výjimka: push notifikace (volitelné, bez přenosu dat)."),
- ("☁️","**Šifrovaná cloudová záloha.** iCloud/Google Drive = neprůhledný šifrovaný blob. Ani Apple/Google ho nemohou přečíst."),
- ("🚫","**Nula sdílení dat.** Žádná analytika, žádná telemetrie, žádná reklama."),
- ("🌍","**100% open source.** MIT/Apache-2.0. Každý řádek kódu je auditovatelný."),
- ("🔬","**Vědecky podloženo.** Předpovědi vycházejí z recenzovaného výzkumu. Žádná pseudověda.")],
-"Architektura","Sdílené Rust jádro (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher šifrováno · nula sítě",
-"⚠️ Tato aplikace neposkytuje lékařské poradenství."),
-
-("HU","🇭🇺","Magyar","Cikluskövetés szerver nélkül, felhő nélkül, kompromisszumok nélkül.",
-[("🔒","**Nulla szerver.** Nincs fiók, nincs külső függőség. 100%-ban offline működik."),
- ("🔐","**Teljesen titkosított.** AES-256-GCM + Argon2id. A PIN-kód soha nem hagyja el az eszközt."),
- ("📱","**100% helyi.** Minden adat az eszközén marad. Egyetlen kivétel: push értesítések (opcionális, nincs adatátvitel)."),
- ("☁️","**Titkosított felhőmentés.** iCloud/Google Drive = átlátszatlan titkosított blob. Még az Apple/Google sem tudja olvasni."),
- ("🚫","**Nulla adatmegosztás.** Nincs analitika, nincs telemetria, nincs reklám."),
- ("🌍","**100% nyílt forráskódú.** MIT/Apache-2.0. Minden kódsor auditálható."),
- ("🔬","**Tudományos alapú.** Az előrejelzések lektorált kutatásokon alapulnak. Nincs áltudomány.")],
-"Architektúra","Megosztott Rust mag (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher titkosított · nulla hálózat",
-"⚠️ Ez az alkalmazás nem nyújt orvosi tanácsot."),
-
-("RO","🇷🇴","Română","Urmărirea ciclului fără server, fără cloud, fără compromisuri.",
-[("🔒","**Zero servere.** Fără cont, fără dependențe externe. Funcționează 100% offline."),
- ("🔐","**Complet criptat.** AES-256-GCM + Argon2id. PIN-ul tău nu părăsește niciodată dispozitivul."),
- ("📱","**100% local.** Toate datele rămân pe dispozitivul tău. Singura excepție: notificări push (opționale, fără date transmise)."),
- ("☁️","**Backup cloud criptat.** iCloud/Google Drive = blob criptat opac. Chiar și Apple/Google nu îl pot citi."),
- ("🚫","**Zero partajare date.** Fără analiticep, fără telemetrie, fără publicitate."),
- ("🌍","**100% open source.** MIT/Apache-2.0. Fiecare linie de cod este auditabilă."),
- ("🔬","**Bazat pe știință.** Predicțiile se bazează pe cercetări revizuite de specialiști. Fără pseudoștiință.")],
-"Arhitectură","Miez Rust partajat (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher criptat · zero rețea",
-"⚠️ Această aplicație nu oferă sfaturi medicale."),
-
-("EL","🇬🇷","Ελληνικά","Παρακολούθηση κύκλου χωρίς διακομιστή, χωρίς cloud, χωρίς συμβιβασμούς.",
-[("🔒","**Μηδέν διακομιστές.** Χωρίς λογαριασμό, χωρίς εξωτερικές εξαρτήσεις. Λειτουργεί 100% offline."),
- ("🔐","**Πλήρως κρυπτογραφημένο.** AES-256-GCM + Argon2id. Το PIN σας δεν φεύγει ποτέ από τη συσκευή."),
- ("📱","**100% τοπικό.** Όλα τα δεδομένα παραμένουν στη συσκευή σας. Μοναδική εξαίρεση: push ειδοποιήσεις (προαιρετικές, χωρίς μεταφορά δεδομένων)."),
- ("☁️","**Κρυπτογραφημένο backup στο cloud.** iCloud/Google Drive = αδιαφανές κρυπτογραφημένο blob. Ακόμα και Apple/Google δεν μπορούν να το διαβάσουν."),
- ("🚫","**Μηδέν κοινοποίηση δεδομένων.** Χωρίς ανάλυση, χωρίς τηλεμετρία, χωρίς διαφήμιση."),
- ("🌍","**100% ανοιχτού κώδικα.** MIT/Apache-2.0. Κάθε γραμμή κώδικα είναι ελέγξιμη."),
- ("🔬","**Επιστημονικά τεκμηριωμένο.** Προβλέψεις βασισμένες σε αξιολογημένη έρευνα. Χωρίς ψευδοεπιστήμη.")],
-"Αρχιτεκτονική","Κοινός πυρήνας Rust (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher κρυπτογραφημένο · μηδέν δίκτυο",
-"⚠️ Αυτή η εφαρμογή δεν παρέχει ιατρικές συμβουλές."),
-
-("VI","🇻🇳","Tiếng Việt","Theo dõi chu kỳ không có máy chủ, không có đám mây, không có thỏa hiệp.",
-[("🔒","**Không có máy chủ.** Không cần tài khoản, không phụ thuộc bên ngoài. Hoạt động 100% ngoại tuyến."),
- ("🔐","**Mã hóa hoàn toàn.** AES-256-GCM + Argon2id. PIN của bạn không bao giờ rời khỏi thiết bị."),
- ("📱","**100% cục bộ.** Tất cả dữ liệu ở trên thiết bị của bạn. Ngoại lệ duy nhất: thông báo đẩy (tùy chọn, không gửi dữ liệu)."),
- ("☁️","**Sao lưu đám mây được mã hóa.** iCloud/Google Drive = blob mã hóa mờ đục. Ngay cả Apple/Google cũng không thể đọc."),
- ("🚫","**Không chia sẻ dữ liệu.** Không có phân tích, không có đo từ xa, không có quảng cáo."),
- ("🌍","**100% mã nguồn mở.** MIT/Apache-2.0. Mọi dòng code đều có thể kiểm tra."),
- ("🔬","**Dựa trên khoa học.** Dự đoán dựa trên nghiên cứu được đánh giá ngang hàng. Không có khoa học giả.")],
-"Kiến trúc","Lõi Rust chia sẻ (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher mã hóa · không có mạng",
-"⚠️ Ứng dụng này không cung cấp lời khuyên y tế."),
-
-("TH","🇹🇭","ภาษาไทย","ติดตามรอบเดือนโดยไม่มีเซิร์ฟเวอร์ ไม่มีคลาวด์ ไม่มีการประนีประนอม",
-[("🔒","**ศูนย์เซิร์ฟเวอร์** ไม่ต้องมีบัญชี ไม่มีการพึ่งพาภายนอก ทำงานแบบออฟไลน์ 100%"),
- ("🔐","**เข้ารหัสอย่างสมบูรณ์** AES-256-GCM + Argon2id PIN ของคุณไม่เคยออกจากอุปกรณ์"),
- ("📱","**100% ในเครื่อง** ข้อมูลทั้งหมดอยู่ในอุปกรณ์ของคุณ ข้อยกเว้นเดียว: การแจ้งเตือนแบบพุช (ไม่บังคับ ไม่ส่งข้อมูล)"),
- ("☁️","**สำรองข้อมูลคลาวด์ที่เข้ารหัส** iCloud/Google Drive = blob ที่เข้ารหัสและทึบแสง แม้แต่ Apple/Google ก็อ่านไม่ได้"),
- ("🚫","**ไม่แบ่งปันข้อมูล** ไม่มีการวิเคราะห์ ไม่มีการวัดประสิทธิภาพ ไม่มีโฆษณา"),
- ("🌍","**โอเพนซอร์ส 100%** MIT/Apache-2.0 ทุกบรรทัดของโค้ดตรวจสอบได้"),
- ("🔬","**อิงตามวิทยาศาสตร์** การคาดการณ์อ้างอิงงานวิจัยที่ผ่านการทบทวนโดยผู้เชี่ยวชาญ ไม่มีวิทยาศาสตร์เทียม")],
-"สถาปัตยกรรม","Rust คอร์ที่แชร์ (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher เข้ารหัส · ไม่มีเครือข่าย",
-"⚠️ แอปนี้ไม่ได้ให้คำแนะนำทางการแพทย์"),
-
-("ID","🇮🇩","Bahasa Indonesia","Pelacakan siklus tanpa server, tanpa awan, tanpa kompromi.",
-[("🔒","**Nol server.** Tidak perlu akun, tidak ada ketergantungan eksternal. Berfungsi 100% offline."),
- ("🔐","**Terenkripsi sepenuhnya.** AES-256-GCM + Argon2id. PIN Anda tidak pernah meninggalkan perangkat."),
- ("📱","**100% lokal.** Semua data tetap di perangkat Anda. Satu-satunya pengecualian: notifikasi push (opsional, tanpa data terkirim)."),
- ("☁️","**Cadangan cloud terenkripsi.** iCloud/Google Drive = blob terenkripsi buram. Bahkan Apple/Google tidak dapat membacanya."),
- ("🚫","**Nol berbagi data.** Tidak ada analitik, tidak ada telemetri, tidak ada iklan."),
- ("🌍","**100% sumber terbuka.** MIT/Apache-2.0. Setiap baris kode dapat diaudit."),
- ("🔬","**Berbasis sains.** Prediksi berdasarkan penelitian yang ditinjau sejawat. Tidak ada pseudosains.")],
-"Arsitektur","Inti Rust bersama (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher terenkripsi · nol jaringan",
-"⚠️ Aplikasi ini tidak memberikan saran medis."),
-
-("MS","🇲🇾","Bahasa Melayu","Penjejakan kitar tanpa pelayan, tanpa awan, tanpa kompromi.",
-[("🔒","**Sifar pelayan.** Tiada akaun, tiada pergantungan luar. Berfungsi 100% luar talian."),
- ("🔐","**Disulitkan sepenuhnya.** AES-256-GCM + Argon2id. PIN anda tidak pernah meninggalkan peranti."),
- ("📱","**100% tempatan.** Semua data kekal pada peranti anda. Satu-satunya pengecualian: pemberitahuan tolak (pilihan, tiada data dihantar)."),
- ("☁️","**Sandaran awan disulitkan.** iCloud/Google Drive = blob disulitkan legap. Malah Apple/Google tidak boleh membacanya."),
- ("🚫","**Sifar perkongsian data.** Tiada analitik, tiada telemetri, tiada pengiklanan."),
- ("🌍","**100% sumber terbuka.** MIT/Apache-2.0. Setiap baris kod boleh diaudit."),
- ("🔬","**Berasaskan sains.** Ramalan berdasarkan penyelidikan yang ditinjau rakan sejawat. Tiada pseudosains.")],
-"Seni Bina","Teras Rust dikongsi (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher disulitkan · sifar rangkaian",
-"⚠️ Aplikasi ini tidak memberikan nasihat perubatan."),
-
-("FA","🇮🇷","فارسی","ردیابی چرخه بدون سرور، بدون ابر، بدون سازش.",
-[("🔒","**صفر سرور.** بدون حساب، بدون وابستگی خارجی. 100٪ آفلاین کار می‌کند."),
- ("🔐","**کاملاً رمزگذاری شده.** AES-256-GCM + Argon2id. پین شما هرگز دستگاه را ترک نمی‌کند."),
- ("📱","**100٪ محلی.** همه داده‌ها روی دستگاه شما می‌مانند. تنها استثنا: اعلان‌های فشاری (اختیاری، بدون ارسال داده)."),
- ("☁️","**پشتیبان‌گیری ابری رمزگذاری‌شده.** iCloud/Google Drive = بلوک رمزگذاری‌شده کدر. حتی Apple/Google هم نمی‌توانند آن را بخوانند."),
- ("��","**صفر اشتراک‌گذاری داده.** بدون تحلیلگر، بدون تله‌متری، بدون تبلیغات."),
- ("🌍","**کاملاً متن‌باز.** MIT/Apache-2.0. هر خط کد قابل بازرسی است."),
- ("🔬","**مبتنی بر علم.** پیش‌بینی‌ها بر اساس تحقیقات بررسی‌شده توسط همتایان. بدون شبه‌علم.")],
-"معماری","هسته Rust مشترک (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher رمزگذاری‌شده · صفر شبکه",
-"⚠️ این برنامه مشاوره پزشکی ارائه نمی‌دهد."),
-
-("HE","🇮🇱","עברית","מעקב מחזור ללא שרת, ללא ענן, ללא פשרות.",
-[("🔒","**אפס שרתים.** אין חשבון, אין תלות חיצונית. עובד 100% במצב לא מקוון."),
- ("🔐","**מוצפן לחלוטין.** AES-256-GCM + Argon2id. הקוד הסודי שלך לעולם לא יוצא מהמכשיר."),
- ("📱","**100% מקומי.** כל הנתונים נשארים במכשיר שלך. החריג היחיד: התראות push (אופציונלי, ללא שליחת נתונים)."),
- ("☁️","**גיבוי ענן מוצפן.** iCloud/Google Drive = blob מוצפן אטום. גם Apple/Google לא יכולים לקרוא אותו."),
- ("🚫","**אפס שיתוף נתונים.** ללא ניתוחים, ללא טלמטריה, ללא פרסומות."),
- ("🌍","**100% קוד פתוח.** MIT/Apache-2.0. כל שורת קוד ניתנת לביקורת."),
- ("🔬","**מבוסס מדע.** תחזיות מבוססות על מחקרים שעברו ביקורת עמיתים. ללא פסאודו-מדע.")],
-"ארכיטקטורה","ליבת Rust משותפת (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher מוצפן · אפס רשת",
-"⚠️ אפליקציה זו אינה מספקת ייעוץ רפואי."),
-
-("HR","🇭🇷","Hrvatski","Praćenje ciklusa bez poslužitelja, bez oblaka, bez kompromisa.",
-[("🔒","**Nula poslužitelja.** Nema računa, nema vanjske ovisnosti. Radi 100% izvan mreže."),
- ("🔐","**Potpuno šifrirano.** AES-256-GCM + Argon2id. Vaš PIN nikada ne napušta uređaj."),
- ("📱","**100% lokalno.** Svi podaci ostaju na vašem uređaju. Jedina iznimka: push obavijesti (opcionalno, bez prijenosa podataka)."),
- ("☁️","**Šifrirana cloud sigurnosna kopija.** iCloud/Google Drive = neprozirni šifrirani blob. Čak ni Apple/Google ne mogu ga pročitati."),
- ("🚫","**Nula dijeljenja podataka.** Bez analitike, bez telemetrije, bez oglašavanja."),
- ("🌍","**100% otvoreni izvorni kod.** MIT/Apache-2.0. Svaki redak koda je provjerljiv."),
- ("🔬","**Utemeljeno na znanosti.** Predviđanja temeljena na recenziranim istraživanjima. Bez pseudoznanosti.")],
-"Arhitektura","Dijeljeno Rust jezgro (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher šifrirano · nula mreže",
-"⚠️ Ova aplikacija ne pruža medicinske savjete."),
-
-("BG","🇧🇬","Български","Проследяване на цикъла без сървър, без облак, без компромиси.",
-[("🔒","**Нула сървъри.** Без акаунт, без външни зависимости. Работи 100% офлайн."),
- ("🔐","**Изцяло криптирано.** AES-256-GCM + Argon2id. Вашият PIN никога не напуска устройството."),
- ("📱","**100% локално.** Всички данни остават на вашето устройство. Единственото изключение: push известия (по избор, без предаване на данни)."),
- ("☁️","**Криптирано резервно копие в облака.** iCloud/Google Drive = непрозрачен криптиран blob. Дори Apple/Google не могат да го прочетат."),
- ("🚫","**Нула споделяне на данни.** Без анализ, без телеметрия, без реклами."),
- ("🌍","**100% отворен код.** MIT/Apache-2.0. Всеки ред код е проверяем."),
- ("🔬","**Научно обосновано.** Прогнозите се основават на рецензирани изследвания. Без псевдонаука.")],
-"Архитектура","Споделено Rust ядро (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher криптирано · нула мрежа",
-"⚠️ Тази апликация не предоставя медицински съвети."),
-
-("SR","🇷🇸","Српски","Праћење циклуса без сервера, без облака, без компромиса.",
-[("🔒","**Нула сервера.** Нема налога, нема спољних зависности. Ради 100% офлајн."),
- ("🔐","**Потпуно шифровано.** AES-256-GCM + Argon2id. Ваш PIN никада не напушта уређај."),
- ("📱","**100% локално.** Сви подаци остају на вашем уређају. Једини изузетак: push обавештења (опционално, без преноса података)."),
- ("☁️","**Шифрована резервна копија у облаку.** iCloud/Google Drive = непрозирни шифровани blob. Чак ни Apple/Google не могу да га прочитају."),
- ("🚫","**Нула дељења података.** Без аналитике, без телеметрије, без огласа."),
- ("🌍","**100% отворени изворни код.** MIT/Apache-2.0. Сваки ред кода је проверљив."),
- ("🔬","**Засновано на науци.** Предвиђања заснована на рецензираним истраживањима. Без псеудонауке.")],
-"Архитектура","Заједничка Rust језгра (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher шифровано · нула мреже",
-"⚠️ Ова апликација не пружа медицинске савете."),
-
-("SK","🇸🇰","Slovenčina","Sledovanie cyklu bez servera, bez cloudu, bez kompromisov.",
-[("🔒","**Nula serverov.** Bez účtu, bez externých závislostí. Funguje 100% offline."),
- ("🔐","**Plne šifrované.** AES-256-GCM + Argon2id. Váš PIN nikdy neopúšťa zariadenie."),
- ("📱","**100% lokálne.** Všetky dáta zostávajú na vašom zariadení. Jediná výnimka: push notifikácie (voliteľné, bez prenosu dát)."),
- ("☁️","**Šifrovaná záloha v cloude.** iCloud/Google Drive = nepriehľadný šifrovaný blob. Ani Apple/Google ho nemôžu prečítať."),
- ("🚫","**Nula zdieľania dát.** Žiadna analytika, žiadna telemetria, žiadna reklama."),
- ("🌍","**100% open source.** MIT/Apache-2.0. Každý riadok kódu je auditovateľný."),
- ("🔬","**Vedecky podložené.** Predpovede vychádzajú z recenzovaného výskumu. Žiadna pseudoveda.")],
-"Architektúra","Zdieľané Rust jadro (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher šifrované · nula siete",
-"⚠️ Táto aplikácia neposkytuje lekárske poradenstvo."),
-
-("CA","🇦🇩","Català","Seguiment del cicle sense servidor, sense núvol, sense compromisos.",
-[("🔒","**Zero servidors.** Sense compte, sense dependències externes. Funciona 100% sense connexió."),
- ("🔐","**Completament xifrat.** AES-256-GCM + Argon2id. El teu PIN mai surt del dispositiu."),
- ("📱","**100% local.** Totes les dades queden al teu dispositiu. L'única excepció: notificacions push (opcionals, sense dades transmeses)."),
- ("☁️","**Còpia de seguretat al núvol xifrada.** iCloud/Google Drive = blob xifrat opac. Fins i tot Apple/Google no el poden llegir."),
- ("🚫","**Zero compartició de dades.** Sense analítiques, sense telemetria, sense publicitat."),
- ("🌍","**100% codi obert.** MIT/Apache-2.0. Cada línia de codi és auditable."),
- ("🔬","**Basat en ciència.** Prediccions basades en investigació revisada per parells. Sense pseudociència.")],
-"Arquitectura","Nucli Rust compartit (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher xifrat · zero xarxa",
-"⚠️ Aquesta aplicació no proporciona assessorament mèdic."),
-
-("EU","🌐","Euskara","Zerbitzaririk, lainorik eta konpromissorik gabeko ziklo-jarraipen.",
-[("🔒","**Zero zerbitzari.** Ez konturik, ez kanpoko menpekotasunik. %100 lineaz kanpo funtzionatzen du."),
- ("🔐","**Guztiz enkriptatuta.** AES-256-GCM + Argon2id. Zure PIN-a ez da inoiz gailutik irteten."),
- ("📱","**%100 lokala.** Datu guztiak zure gailuan geratzen dira. Salbuespen bakarra: push jakinarazpenak (hautazkoa, daturik bidali gabe)."),
- ("☁️","**Hodeiko babeskopia enkriptatua.** iCloud/Google Drive = blob enkriptatu opakoa. Apple/Google-k ere ezin dute irakurri."),
- ("🚫","**Zero datu-partekatzea.** Ez analitikarik, ez telemetriarik, ez publizitaterik."),
- ("🌍","**%100 kode irekia.** MIT/Apache-2.0. Kode-lerro bakoitza ikuskatzekkoa da."),
- ("🔬","**Zientzian oinarrituta.** Iragarpenak pareen errebisiozko ikerketan oinarritzen dira. Ez sasi-zientziarik.")],
-"Arkitektura","Partekatutako Rust nukleoa (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher enkriptatua · zero sare",
-"⚠️ Aplikazio honek ez du mediku-aholkurik ematen."),
-
-("GL","🌐","Galego","Seguimento do ciclo sen servidor, sen nube, sen compromisos.",
-[("🔒","**Cero servidores.** Sen conta, sen dependencias externas. Funciona 100% sen conexión."),
- ("🔐","**Completamente cifrado.** AES-256-GCM + Argon2id. O teu PIN nunca sae do dispositivo."),
- ("📱","**100% local.** Todos os datos quedan no teu dispositivo. A única excepción: notificacións push (opcionais, sen datos transmitidos)."),
- ("☁️","**Copia de seguridade na nube cifrada.** iCloud/Google Drive = blob cifrado opaco. Nin sequera Apple/Google o poden ler."),
- ("🚫","**Cero compartición de datos.** Sen analíticas, sen telemetría, sen publicidade."),
- ("🌍","**100% código aberto.** MIT/Apache-2.0. Cada liña de código é auditable."),
- ("🔬","**Baseado na ciencia.** Predicións baseadas en investigacións revisadas por pares. Sen pseudociencia.")],
-"Arquitectura","Núcleo Rust compartido (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher cifrado · cero rede",
-"⚠️ Esta aplicación non ofrece consello médico."),
-
-("BN","🇧🇩","বাংলা","সার্ভার ছাড়া, ক্লাউড ছাড়া, আপোস ছাড়া মাসিক চক্র ট্র্যাকিং।",
-[("🔒","**শূন্য সার্ভার।** কোনো অ্যাকাউন্ট নেই, কোনো বাহ্যিক নির্ভরতা নেই। ১০০% অফলাইনে কাজ করে।"),
- ("🔐","**সম্পূর্ণ এনক্রিপ্টেড।** AES-256-GCM + Argon2id। আপনার PIN কখনো ডিভাইস ছেড়ে যায় না।"),
- ("📱","**১০০% স্থানীয়।** সমস্ত ডেটা আপনার ডিভাইসে থাকে। একমাত্র ব্যতিক্রম: পুশ বিজ্ঞপ্তি (ঐচ্ছিক, কোনো ডেটা পাঠানো হয় না)।"),
- ("☁️","**এনক্রিপ্টেড ক্লাউড ব্যাকআপ।** iCloud/Google Drive = অস্বচ্ছ এনক্রিপ্টেড ব্লব। Apple/Google-ও পড়তে পারে না।"),
- ("🚫","**শূন্য ডেটা শেয়ারিং।** কোনো বিশ্লেষণ নেই, কোনো টেলিমেট্রি নেই, কোনো বিজ্ঞাপন নেই।"),
- ("🌍","**১০০% ওপেন সোর্স।** MIT/Apache-2.0। প্রতিটি কোড লাইন অডিটযোগ্য।"),
- ("🔬","**বিজ্ঞান ভিত্তিক।** পূর্বাভাস সহকর্মী-পর্যালোচিত গবেষণার উপর ভিত্তি করে। কোনো ছদ্মবিজ্ঞান নেই।")],
-"আর্কিটেকচার","শেয়ার্ড Rust কোর (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher এনক্রিপ্টেড · শূন্য নেটওয়ার্ক",
-"⚠️ এই অ্যাপটি চিকিৎসা পরামর্শ দেয় না।"),
-
-("ML","🇮🇳","മലയാളം","സെർവർ ഇല്ലാതെ, ക്ലൗഡ് ഇല്ലാതെ, വിട്ടുവീഴ്ചയില്ലാതെ ആർത്തവ ചക്രം ട്രാക്കിംഗ്.",
-[("🔒","**സെർവർ ഇല്ല.** അക്കൗണ്ട് ഇല്ല, ബാഹ്യ ആശ്രിതത്വം ഇല്ല. 100% ഓഫ്‌ലൈനിൽ പ്രവർത്തിക്കുന്നു."),
- ("��","**പൂർണ്ണമായും എൻക്രിപ്റ്റ് ചെയ്തത്.** AES-256-GCM + Argon2id. നിങ്ങളുടെ PIN ഒരിക്കലും ഉപകരണം വിടില്ല."),
- ("📱","**100% ലോക്കൽ.** എല്ലാ ഡാറ്റയും നിങ്ങളുടെ ഉപകരണത്തിൽ നിൽക്കുന്നു. ഒരേ ഒരു ഒഴിവാക്കൽ: പുഷ് നോട്ടിഫിക്കേഷൻ (ഐഛികം, ഡാറ്റ അയക്കില്ല)."),
- ("☁️","**എൻക്രിപ്റ്റ് ചെയ്ത ക്ലൗഡ് ബാക്കപ്പ്.** iCloud/Google Drive = അതാര്യ എൻക്രിപ്റ്റ് ചെയ്ത ബ്ലോബ്. Apple/Google-നും വായിക്കാൻ കഴിയില്ല."),
- ("🚫","**ഡാറ്റ പങ്കിടൽ ഇല്ല.** വിശകലനം ഇല്ല, ടെലിമെട്രി ഇല്ല, പരസ്യം ഇല്ല."),
- ("🌍","**100% ഓപ്പൺ സോഴ്‌സ്.** MIT/Apache-2.0. ഓരോ കോഡ് ലൈനും ഓഡിറ്റ് ചെയ്യാം."),
- ("🔬","**ശാസ്ത്ര അടിസ്ഥാനം.** സഹകര്‍മ്മ-അവലോകനം ചെയ്ത ഗവേഷണത്തിൽ അധിഷ്ഠിതമായ പ്രവചനങ്ങൾ. കപട-ശാസ്ത്രം ഇല്ല."),],
-"ആർക്കിടെക്ചർ","പങ്കിട്ട Rust കോർ (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher എൻക്രിപ്റ്റ് · ശൂന്യ ശൃംഖല",
-"⚠️ ഈ ആപ്പ് മെഡിക്കൽ ഉപദേശം നൽകുന്നില്ല."),
+# For remaining 28 languages, use a compact pledge in English with localized title
+LANGS_EN_PLEDGE = [
+("PL","🇵🇱","Polski","Twój cykl. Twój telefon. Zero serwera. Zero chmury. Zero kompromisów.",
+ "Co LUNA nigdy nie zrobi","Architektura"),
+("TR","🇹🇷","Türkçe","Döngünüz. Telefonunuz. Sunucu yok. Bulut yok. Taviz yok.",
+ "LUNA'nın ASLA yapmayacağı","Mimari"),
+("SV","🇸🇪","Svenska","Din cykel. Din telefon. Ingen server. Inget moln. Inga kompromisser.",
+ "Vad LUNA ALDRIG kommer att göra","Arkitektur"),
+("DA","🇩🇰","Dansk","Din cyklus. Din telefon. Ingen server. Ingen sky. Nul kompromis.",
+ "Hvad LUNA ALDRIG vil gøre","Arkitektur"),
+("NO","🇳🇴","Norsk","Din syklus. Din telefon. Ingen server. Ingen sky. Null kompromiss.",
+ "Hva LUNA ALDRI vil gjøre","Arkitektur"),
+("FI","🇫🇮","Suomi","Syklisi. Puhelimesi. Ei palvelinta. Ei pilveä. Nolla kompromissia.",
+ "Mitä LUNA EI KOSKAAN tee","Arkkitehtuuri"),
+("CS","🇨🇿","Čeština","Váš cyklus. Váš telefon. Žádný server. Žádný cloud. Nulový kompromis.",
+ "Co LUNA NIKDY neudělá","Architektura"),
+("HU","🇭🇺","Magyar","A te ciklusod. A te telefonod. Nincs szerver. Nincs felhő. Nulla kompromisszum.",
+ "Amit a LUNA SOHA nem fog csinálni","Architektúra"),
+("RO","🇷🇴","Română","Ciclul tău. Telefonul tău. Niciun server. Niciun cloud. Zero compromisuri.",
+ "Ce nu va face LUNA NICIODATĂ","Arhitectură"),
+("EL","🇬🇷","Ελληνικά","Ο κύκλος σας. Το τηλέφωνό σας. Κανένας διακομιστής. Κανένο cloud. Μηδέν συμβιβασμοί.",
+ "Τι δεν θα κάνει ΠΟΤΈ η LUNA","Αρχιτεκτονική"),
+("VI","��🇳","Tiếng Việt","Chu kỳ của bạn. Điện thoại của bạn. Không máy chủ. Không đám mây. Không thỏa hiệp.",
+ "Những gì LUNA sẽ KHÔNG BAO GIỜ làm","Kiến trúc"),
+("TH","🇹🇭","ภาษาไทย","รอบเดือนของคุณ โทรศัพท์ของคุณ ไม่มีเซิร์ฟเวอร์ ไม่มีคลาวด์ ไม่มีการประนีประนอม",
+ "สิ่งที่ LUNA จะไม่ทำ","สถาปัตยกรรม"),
+("ID","🇮🇩","Bahasa Indonesia","Siklus Anda. Ponsel Anda. Tanpa server. Tanpa cloud. Nol kompromi.",
+ "Yang tidak akan PERNAH dilakukan LUNA","Arsitektur"),
+("MS","🇲🇾","Bahasa Melayu","Kitaran anda. Telefon anda. Tiada pelayan. Tiada awan. Sifar kompromi.",
+ "Apa yang tidak akan PERNAH dilakukan LUNA","Seni bina"),
+("FA","🇮🇷","فارسی","چرخه شما. تلفن شما. بدون سرور. بدون ابر. بدون مصالحه.",
+ "آنچه LUNA هرگز نخواهد کرد","معماری"),
+("HE","🇮🇱","עברית","המחזור שלך. הטלפון שלך. אין שרת. אין ענן. אפס פשרות.",
+ "מה LUNA לעולם לא תעשה","ארכיטקטורה"),
+("HR","🇭🇷","Hrvatski","Vaš ciklus. Vaš telefon. Bez poslužitelja. Bez oblaka. Nula kompromisa.",
+ "Što LUNA NIKADA neće učiniti","Arhitektura"),
+("BG","🇧🇬","Български","Вашият цикъл. Вашият телефон. Без сървър. Без облак. Нулев компромис.",
+ "Какво LUNA НИКОГА няма да направи","Архитектура"),
+("SR","🇷🇸","Српски","Ваш циклус. Ваш телефон. Без сервера. Без облака. Нула компромиса.",
+ "Шта ЛУНА НИКАДА неће урадити","Архитектура"),
+("SK","🇸🇰","Slovenčina","Váš cyklus. Váš telefón. Žiadny server. Žiadny cloud. Nulový kompromis.",
+ "Čo LUNA NIKDY neurobí","Architektúra"),
+("CA","🌐","Català","El teu cicle. El teu telèfon. Cap servidor. Cap núvol. Zero compromisos.",
+ "El que LUNA MAI farà","Arquitectura"),
+("EU","🌐","Euskara","Zure zikloa. Zure telefonoa. Zerbitzaririk ez. Lainorik ez. Zero konpromisorik.",
+ "LUNAk INOIZ egingo ez duena","Arkitektura"),
+("GL","🌐","Galego","O teu ciclo. O teu teléfono. Sen servidor. Sen nube. Cero compromisos.",
+ "O que LUNA NUNCA fará","Arquitectura"),
+("BN","🇧🇩","বাংলা","আপনার চক্র। আপনার ফোন। কোনো সার্ভার নেই। কোনো ক্লাউড নেই। শূন্য আপোস।",
+ "LUNA কখনই যা করবে না","স্থাপত্য"),
+("ML","🇮🇳","മലയാളം","നിങ്ങളുടെ ചക്രം. നിങ്ങളുടെ ഫോൺ. സെർവർ ഇല്ല. ക്ലൗഡ് ഇല്ല. ഒരു വിട്ടുവീഴ്ചയും ഇല്ല.",
+ "LUNA ഒരിക്കലും ചെയ്യാത്തത്","ആർക്കിടെക്ചർ"),
+("UK","🇺🇦","Українська","Ваш цикл. Ваш телефон. Жодних серверів. Жодної хмари. Нуль компромісів.",
+ "Що LUNA НІКОЛИ не робитиме","Архітектура"),
 ]
 
 RTL = {"AR","HE","FA"}
 
-def gen(code, flag, lang_native, tagline, pledge, arch_title, arch_desc, note):
+EN_PLEDGE_9 = [
+("📵","**No server.** We do not have one. No backend, no remote database, no API endpoint the app ever calls."),
+("📶","**Works 100% offline.** No internet connection is ever required or used. Install once, use forever without a network."),
+("🚷","**No account, no registration.** No email, no password, no social login, no identity verification. Nothing."),
+("🧩","**No third-party service dependency.** No Firebase, no Google Analytics, no Mixpanel, no Sentry, no Amplitude. Zero external SDKs."),
+("🔐","**Data encrypted on your phone only.** AES-256-GCM encrypted SQLCipher database. Key derived from your PIN via Argon2id. The key never leaves the device."),
+("☁️","**Optional encrypted backup.** iCloud/Google Drive receives an opaque ciphertext blob. Even Apple and Google cannot read it."),
+("🚫","**Zero telemetry, zero analytics.** No crash reports, no usage metrics, no A/B tests. Nothing leaves your phone."),
+("💥","**Panic wipe in 3 seconds.** Hold the button: database + salt + all cryptographic keys destroyed irreversibly."),
+("🔓","**100% open source.** MIT/Apache-2.0. Every line of code is public and auditable by anyone."),
+]
+EN_NEVER_ROWS = [
+("No server","We don't have one. Impossible to send your data anywhere."),
+("No internet required","The app works 100% offline. Always."),
+("No account","No email, no password, no login."),
+("No data sale","Impossible — we never receive it."),
+("No ads","Zero advertising SDK, zero tracking pixel."),
+("No push telemetry","Reminders use OS system only — no data via any server."),
+("No hidden SDK","The binary contains only what you see in this repository."),
+]
+
+def gen_full(code, flag, lang_native, tagline, pledge9, never_title, never_rows, arch_title, arch_desc, note):
     rtl = code in RTL
     dir_attr = ' dir="rtl"' if rtl else ''
-    lines = []
-    lines.append(f'<div align="center"{dir_attr}>\n')
-    lines.append(f'# 🌙 LUNA — {lang_native}\n')
-    lines.append(f'**{tagline}**\n')
-    lines.append('</div>\n\n---\n')
-    lines.append(f'→ [🇬🇧 English (full docs)]({BACK})\n\n---\n')
-    lines.append(f'## 🔒 {"الالتزام بالخصوصية" if code=="AR" else "개인정보 약속" if code=="KO" else "プライバシーの約束" if code=="JA" else "Datenschutzversprechen" if code=="DE" else "La promesse de confidentialité" if code=="FR" else "Privacy"}\n\n')
-    lines.append('| | |\n|---|---|\n')
-    for icon, text in pledge:
-        lines.append(f'| {icon} | {text} |\n')
-    lines.append(f'\n---\n\n## {arch_title}\n\n```\n{arch_desc}\n```\n\n')
-    lines.append(f'---\n\n## License\n\nMIT / Apache-2.0 — [LICENSE]({BACK})\n\n')
-    lines.append(f'> {note}\n')
-    return ''.join(lines)
+    s = []
+    s.append(f'<div align="center"{dir_attr}>\n\n')
+    s.append(f'# LUNA — {lang_native}\n\n')
+    s.append(f'**{tagline}**\n\n')
+    s.append(f'[![No server](https://img.shields.io/badge/server-none-brightgreen.svg)](#)\n')
+    s.append(f'[![Offline](https://img.shields.io/badge/works-100%25%20offline-brightgreen.svg)](#)\n')
+    s.append(f'[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)]({BACK})\n\n')
+    s.append(f'</div>\n\n')
+    s.append(f'[← English (full docs)]({BACK})\n\n---\n\n')
+
+    # Privacy pledge
+    privacy_title = {
+        "AR":"التزام الخصوصية","HE":"מחויבות הפרטיות","FA":"تعهد حریم خصوصی",
+        "JA":"プライバシーの誓約","ZH-Hans":"隐私承诺","ZH-Hant":"隱私承諾",
+        "KO":"개인정보 약속","HI":"गोपनीयता प्रतिज्ञा","RU":"Обязательство конфиденциальности",
+        "DE":"Datenschutzversprechen","FR":"La promesse de confidentialité",
+        "ES":"Promesa de privacidad","IT":"Promessa sulla privacy","NL":"Privacybelofte",
+        "PT-BR":"Compromisso de privacidade","BN":"গোপনীয়তার প্রতিশ্রুতি",
+        "ML":"സ്വകാര്യതാ പ്രതിജ്ഞ",
+    }.get(code, "Privacy Pledge")
+
+    s.append(f'## {privacy_title}\n\n')
+    s.append('| | |\n|---|---|\n')
+    for icon, text in pledge9:
+        s.append(f'| {icon} | {text} |\n')
+    s.append('\n---\n\n')
+
+    # Never do
+    s.append(f'## {never_title}\n\n')
+    s.append('| | |\n|---|---|\n')
+    for what, why in never_rows:
+        s.append(f'| **{what}** | {why} |\n')
+    s.append('\n')
+    # Technical enforcement (English — it's a code block)
+    s.append('```\n')
+    s.append('iOS:     ATS enforced — no arbitrary network loads\n')
+    s.append('Android: networkSecurityConfig blocks ALL outbound connections\n')
+    s.append('Rust:    Cargo.toml has zero networking dependencies\n')
+    s.append('```\n\n---\n\n')
+
+    # Screenshots
+    s.append('## Screenshots\n\n')
+    s.append('| Home | Log | Calendar | Insights | Security |\n')
+    s.append('|------|-----|----------|----------|---------|\n')
+    lang_code_lower = code.lower().split('-')[0] if '-' not in code else code.lower()
+    # Use EN screenshots for langs without dedicated screenshots
+    sc = lang_code_lower if lang_code_lower in {'en','fr','de','es','ja'} else 'en'
+    s.append(f'| ![](../../docs/screenshots/01_home_{sc}.png) | ![](../../docs/screenshots/02_log_{sc}.png) | ![](../../docs/screenshots/03_calendar_{sc}.png) | ![](../../docs/screenshots/04_insights_en.png) | ![](../../docs/screenshots/05_security_en.png) |\n\n')
+    s.append('---\n\n')
+
+    # Architecture
+    s.append(f'## {arch_title}\n\n```\n{arch_desc}\n```\n\n---\n\n')
+    s.append(f'## License\n\nMIT / Apache-2.0 — [LICENSE]({BACK})\n\n')
+    s.append(f'> {note}\n')
+    return ''.join(s)
+
+def gen_compact(code, flag, lang_native, tagline, never_title, arch_title):
+    """For langs without full translation — uses EN pledge + translated title/tagline."""
+    rtl = code in RTL
+    dir_attr = ' dir="rtl"' if rtl else ''
+    arch_map = {
+        "Architektura":"Shared Rust Core (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher encrypted · zero network",
+        "Architektúra":"Shared Rust Core (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher encrypted · zero network",
+        "Архитектура":"Общее ядро Rust (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher зашифрован · ноль сети",
+        "Архітектура":"Спільне ядро Rust (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher зашифровано · нуль мережі",
+        "Architektúra":"Zdieľané Rust jadro (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher šifrovaný · nula sieť",
+        "Arquitectura":"Núcleo Rust compartido (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher cifrado · cero red",
+        "Arkitektur":"Delt Rust-kerne (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher krypteret · nul netværk",
+        "Arkkitehtuuri":"Jaettu Rust-ydin (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher salattu · nolla verkko",
+        "Kiến trúc":"Nhân Rust chia sẻ (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher mã hóa · không mạng",
+        "สถาปัตยกรรม":"Rust core ที่ใช้ร่วมกัน (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher เข้ารหัส · ไม่มีเครือข่าย",
+        "Arsitektur":"Inti Rust bersama (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher terenkripsi · nol jaringan",
+        "Seni bina":"Teras Rust dikongsi (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher disulitkan · sifar rangkaian",
+        "معماری":"هسته Rust مشترک (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher رمزنگاری شده · صفر شبکه",
+        "ארכיטקטורה":"ליבת Rust משותפת (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher מוצפן · אפס רשת",
+        "Arhitektura":"Zajednička Rust jezgra (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher šifrirano · nula mreža",
+        "Архитектура":"Заједничка Rust језгра (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher шифровано · нула мрежа",
+        "Αρχιτεκτονική":"Κοινός πυρήνας Rust (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher κρυπτογραφημένο · μηδέν δίκτυο",
+        "Arquitectura":"Nucli Rust compartit (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher xifrat · zero xarxa",
+        "Arkitektura":"Partekatutako Rust nukleoa (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher enkriptatua · zero sare",
+        "স্থাপত্য":"ভাগ করা Rust কোর (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher এনক্রিপ্টেড · শূন্য নেটওয়ার্ক",
+        "ആർക്കിടെക്ചർ":"പങ്കിട്ട Rust കോർ (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher എൻക്രിപ്റ്റ് · ശൂന്യ ശൃംഖല",
+    }
+    arch_desc = arch_map.get(arch_title, "Shared Rust Core (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher encrypted · zero network")
+    note = "⚠️ This app does not provide medical advice."
+
+    s = []
+    s.append(f'<div align="center"{dir_attr}>\n\n')
+    s.append(f'# LUNA — {lang_native}\n\n')
+    s.append(f'**{tagline}**\n\n')
+    s.append(f'[![No server](https://img.shields.io/badge/server-none-brightgreen.svg)](#)\n')
+    s.append(f'[![Offline](https://img.shields.io/badge/works-100%25%20offline-brightgreen.svg)](#)\n')
+    s.append(f'[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)]({BACK})\n\n')
+    s.append(f'</div>\n\n')
+    s.append(f'[← English (full docs)]({BACK})\n\n---\n\n')
+    s.append('## Privacy Pledge\n\n')
+    s.append('| | |\n|---|---|\n')
+    for icon, text in EN_PLEDGE_9:
+        s.append(f'| {icon} | {text} |\n')
+    s.append(f'\n---\n\n## {never_title}\n\n')
+    s.append('| | |\n|---|---|\n')
+    for what, why in EN_NEVER_ROWS:
+        s.append(f'| **{what}** | {why} |\n')
+    s.append('\n```\n')
+    s.append('iOS:     ATS enforced — no arbitrary network loads\n')
+    s.append('Android: networkSecurityConfig blocks ALL outbound connections\n')
+    s.append('Rust:    Cargo.toml has zero networking dependencies\n')
+    s.append('```\n\n---\n\n')
+    s.append('## Screenshots\n\n')
+    s.append('| Home | Log | Calendar | Insights | Security |\n')
+    s.append('|------|-----|----------|----------|---------|\n')
+    s.append('| ![](../../docs/screenshots/01_home_en.png) | ![](../../docs/screenshots/02_log_en.png) | ![](../../docs/screenshots/03_calendar_en.png) | ![](../../docs/screenshots/04_insights_en.png) | ![](../../docs/screenshots/05_security_en.png) |\n\n')
+    s.append(f'---\n\n## {arch_title}\n\n```\n{arch_desc}\n```\n\n---\n\n')
+    s.append(f'## License\n\nMIT / Apache-2.0 — [LICENSE]({BACK})\n\n')
+    s.append(f'> {note}\n')
+    return ''.join(s)
 
 count = 0
 for entry in LANGS:
     code = entry[0]
-    content = gen(*entry)
+    content = gen_full(*entry)
     out = os.path.join(OUT_DIR, f"README_{code}.md")
     with open(out, 'w', encoding='utf-8') as f:
         f.write(content)
     count += 1
+    print(f"  {code}")
 
-print(f"Generated {count} README translations in {OUT_DIR}/")
+for entry in LANGS_EN_PLEDGE:
+    code, flag, lang_native, tagline, never_title, arch_title = entry
+    content = gen_compact(code, flag, lang_native, tagline, never_title, arch_title)
+    out = os.path.join(OUT_DIR, f"README_{code}.md")
+    with open(out, 'w', encoding='utf-8') as f:
+        f.write(content)
+    count += 1
+    print(f"  {code}")
+
+print(f"\nGenerated {count} README translations in {OUT_DIR}/")

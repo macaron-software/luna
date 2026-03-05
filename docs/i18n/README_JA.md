@@ -1,80 +1,73 @@
 <div align="center">
 
-# LUNA
+# LUNA — 日本語
 
-**プライバシー重視の月経周期トラッキング — サーバーなし、クラウドなし、妥協なし。**
+**あなたのサイクル。あなたの電話。サーバーなし。クラウドなし。妥協なし。**
 
-[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
-[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
-[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
-
-[← README](../../README.md)
+[![No server](https://img.shields.io/badge/server-none-brightgreen.svg)](#)
+[![Offline](https://img.shields.io/badge/works-100%25%20offline-brightgreen.svg)](#)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../README.md)
 
 </div>
 
+[← English (full docs)](../../README.md)
+
 ---
 
-## Privacy / Datenschutz / Privacidad / Confidentialité
+## プライバシーの誓約
 
 | | |
 |---|---|
-| Zero server | No account · No registration · No external dependency · 100% offline |
-| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
-| Local storage | All data on your device · SQLCipher encrypted database |
-| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
-| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
-| Open source | MIT/Apache-2.0 · Every line auditable |
-| Panic wipe | Destroys vault + keys in < 500ms |
-| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
+| 📵 | **サーバーなし。** 私たちはサーバーを持っていません。バックエンドなし、リモートデータベースなし、アプリが接続するAPIエンドポイントなし。 |
+| 📶 | **100% オフラインで動作。** インターネット接続は一切不要で使用もされません。一度インストールすれば、ネットワークなしで永遠に使えます。 |
+| 🚷 | **アカウント不要、登録不要。** メールアドレス不要、パスワード不要、ソーシャルログイン不要、本人確認不要。何も不要。 |
+| 🧩 | **サードパーティサービスへの依存なし。** Firebase、Google Analytics、Mixpanel、Sentry、Amplitudeは一切使用しません。外部SDKはゼロ。 |
+| 🔐 | **データはあなたの電話にのみ暗号化保存。** AES-256-GCMで暗号化されたSQLCipherデータベース。Argon2idでPINから派生したキー。キーはデバイスから外に出ません。 |
+| ☁️ | **オプションのクラウドバックアップ — 完全暗号化。** iCloud/Google Driveには不透明な暗号化ブロブが送られます。AppleもGoogleも読めません。 |
+| 🚫 | **テレメトリーゼロ、分析ゼロ。** クラッシュレポートなし、使用統計なし、A/Bテストなし。何もあなたの電話を離れません。 |
+| 💥 | **3秒でパニックワイプ。** ボタンを長押し：データベース + ソルト + すべての暗号鍵が不可逆的に破壊されます。 |
+| 🔓 | **100% オープンソース。** MIT/Apache-2.0。すべてのコード行が公開されており、誰でも監査できます。 |
 
 ---
 
-## Architecture
+## LUNAが絶対にしないこと
+
+| | |
+|---|---|
+| **サーバーなし** | 私たちはサーバーを持っていません。データを送る場所がありません。 |
+| **インターネット不要** | アプリは100% オフラインで動作します。常に。 |
+| **アカウントなし** | メールなし、パスワードなし、ログインなし。 |
+| **データ売却なし** | 不可能 — 私たちはデータを受け取りません。 |
+| **広告なし** | 広告SDKゼロ、トラッキングピクセルゼロ。 |
+| **Pushテレメトリーなし** | リマインダーはOSシステムのみ使用 — サーバー経由のデータなし。 |
+| **隠しSDKなし** | バイナリにはこのリポジトリで見るものだけが含まれています。 |
 
 ```
-luna-core/ Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
-ios-app/ SwiftUI iOS 16+ — Keychain — HealthKit (optional)
-android-app/ Kotlin API 23+ — Keystore — HealthConnect (optional)
-```
-
-**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
-
----
-
-## Language: 日本語
-
-> プライバシー重視の月経周期トラッキング — サーバーなし、クラウドなし、妥協なし。
-
----
-
-
-## スクリーンショット
-
-### 機能一覧
-
-| ホーム | 日々の記録 | カレンダー | 分析 | プライバシー | TTCモード |
-|------|---------|---------|-----|-----------|---------|
-| ![](../../docs/screenshots/01_home_ja.png) | ![](../../docs/screenshots/02_log_en.png) | ![](../../docs/screenshots/03_calendar_en.png) | ![](../../docs/screenshots/04_insights_en.png) | ![](../../docs/screenshots/05_security_en.png) | ![](../../docs/screenshots/06_ttc_en.png) |
-
-## Build
-
-```bash
-cargo test -p luna-core # 41 Rust tests
-cd ios-app && xcodebuild build # iOS (Xcode 15+)
-cd android-app && ./gradlew assembleDebug # Android
+iOS:     ATS enforced — no arbitrary network loads
+Android: networkSecurityConfig blocks ALL outbound connections
+Rust:    Cargo.toml has zero networking dependencies
 ```
 
 ---
 
-## i18n — 40 languages supported
+## Screenshots
 
-RTL: Arabic · Hebrew · Persian (full layout mirror)
-WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
+| Home | Log | Calendar | Insights | Security |
+|------|-----|----------|----------|---------|
+| ![](../../docs/screenshots/01_home_ja.png) | ![](../../docs/screenshots/02_log_ja.png) | ![](../../docs/screenshots/03_calendar_ja.png) | ![](../../docs/screenshots/04_insights_en.png) | ![](../../docs/screenshots/05_security_en.png) |
+
+---
+
+## アーキテクチャ
+
+```
+共有Rustコア (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher暗号化 · ゼロネットワーク
+```
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
+MIT / Apache-2.0 — [LICENSE](../../README.md)
 
-> This app does not provide medical advice. Consult a healthcare professional for medical concerns.
+> ⚠️ このアプリは医療アドバイスを提供しません。

@@ -1,71 +1,73 @@
 <div align="center" dir="rtl">
 
-# LUNA
+# LUNA — العربية
 
-**تتبع دورة الحيض مع احترام الخصوصية — بدون خادم، بدون سحابة، بدون تنازلات.**
+**دورتك. هاتفك. لا خادم. لا سحابة. لا تنازلات.**
 
-[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
-[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
-[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
-
-[← README](../../README.md)
+[![No server](https://img.shields.io/badge/server-none-brightgreen.svg)](#)
+[![Offline](https://img.shields.io/badge/works-100%25%20offline-brightgreen.svg)](#)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../README.md)
 
 </div>
 
+[← English (full docs)](../../README.md)
+
 ---
 
-## Privacy / Datenschutz / Privacidad / Confidentialité
+## التزام الخصوصية
 
 | | |
 |---|---|
-| Zero server | No account · No registration · No external dependency · 100% offline |
-| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
-| Local storage | All data on your device · SQLCipher encrypted database |
-| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
-| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
-| Open source | MIT/Apache-2.0 · Every line auditable |
-| Panic wipe | Destroys vault + keys in < 500ms |
-| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
+| 📵 | **لا خادم على الإطلاق.** ليس لدينا خادم. لا backend، لا قاعدة بيانات بعيدة، لا نقطة API تتصل بها التطبيقة. |
+| 📶 | **يعمل 100% بدون إنترنت.** لا يُستخدم اتصال بالإنترنت أبدًا ولا يُطلب. ثبّت مرة واحدة، استخدم للأبد بدون شبكة. |
+| 🚷 | **لا حساب، لا تسجيل.** لا بريد إلكتروني، لا كلمة مرور، لا تسجيل دخول اجتماعي، لا التحقق من الهوية. لا شيء. |
+| 🧩 | **لا اعتماد على خدمات طرف ثالث.** لا Firebase، لا Google Analytics، لا Mixpanel، لا Sentry، لا Amplitude. صفر SDK خارجي. |
+| 🔐 | **البيانات مشفرة على هاتفك فقط.** قاعدة بيانات SQLCipher مشفرة بـ AES-256-GCM. المفتاح مشتق من رمز PIN عبر Argon2id. لا يغادر المفتاح الجهاز أبدًا. |
+| ☁️ | **نسخ احتياطي اختياري في السحابة — مشفر تمامًا.** iCloud/Google Drive يستقبل كتلة مشفرة غير شفافة. حتى Apple وGoogle لا يستطيعان قراءتها. |
+| 🚫 | **صفر قياس أداء، صفر تحليلات.** لا تقارير أعطال، لا مقاييس استخدام، لا اختبارات A/B. لا شيء يغادر هاتفك. |
+| 💥 | **محو الذعر في 3 ثوانٍ.** اضغط مطولًا على الزر: قاعدة البيانات + الملح + جميع المفاتيح التشفيرية تُتلف بشكل لا رجعة فيه. |
+| 🔓 | **100% مفتوح المصدر.** MIT/Apache-2.0. كل سطر كود علني وقابل للمراجعة من قبل أي شخص. |
 
 ---
 
-## Architecture
+## ما لن تفعله LUNA أبدًا
+
+| | |
+|---|---|
+| **لا خادم** | ليس لدينا. مستحيل إرسال بياناتك إلى أي مكان. |
+| **لا إنترنت مطلوب** | التطبيق يعمل 100% بدون شبكة. دائمًا. |
+| **لا حساب** | لا بريد، لا كلمة مرور، لا تسجيل دخول. |
+| **لا بيع للبيانات** | مستحيل — لا نستقبلها أبدًا. |
+| **لا إعلانات** | صفر SDK إعلاني، صفر بكسل تتبع. |
+| **لا قياس Push** | التذكيرات تستخدم نظام OS فقط — بدون بيانات عبر أي خادم. |
+| **لا SDK مخفي** | البرنامج الثنائي يحتوي فقط على ما تراه في هذا المستودع. |
 
 ```
-luna-core/ Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
-ios-app/ SwiftUI iOS 16+ — Keychain — HealthKit (optional)
-android-app/ Kotlin API 23+ — Keystore — HealthConnect (optional)
-```
-
-**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
-
----
-
-## Language: العربية
-
-> تتبع دورة الحيض مع احترام الخصوصية — بدون خادم، بدون سحابة، بدون تنازلات.
-
----
-
-## Build
-
-```bash
-cargo test -p luna-core # 41 Rust tests
-cd ios-app && xcodebuild build # iOS (Xcode 15+)
-cd android-app && ./gradlew assembleDebug # Android
+iOS:     ATS enforced — no arbitrary network loads
+Android: networkSecurityConfig blocks ALL outbound connections
+Rust:    Cargo.toml has zero networking dependencies
 ```
 
 ---
 
-## i18n — 40 languages supported
+## Screenshots
 
-RTL: Arabic · Hebrew · Persian (full layout mirror)
-WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
+| Home | Log | Calendar | Insights | Security |
+|------|-----|----------|----------|---------|
+| ![](../../docs/screenshots/01_home_en.png) | ![](../../docs/screenshots/02_log_en.png) | ![](../../docs/screenshots/03_calendar_en.png) | ![](../../docs/screenshots/04_insights_en.png) | ![](../../docs/screenshots/05_security_en.png) |
+
+---
+
+## البنية التقنية
+
+```
+نواة Rust مشتركة (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher مشفّر · صفر شبكة
+```
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
+MIT / Apache-2.0 — [LICENSE](../../README.md)
 
-> This app does not provide medical advice. Consult a healthcare professional for medical concerns.
+> ⚠️ هذا التطبيق لا يقدم استشارات طبية.

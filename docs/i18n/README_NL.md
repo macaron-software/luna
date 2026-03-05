@@ -1,71 +1,73 @@
 <div align="center">
 
-# LUNA
+# LUNA — Nederlands
 
-**Privacyvriendelijke tracking van de menstruatiecyclus — geen server, geen cloud, geen compromissen.**
+**Jouw cyclus. Jouw telefoon. Geen server. Geen cloud. Nul compromissen.**
 
-[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
-[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
-[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
-
-[← README](../../README.md)
+[![No server](https://img.shields.io/badge/server-none-brightgreen.svg)](#)
+[![Offline](https://img.shields.io/badge/works-100%25%20offline-brightgreen.svg)](#)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../README.md)
 
 </div>
 
+[← English (full docs)](../../README.md)
+
 ---
 
-## Privacy / Datenschutz / Privacidad / Confidentialité
+## Privacybelofte
 
 | | |
 |---|---|
-| Zero server | No account · No registration · No external dependency · 100% offline |
-| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
-| Local storage | All data on your device · SQLCipher encrypted database |
-| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
-| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
-| Open source | MIT/Apache-2.0 · Every line auditable |
-| Panic wipe | Destroys vault + keys in < 500ms |
-| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
+| 📵 | **Geen server.** Wij hebben er geen. Geen backend, geen externe database, geen API-eindpunt waarmee de app verbinding maakt. |
+| 📶 | **Werkt 100% offline.** Er is nooit een internetverbinding nodig of wordt gebruikt. Eenmalig installeren, altijd gebruiken zonder netwerk. |
+| 🚷 | **Geen account, geen registratie.** Geen e-mail, geen wachtwoord, geen sociale login, geen identiteitsverificatie. Niets. |
+| 🧩 | **Geen afhankelijkheid van diensten van derden.** Geen Firebase, Google Analytics, Mixpanel, Sentry, Amplitude. Nul externe SDK's. |
+| 🔐 | **Gegevens alleen versleuteld op jouw telefoon.** SQLCipher-database versleuteld met AES-256-GCM. Sleutel afgeleid van jouw PIN via Argon2id. De sleutel verlaat het apparaat nooit. |
+| ☁️ | **Optionele cloudback-up — volledig versleuteld.** iCloud/Google Drive ontvangt een ondoorzichtige versleutelde blob. Zelfs Apple en Google kunnen het niet lezen. |
+| 🚫 | **Nul telemetrie, nul analytics.** Geen crashrapporten, geen gebruiksstatistieken, geen A/B-tests. Niets verlaat jouw telefoon. |
+| 💥 | **Paniekvegwissen in 3 seconden.** Houd de knop ingedrukt: database + salt + alle cryptografische sleutels worden onomkeerbaar vernietigd. |
+| 🔓 | **100% open source.** MIT/Apache-2.0. Elke regel code is openbaar en door iedereen te auditen. |
 
 ---
 
-## Architecture
+## Wat LUNA NOOIT zal doen
+
+| | |
+|---|---|
+| **Geen server** | Wij hebben er geen. Onmogelijk om jouw gegevens ergens naartoe te sturen. |
+| **Geen internet nodig** | De app werkt 100% offline. Altijd. |
+| **Geen account** | Geen e-mail, geen wachtwoord, geen login. |
+| **Geen dataverkoop** | Onmogelijk — we ontvangen het nooit. |
+| **Geen advertenties** | Nul advertentie-SDK, nul trackingpixels. |
+| **Geen push-telemetrie** | Herinneringen gebruiken alleen het OS-systeem — geen gegevens via server. |
+| **Geen verborgen SDK** | Het binaire bestand bevat alleen wat je in deze repository ziet. |
 
 ```
-luna-core/ Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
-ios-app/ SwiftUI iOS 16+ — Keychain — HealthKit (optional)
-android-app/ Kotlin API 23+ — Keystore — HealthConnect (optional)
-```
-
-**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
-
----
-
-## Language: Nederlands
-
-> Privacyvriendelijke tracking van de menstruatiecyclus — geen server, geen cloud, geen compromissen.
-
----
-
-## Build
-
-```bash
-cargo test -p luna-core # 41 Rust tests
-cd ios-app && xcodebuild build # iOS (Xcode 15+)
-cd android-app && ./gradlew assembleDebug # Android
+iOS:     ATS enforced — no arbitrary network loads
+Android: networkSecurityConfig blocks ALL outbound connections
+Rust:    Cargo.toml has zero networking dependencies
 ```
 
 ---
 
-## i18n — 40 languages supported
+## Screenshots
 
-RTL: Arabic · Hebrew · Persian (full layout mirror)
-WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
+| Home | Log | Calendar | Insights | Security |
+|------|-----|----------|----------|---------|
+| ![](../../docs/screenshots/01_home_en.png) | ![](../../docs/screenshots/02_log_en.png) | ![](../../docs/screenshots/03_calendar_en.png) | ![](../../docs/screenshots/04_insights_en.png) | ![](../../docs/screenshots/05_security_en.png) |
+
+---
+
+## Architectuur
+
+```
+Gedeelde Rust-kern (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher versleuteld · nul netwerk
+```
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
+MIT / Apache-2.0 — [LICENSE](../../README.md)
 
-> This app does not provide medical advice. Consult a healthcare professional for medical concerns.
+> ⚠️ Deze app biedt geen medisch advies.
