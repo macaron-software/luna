@@ -1,0 +1,5 @@
+• Segmentierter Zyklusring mit Phasenfarben
+• 40+ Sprachen
+• Verstärkter Datenschutz auf OS-Ebene
+• AES-256-GCM Verschlüsselung
+• Verbesserte Barrierefreiheit

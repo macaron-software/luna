@@ -118,22 +118,41 @@ platform :android do
     UI.success "AAB built: android-app/app/build/outputs/bundle/release/app-release.aab"
   end
 
-  desc "Upload AAB to Google Play (internal track)"
+  desc "Upload AAB to Google Play (internal track, no assets)"
   lane :upload_internal do
     supply(
       package_name: "app.luna",
       aab: "android-app/app/build/outputs/bundle/release/app-release.aab",
       track: "internal",
       json_key: ENV["GOOGLE_PLAY_JSON_KEY"] || "fastlane/google-play-key.json",
-      release_status: "draft"
+      release_status: "draft",
+      skip_upload_metadata: false,
+      skip_upload_images: false,
+      skip_upload_screenshots: false,
+      metadata_path: "fastlane/metadata/android"
     )
   end
 
-  desc "Full release: build + upload to internal track"
+  desc "Upload only metadata + screenshots (no binary)"
+  lane :upload_store_assets do
+    supply(
+      package_name: "app.luna",
+      track: "internal",
+      json_key: ENV["GOOGLE_PLAY_JSON_KEY"] || "fastlane/google-play-key.json",
+      skip_upload_aab: true,
+      skip_upload_apk: true,
+      skip_upload_metadata: false,
+      skip_upload_images: false,
+      skip_upload_screenshots: false,
+      metadata_path: "fastlane/metadata/android"
+    )
+  end
+
+  desc "Full release: build + upload AAB + metadata + screenshots to internal track"
   lane :release do
     build
     upload_internal
-    UI.success "Android AAB uploaded to Play Store internal track!"
+    UI.success "Android AAB + store assets uploaded to Play Store internal track!"
   end
 
   desc "Upload already-built AAB to Play Store (shortcut)"
@@ -143,7 +162,8 @@ platform :android do
       aab: "android-app/app/build/outputs/bundle/release/app-release.aab",
       track: "internal",
       json_key: ENV["GOOGLE_PLAY_JSON_KEY"] || "fastlane/google-play-key.json",
-      release_status: "draft"
+      release_status: "draft",
+      metadata_path: "fastlane/metadata/android"
     )
   end
 

@@ -1,0 +1,22 @@
+Suivez votre cycle menstruel, votre fertilité et votre bien-être en toute confidentialité. Vos données restent sur votre téléphone — toujours.
+
+AUCUN SERVEUR. JAMAIS.
+LUNA n'envoie jamais vos données nulle part. Aucun cloud. Aucun suivi. Aucune analyse. Fonctionne 100% hors ligne.
+
+FONCTIONNALITÉS
+• Prédictions de cycle intelligentes basées sur votre historique personnel
+• Graphique de température basale (TTB)
+• Journalisation de l'humeur, de l'énergie et des symptômes
+• 4 modes de suivi : Régulier, Conception, Grossesse, Périménopause
+• Prédiction de la fenêtre fertile et de l'ovulation
+• Analyse des tendances sur 6 cycles
+
+GARANTIES DE CONFIDENTIALITÉ
+✓ Chiffrement AES-256-GCM — votre clé, vos données
+✓ Aucun compte ou inscription requis
+✓ Aucun SDK tiers (pas de Firebase, pas de Crashlytics)
+✓ Aucun réseau publicitaire
+✓ Zéro télémétrie
+✓ Effacement d'urgence : supprimez tout en 3 taps
+✓ Sauvegarde iCloud/locale chiffrée (optionnel)
+✓ Open source : github.com/macaron-software/luna

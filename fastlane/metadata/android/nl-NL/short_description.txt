@@ -1,0 +1,1 @@
+Privacy-first cyclus tracker. AES-256 versleuteld. Offline. Geen server.

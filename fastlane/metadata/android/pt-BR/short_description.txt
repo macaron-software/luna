@@ -1,0 +1,1 @@
+Rastreador de ciclo privado. Criptografia AES-256. Offline. Sem servidor.

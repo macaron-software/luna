@@ -1,7 +1,5 @@
-Version 0.1.0 - First release
-
-- Cycle tracking with period, symptoms, mood, BBT
-- AES-256 local encryption
-- 4 tracking modes: Regular, TTC, Pregnancy, Perimenopause
-- 40+ languages
-- Full accessibility support
+• Segmented cycle ring with phase color coding
+• 40+ language support with full i18n
+• Stronger privacy guarantees enforced at OS level
+• AES-256-GCM encrypted local storage
+• Improved accessibility (VoiceOver, Dynamic Type)

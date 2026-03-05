@@ -245,7 +245,7 @@ struct FlowPicker: View {
                     Button {
                         selection = opt
                     } label: {
-                        Text(LocalizedStringKey("flow_\(opt)"))
+                        Text(NSLocalizedString("flow_\(opt)", comment: "Flow level"))
                             .font(.caption)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
@@ -297,7 +297,7 @@ struct SymptomChip: View {
 
     var body: some View {
         Button(action: onTap) {
-            Text(LocalizedStringKey("symptom_\(symptom)"))
+            Text(NSLocalizedString("symptom_\(symptom)", comment: "Symptom chip label"))
                 .font(.caption)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 8)
@@ -314,7 +314,7 @@ struct SymptomChip: View {
                 )
         }
         .frame(minHeight: 44) // a11y: cible ≥ 44pt
-        .accessibilityLabel(Text(LocalizedStringKey("symptom_\(symptom)_a11y")))
+        .accessibilityLabel(Text(NSLocalizedString("symptom_\(symptom)_a11y", comment: "Symptom accessibility label")))
         .accessibilityAddTraits(isSelected ? .isSelected : [])
         .accessibilityHint(
             Text(isSelected ? "tap_to_deselect_a11y" : "tap_to_select_symptom_a11y")

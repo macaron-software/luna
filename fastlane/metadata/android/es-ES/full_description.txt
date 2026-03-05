@@ -1,0 +1,24 @@
+LUNA es una aplicación de seguimiento del ciclo menstrual y bienestar centrada en la privacidad. Tus datos de salud nunca salen de tu dispositivo — cifrados con AES-256, almacenados localmente.
+
+SIN SERVIDOR. NUNCA.
+Todos los datos permanecen en tu teléfono. Sin sincronización en la nube. Sin rastreo. Sin publicidad.
+Funciona completamente sin conexión — no se requiere internet.
+
+CARACTERÍSTICAS
+• Seguimiento del período y síntomas con predicciones inteligentes
+• Gráfica de temperatura basal (TBC)
+• Seguimiento de estado de ánimo y energía
+• 4 modos: Regular, Concepción (TTC), Embarazo, Perimenopausia
+• Predicción de ventana fértil y ovulación
+• Análisis de tendencias de 6 ciclos
+
+PRIVACIDAD POR DISEÑO
+• Cifrado AES-256-GCM — tu clave, tus datos
+• Sin cuenta requerida
+• Sin sincronización en la nube (solo copia de seguridad cifrada opcional)
+• Sin publicidad, rastreadores ni análisis
+• Borrado de pánico en 3 toques
+• Código abierto: https://github.com/macaron-software/luna
+
+ACCESIBILIDAD
+Soporte completo TalkBack, Texto dinámico, 40+ idiomas

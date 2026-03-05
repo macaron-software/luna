@@ -1,0 +1,21 @@
+LUNA is een privacygerichte app voor het bijhouden van je menstruatiecyclus en welzijn. Je gezondheidsgegevens verlaten nooit je apparaat — versleuteld met AES-256, lokaal opgeslagen.
+
+GEEN SERVER. NOOIT.
+Alle gegevens blijven op uw telefoon. Geen cloudsynchronisatie. Geen tracking. Geen advertenties.
+Werkt volledig offline — geen internetverbinding vereist.
+
+FUNCTIES
+• Periode- en symptoomtracking met slimme voorspellingen
+• Basale lichaamstemperatuur (BBT) grafiek
+• Stemming en energietracking
+• 4 modi: Normaal, TTC (Conceptie), Zwangerschap, Perimenopauze
+• Vruchtbaarheidsvenster en ovulatievo voorspelling
+• 6-cyclus trendanalyse
+
+PRIVACY BY DESIGN
+• AES-256-GCM versleuteling — uw sleutel, uw gegevens
+• Geen account vereist
+• Geen cloudsynchronisatie (alleen optionele versleutelde back-up)
+• Geen advertenties, trackers of analyses
+• Paniekvergrendeling in 3 taps
+• Open source: https://github.com/macaron-software/luna

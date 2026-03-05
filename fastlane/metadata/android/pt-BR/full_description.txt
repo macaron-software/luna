@@ -1,0 +1,24 @@
+LUNA é um aplicativo de rastreamento do ciclo menstrual e bem-estar focado em privacidade. Seus dados de saúde nunca saem do seu dispositivo — criptografados com AES-256, armazenados localmente.
+
+SEM SERVIDOR. NUNCA.
+Todos os dados permanecem no seu telefone. Sem sincronização na nuvem. Sem rastreamento. Sem publicidade.
+Funciona completamente offline — sem necessidade de internet.
+
+RECURSOS
+• Rastreamento de período e sintomas com previsões inteligentes
+• Gráfico de temperatura basal (TCB)
+• Rastreamento de humor e energia
+• 4 modos: Regular, Concepção (TTC), Gravidez, Perimenopausa
+• Previsão de janela fértil e ovulação
+• Análise de tendências de 6 ciclos
+
+PRIVACIDADE POR DESIGN
+• Criptografia AES-256-GCM — sua chave, seus dados
+• Sem conta necessária
+• Sem sincronização na nuvem (apenas backup criptografado opcional)
+• Sem publicidade, rastreadores ou análises
+• Apagamento pânico em 3 toques
+• Código aberto: https://github.com/macaron-software/luna
+
+ACESSIBILIDADE
+Suporte completo TalkBack, Texto dinâmico, 40+ idiomas

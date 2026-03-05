@@ -224,7 +224,7 @@ struct CycleProfileStep: View {
                             regularity = reg
                         } label: {
                             HStack {
-                                Text(LocalizedStringKey("regularity_\(reg)"))
+                                Text(NSLocalizedString("regularity_\(reg)", comment: "Cycle regularity option"))
                                 Spacer()
                                 if regularity == reg {
                                     Image(systemName: "checkmark")
@@ -278,7 +278,7 @@ struct GoalsStep: View {
                             Image(systemName: goals.contains(goal) ? "checkmark.square.fill" : "square")
                                 .foregroundStyle(goals.contains(goal) ? Color("AccentPrimary") : .secondary)
                                 .accessibilityHidden(true)
-                            Text(LocalizedStringKey("goal_\(goal)"))
+                            Text(NSLocalizedString("goal_\(goal)", comment: "Onboarding goal"))
                             Spacer()
                         }
                         .padding(14)

@@ -1,0 +1,21 @@
+LUNA è un'app di monitoraggio del ciclo mestruale e del benessere incentrata sulla privacy. I tuoi dati sanitari non lasciano mai il tuo dispositivo — crittografati con AES-256, archiviati localmente.
+
+NESSUN SERVER. MAI.
+Tutti i dati rimangono sul tuo telefono. Nessuna sincronizzazione cloud. Nessun tracciamento. Nessuna pubblicità.
+Funziona completamente offline — nessuna connessione internet richiesta.
+
+FUNZIONALITÀ
+• Monitoraggio del ciclo e dei sintomi con previsioni intelligenti
+• Grafico della temperatura basale (BBT)
+• Monitoraggio dell'umore e dell'energia
+• 4 modalità: Regolare, TTC (Concepimento), Gravidanza, Perimenopausa
+• Previsione della finestra fertile e dell'ovulazione
+• Analisi delle tendenze di 6 cicli
+
+PRIVACY BY DESIGN
+• Crittografia AES-256-GCM — la tua chiave, i tuoi dati
+• Nessun account richiesto
+• Nessuna sincronizzazione cloud (solo backup crittografato opzionale)
+• Nessuna pubblicità, tracker o analisi
+• Cancellazione panico in 3 tap
+• Open source: https://github.com/macaron-software/luna

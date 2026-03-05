@@ -35,6 +35,11 @@ android-app/local.properties        # SDK path (machine-specific)
 *.pem
 *.p12
 *.keystore
+*.jks
+android-app/key.properties
+android-app/keystore/
+fastlane/google-play-key.json
+fastlane/build/*.aab
 GoogleService-Info.plist
 google-services.json
 

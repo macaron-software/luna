@@ -1,37 +1,25 @@
-LUNA is a privacy-first menstrual cycle and wellness tracker. Your health data never leaves your device.
+Track your menstrual cycle, fertility, and wellness with complete privacy. Your data stays on your phone — always.
 
-KEY FEATURES
+NO SERVER. EVER.
+LUNA never sends your data anywhere. No cloud. No tracking. No analytics. Works 100% offline.
 
-Cycle Tracking
-Track periods, symptoms, mood, and basal body temperature. LUNA learns your unique patterns and predicts your next cycle with science-backed accuracy.
+FEATURES
+• Smart cycle predictions based on your personal history
+• Basal body temperature (BBT) charting
+• Mood, energy & symptom logging
+• 4 tracking modes: Regular, TTC, Pregnancy, Perimenopause
+• Fertile window & ovulation prediction
+• 6-cycle trend analysis & insights
 
-Complete Privacy
-- AES-256 encryption: all data encrypted locally
-- No cloud sync, no account required
-- No third-party trackers or analytics
-- No advertising
-- Open source
+PRIVACY GUARANTEES
+✓ AES-256-GCM encryption — your key, your data
+✓ No account or sign-up required
+✓ No third-party SDKs (no Firebase, no Crashlytics, no analytics)
+✓ No advertising network
+✓ Zero telemetry
+✓ Panic wipe: erase all data in 3 taps
+✓ Encrypted iCloud/local backup (optional)
+✓ Open source: github.com/macaron-software/luna
 
-4 Tracking Modes
-- Regular: standard cycle tracking
-- TTC (Trying to Conceive): fertile window, LH surge, BBT charts
-- Pregnancy: week-by-week tracking
-- Perimenopause: irregular cycle support
-
-Health Insights
-- Cycle length trends over 6+ cycles
-- Symptom frequency analysis
-- Mood correlation patterns
-- Fertile window prediction
-
-Optional iCloud Backup
-Your data is encrypted with your personal key before syncing to iCloud. Apple cannot read it.
-
-Accessibility
-Full VoiceOver support, Dynamic Type, high-contrast mode. Available in 40+ languages.
-
-SCIENCE-BACKED
-Predictions use validated algorithms based on peer-reviewed research on menstrual cycle variability.
-
-OPEN SOURCE
-Full source code available at https://github.com/macaron-software/luna
+ACCESSIBILITY
+Full VoiceOver support · Dynamic Type · 40+ languages

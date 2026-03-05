@@ -1,0 +1,24 @@
+LUNA est un suivi de cycle menstruel et de bien-être orienté confidentialité. Vos données de santé ne quittent jamais votre appareil — chiffrées AES-256, stockées localement.
+
+AUCUN SERVEUR. JAMAIS.
+Toutes les données restent sur votre téléphone. Pas de cloud. Pas de tracking. Pas de publicité.
+Fonctionne entièrement hors ligne — aucune connexion internet requise.
+
+FONCTIONNALITÉS
+• Suivi des règles et symptômes avec prédictions intelligentes
+• Graphique de température basale (TTB)
+• Suivi de l'humeur et de l'énergie
+• 4 modes : Régulier, Conception (TTC), Grossesse, Périménopause
+• Fenêtre fertile et prédiction d'ovulation
+• Analyse de tendances sur 6 cycles
+
+CONFIDENTIALITÉ BY DESIGN
+• Chiffrement AES-256-GCM — votre clé, vos données
+• Sans compte
+• Pas de cloud (sauvegarde chiffrée optionnelle uniquement)
+• Pas de pub, pas de trackers, pas d'analytique
+• Effacement d'urgence en 3 taps
+• Open source : https://github.com/macaron-software/luna
+
+ACCESSIBILITÉ
+Support TalkBack complet, Texte dynamique, 40+ langues

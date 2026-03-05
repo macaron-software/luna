@@ -1,0 +1,1 @@
+Privater Zyklus-Tracker. AES-256-verschlüsselt. Offline. Kein Server.

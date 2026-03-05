@@ -1,0 +1,1 @@
+Tracker del ciclo privacy-first. Crittografia AES-256. Offline. Nessun server.

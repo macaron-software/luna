@@ -225,7 +225,7 @@ struct SymptomFrequencyRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            Text(LocalizedStringKey("symptom_\(symptom)"))
+            Text(NSLocalizedString("symptom_\(symptom)", comment: "Symptom name"))
                 .font(.subheadline)
                 .frame(width: 130, alignment: .leading)
 
@@ -247,7 +247,7 @@ struct SymptomFrequencyRow: View {
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(
-            Text("\(Text(LocalizedStringKey("symptom_\(symptom)"))): \(Int(frequency * 100))%")
+            Text("\(NSLocalizedString("symptom_\(symptom)", comment: "Symptom name")): \(Int(frequency * 100))%")
         )
     }
 }
