@@ -26,6 +26,10 @@
 	<true/>
 	<key>NSFaceIDUsageDescription</key>
 	<string>LUNA uses Face ID to quickly unlock your vault.</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>LUNA lit votre température basale pour affiner les prédictions de cycle. Aucune donnée n'est partagée.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>LUNA peut écrire vos données menstruelles dans Santé pour centraliser votre suivi. Optionnel.</string>
 	<key>UILaunchStoryboardName</key>
 	<string></string>
 	<key>UISupportedInterfaceOrientations</key>

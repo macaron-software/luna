@@ -557,6 +557,11 @@ public protocol LunaEngineProtocol : AnyObject {
     func exportEncryptedBackup(pin: String) throws  -> Data
     
     /**
+     * Exporte les logs d'une plage de dates en CSV RFC 4180.
+     */
+    func exportLogsCsv(from: String, to: String) throws  -> String
+    
+    /**
      * Résumé statistique des cycles.
      */
     func getCycleSummary() throws  -> CycleSummary
@@ -572,9 +577,29 @@ public protocol LunaEngineProtocol : AnyObject {
     func getLog(date: String) throws  -> DailyLog?
     
     /**
+     * Récupère les logs d'une plage de dates.
+     */
+    func getLogsRange(from: String, to: String) throws  -> [DailyLog]
+    
+    /**
+     * Récupère le log de grossesse d'une date donnée.
+     */
+    func getPregnancyLog(date: String) throws  -> PregnancyLog?
+    
+    /**
+     * Retourne le profil utilisateur (mode de suivi, contraception, etc.)
+     */
+    func getUserProfile() throws  -> UserProfile
+    
+    /**
      * Enregistre ou met à jour le log du jour.
      */
     func logDay(log: DailyLog) throws 
+    
+    /**
+     * Enregistre un log de grossesse pour une date donnée.
+     */
+    func logPregnancyDay(log: PregnancyLog) throws 
     
     /**
      * ⚠️  MODE PANIQUE — supprime TOUTES les données de façon irréversible.
@@ -594,6 +619,11 @@ public protocol LunaEngineProtocol : AnyObject {
      * Calcule la prochaine prédiction de cycle.
      */
     func predictNext() throws  -> Prediction
+    
+    /**
+     * Enregistre le profil utilisateur.
+     */
+    func setUserProfile(profile: UserProfile) throws 
     
     /**
      * Démarre un nouveau cycle à la date donnée.
@@ -712,6 +742,18 @@ open func exportEncryptedBackup(pin: String)throws  -> Data {
 }
     
     /**
+     * Exporte les logs d'une plage de dates en CSV RFC 4180.
+     */
+open func exportLogsCsv(from: String, to: String)throws  -> String {
+    return try  FfiConverterString.lift(try rustCallWithError(FfiConverterTypeLunaError.lift) {
+    uniffi_luna_core_fn_method_lunaengine_export_logs_csv(self.uniffiClonePointer(),
+        FfiConverterString.lower(from),
+        FfiConverterString.lower(to),$0
+    )
+})
+}
+    
+    /**
      * Résumé statistique des cycles.
      */
 open func getCycleSummary()throws  -> CycleSummary {
@@ -744,11 +786,54 @@ open func getLog(date: String)throws  -> DailyLog? {
 }
     
     /**
+     * Récupère les logs d'une plage de dates.
+     */
+open func getLogsRange(from: String, to: String)throws  -> [DailyLog] {
+    return try  FfiConverterSequenceTypeDailyLog.lift(try rustCallWithError(FfiConverterTypeLunaError.lift) {
+    uniffi_luna_core_fn_method_lunaengine_get_logs_range(self.uniffiClonePointer(),
+        FfiConverterString.lower(from),
+        FfiConverterString.lower(to),$0
+    )
+})
+}
+    
+    /**
+     * Récupère le log de grossesse d'une date donnée.
+     */
+open func getPregnancyLog(date: String)throws  -> PregnancyLog? {
+    return try  FfiConverterOptionTypePregnancyLog.lift(try rustCallWithError(FfiConverterTypeLunaError.lift) {
+    uniffi_luna_core_fn_method_lunaengine_get_pregnancy_log(self.uniffiClonePointer(),
+        FfiConverterString.lower(date),$0
+    )
+})
+}
+    
+    /**
+     * Retourne le profil utilisateur (mode de suivi, contraception, etc.)
+     */
+open func getUserProfile()throws  -> UserProfile {
+    return try  FfiConverterTypeUserProfile.lift(try rustCallWithError(FfiConverterTypeLunaError.lift) {
+    uniffi_luna_core_fn_method_lunaengine_get_user_profile(self.uniffiClonePointer(),$0
+    )
+})
+}
+    
+    /**
      * Enregistre ou met à jour le log du jour.
      */
 open func logDay(log: DailyLog)throws  {try rustCallWithError(FfiConverterTypeLunaError.lift) {
     uniffi_luna_core_fn_method_lunaengine_log_day(self.uniffiClonePointer(),
         FfiConverterTypeDailyLog.lower(log),$0
+    )
+}
+}
+    
+    /**
+     * Enregistre un log de grossesse pour une date donnée.
+     */
+open func logPregnancyDay(log: PregnancyLog)throws  {try rustCallWithError(FfiConverterTypeLunaError.lift) {
+    uniffi_luna_core_fn_method_lunaengine_log_pregnancy_day(self.uniffiClonePointer(),
+        FfiConverterTypePregnancyLog.lower(log),$0
     )
 }
 }
@@ -779,6 +864,16 @@ open func predictNext()throws  -> Prediction {
     uniffi_luna_core_fn_method_lunaengine_predict_next(self.uniffiClonePointer(),$0
     )
 })
+}
+    
+    /**
+     * Enregistre le profil utilisateur.
+     */
+open func setUserProfile(profile: UserProfile)throws  {try rustCallWithError(FfiConverterTypeLunaError.lift) {
+    uniffi_luna_core_fn_method_lunaengine_set_user_profile(self.uniffiClonePointer(),
+        FfiConverterTypeUserProfile.lower(profile),$0
+    )
+}
 }
     
     /**
@@ -1108,6 +1203,14 @@ public struct DailyLog {
      * Flux menstruel : "none" | "spotting" | "light" | "medium" | "heavy"
      */
     public var flow: String?
+    /**
+     * Qualité du sommeil : 1 (très mauvaise) à 5 (excellente)
+     */
+    public var sleepQuality: UInt8?
+    /**
+     * Poids en kg, ex: 62.5
+     */
+    public var weightKg: Double?
     public var notes: String?
 
     // Default memberwise initializers are never public by default, so we
@@ -1136,7 +1239,13 @@ public struct DailyLog {
          */sexualActivity: String?, 
         /**
          * Flux menstruel : "none" | "spotting" | "light" | "medium" | "heavy"
-         */flow: String?, notes: String?) {
+         */flow: String?, 
+        /**
+         * Qualité du sommeil : 1 (très mauvaise) à 5 (excellente)
+         */sleepQuality: UInt8?, 
+        /**
+         * Poids en kg, ex: 62.5
+         */weightKg: Double?, notes: String?) {
         self.id = id
         self.date = date
         self.symptoms = symptoms
@@ -1147,6 +1256,8 @@ public struct DailyLog {
         self.cervicalMucus = cervicalMucus
         self.sexualActivity = sexualActivity
         self.flow = flow
+        self.sleepQuality = sleepQuality
+        self.weightKg = weightKg
         self.notes = notes
     }
 }
@@ -1185,6 +1296,12 @@ extension DailyLog: Equatable, Hashable {
         if lhs.flow != rhs.flow {
             return false
         }
+        if lhs.sleepQuality != rhs.sleepQuality {
+            return false
+        }
+        if lhs.weightKg != rhs.weightKg {
+            return false
+        }
         if lhs.notes != rhs.notes {
             return false
         }
@@ -1202,6 +1319,8 @@ extension DailyLog: Equatable, Hashable {
         hasher.combine(cervicalMucus)
         hasher.combine(sexualActivity)
         hasher.combine(flow)
+        hasher.combine(sleepQuality)
+        hasher.combine(weightKg)
         hasher.combine(notes)
     }
 }
@@ -1224,6 +1343,8 @@ public struct FfiConverterTypeDailyLog: FfiConverterRustBuffer {
                 cervicalMucus: FfiConverterOptionString.read(from: &buf), 
                 sexualActivity: FfiConverterOptionString.read(from: &buf), 
                 flow: FfiConverterOptionString.read(from: &buf), 
+                sleepQuality: FfiConverterOptionUInt8.read(from: &buf), 
+                weightKg: FfiConverterOptionDouble.read(from: &buf), 
                 notes: FfiConverterOptionString.read(from: &buf)
         )
     }
@@ -1239,6 +1360,8 @@ public struct FfiConverterTypeDailyLog: FfiConverterRustBuffer {
         FfiConverterOptionString.write(value.cervicalMucus, into: &buf)
         FfiConverterOptionString.write(value.sexualActivity, into: &buf)
         FfiConverterOptionString.write(value.flow, into: &buf)
+        FfiConverterOptionUInt8.write(value.sleepQuality, into: &buf)
+        FfiConverterOptionDouble.write(value.weightKg, into: &buf)
         FfiConverterOptionString.write(value.notes, into: &buf)
     }
 }
@@ -1405,6 +1528,364 @@ public func FfiConverterTypePrediction_lift(_ buf: RustBuffer) throws -> Predict
 public func FfiConverterTypePrediction_lower(_ value: Prediction) -> RustBuffer {
     return FfiConverterTypePrediction.lower(value)
 }
+
+
+/**
+ * Log de grossesse — données quotidiennes spécifiques à la grossesse
+ */
+public struct PregnancyLog {
+    public var id: String
+    public var date: String
+    public var hcgPositive: Bool?
+    public var kicks: UInt8?
+    public var nauseaLevel: UInt8?
+    public var weightKg: Double?
+    public var symptoms: [String]
+    public var notes: String?
+
+    // Default memberwise initializers are never public by default, so we
+    // declare one manually.
+    public init(id: String, date: String, hcgPositive: Bool?, kicks: UInt8?, nauseaLevel: UInt8?, weightKg: Double?, symptoms: [String], notes: String?) {
+        self.id = id
+        self.date = date
+        self.hcgPositive = hcgPositive
+        self.kicks = kicks
+        self.nauseaLevel = nauseaLevel
+        self.weightKg = weightKg
+        self.symptoms = symptoms
+        self.notes = notes
+    }
+}
+
+
+
+extension PregnancyLog: Equatable, Hashable {
+    public static func ==(lhs: PregnancyLog, rhs: PregnancyLog) -> Bool {
+        if lhs.id != rhs.id {
+            return false
+        }
+        if lhs.date != rhs.date {
+            return false
+        }
+        if lhs.hcgPositive != rhs.hcgPositive {
+            return false
+        }
+        if lhs.kicks != rhs.kicks {
+            return false
+        }
+        if lhs.nauseaLevel != rhs.nauseaLevel {
+            return false
+        }
+        if lhs.weightKg != rhs.weightKg {
+            return false
+        }
+        if lhs.symptoms != rhs.symptoms {
+            return false
+        }
+        if lhs.notes != rhs.notes {
+            return false
+        }
+        return true
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(date)
+        hasher.combine(hcgPositive)
+        hasher.combine(kicks)
+        hasher.combine(nauseaLevel)
+        hasher.combine(weightKg)
+        hasher.combine(symptoms)
+        hasher.combine(notes)
+    }
+}
+
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+public struct FfiConverterTypePregnancyLog: FfiConverterRustBuffer {
+    public static func read(from buf: inout (data: Data, offset: Data.Index)) throws -> PregnancyLog {
+        return
+            try PregnancyLog(
+                id: FfiConverterString.read(from: &buf), 
+                date: FfiConverterString.read(from: &buf), 
+                hcgPositive: FfiConverterOptionBool.read(from: &buf), 
+                kicks: FfiConverterOptionUInt8.read(from: &buf), 
+                nauseaLevel: FfiConverterOptionUInt8.read(from: &buf), 
+                weightKg: FfiConverterOptionDouble.read(from: &buf), 
+                symptoms: FfiConverterSequenceString.read(from: &buf), 
+                notes: FfiConverterOptionString.read(from: &buf)
+        )
+    }
+
+    public static func write(_ value: PregnancyLog, into buf: inout [UInt8]) {
+        FfiConverterString.write(value.id, into: &buf)
+        FfiConverterString.write(value.date, into: &buf)
+        FfiConverterOptionBool.write(value.hcgPositive, into: &buf)
+        FfiConverterOptionUInt8.write(value.kicks, into: &buf)
+        FfiConverterOptionUInt8.write(value.nauseaLevel, into: &buf)
+        FfiConverterOptionDouble.write(value.weightKg, into: &buf)
+        FfiConverterSequenceString.write(value.symptoms, into: &buf)
+        FfiConverterOptionString.write(value.notes, into: &buf)
+    }
+}
+
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+public func FfiConverterTypePregnancyLog_lift(_ buf: RustBuffer) throws -> PregnancyLog {
+    return try FfiConverterTypePregnancyLog.lift(buf)
+}
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+public func FfiConverterTypePregnancyLog_lower(_ value: PregnancyLog) -> RustBuffer {
+    return FfiConverterTypePregnancyLog.lower(value)
+}
+
+
+/**
+ * Profil utilisateur — préférences et mode de suivi
+ */
+public struct UserProfile {
+    public var trackingMode: TrackingMode
+    public var contraception: ContraceptionType
+    public var pillReminderTime: String?
+    public var notifPeriod: Bool
+    public var notifFertile: Bool
+    public var notifPill: Bool
+    public var edd: String?
+    public var calmMode: Bool
+    public var healthSync: Bool
+
+    // Default memberwise initializers are never public by default, so we
+    // declare one manually.
+    public init(trackingMode: TrackingMode, contraception: ContraceptionType, pillReminderTime: String?, notifPeriod: Bool, notifFertile: Bool, notifPill: Bool, edd: String?, calmMode: Bool, healthSync: Bool) {
+        self.trackingMode = trackingMode
+        self.contraception = contraception
+        self.pillReminderTime = pillReminderTime
+        self.notifPeriod = notifPeriod
+        self.notifFertile = notifFertile
+        self.notifPill = notifPill
+        self.edd = edd
+        self.calmMode = calmMode
+        self.healthSync = healthSync
+    }
+}
+
+
+
+extension UserProfile: Equatable, Hashable {
+    public static func ==(lhs: UserProfile, rhs: UserProfile) -> Bool {
+        if lhs.trackingMode != rhs.trackingMode {
+            return false
+        }
+        if lhs.contraception != rhs.contraception {
+            return false
+        }
+        if lhs.pillReminderTime != rhs.pillReminderTime {
+            return false
+        }
+        if lhs.notifPeriod != rhs.notifPeriod {
+            return false
+        }
+        if lhs.notifFertile != rhs.notifFertile {
+            return false
+        }
+        if lhs.notifPill != rhs.notifPill {
+            return false
+        }
+        if lhs.edd != rhs.edd {
+            return false
+        }
+        if lhs.calmMode != rhs.calmMode {
+            return false
+        }
+        if lhs.healthSync != rhs.healthSync {
+            return false
+        }
+        return true
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(trackingMode)
+        hasher.combine(contraception)
+        hasher.combine(pillReminderTime)
+        hasher.combine(notifPeriod)
+        hasher.combine(notifFertile)
+        hasher.combine(notifPill)
+        hasher.combine(edd)
+        hasher.combine(calmMode)
+        hasher.combine(healthSync)
+    }
+}
+
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+public struct FfiConverterTypeUserProfile: FfiConverterRustBuffer {
+    public static func read(from buf: inout (data: Data, offset: Data.Index)) throws -> UserProfile {
+        return
+            try UserProfile(
+                trackingMode: FfiConverterTypeTrackingMode.read(from: &buf), 
+                contraception: FfiConverterTypeContraceptionType.read(from: &buf), 
+                pillReminderTime: FfiConverterOptionString.read(from: &buf), 
+                notifPeriod: FfiConverterBool.read(from: &buf), 
+                notifFertile: FfiConverterBool.read(from: &buf), 
+                notifPill: FfiConverterBool.read(from: &buf), 
+                edd: FfiConverterOptionString.read(from: &buf), 
+                calmMode: FfiConverterBool.read(from: &buf), 
+                healthSync: FfiConverterBool.read(from: &buf)
+        )
+    }
+
+    public static func write(_ value: UserProfile, into buf: inout [UInt8]) {
+        FfiConverterTypeTrackingMode.write(value.trackingMode, into: &buf)
+        FfiConverterTypeContraceptionType.write(value.contraception, into: &buf)
+        FfiConverterOptionString.write(value.pillReminderTime, into: &buf)
+        FfiConverterBool.write(value.notifPeriod, into: &buf)
+        FfiConverterBool.write(value.notifFertile, into: &buf)
+        FfiConverterBool.write(value.notifPill, into: &buf)
+        FfiConverterOptionString.write(value.edd, into: &buf)
+        FfiConverterBool.write(value.calmMode, into: &buf)
+        FfiConverterBool.write(value.healthSync, into: &buf)
+    }
+}
+
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+public func FfiConverterTypeUserProfile_lift(_ buf: RustBuffer) throws -> UserProfile {
+    return try FfiConverterTypeUserProfile.lift(buf)
+}
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+public func FfiConverterTypeUserProfile_lower(_ value: UserProfile) -> RustBuffer {
+    return FfiConverterTypeUserProfile.lower(value)
+}
+
+// Note that we don't yet support `indirect` for enums.
+// See https://github.com/mozilla/uniffi-rs/issues/396 for further discussion.
+/**
+ * Type de contraception
+ */
+
+public enum ContraceptionType {
+    
+    case none
+    case pill
+    case patch
+    case ring
+    case injection
+    case iud
+    case implant
+    case condom
+    case other
+}
+
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+public struct FfiConverterTypeContraceptionType: FfiConverterRustBuffer {
+    typealias SwiftType = ContraceptionType
+
+    public static func read(from buf: inout (data: Data, offset: Data.Index)) throws -> ContraceptionType {
+        let variant: Int32 = try readInt(&buf)
+        switch variant {
+        
+        case 1: return .none
+        
+        case 2: return .pill
+        
+        case 3: return .patch
+        
+        case 4: return .ring
+        
+        case 5: return .injection
+        
+        case 6: return .iud
+        
+        case 7: return .implant
+        
+        case 8: return .condom
+        
+        case 9: return .other
+        
+        default: throw UniffiInternalError.unexpectedEnumCase
+        }
+    }
+
+    public static func write(_ value: ContraceptionType, into buf: inout [UInt8]) {
+        switch value {
+        
+        
+        case .none:
+            writeInt(&buf, Int32(1))
+        
+        
+        case .pill:
+            writeInt(&buf, Int32(2))
+        
+        
+        case .patch:
+            writeInt(&buf, Int32(3))
+        
+        
+        case .ring:
+            writeInt(&buf, Int32(4))
+        
+        
+        case .injection:
+            writeInt(&buf, Int32(5))
+        
+        
+        case .iud:
+            writeInt(&buf, Int32(6))
+        
+        
+        case .implant:
+            writeInt(&buf, Int32(7))
+        
+        
+        case .condom:
+            writeInt(&buf, Int32(8))
+        
+        
+        case .other:
+            writeInt(&buf, Int32(9))
+        
+        }
+    }
+}
+
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+public func FfiConverterTypeContraceptionType_lift(_ buf: RustBuffer) throws -> ContraceptionType {
+    return try FfiConverterTypeContraceptionType.lift(buf)
+}
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+public func FfiConverterTypeContraceptionType_lower(_ value: ContraceptionType) -> RustBuffer {
+    return FfiConverterTypeContraceptionType.lower(value)
+}
+
+
+
+extension ContraceptionType: Equatable, Hashable {}
+
+
 
 // Note that we don't yet support `indirect` for enums.
 // See https://github.com/mozilla/uniffi-rs/issues/396 for further discussion.
@@ -1602,6 +2083,94 @@ extension LunaError: Foundation.LocalizedError {
     }
 }
 
+// Note that we don't yet support `indirect` for enums.
+// See https://github.com/mozilla/uniffi-rs/issues/396 for further discussion.
+/**
+ * Mode de suivi de la santé reproductive
+ */
+
+public enum TrackingMode {
+    
+    case regular
+    case ttc
+    case pregnant
+    case postpartum
+    case perimenopause
+}
+
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+public struct FfiConverterTypeTrackingMode: FfiConverterRustBuffer {
+    typealias SwiftType = TrackingMode
+
+    public static func read(from buf: inout (data: Data, offset: Data.Index)) throws -> TrackingMode {
+        let variant: Int32 = try readInt(&buf)
+        switch variant {
+        
+        case 1: return .regular
+        
+        case 2: return .ttc
+        
+        case 3: return .pregnant
+        
+        case 4: return .postpartum
+        
+        case 5: return .perimenopause
+        
+        default: throw UniffiInternalError.unexpectedEnumCase
+        }
+    }
+
+    public static func write(_ value: TrackingMode, into buf: inout [UInt8]) {
+        switch value {
+        
+        
+        case .regular:
+            writeInt(&buf, Int32(1))
+        
+        
+        case .ttc:
+            writeInt(&buf, Int32(2))
+        
+        
+        case .pregnant:
+            writeInt(&buf, Int32(3))
+        
+        
+        case .postpartum:
+            writeInt(&buf, Int32(4))
+        
+        
+        case .perimenopause:
+            writeInt(&buf, Int32(5))
+        
+        }
+    }
+}
+
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+public func FfiConverterTypeTrackingMode_lift(_ buf: RustBuffer) throws -> TrackingMode {
+    return try FfiConverterTypeTrackingMode.lift(buf)
+}
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+public func FfiConverterTypeTrackingMode_lower(_ value: TrackingMode) -> RustBuffer {
+    return FfiConverterTypeTrackingMode.lower(value)
+}
+
+
+
+extension TrackingMode: Equatable, Hashable {}
+
+
+
 #if swift(>=5.8)
 @_documentation(visibility: private)
 #endif
@@ -1645,6 +2214,30 @@ fileprivate struct FfiConverterOptionDouble: FfiConverterRustBuffer {
         switch try readInt(&buf) as Int8 {
         case 0: return nil
         case 1: return try FfiConverterDouble.read(from: &buf)
+        default: throw UniffiInternalError.unexpectedOptionalTag
+        }
+    }
+}
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+fileprivate struct FfiConverterOptionBool: FfiConverterRustBuffer {
+    typealias SwiftType = Bool?
+
+    public static func write(_ value: SwiftType, into buf: inout [UInt8]) {
+        guard let value = value else {
+            writeInt(&buf, Int8(0))
+            return
+        }
+        writeInt(&buf, Int8(1))
+        FfiConverterBool.write(value, into: &buf)
+    }
+
+    public static func read(from buf: inout (data: Data, offset: Data.Index)) throws -> SwiftType {
+        switch try readInt(&buf) as Int8 {
+        case 0: return nil
+        case 1: return try FfiConverterBool.read(from: &buf)
         default: throw UniffiInternalError.unexpectedOptionalTag
         }
     }
@@ -1701,6 +2294,30 @@ fileprivate struct FfiConverterOptionTypeDailyLog: FfiConverterRustBuffer {
 #if swift(>=5.8)
 @_documentation(visibility: private)
 #endif
+fileprivate struct FfiConverterOptionTypePregnancyLog: FfiConverterRustBuffer {
+    typealias SwiftType = PregnancyLog?
+
+    public static func write(_ value: SwiftType, into buf: inout [UInt8]) {
+        guard let value = value else {
+            writeInt(&buf, Int8(0))
+            return
+        }
+        writeInt(&buf, Int8(1))
+        FfiConverterTypePregnancyLog.write(value, into: &buf)
+    }
+
+    public static func read(from buf: inout (data: Data, offset: Data.Index)) throws -> SwiftType {
+        switch try readInt(&buf) as Int8 {
+        case 0: return nil
+        case 1: return try FfiConverterTypePregnancyLog.read(from: &buf)
+        default: throw UniffiInternalError.unexpectedOptionalTag
+        }
+    }
+}
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
 fileprivate struct FfiConverterSequenceString: FfiConverterRustBuffer {
     typealias SwiftType = [String]
 
@@ -1747,6 +2364,31 @@ fileprivate struct FfiConverterSequenceTypeCycle: FfiConverterRustBuffer {
         return seq
     }
 }
+
+#if swift(>=5.8)
+@_documentation(visibility: private)
+#endif
+fileprivate struct FfiConverterSequenceTypeDailyLog: FfiConverterRustBuffer {
+    typealias SwiftType = [DailyLog]
+
+    public static func write(_ value: [DailyLog], into buf: inout [UInt8]) {
+        let len = Int32(value.count)
+        writeInt(&buf, len)
+        for item in value {
+            FfiConverterTypeDailyLog.write(item, into: &buf)
+        }
+    }
+
+    public static func read(from buf: inout (data: Data, offset: Data.Index)) throws -> [DailyLog] {
+        let len: Int32 = try readInt(&buf)
+        var seq = [DailyLog]()
+        seq.reserveCapacity(Int(len))
+        for _ in 0 ..< len {
+            seq.append(try FfiConverterTypeDailyLog.read(from: &buf))
+        }
+        return seq
+    }
+}
 /**
  * Vérifie si un vault existe au chemin donné.
  */
@@ -1785,6 +2427,9 @@ private var initializationResult: InitializationResult = {
     if (uniffi_luna_core_checksum_method_lunaengine_export_encrypted_backup() != 109) {
         return InitializationResult.apiChecksumMismatch
     }
+    if (uniffi_luna_core_checksum_method_lunaengine_export_logs_csv() != 44608) {
+        return InitializationResult.apiChecksumMismatch
+    }
     if (uniffi_luna_core_checksum_method_lunaengine_get_cycle_summary() != 22192) {
         return InitializationResult.apiChecksumMismatch
     }
@@ -1794,13 +2439,28 @@ private var initializationResult: InitializationResult = {
     if (uniffi_luna_core_checksum_method_lunaengine_get_log() != 38698) {
         return InitializationResult.apiChecksumMismatch
     }
+    if (uniffi_luna_core_checksum_method_lunaengine_get_logs_range() != 29288) {
+        return InitializationResult.apiChecksumMismatch
+    }
+    if (uniffi_luna_core_checksum_method_lunaengine_get_pregnancy_log() != 60448) {
+        return InitializationResult.apiChecksumMismatch
+    }
+    if (uniffi_luna_core_checksum_method_lunaengine_get_user_profile() != 11649) {
+        return InitializationResult.apiChecksumMismatch
+    }
     if (uniffi_luna_core_checksum_method_lunaengine_log_day() != 24369) {
+        return InitializationResult.apiChecksumMismatch
+    }
+    if (uniffi_luna_core_checksum_method_lunaengine_log_pregnancy_day() != 42471) {
         return InitializationResult.apiChecksumMismatch
     }
     if (uniffi_luna_core_checksum_method_lunaengine_panic_wipe() != 42119) {
         return InitializationResult.apiChecksumMismatch
     }
     if (uniffi_luna_core_checksum_method_lunaengine_predict_next() != 41985) {
+        return InitializationResult.apiChecksumMismatch
+    }
+    if (uniffi_luna_core_checksum_method_lunaengine_set_user_profile() != 44237) {
         return InitializationResult.apiChecksumMismatch
     }
     if (uniffi_luna_core_checksum_method_lunaengine_start_cycle() != 41395) {

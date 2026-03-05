@@ -13,6 +13,8 @@ class LunaApplication : Application() {
         super.onCreate()
         // Charger la bibliothèque native Rust (générée par cargo-ndk)
         System.loadLibrary("luna_core")
+        // Créer les canaux de notification (requis API 26+)
+        app.luna.services.NotificationWorker.createChannels(this)
     }
 
     override fun onTerminate() {

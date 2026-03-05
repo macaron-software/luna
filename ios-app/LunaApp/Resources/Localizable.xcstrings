@@ -4067,6 +4067,321 @@
         "fr": { "stringUnit": { "state": "translated", "value": "Animations réduites activées" } },
         "en": { "stringUnit": { "state": "translated", "value": "Reduced motion enabled" } }
       }
+    },
+    "notif_period_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Vos règles arrivent bientôt" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Your period is coming soon" } }
+      }
+    },
+    "notif_period_body": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Préparez-vous, les règles sont attendues dans 2 jours." } },
+        "en": { "stringUnit": { "state": "translated", "value": "Get ready, your period is expected in 2 days." } }
+      }
+    },
+    "notif_fertile_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Fenêtre fertile" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Fertile window" } }
+      }
+    },
+    "notif_fertile_body": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Votre fenêtre fertile commence aujourd'hui." } },
+        "en": { "stringUnit": { "state": "translated", "value": "Your fertile window starts today." } }
+      }
+    },
+    "notif_pill_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Rappel pilule" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Pill reminder" } }
+      }
+    },
+    "notif_pill_body": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "N'oubliez pas votre contraception." } },
+        "en": { "stringUnit": { "state": "translated", "value": "Don't forget your contraception." } }
+      }
+    },
+    "charts_section_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Tendances" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Trends" } }
+      }
+    },
+    "charts_cycle_lengths": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Longueur des cycles" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Cycle lengths" } }
+      }
+    },
+    "charts_bbt_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Température basale" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Basal body temperature" } }
+      }
+    },
+    "charts_cycle_lengths_a11y": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Graphique des longueurs de cycles" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Cycle lengths chart" } }
+      }
+    },
+    "charts_bbt_a11y": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Graphique de température basale" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Basal body temperature chart" } }
+      }
+    },
+    "tracking_mode_regular": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Cycle standard" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Standard cycle" } }
+      }
+    },
+    "tracking_mode_ttc": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Conception (TTC)" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Trying to conceive (TTC)" } }
+      }
+    },
+    "tracking_mode_pregnant": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Grossesse" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Pregnancy" } }
+      }
+    },
+    "tracking_mode_postpartum": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Post-partum" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Postpartum" } }
+      }
+    },
+    "tracking_mode_perimenopause": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Péri-ménopause" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Perimenopause" } }
+      }
+    },
+    "tracking_mode_section_header": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Mode de suivi" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Tracking mode" } }
+      }
+    },
+    "tracking_edd_label": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Activer la date prévue d'accouchement" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Enable estimated due date" } }
+      }
+    },
+    "tracking_edd_date": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Date prévue" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Due date" } }
+      }
+    },
+    "tracking_edd_section": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Date d'accouchement" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Due date" } }
+      }
+    },
+    "settings_tracking_mode": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Mode de suivi" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Tracking mode" } }
+      }
+    },
+    "settings_pill_reminder_section": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Rappel contraception" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Contraception reminder" } }
+      }
+    },
+    "settings_pill_reminder_toggle": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Rappel quotidien" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Daily reminder" } }
+      }
+    },
+    "settings_pill_time": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Heure du rappel" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Reminder time" } }
+      }
+    },
+    "settings_healthkit_section": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Santé (HealthKit)" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Health (HealthKit)" } }
+      }
+    },
+    "settings_healthkit_toggle": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Synchroniser avec Santé" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Sync with Health" } }
+      }
+    },
+    "home_pregnant_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Mode grossesse actif" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Pregnancy mode active" } }
+      }
+    },
+    "home_pregnant_subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Enregistrez vos symptômes du jour" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Log your symptoms for today" } }
+      }
+    },
+    "home_ttc_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Mode TTC actif" } },
+        "en": { "stringUnit": { "state": "translated", "value": "TTC mode active" } }
+      }
+    },
+    "home_ttc_subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Votre fenêtre fertile est mise en avant" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Your fertile window is highlighted" } }
+      }
+    },
+    "home_log_button": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Journal" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Log" } }
+      }
+    },
+    "pregnancy_log_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Journal grossesse" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Pregnancy log" } }
+      }
+    },
+    "pregnancy_hcg_section": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Test hCG" } },
+        "en": { "stringUnit": { "state": "translated", "value": "hCG test" } }
+      }
+    },
+    "pregnancy_hcg_result": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Résultat" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Result" } }
+      }
+    },
+    "pregnancy_hcg_not_done": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Non réalisé" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Not done" } }
+      }
+    },
+    "pregnancy_hcg_positive": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Positif" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Positive" } }
+      }
+    },
+    "pregnancy_hcg_negative": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Négatif" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Negative" } }
+      }
+    },
+    "pregnancy_kicks_section": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Mouvements foetaux" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Fetal movements" } }
+      }
+    },
+    "pregnancy_kicks_label": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Mouvements comptés" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Movements counted" } }
+      }
+    },
+    "pregnancy_nausea_section": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Nausées" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Nausea" } }
+      }
+    },
+    "pregnancy_nausea_level": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Intensité des nausées" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Nausea intensity" } }
+      }
+    },
+    "pregnancy_weight_section": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Poids" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Weight" } }
+      }
+    },
+    "save_button": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Enregistrer" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Save" } }
+      }
+    },
+    "selected_a11y": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Sélectionné" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Selected" } }
+      }
+    },
+    "export_csv_label": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Exporter en CSV" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Export as CSV" } }
+      }
     }
   },
   "version": "1.0"

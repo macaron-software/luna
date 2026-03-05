@@ -164,7 +164,9 @@ class LogBottomSheet : BottomSheetDialogFragment() {
                     cervicalMucus = null,
                     sexualActivity = null,
                     flow = if (selectedFlow == "none") null else selectedFlow,
-                    notes = if (notes.isNotBlank()) notes else null
+                    notes = if (notes.isNotBlank()) notes else null,
+                    sleepQuality = null,
+                    weightKg = null
                 )
                 engine.logDay(log)
                 // a11y : annoncer le succès

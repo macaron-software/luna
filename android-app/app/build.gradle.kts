@@ -117,6 +117,9 @@ dependencies {
     // Biométrie
     implementation(libs.androidx.biometric)
 
+    // WorkManager — notifications locales
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
+
     // Health Connect (optionnel phase 2)
     // implementation(libs.androidx.health.connect.client)
 

@@ -58,12 +58,28 @@ class SettingsActivity : AppCompatActivity() {
         binding.toggleFertileWindow.setOnCheckedChangeListener { _, checked ->
             prefs.edit().putBoolean("notif_fertile", checked).apply()
         }
+
+        // Rappel pilule quotidien
+        binding.togglePillReminder.isChecked = prefs.getBoolean("notif_pill", false)
+        binding.togglePillReminder.setOnCheckedChangeListener { _, checked ->
+            prefs.edit().putBoolean("notif_pill", checked).apply()
+            if (checked) {
+                val time = prefs.getString("pill_reminder_time", "08:00") ?: "08:00"
+                val parts = time.split(":").mapNotNull { it.toIntOrNull() }
+                if (parts.size == 2) {
+                    app.luna.services.NotificationWorker.schedulePillReminder(
+                        this@SettingsActivity, parts[0], parts[1])
+                }
+            } else {
+                app.luna.services.NotificationWorker.cancelAll(this@SettingsActivity)
+            }
+        }
     }
 
     private fun setupButtons() {
         // Export CSV
         binding.exportCsvButton.apply {
-            setOnClickListener { exportData("csv") }
+            setOnClickListener { exportCsv() }
             contentDescription = getString(R.string.export_csv_label)
         }
 
@@ -73,10 +89,41 @@ class SettingsActivity : AppCompatActivity() {
             contentDescription = getString(R.string.export_encrypted_backup_label)
         }
 
+        // Mode de suivi
+        binding.trackingModeButton.setOnClickListener {
+            TrackingModeActivity.start(this)
+        }
+
         // Panic wipe
         binding.panicWipeButton.apply {
             setOnClickListener { confirmPanicWipe() }
             contentDescription = getString(R.string.settings_delete_all_a11y)
+        }
+    }
+
+    private fun exportCsv() {
+        val engine = VaultService.engine ?: return
+        lifecycleScope.launch {
+            try {
+                val cycles = engine.getCycles(100u)
+                val sb = StringBuilder("cycle_id,start_date,end_date,period_length_days\n")
+                for (c in cycles) {
+                    sb.append("${c.id},${c.startDate},${c.endDate ?: ""},${c.periodLength ?: ""}\n")
+                }
+                val file = java.io.File(cacheDir, "luna_export.csv")
+                file.writeText(sb.toString())
+                val uri = androidx.core.content.FileProvider.getUriForFile(
+                    this@SettingsActivity, "${packageName}.fileprovider", file)
+                val intent = android.content.Intent(android.content.Intent.ACTION_SEND).apply {
+                    type = "text/csv"
+                    putExtra(android.content.Intent.EXTRA_STREAM, uri)
+                    addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
+                startActivity(android.content.Intent.createChooser(
+                    intent, getString(R.string.export_csv_label)))
+            } catch (e: Exception) {
+                // Engine not available or no data
+            }
         }
     }
 

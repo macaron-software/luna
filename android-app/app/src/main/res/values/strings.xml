@@ -116,4 +116,30 @@
     <string name="onboarding_pin_confirm_hint">Confirm PIN</string>
     <string name="onboarding_pin_mismatch">PINs do not match</string>
     <string name="onboarding_pin_too_short">PIN must be 6–8 digits</string>
+
+    <!-- Notifications -->
+    <string name="notif_channel_period">Cycle reminder</string>
+    <string name="notif_channel_fertile">Fertile window</string>
+    <string name="notif_channel_pill">Contraception reminder</string>
+    <string name="notif_period_title">Your period is coming soon</string>
+    <string name="notif_period_body">Be prepared, your period is expected in 2 days.</string>
+    <string name="notif_fertile_title">Fertile window</string>
+    <string name="notif_fertile_body">Your fertile window starts today.</string>
+    <string name="notif_pill_title">Pill reminder</string>
+    <string name="notif_pill_body">Don\'t forget your contraception.</string>
+
+    <!-- Tracking mode -->
+    <string name="tracking_mode_regular">Regular cycle</string>
+    <string name="tracking_mode_ttc">Trying to conceive (TTC)</string>
+    <string name="tracking_mode_pregnant">Pregnancy</string>
+    <string name="tracking_mode_postpartum">Postpartum</string>
+    <string name="tracking_mode_perimenopause">Perimenopause</string>
+    <string name="settings_tracking_mode">Tracking mode</string>
+
+    <!-- Charts -->
+    <string name="charts_cycle_lengths_a11y">Cycle lengths bar chart</string>
+    <string name="charts_bbt_a11y">Basal body temperature chart</string>
+
+    <!-- Pill reminder -->
+    <string name="settings_pill_reminder">Daily pill reminder</string>
 </resources>

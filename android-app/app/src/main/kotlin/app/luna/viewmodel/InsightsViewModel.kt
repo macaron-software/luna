@@ -18,6 +18,17 @@ class InsightsViewModel : ViewModel() {
     private val _stats = MutableStateFlow<InsightsStats?>(null)
     val stats: StateFlow<InsightsStats?> = _stats
 
+    companion object {
+        fun sortedSymptoms(
+            raw: Map<String, Int>,
+            limit: Int = 5
+        ): List<Pair<String, Double>> =
+            raw.entries
+                .sortedByDescending { it.value }
+                .take(limit)
+                .map { it.key to it.value.toDouble() }
+    }
+
     fun load() {
         val engine = VaultService.engine ?: return
         viewModelScope.launch {

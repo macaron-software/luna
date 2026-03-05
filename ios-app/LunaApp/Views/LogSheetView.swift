@@ -130,6 +130,8 @@ struct LogSheetView: View {
             cervicalMucus: nil,
             sexualActivity: nil,
             flow: flow == "none" ? nil : flow,
+            sleepQuality: nil,
+            weightKg: nil,
             notes: notes.isEmpty ? nil : notes
         )
 

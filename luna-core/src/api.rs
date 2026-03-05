@@ -1,7 +1,8 @@
 use std::sync::{Arc, Mutex};
 
 use crate::engine::prediction::PredictionEngine;
-use crate::engine::types::{Cycle, CycleSummary, DailyLog, Prediction};
+use crate::engine::types::{Cycle, CycleSummary, DailyLog, Prediction, UserProfile, PregnancyLog};
+use crate::engine::export::export_csv;
 use crate::error::LunaError;
 use crate::vault::crypto::{derive_key, derive_subkey, generate_salt};
 use crate::vault::database::LunaDb;
@@ -237,6 +238,37 @@ impl LunaEngine {
 
         let plaintext = serde_json::to_vec(&payload)?;
         crate::vault::crypto::encrypt(&sync_key, &plaintext)
+    }
+
+    /// Retourne le profil utilisateur (mode de suivi, contraception, etc.)
+    pub fn get_user_profile(&self) -> Result<UserProfile, LunaError> {
+        self.db.lock().unwrap().get_user_profile()
+    }
+
+    /// Enregistre le profil utilisateur.
+    pub fn set_user_profile(&self, profile: UserProfile) -> Result<(), LunaError> {
+        self.db.lock().unwrap().set_user_profile(&profile)
+    }
+
+    /// Enregistre un log de grossesse pour une date donnée.
+    pub fn log_pregnancy_day(&self, log: PregnancyLog) -> Result<(), LunaError> {
+        self.db.lock().unwrap().upsert_pregnancy_log(&log)
+    }
+
+    /// Récupère le log de grossesse d'une date donnée.
+    pub fn get_pregnancy_log(&self, date: String) -> Result<Option<PregnancyLog>, LunaError> {
+        self.db.lock().unwrap().get_pregnancy_log(&date)
+    }
+
+    /// Exporte les logs d'une plage de dates en CSV RFC 4180.
+    pub fn export_logs_csv(&self, from: String, to: String) -> Result<String, LunaError> {
+        let logs = self.db.lock().unwrap().get_logs_range(&from, &to)?;
+        export_csv(&logs)
+    }
+
+    /// Récupère les logs d'une plage de dates.
+    pub fn get_logs_range(&self, from: String, to: String) -> Result<Vec<DailyLog>, LunaError> {
+        self.db.lock().unwrap().get_logs_range(&from, &to)
     }
 }
 

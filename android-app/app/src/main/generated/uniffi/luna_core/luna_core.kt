@@ -738,6 +738,18 @@ internal interface UniffiForeignFutureCompleteVoid : com.sun.jna.Callback {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 // A JNA Library to expose the extern-C FFI definitions.
 // This is an implementation detail which will be called internally by the public API.
 
@@ -769,18 +781,30 @@ internal interface UniffiLib : Library {
     ): Unit
     fun uniffi_luna_core_fn_method_lunaengine_export_encrypted_backup(`ptr`: Pointer,`pin`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
     ): RustBuffer.ByValue
+    fun uniffi_luna_core_fn_method_lunaengine_export_logs_csv(`ptr`: Pointer,`from`: RustBuffer.ByValue,`to`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+    ): RustBuffer.ByValue
     fun uniffi_luna_core_fn_method_lunaengine_get_cycle_summary(`ptr`: Pointer,uniffi_out_err: UniffiRustCallStatus, 
     ): RustBuffer.ByValue
     fun uniffi_luna_core_fn_method_lunaengine_get_cycles(`ptr`: Pointer,`limit`: Int,uniffi_out_err: UniffiRustCallStatus, 
     ): RustBuffer.ByValue
     fun uniffi_luna_core_fn_method_lunaengine_get_log(`ptr`: Pointer,`date`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
     ): RustBuffer.ByValue
+    fun uniffi_luna_core_fn_method_lunaengine_get_logs_range(`ptr`: Pointer,`from`: RustBuffer.ByValue,`to`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+    ): RustBuffer.ByValue
+    fun uniffi_luna_core_fn_method_lunaengine_get_pregnancy_log(`ptr`: Pointer,`date`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+    ): RustBuffer.ByValue
+    fun uniffi_luna_core_fn_method_lunaengine_get_user_profile(`ptr`: Pointer,uniffi_out_err: UniffiRustCallStatus, 
+    ): RustBuffer.ByValue
     fun uniffi_luna_core_fn_method_lunaengine_log_day(`ptr`: Pointer,`log`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+    ): Unit
+    fun uniffi_luna_core_fn_method_lunaengine_log_pregnancy_day(`ptr`: Pointer,`log`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
     ): Unit
     fun uniffi_luna_core_fn_method_lunaengine_panic_wipe(`ptr`: Pointer,uniffi_out_err: UniffiRustCallStatus, 
     ): Unit
     fun uniffi_luna_core_fn_method_lunaengine_predict_next(`ptr`: Pointer,uniffi_out_err: UniffiRustCallStatus, 
     ): RustBuffer.ByValue
+    fun uniffi_luna_core_fn_method_lunaengine_set_user_profile(`ptr`: Pointer,`profile`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+    ): Unit
     fun uniffi_luna_core_fn_method_lunaengine_start_cycle(`ptr`: Pointer,`startDate`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
     ): RustBuffer.ByValue
     fun uniffi_luna_core_fn_func_vault_exists(`dbPath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
@@ -905,17 +929,29 @@ internal interface UniffiLib : Library {
     ): Short
     fun uniffi_luna_core_checksum_method_lunaengine_export_encrypted_backup(
     ): Short
+    fun uniffi_luna_core_checksum_method_lunaengine_export_logs_csv(
+    ): Short
     fun uniffi_luna_core_checksum_method_lunaengine_get_cycle_summary(
     ): Short
     fun uniffi_luna_core_checksum_method_lunaengine_get_cycles(
     ): Short
     fun uniffi_luna_core_checksum_method_lunaengine_get_log(
     ): Short
+    fun uniffi_luna_core_checksum_method_lunaengine_get_logs_range(
+    ): Short
+    fun uniffi_luna_core_checksum_method_lunaengine_get_pregnancy_log(
+    ): Short
+    fun uniffi_luna_core_checksum_method_lunaengine_get_user_profile(
+    ): Short
     fun uniffi_luna_core_checksum_method_lunaengine_log_day(
+    ): Short
+    fun uniffi_luna_core_checksum_method_lunaengine_log_pregnancy_day(
     ): Short
     fun uniffi_luna_core_checksum_method_lunaengine_panic_wipe(
     ): Short
     fun uniffi_luna_core_checksum_method_lunaengine_predict_next(
+    ): Short
+    fun uniffi_luna_core_checksum_method_lunaengine_set_user_profile(
     ): Short
     fun uniffi_luna_core_checksum_method_lunaengine_start_cycle(
     ): Short
@@ -950,6 +986,9 @@ private fun uniffiCheckApiChecksums(lib: UniffiLib) {
     if (lib.uniffi_luna_core_checksum_method_lunaengine_export_encrypted_backup() != 109.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_luna_core_checksum_method_lunaengine_export_logs_csv() != 44608.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_luna_core_checksum_method_lunaengine_get_cycle_summary() != 22192.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
@@ -959,13 +998,28 @@ private fun uniffiCheckApiChecksums(lib: UniffiLib) {
     if (lib.uniffi_luna_core_checksum_method_lunaengine_get_log() != 38698.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_luna_core_checksum_method_lunaengine_get_logs_range() != 29288.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_luna_core_checksum_method_lunaengine_get_pregnancy_log() != 60448.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_luna_core_checksum_method_lunaengine_get_user_profile() != 11649.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_luna_core_checksum_method_lunaengine_log_day() != 24369.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_luna_core_checksum_method_lunaengine_log_pregnancy_day() != 42471.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_luna_core_checksum_method_lunaengine_panic_wipe() != 42119.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_luna_core_checksum_method_lunaengine_predict_next() != 41985.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_luna_core_checksum_method_lunaengine_set_user_profile() != 44237.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_luna_core_checksum_method_lunaengine_start_cycle() != 41395.toShort()) {
@@ -1378,6 +1432,11 @@ public interface LunaEngineInterface {
     fun `exportEncryptedBackup`(`pin`: kotlin.String): kotlin.ByteArray
     
     /**
+     * Exporte les logs d'une plage de dates en CSV RFC 4180.
+     */
+    fun `exportLogsCsv`(`from`: kotlin.String, `to`: kotlin.String): kotlin.String
+    
+    /**
      * Résumé statistique des cycles.
      */
     fun `getCycleSummary`(): CycleSummary
@@ -1393,9 +1452,29 @@ public interface LunaEngineInterface {
     fun `getLog`(`date`: kotlin.String): DailyLog?
     
     /**
+     * Récupère les logs d'une plage de dates.
+     */
+    fun `getLogsRange`(`from`: kotlin.String, `to`: kotlin.String): List<DailyLog>
+    
+    /**
+     * Récupère le log de grossesse d'une date donnée.
+     */
+    fun `getPregnancyLog`(`date`: kotlin.String): PregnancyLog?
+    
+    /**
+     * Retourne le profil utilisateur (mode de suivi, contraception, etc.)
+     */
+    fun `getUserProfile`(): UserProfile
+    
+    /**
      * Enregistre ou met à jour le log du jour.
      */
     fun `logDay`(`log`: DailyLog)
+    
+    /**
+     * Enregistre un log de grossesse pour une date donnée.
+     */
+    fun `logPregnancyDay`(`log`: PregnancyLog)
     
     /**
      * ⚠️  MODE PANIQUE — supprime TOUTES les données de façon irréversible.
@@ -1415,6 +1494,11 @@ public interface LunaEngineInterface {
      * Calcule la prochaine prédiction de cycle.
      */
     fun `predictNext`(): Prediction
+    
+    /**
+     * Enregistre le profil utilisateur.
+     */
+    fun `setUserProfile`(`profile`: UserProfile)
     
     /**
      * Démarre un nouveau cycle à la date donnée.
@@ -1562,6 +1646,22 @@ open class LunaEngine: Disposable, AutoCloseable, LunaEngineInterface {
 
     
     /**
+     * Exporte les logs d'une plage de dates en CSV RFC 4180.
+     */
+    @Throws(LunaException::class)override fun `exportLogsCsv`(`from`: kotlin.String, `to`: kotlin.String): kotlin.String {
+            return FfiConverterString.lift(
+    callWithPointer {
+    uniffiRustCallWithError(LunaException) { _status ->
+    UniffiLib.INSTANCE.uniffi_luna_core_fn_method_lunaengine_export_logs_csv(
+        it, FfiConverterString.lower(`from`),FfiConverterString.lower(`to`),_status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
      * Résumé statistique des cycles.
      */
     @Throws(LunaException::class)override fun `getCycleSummary`(): CycleSummary {
@@ -1610,6 +1710,54 @@ open class LunaEngine: Disposable, AutoCloseable, LunaEngineInterface {
 
     
     /**
+     * Récupère les logs d'une plage de dates.
+     */
+    @Throws(LunaException::class)override fun `getLogsRange`(`from`: kotlin.String, `to`: kotlin.String): List<DailyLog> {
+            return FfiConverterSequenceTypeDailyLog.lift(
+    callWithPointer {
+    uniffiRustCallWithError(LunaException) { _status ->
+    UniffiLib.INSTANCE.uniffi_luna_core_fn_method_lunaengine_get_logs_range(
+        it, FfiConverterString.lower(`from`),FfiConverterString.lower(`to`),_status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Récupère le log de grossesse d'une date donnée.
+     */
+    @Throws(LunaException::class)override fun `getPregnancyLog`(`date`: kotlin.String): PregnancyLog? {
+            return FfiConverterOptionalTypePregnancyLog.lift(
+    callWithPointer {
+    uniffiRustCallWithError(LunaException) { _status ->
+    UniffiLib.INSTANCE.uniffi_luna_core_fn_method_lunaengine_get_pregnancy_log(
+        it, FfiConverterString.lower(`date`),_status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Retourne le profil utilisateur (mode de suivi, contraception, etc.)
+     */
+    @Throws(LunaException::class)override fun `getUserProfile`(): UserProfile {
+            return FfiConverterTypeUserProfile.lift(
+    callWithPointer {
+    uniffiRustCallWithError(LunaException) { _status ->
+    UniffiLib.INSTANCE.uniffi_luna_core_fn_method_lunaengine_get_user_profile(
+        it, _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
      * Enregistre ou met à jour le log du jour.
      */
     @Throws(LunaException::class)override fun `logDay`(`log`: DailyLog)
@@ -1618,6 +1766,21 @@ open class LunaEngine: Disposable, AutoCloseable, LunaEngineInterface {
     uniffiRustCallWithError(LunaException) { _status ->
     UniffiLib.INSTANCE.uniffi_luna_core_fn_method_lunaengine_log_day(
         it, FfiConverterTypeDailyLog.lower(`log`),_status)
+}
+    }
+    
+    
+
+    
+    /**
+     * Enregistre un log de grossesse pour une date donnée.
+     */
+    @Throws(LunaException::class)override fun `logPregnancyDay`(`log`: PregnancyLog)
+        = 
+    callWithPointer {
+    uniffiRustCallWithError(LunaException) { _status ->
+    UniffiLib.INSTANCE.uniffi_luna_core_fn_method_lunaengine_log_pregnancy_day(
+        it, FfiConverterTypePregnancyLog.lower(`log`),_status)
 }
     }
     
@@ -1661,6 +1824,21 @@ open class LunaEngine: Disposable, AutoCloseable, LunaEngineInterface {
     }
     )
     }
+    
+
+    
+    /**
+     * Enregistre le profil utilisateur.
+     */
+    @Throws(LunaException::class)override fun `setUserProfile`(`profile`: UserProfile)
+        = 
+    callWithPointer {
+    uniffiRustCallWithError(LunaException) { _status ->
+    UniffiLib.INSTANCE.uniffi_luna_core_fn_method_lunaengine_set_user_profile(
+        it, FfiConverterTypeUserProfile.lower(`profile`),_status)
+}
+    }
+    
     
 
     
@@ -1883,6 +2061,14 @@ data class DailyLog (
      * Flux menstruel : "none" | "spotting" | "light" | "medium" | "heavy"
      */
     var `flow`: kotlin.String?, 
+    /**
+     * Qualité du sommeil : 1 (très mauvaise) à 5 (excellente)
+     */
+    var `sleepQuality`: kotlin.UByte?, 
+    /**
+     * Poids en kg, ex: 62.5
+     */
+    var `weightKg`: kotlin.Double?, 
     var `notes`: kotlin.String?
 ) {
     
@@ -1905,6 +2091,8 @@ public object FfiConverterTypeDailyLog: FfiConverterRustBuffer<DailyLog> {
             FfiConverterOptionalString.read(buf),
             FfiConverterOptionalString.read(buf),
             FfiConverterOptionalString.read(buf),
+            FfiConverterOptionalUByte.read(buf),
+            FfiConverterOptionalDouble.read(buf),
             FfiConverterOptionalString.read(buf),
         )
     }
@@ -1920,6 +2108,8 @@ public object FfiConverterTypeDailyLog: FfiConverterRustBuffer<DailyLog> {
             FfiConverterOptionalString.allocationSize(value.`cervicalMucus`) +
             FfiConverterOptionalString.allocationSize(value.`sexualActivity`) +
             FfiConverterOptionalString.allocationSize(value.`flow`) +
+            FfiConverterOptionalUByte.allocationSize(value.`sleepQuality`) +
+            FfiConverterOptionalDouble.allocationSize(value.`weightKg`) +
             FfiConverterOptionalString.allocationSize(value.`notes`)
     )
 
@@ -1934,6 +2124,8 @@ public object FfiConverterTypeDailyLog: FfiConverterRustBuffer<DailyLog> {
             FfiConverterOptionalString.write(value.`cervicalMucus`, buf)
             FfiConverterOptionalString.write(value.`sexualActivity`, buf)
             FfiConverterOptionalString.write(value.`flow`, buf)
+            FfiConverterOptionalUByte.write(value.`sleepQuality`, buf)
+            FfiConverterOptionalDouble.write(value.`weightKg`, buf)
             FfiConverterOptionalString.write(value.`notes`, buf)
     }
 }
@@ -2010,6 +2202,168 @@ public object FfiConverterTypePrediction: FfiConverterRustBuffer<Prediction> {
             FfiConverterUByte.write(value.`confidenceScore`, buf)
     }
 }
+
+
+
+/**
+ * Log de grossesse — données quotidiennes spécifiques à la grossesse
+ */
+data class PregnancyLog (
+    var `id`: kotlin.String, 
+    var `date`: kotlin.String, 
+    var `hcgPositive`: kotlin.Boolean?, 
+    var `kicks`: kotlin.UByte?, 
+    var `nauseaLevel`: kotlin.UByte?, 
+    var `weightKg`: kotlin.Double?, 
+    var `symptoms`: List<kotlin.String>, 
+    var `notes`: kotlin.String?
+) {
+    
+    companion object
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypePregnancyLog: FfiConverterRustBuffer<PregnancyLog> {
+    override fun read(buf: ByteBuffer): PregnancyLog {
+        return PregnancyLog(
+            FfiConverterString.read(buf),
+            FfiConverterString.read(buf),
+            FfiConverterOptionalBoolean.read(buf),
+            FfiConverterOptionalUByte.read(buf),
+            FfiConverterOptionalUByte.read(buf),
+            FfiConverterOptionalDouble.read(buf),
+            FfiConverterSequenceString.read(buf),
+            FfiConverterOptionalString.read(buf),
+        )
+    }
+
+    override fun allocationSize(value: PregnancyLog) = (
+            FfiConverterString.allocationSize(value.`id`) +
+            FfiConverterString.allocationSize(value.`date`) +
+            FfiConverterOptionalBoolean.allocationSize(value.`hcgPositive`) +
+            FfiConverterOptionalUByte.allocationSize(value.`kicks`) +
+            FfiConverterOptionalUByte.allocationSize(value.`nauseaLevel`) +
+            FfiConverterOptionalDouble.allocationSize(value.`weightKg`) +
+            FfiConverterSequenceString.allocationSize(value.`symptoms`) +
+            FfiConverterOptionalString.allocationSize(value.`notes`)
+    )
+
+    override fun write(value: PregnancyLog, buf: ByteBuffer) {
+            FfiConverterString.write(value.`id`, buf)
+            FfiConverterString.write(value.`date`, buf)
+            FfiConverterOptionalBoolean.write(value.`hcgPositive`, buf)
+            FfiConverterOptionalUByte.write(value.`kicks`, buf)
+            FfiConverterOptionalUByte.write(value.`nauseaLevel`, buf)
+            FfiConverterOptionalDouble.write(value.`weightKg`, buf)
+            FfiConverterSequenceString.write(value.`symptoms`, buf)
+            FfiConverterOptionalString.write(value.`notes`, buf)
+    }
+}
+
+
+
+/**
+ * Profil utilisateur — préférences et mode de suivi
+ */
+data class UserProfile (
+    var `trackingMode`: TrackingMode, 
+    var `contraception`: ContraceptionType, 
+    var `pillReminderTime`: kotlin.String?, 
+    var `notifPeriod`: kotlin.Boolean, 
+    var `notifFertile`: kotlin.Boolean, 
+    var `notifPill`: kotlin.Boolean, 
+    var `edd`: kotlin.String?, 
+    var `calmMode`: kotlin.Boolean, 
+    var `healthSync`: kotlin.Boolean
+) {
+    
+    companion object
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeUserProfile: FfiConverterRustBuffer<UserProfile> {
+    override fun read(buf: ByteBuffer): UserProfile {
+        return UserProfile(
+            FfiConverterTypeTrackingMode.read(buf),
+            FfiConverterTypeContraceptionType.read(buf),
+            FfiConverterOptionalString.read(buf),
+            FfiConverterBoolean.read(buf),
+            FfiConverterBoolean.read(buf),
+            FfiConverterBoolean.read(buf),
+            FfiConverterOptionalString.read(buf),
+            FfiConverterBoolean.read(buf),
+            FfiConverterBoolean.read(buf),
+        )
+    }
+
+    override fun allocationSize(value: UserProfile) = (
+            FfiConverterTypeTrackingMode.allocationSize(value.`trackingMode`) +
+            FfiConverterTypeContraceptionType.allocationSize(value.`contraception`) +
+            FfiConverterOptionalString.allocationSize(value.`pillReminderTime`) +
+            FfiConverterBoolean.allocationSize(value.`notifPeriod`) +
+            FfiConverterBoolean.allocationSize(value.`notifFertile`) +
+            FfiConverterBoolean.allocationSize(value.`notifPill`) +
+            FfiConverterOptionalString.allocationSize(value.`edd`) +
+            FfiConverterBoolean.allocationSize(value.`calmMode`) +
+            FfiConverterBoolean.allocationSize(value.`healthSync`)
+    )
+
+    override fun write(value: UserProfile, buf: ByteBuffer) {
+            FfiConverterTypeTrackingMode.write(value.`trackingMode`, buf)
+            FfiConverterTypeContraceptionType.write(value.`contraception`, buf)
+            FfiConverterOptionalString.write(value.`pillReminderTime`, buf)
+            FfiConverterBoolean.write(value.`notifPeriod`, buf)
+            FfiConverterBoolean.write(value.`notifFertile`, buf)
+            FfiConverterBoolean.write(value.`notifPill`, buf)
+            FfiConverterOptionalString.write(value.`edd`, buf)
+            FfiConverterBoolean.write(value.`calmMode`, buf)
+            FfiConverterBoolean.write(value.`healthSync`, buf)
+    }
+}
+
+
+
+/**
+ * Type de contraception
+ */
+
+enum class ContraceptionType {
+    
+    NONE,
+    PILL,
+    PATCH,
+    RING,
+    INJECTION,
+    IUD,
+    IMPLANT,
+    CONDOM,
+    OTHER;
+    companion object
+}
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeContraceptionType: FfiConverterRustBuffer<ContraceptionType> {
+    override fun read(buf: ByteBuffer) = try {
+        ContraceptionType.values()[buf.getInt() - 1]
+    } catch (e: IndexOutOfBoundsException) {
+        throw RuntimeException("invalid enum value, something is very wrong!!", e)
+    }
+
+    override fun allocationSize(value: ContraceptionType) = 4UL
+
+    override fun write(value: ContraceptionType, buf: ByteBuffer) {
+        buf.putInt(value.ordinal + 1)
+    }
+}
+
+
 
 
 
@@ -2137,6 +2491,42 @@ public object FfiConverterTypeLunaError : FfiConverterRustBuffer<LunaException> 
 
 
 
+/**
+ * Mode de suivi de la santé reproductive
+ */
+
+enum class TrackingMode {
+    
+    REGULAR,
+    TTC,
+    PREGNANT,
+    POSTPARTUM,
+    PERIMENOPAUSE;
+    companion object
+}
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeTrackingMode: FfiConverterRustBuffer<TrackingMode> {
+    override fun read(buf: ByteBuffer) = try {
+        TrackingMode.values()[buf.getInt() - 1]
+    } catch (e: IndexOutOfBoundsException) {
+        throw RuntimeException("invalid enum value, something is very wrong!!", e)
+    }
+
+    override fun allocationSize(value: TrackingMode) = 4UL
+
+    override fun write(value: TrackingMode, buf: ByteBuffer) {
+        buf.putInt(value.ordinal + 1)
+    }
+}
+
+
+
+
+
 
 /**
  * @suppress
@@ -2195,6 +2585,38 @@ public object FfiConverterOptionalDouble: FfiConverterRustBuffer<kotlin.Double?>
         } else {
             buf.put(1)
             FfiConverterDouble.write(value, buf)
+        }
+    }
+}
+
+
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterOptionalBoolean: FfiConverterRustBuffer<kotlin.Boolean?> {
+    override fun read(buf: ByteBuffer): kotlin.Boolean? {
+        if (buf.get().toInt() == 0) {
+            return null
+        }
+        return FfiConverterBoolean.read(buf)
+    }
+
+    override fun allocationSize(value: kotlin.Boolean?): ULong {
+        if (value == null) {
+            return 1UL
+        } else {
+            return 1UL + FfiConverterBoolean.allocationSize(value)
+        }
+    }
+
+    override fun write(value: kotlin.Boolean?, buf: ByteBuffer) {
+        if (value == null) {
+            buf.put(0)
+        } else {
+            buf.put(1)
+            FfiConverterBoolean.write(value, buf)
         }
     }
 }
@@ -2269,6 +2691,38 @@ public object FfiConverterOptionalTypeDailyLog: FfiConverterRustBuffer<DailyLog?
 /**
  * @suppress
  */
+public object FfiConverterOptionalTypePregnancyLog: FfiConverterRustBuffer<PregnancyLog?> {
+    override fun read(buf: ByteBuffer): PregnancyLog? {
+        if (buf.get().toInt() == 0) {
+            return null
+        }
+        return FfiConverterTypePregnancyLog.read(buf)
+    }
+
+    override fun allocationSize(value: PregnancyLog?): ULong {
+        if (value == null) {
+            return 1UL
+        } else {
+            return 1UL + FfiConverterTypePregnancyLog.allocationSize(value)
+        }
+    }
+
+    override fun write(value: PregnancyLog?, buf: ByteBuffer) {
+        if (value == null) {
+            buf.put(0)
+        } else {
+            buf.put(1)
+            FfiConverterTypePregnancyLog.write(value, buf)
+        }
+    }
+}
+
+
+
+
+/**
+ * @suppress
+ */
 public object FfiConverterSequenceString: FfiConverterRustBuffer<List<kotlin.String>> {
     override fun read(buf: ByteBuffer): List<kotlin.String> {
         val len = buf.getInt()
@@ -2315,6 +2769,34 @@ public object FfiConverterSequenceTypeCycle: FfiConverterRustBuffer<List<Cycle>>
         buf.putInt(value.size)
         value.iterator().forEach {
             FfiConverterTypeCycle.write(it, buf)
+        }
+    }
+}
+
+
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterSequenceTypeDailyLog: FfiConverterRustBuffer<List<DailyLog>> {
+    override fun read(buf: ByteBuffer): List<DailyLog> {
+        val len = buf.getInt()
+        return List<DailyLog>(len) {
+            FfiConverterTypeDailyLog.read(buf)
+        }
+    }
+
+    override fun allocationSize(value: List<DailyLog>): ULong {
+        val sizeForLength = 4UL
+        val sizeForItems = value.map { FfiConverterTypeDailyLog.allocationSize(it) }.sum()
+        return sizeForLength + sizeForItems
+    }
+
+    override fun write(value: List<DailyLog>, buf: ByteBuffer) {
+        buf.putInt(value.size)
+        value.iterator().forEach {
+            FfiConverterTypeDailyLog.write(it, buf)
         }
     }
 }

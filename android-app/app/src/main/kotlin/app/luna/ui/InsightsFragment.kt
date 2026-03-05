@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import app.luna.databinding.FragmentInsightsBinding
+import app.luna.R
 import app.luna.viewmodel.InsightsViewModel
 import kotlinx.coroutines.launch
 
@@ -33,6 +34,7 @@ class InsightsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observeViewModel()
+        setupCharts()
         viewModel.load()
     }
 
@@ -66,5 +68,29 @@ class InsightsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setupCharts() {
+        val container = binding.chartsContainer
+
+        val cycleChart = CycleChartView(requireContext()).apply {
+            chartType = CycleChartView.ChartType.BAR
+            dataPoints = listOf(
+                "C1" to 28f, "C2" to 30f, "C3" to 27f,
+                "C4" to 29f, "C5" to 28f, "C6" to 31f
+            )
+            yMin = 20f; yMax = 40f
+            contentDescription = getString(R.string.charts_cycle_lengths_a11y)
+        }
+
+        val bbtChart = CycleChartView(requireContext()).apply {
+            chartType = CycleChartView.ChartType.LINE
+            dataPoints = (1..14).map { "J$it" to (36.5f + if (it > 7) 0.3f else 0f) }
+            yMin = 36.0f; yMax = 37.5f
+            contentDescription = getString(R.string.charts_bbt_a11y)
+        }
+
+        container.addView(cycleChart)
+        container.addView(bbtChart)
     }
 }

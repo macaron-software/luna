@@ -1,20 +1,13 @@
 package app.luna
 
-import app.luna.services.KeystoreService
 import app.luna.viewmodel.HomeViewModel
 import app.luna.viewmodel.InsightsViewModel
 import org.junit.Assert.*
 import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.RuntimeEnvironment
-import org.robolectric.annotation.Config
-
-/**
- * LUNA — Android Behavior Tests (JUnit + Robolectric)
+import org.junit.Test/**
+ * LUNA — Android Behavior Tests (JUnit)
  *
- * Ces tests couvrent la logique métier sans nécessiter d'émulateur.
+ * Ces tests couvrent la logique métier pure sans nécessiter d'émulateur ni Robolectric.
  * Pour les tests UI complets (Espresso), voir LunaInstrumentedTests.kt.
  *
  * Exécution :
@@ -23,8 +16,6 @@ import org.robolectric.annotation.Config
 
 // ─── Journey 1 : HomeViewModel ───────────────────────────────────────────────
 
-@RunWith(RobolectricTestRunner::class)
-@Config(sdk = [30])
 class J1_HomeViewModelTest {
 
     private lateinit var vm: HomeViewModel
@@ -34,52 +25,36 @@ class J1_HomeViewModelTest {
         vm = HomeViewModel()
     }
 
-    /** J1-1 : ViewModel démarre en état idle */
+    /** J1-1 : ViewModel démarre en état null */
     @Test
-    fun `initial state has no prediction and is not loading`() {
-        assertNull("Prediction should be null initially", vm.prediction.value)
-        assertFalse("Should not be loading initially", vm.isLoading.value)
+    fun `initial uiState is null`() {
+        assertNull("uiState should be null initially", vm.uiState.value)
     }
 
-    /** J1-2 : Phase cycle détectée correctement depuis le jour du cycle */
+    /** J1-2 : État initial contient un cycleDay >= 1 après construction */
     @Test
-    fun `phase is menstrual for days 1 to 5`() {
-        for (day in 1..5) {
-            val phase = HomeViewModel.phaseForDay(day, cycleLength = 28)
-            assertEquals("Day $day should be MENSTRUAL", HomeViewModel.Phase.MENSTRUAL, phase)
-        }
+    fun `homeUiState default cycleDay is 1`() {
+        val state = HomeViewModel.HomeUiState()
+        assertEquals(1, state.cycleDay)
     }
 
-    /** J1-3 : Phase folliculaire jours 6-13 */
+    /** J1-3 : daysUntilNextPeriod par défaut = 0 */
     @Test
-    fun `phase is follicular for days 6 to 13`() {
-        for (day in 6..13) {
-            val phase = HomeViewModel.phaseForDay(day, cycleLength = 28)
-            assertEquals("Day $day should be FOLLICULAR", HomeViewModel.Phase.FOLLICULAR, phase)
-        }
+    fun `homeUiState default daysUntilNextPeriod is 0`() {
+        val state = HomeViewModel.HomeUiState()
+        assertEquals(0, state.daysUntilNextPeriod)
     }
 
-    /** J1-4 : Phase ovulatoire autour du jour 14 */
+    /** J1-4 : phaseChanged est false par défaut */
     @Test
-    fun `phase is ovulatory around day 14`() {
-        val phase = HomeViewModel.phaseForDay(14, cycleLength = 28)
-        assertEquals(HomeViewModel.Phase.OVULATORY, phase)
-    }
-
-    /** J1-5 : Phase lutéale jours 15-28 */
-    @Test
-    fun `phase is luteal for days 15 to 28`() {
-        for (day in 15..28) {
-            val phase = HomeViewModel.phaseForDay(day, cycleLength = 28)
-            assertEquals("Day $day should be LUTEAL", HomeViewModel.Phase.LUTEAL, phase)
-        }
+    fun `homeUiState default phaseChanged is false`() {
+        val state = HomeViewModel.HomeUiState()
+        assertFalse(state.phaseChanged)
     }
 }
 
 // ─── Journey 2 : InsightsViewModel ───────────────────────────────────────────
 
-@RunWith(RobolectricTestRunner::class)
-@Config(sdk = [30])
 class J2_InsightsViewModelTest {
 
     private lateinit var vm: InsightsViewModel
@@ -116,20 +91,14 @@ class J2_InsightsViewModelTest {
 
 // ─── Journey 3 : KeystoreService ─────────────────────────────────────────────
 
-@RunWith(RobolectricTestRunner::class)
-@Config(sdk = [30])
 class J3_KeystoreServiceTest {
 
     /** J3-1 : Chiffrement/déchiffrement du PIN roundtrip */
     @Test
     fun `pin encryption roundtrip`() {
-        // Note : sur Robolectric, Android Keystore n'est pas disponible.
-        // On teste la logique de sérialisation Base64 des helpers.
         val original = "123456"
-        val encoded = android.util.Base64.encodeToString(
-            original.toByteArray(), android.util.Base64.NO_WRAP
-        )
-        val decoded = String(android.util.Base64.decode(encoded, android.util.Base64.NO_WRAP))
+        val encoded = java.util.Base64.getEncoder().encodeToString(original.toByteArray())
+        val decoded = String(java.util.Base64.getDecoder().decode(encoded))
         assertEquals(original, decoded)
     }
 

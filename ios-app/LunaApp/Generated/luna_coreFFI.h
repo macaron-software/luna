@@ -281,6 +281,11 @@ void uniffi_luna_core_fn_method_lunaengine_end_cycle(void*_Nonnull ptr, RustBuff
 RustBuffer uniffi_luna_core_fn_method_lunaengine_export_encrypted_backup(void*_Nonnull ptr, RustBuffer pin, RustCallStatus *_Nonnull out_status
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_EXPORT_LOGS_CSV
+#define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_EXPORT_LOGS_CSV
+RustBuffer uniffi_luna_core_fn_method_lunaengine_export_logs_csv(void*_Nonnull ptr, RustBuffer from, RustBuffer to, RustCallStatus *_Nonnull out_status
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_GET_CYCLE_SUMMARY
 #define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_GET_CYCLE_SUMMARY
 RustBuffer uniffi_luna_core_fn_method_lunaengine_get_cycle_summary(void*_Nonnull ptr, RustCallStatus *_Nonnull out_status
@@ -296,9 +301,29 @@ RustBuffer uniffi_luna_core_fn_method_lunaengine_get_cycles(void*_Nonnull ptr, u
 RustBuffer uniffi_luna_core_fn_method_lunaengine_get_log(void*_Nonnull ptr, RustBuffer date, RustCallStatus *_Nonnull out_status
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_GET_LOGS_RANGE
+#define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_GET_LOGS_RANGE
+RustBuffer uniffi_luna_core_fn_method_lunaengine_get_logs_range(void*_Nonnull ptr, RustBuffer from, RustBuffer to, RustCallStatus *_Nonnull out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_GET_PREGNANCY_LOG
+#define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_GET_PREGNANCY_LOG
+RustBuffer uniffi_luna_core_fn_method_lunaengine_get_pregnancy_log(void*_Nonnull ptr, RustBuffer date, RustCallStatus *_Nonnull out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_GET_USER_PROFILE
+#define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_GET_USER_PROFILE
+RustBuffer uniffi_luna_core_fn_method_lunaengine_get_user_profile(void*_Nonnull ptr, RustCallStatus *_Nonnull out_status
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_LOG_DAY
 #define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_LOG_DAY
 void uniffi_luna_core_fn_method_lunaengine_log_day(void*_Nonnull ptr, RustBuffer log, RustCallStatus *_Nonnull out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_LOG_PREGNANCY_DAY
+#define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_LOG_PREGNANCY_DAY
+void uniffi_luna_core_fn_method_lunaengine_log_pregnancy_day(void*_Nonnull ptr, RustBuffer log, RustCallStatus *_Nonnull out_status
 );
 #endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_PANIC_WIPE
@@ -309,6 +334,11 @@ void uniffi_luna_core_fn_method_lunaengine_panic_wipe(void*_Nonnull ptr, RustCal
 #ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_PREDICT_NEXT
 #define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_PREDICT_NEXT
 RustBuffer uniffi_luna_core_fn_method_lunaengine_predict_next(void*_Nonnull ptr, RustCallStatus *_Nonnull out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_SET_USER_PROFILE
+#define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_SET_USER_PROFILE
+void uniffi_luna_core_fn_method_lunaengine_set_user_profile(void*_Nonnull ptr, RustBuffer profile, RustCallStatus *_Nonnull out_status
 );
 #endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_FN_METHOD_LUNAENGINE_START_CYCLE
@@ -625,6 +655,12 @@ uint16_t uniffi_luna_core_checksum_method_lunaengine_export_encrypted_backup(voi
     
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_EXPORT_LOGS_CSV
+#define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_EXPORT_LOGS_CSV
+uint16_t uniffi_luna_core_checksum_method_lunaengine_export_logs_csv(void
+    
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_GET_CYCLE_SUMMARY
 #define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_GET_CYCLE_SUMMARY
 uint16_t uniffi_luna_core_checksum_method_lunaengine_get_cycle_summary(void
@@ -643,9 +679,33 @@ uint16_t uniffi_luna_core_checksum_method_lunaengine_get_log(void
     
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_GET_LOGS_RANGE
+#define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_GET_LOGS_RANGE
+uint16_t uniffi_luna_core_checksum_method_lunaengine_get_logs_range(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_GET_PREGNANCY_LOG
+#define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_GET_PREGNANCY_LOG
+uint16_t uniffi_luna_core_checksum_method_lunaengine_get_pregnancy_log(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_GET_USER_PROFILE
+#define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_GET_USER_PROFILE
+uint16_t uniffi_luna_core_checksum_method_lunaengine_get_user_profile(void
+    
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_LOG_DAY
 #define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_LOG_DAY
 uint16_t uniffi_luna_core_checksum_method_lunaengine_log_day(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_LOG_PREGNANCY_DAY
+#define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_LOG_PREGNANCY_DAY
+uint16_t uniffi_luna_core_checksum_method_lunaengine_log_pregnancy_day(void
     
 );
 #endif
@@ -658,6 +718,12 @@ uint16_t uniffi_luna_core_checksum_method_lunaengine_panic_wipe(void
 #ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_PREDICT_NEXT
 #define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_PREDICT_NEXT
 uint16_t uniffi_luna_core_checksum_method_lunaengine_predict_next(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_SET_USER_PROFILE
+#define UNIFFI_FFIDEF_UNIFFI_LUNA_CORE_CHECKSUM_METHOD_LUNAENGINE_SET_USER_PROFILE
+uint16_t uniffi_luna_core_checksum_method_lunaengine_set_user_profile(void
     
 );
 #endif

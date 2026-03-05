@@ -4,6 +4,7 @@ struct HomeView: View {
     @EnvironmentObject var appState: AppState
     @StateObject private var vm = HomeViewModel()
     @State private var showLogSheet = false
+    @State private var showPregnancyLog = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -23,6 +24,17 @@ struct HomeView: View {
 
                         // ── Mini calendrier 7 jours ───────────────────────
                         WeekStripView(prediction: vm.prediction)
+                            .padding(.horizontal)
+                    }
+
+                    // ── Bannière mode grossesse ─────────────────────────────
+                    if vm.trackingMode == "pregnant" {
+                        PregnancyBanner { showPregnancyLog = true }
+                            .padding(.horizontal)
+                    }
+                    // ── Bannière mode TTC ──────────────────────────────────
+                    if vm.trackingMode == "ttc" {
+                        TTCBanner()
                             .padding(.horizontal)
                     }
 
@@ -57,6 +69,11 @@ struct HomeView: View {
                     .presentationDetents([.medium, .large])
                     .presentationDragIndicator(.visible)
             }
+            .sheet(isPresented: $showPregnancyLog) {
+                PregnancyLogSheet(date: Date())
+                    .presentationDetents([.large])
+                    .environmentObject(appState)
+            }
             .task {
                 await vm.load(engine: appState.engine)
             }
@@ -82,6 +99,47 @@ private struct CalmModeBanner: View {
         .padding(14)
         .background(Color("CardBackground"), in: RoundedRectangle(cornerRadius: 12))
         .accessibilityLabel(Text("home_calm_no_prediction"))
+    }
+}
+
+// MARK: - Tracking Mode Banners
+
+private struct PregnancyBanner: View {
+    let onLog: () -> Void
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "figure.maternity")
+                .foregroundStyle(Color("AccentPrimary"))
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("home_pregnant_title").font(.subheadline.bold())
+                Text("home_pregnant_subtitle").font(.caption).foregroundStyle(.secondary)
+            }
+            Spacer()
+            Button("home_log_button", action: onLog)
+                .font(.caption.bold())
+                .foregroundStyle(Color("AccentPrimary"))
+                .frame(minWidth: 44, minHeight: 44)
+        }
+        .padding(14)
+        .background(Color("AccentPrimary").opacity(0.08), in: RoundedRectangle(cornerRadius: 16))
+    }
+}
+
+private struct TTCBanner: View {
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "heart.fill")
+                .foregroundStyle(Color("AccentAccent"))
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("home_ttc_title").font(.subheadline.bold())
+                Text("home_ttc_subtitle").font(.caption).foregroundStyle(.secondary)
+            }
+            Spacer()
+        }
+        .padding(14)
+        .background(Color("AccentAccent").opacity(0.08), in: RoundedRectangle(cornerRadius: 16))
     }
 }
 

@@ -1,5 +1,6 @@
 import SwiftUI
 import LocalAuthentication
+import UIKit
 
 // MARK: - SettingsView
 
@@ -13,6 +14,11 @@ struct SettingsView: View {
     @State private var notifBBTReminder: Bool = false
     @State private var iCloudSync: Bool = false
     @State private var lockEnabled: Bool = true
+    @State private var pillReminderEnabled: Bool = false
+    @State private var pillReminderTime: Date = Calendar.current.date(from: DateComponents(hour: 8, minute: 0)) ?? Date()
+    @State private var healthKitEnabled: Bool = false
+    @State private var showShareSheet: Bool = false
+    @State private var shareItems: [Any] = []
 
     var body: some View {
         NavigationStack {
@@ -112,8 +118,47 @@ struct SettingsView: View {
                     Toggle(isOn: $notifBBTReminder) {
                         Text("notif_bbt_reminder_label")
                     }
+
+                    NavigationLink("settings_tracking_mode") {
+                        TrackingModeView()
+                    }
+                    .frame(minHeight: 44)
                 } header: {
                     Text("settings_section_notifications")
+                }
+
+                // ── Rappel contraception ──────────────────────────────
+                Section("settings_pill_reminder_section") {
+                    Toggle("settings_pill_reminder_toggle", isOn: $pillReminderEnabled)
+                        .frame(minHeight: 44)
+                        .onChange(of: pillReminderEnabled) { enabled in
+                            if enabled {
+                                let fmt = DateFormatter()
+                                fmt.dateFormat = "HH:mm"
+                                NotificationManager.shared.schedulePillReminder(timeString: fmt.string(from: pillReminderTime))
+                            } else {
+                                NotificationManager.shared.cancelPillReminder()
+                            }
+                        }
+                    if pillReminderEnabled {
+                        DatePicker("settings_pill_time", selection: $pillReminderTime,
+                                   displayedComponents: .hourAndMinute)
+                            .frame(minHeight: 44)
+                            .onChange(of: pillReminderTime) { newTime in
+                                let fmt = DateFormatter()
+                                fmt.dateFormat = "HH:mm"
+                                NotificationManager.shared.schedulePillReminder(timeString: fmt.string(from: newTime))
+                            }
+                    }
+                }
+
+                // ── Santé (HealthKit) ─────────────────────────────────
+                Section("settings_healthkit_section") {
+                    Toggle("settings_healthkit_toggle", isOn: $healthKitEnabled)
+                        .frame(minHeight: 44)
+                        .onChange(of: healthKitEnabled) { enabled in
+                            if enabled { Task { await requestHealthKit() } }
+                        }
                 }
 
                 // ── Intégrations ──────────────────────────────────────
@@ -123,6 +168,9 @@ struct SettingsView: View {
                     } label: {
                         Label("settings_health_label", systemImage: "heart")
                     }
+
+                    Button("export_csv_label") { exportCSV() }
+                        .frame(minHeight: 44)
 
                     Button {
                         showExportSheet = true
@@ -165,11 +213,34 @@ struct SettingsView: View {
             .sheet(isPresented: $showExportSheet) {
                 ExportSheetView()
             }
+            .sheet(isPresented: $showShareSheet) {
+                ShareSheet(items: shareItems)
+            }
         }
     }
 
     private var appVersion: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0"
+    }
+
+    private func exportCSV() {
+        guard let engine = appState.engine else { return }
+        Task {
+            let to = ISO8601DateFormatter().string(from: Date())
+            let from = ISO8601DateFormatter().string(from: Calendar.current.date(byAdding: .year, value: -2, to: Date())!)
+            if let csv = try? engine.exportLogsCsv(from: from, to: to) {
+                await MainActor.run {
+                    shareItems = [csv]
+                    showShareSheet = true
+                }
+            }
+        }
+    }
+
+    private func requestHealthKit() async {
+        guard #available(iOS 16.0, *) else { return }
+        let ok = await HealthKitManager.shared.requestAuthorization()
+        await MainActor.run { healthKitEnabled = ok }
     }
 
     private func authenticateAndWipe() {
@@ -194,6 +265,16 @@ struct SettingsView: View {
             }
         }
     }
+}
+
+// MARK: - ShareSheet
+
+struct ShareSheet: UIViewControllerRepresentable {
+    let items: [Any]
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: items, applicationActivities: nil)
+    }
+    func updateUIViewController(_ uvc: UIActivityViewController, context: Context) {}
 }
 
 // MARK: - ProfileEditView (stub)

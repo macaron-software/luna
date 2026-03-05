@@ -51,6 +51,8 @@ targets:
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
         NSFaceIDUsageDescription: "LUNA uses Face ID to quickly unlock your vault."
+        NSHealthShareUsageDescription: "LUNA lit votre température basale pour affiner les prédictions de cycle. Aucune donnée n'est partagée."
+        NSHealthUpdateUsageDescription: "LUNA peut écrire vos données menstruelles dans Santé pour centraliser votre suivi. Optionnel."
         ITSAppUsesNonExemptEncryption: YES
     settings:
       base:
@@ -61,6 +63,8 @@ targets:
         LIBRARY_SEARCH_PATHS: "$(inherited) $(SRCROOT)/LunaApp/Generated"
         OTHER_LDFLAGS: "$(inherited) -lluna_core -lc++"
         HEADER_SEARCH_PATHS: "$(SRCROOT)/LunaApp/Generated"
+    dependencies:
+      - sdk: HealthKit.framework
 
   LunaTests:
     type: bundle.unit-test

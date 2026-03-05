@@ -138,6 +138,154 @@ pub struct CycleSummary {
     pub regularity: String,
 }
 
+// ─── TrackingMode ────────────────────────────────────────────────────────────
+
+/// Mode de suivi de la santé reproductive
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, uniffi::Enum)]
+pub enum TrackingMode {
+    Regular,
+    Ttc,
+    Pregnant,
+    Postpartum,
+    Perimenopause,
+}
+
+impl Default for TrackingMode {
+    fn default() -> Self { TrackingMode::Regular }
+}
+
+impl TrackingMode {
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            TrackingMode::Regular       => "regular",
+            TrackingMode::Ttc           => "ttc",
+            TrackingMode::Pregnant      => "pregnant",
+            TrackingMode::Postpartum    => "postpartum",
+            TrackingMode::Perimenopause => "perimenopause",
+        }
+    }
+    pub fn from_str(s: &str) -> Self {
+        match s {
+            "ttc"           => TrackingMode::Ttc,
+            "pregnant"      => TrackingMode::Pregnant,
+            "postpartum"    => TrackingMode::Postpartum,
+            "perimenopause" => TrackingMode::Perimenopause,
+            _               => TrackingMode::Regular,
+        }
+    }
+}
+
+// ─── ContraceptionType ───────────────────────────────────────────────────────
+
+/// Type de contraception
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, uniffi::Enum)]
+pub enum ContraceptionType {
+    None,
+    Pill,
+    Patch,
+    Ring,
+    Injection,
+    Iud,
+    Implant,
+    Condom,
+    Other,
+}
+
+impl Default for ContraceptionType {
+    fn default() -> Self { ContraceptionType::None }
+}
+
+impl ContraceptionType {
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            ContraceptionType::None      => "none",
+            ContraceptionType::Pill      => "pill",
+            ContraceptionType::Patch     => "patch",
+            ContraceptionType::Ring      => "ring",
+            ContraceptionType::Injection => "injection",
+            ContraceptionType::Iud       => "iud",
+            ContraceptionType::Implant   => "implant",
+            ContraceptionType::Condom    => "condom",
+            ContraceptionType::Other     => "other",
+        }
+    }
+    pub fn from_str(s: &str) -> Self {
+        match s {
+            "pill"      => ContraceptionType::Pill,
+            "patch"     => ContraceptionType::Patch,
+            "ring"      => ContraceptionType::Ring,
+            "injection" => ContraceptionType::Injection,
+            "iud"       => ContraceptionType::Iud,
+            "implant"   => ContraceptionType::Implant,
+            "condom"    => ContraceptionType::Condom,
+            "other"     => ContraceptionType::Other,
+            _           => ContraceptionType::None,
+        }
+    }
+}
+
+// ─── UserProfile ─────────────────────────────────────────────────────────────
+
+/// Profil utilisateur — préférences et mode de suivi
+#[derive(Debug, Clone, Serialize, Deserialize, uniffi::Record)]
+pub struct UserProfile {
+    pub tracking_mode: TrackingMode,
+    pub contraception: ContraceptionType,
+    pub pill_reminder_time: Option<String>,
+    pub notif_period: bool,
+    pub notif_fertile: bool,
+    pub notif_pill: bool,
+    pub edd: Option<String>,
+    pub calm_mode: bool,
+    pub health_sync: bool,
+}
+
+impl Default for UserProfile {
+    fn default() -> Self {
+        Self {
+            tracking_mode: TrackingMode::Regular,
+            contraception: ContraceptionType::None,
+            pill_reminder_time: None,
+            notif_period: true,
+            notif_fertile: false,
+            notif_pill: false,
+            edd: None,
+            calm_mode: false,
+            health_sync: false,
+        }
+    }
+}
+
+// ─── PregnancyLog ─────────────────────────────────────────────────────────────
+
+/// Log de grossesse — données quotidiennes spécifiques à la grossesse
+#[derive(Debug, Clone, Serialize, Deserialize, uniffi::Record)]
+pub struct PregnancyLog {
+    pub id: String,
+    pub date: String,
+    pub hcg_positive: Option<bool>,
+    pub kicks: Option<u8>,
+    pub nausea_level: Option<u8>,
+    pub weight_kg: Option<f64>,
+    pub symptoms: Vec<String>,
+    pub notes: Option<String>,
+}
+
+impl PregnancyLog {
+    pub fn new(date: NaiveDate) -> Self {
+        Self {
+            id: Uuid::new_v4().to_string(),
+            date: date.to_string(),
+            hcg_positive: None,
+            kicks: None,
+            nausea_level: None,
+            weight_kg: None,
+            symptoms: vec![],
+            notes: None,
+        }
+    }
+}
+
 // ─── Symptom catalogue ───────────────────────────────────────────────────────
 
 /// Identifiants des symptômes — correspondance avec clés i18n

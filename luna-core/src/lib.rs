@@ -10,6 +10,7 @@ pub mod api;
 
 pub use engine::types::*;
 pub use engine::prediction::CyclePhase;
+pub use engine::types::{TrackingMode, ContraceptionType, UserProfile, PregnancyLog};
 pub use error::LunaError;
 pub use api::LunaEngine;
 
