@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- strings.xml — Hebrew (RTL) -->
+<resources>
+    <string name="tab_today">היום</string>
+    <string name="tab_calendar">לוח שנה</string>
+    <string name="tab_insights">תובנות</string>
+    <string name="tab_settings">אני</string>
+    <string name="log_today_button">רשום היום</string>
+    <string name="privacy_local_badge">נתונים מקומיים</string>
+    <string name="privacy_badge_a11y">כל הנתונים שלך מאוחסנים מקומית במכשיר זה</string>
+    <string name="mood_label">מצב רוח</string>
+    <string name="flow_none">ללא</string>
+    <string name="flow_light">קל</string>
+    <string name="flow_medium">בינוני</string>
+    <string name="flow_heavy">כבד</string>
+    <string name="save_button">שמור</string>
+    <string name="cancel_button">ביטול</string>
+    <plurals name="days_until_period">
+        <item quantity="one">ביום %d</item>
+        <item quantity="two">בעוד %d ימים</item>
+        <item quantity="many">בעוד %d ימים</item>
+        <item quantity="other">בעוד %d ימים</item>
+    </plurals>
+</resources>

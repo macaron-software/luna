@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="app.luna.ui.HomeFragment"
+        android:label="@string/tab_today"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="app.luna.ui.CalendarFragment"
+        android:label="@string/tab_calendar"
+        tools:layout="@layout/fragment_calendar" />
+
+    <fragment
+        android:id="@+id/insightsFragment"
+        android:name="app.luna.ui.InsightsFragment"
+        android:label="@string/tab_insights"
+        tools:layout="@layout/fragment_insights" />
+
+    <activity
+        android:id="@+id/settingsActivity"
+        android:name="app.luna.ui.SettingsActivity"
+        android:label="@string/tab_settings" />
+
+</navigation>

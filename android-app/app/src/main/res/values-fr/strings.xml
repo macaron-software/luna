@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- strings.xml — Langue source : Français -->
+<resources>
+    <!-- Navigation -->
+    <string name="tab_today">Aujourd\'hui</string>
+    <string name="tab_calendar">Calendrier</string>
+    <string name="tab_insights">Insights</string>
+    <string name="tab_settings">Moi</string>
+
+    <!-- Home -->
+    <string name="log_today_button">Logger aujourd\'hui</string>
+    <string name="privacy_local_badge">Données locales</string>
+    <string name="privacy_badge_a11y">Toutes tes données sont stockées localement sur cet appareil</string>
+    <string name="cycle_day_label">Jour %d</string>
+    <string name="next_period_in">Dans %d jours</string>
+    <string name="cycle_progress_a11y">Jour %1$d du cycle. Prochaines règles dans %2$d jours.</string>
+    <string name="cycle_no_data_a11y">Pas encore de données de cycle</string>
+
+    <!-- Log sheet -->
+    <string name="log_sheet_title">Aujourd\'hui</string>
+    <string name="mood_label">Humeur</string>
+    <string name="energy_label">Énergie</string>
+    <string name="flow_label">Règles</string>
+    <string name="flow_none">Aucun</string>
+    <string name="flow_spotting">Spotting</string>
+    <string name="flow_light">Léger</string>
+    <string name="flow_medium">Moyen</string>
+    <string name="flow_heavy">Abondant</string>
+    <string name="symptoms_section_title">Symptômes</string>
+    <string name="advanced_section_title">Avancé (BBT, LH…)</string>
+    <string name="notes_label">Notes</string>
+    <string name="notes_placeholder">Ajouter une note…</string>
+    <string name="notes_a11y">Champ de note libre, chiffré et stocké localement</string>
+    <string name="save_button">Enregistrer</string>
+    <string name="cancel_button">Annuler</string>
+    <string name="log_saved_a11y">Journée enregistrée</string>
+
+    <!-- Symptômes -->
+    <string name="symptom_cramps">Crampes</string>
+    <string name="symptom_bloating">Ballonnements</string>
+    <string name="symptom_fatigue">Fatigue</string>
+    <string name="symptom_headache">Maux de tête</string>
+    <string name="symptom_breast_tenderness">Seins sensibles</string>
+    <string name="symptom_irritability">Irritabilité</string>
+    <string name="symptom_low_mood">Humeur basse</string>
+    <string name="symptom_high_energy">Énergie élevée</string>
+    <string name="symptom_motivation">Motivation</string>
+    <string name="symptom_nausea">Nausées</string>
+    <string name="symptom_lower_back_pain">Lombaires</string>
+    <string name="symptom_acne">Acné</string>
+    <string name="symptom_anxiety">Anxiété</string>
+    <string name="symptom_insomnia">Insomnie</string>
+    <string name="symptom_migraine">Migraine</string>
+    <string name="symptom_hot_flash">Bouffée de chaleur</string>
+    <string name="symptom_night_sweats">Sueurs nocturnes</string>
+
+    <!-- BBT -->
+    <string name="bbt_label">Température basale (BBT)</string>
+    <string name="bbt_hint">Mesurée au réveil, avant tout mouvement</string>
+    <string name="bbt_placeholder">36.7</string>
+    <string name="bbt_a11y_label">Température basale du corps</string>
+    <string name="bbt_a11y_hint">Entrez votre température en degrés Celsius, mesurée au réveil avant tout mouvement</string>
+
+    <!-- A11y générique -->
+    <string name="tap_to_select_a11y">Double-tapez pour sélectionner</string>
+    <string name="tap_to_deselect_a11y">Double-tapez pour désélectionner</string>
+
+    <!-- Pluralisation (jours) -->
+    <plurals name="days_until_period">
+        <item quantity="one">Dans %d jour</item>
+        <item quantity="other">Dans %d jours</item>
+    </plurals>
+
+    <plurals name="cycle_length_days">
+        <item quantity="one">%d jour</item>
+        <item quantity="other">%d jours</item>
+    </plurals>
+</resources>

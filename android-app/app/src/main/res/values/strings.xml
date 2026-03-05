@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- strings.xml — English (default fallback) -->
+<resources>
+    <string name="tab_today">Today</string>
+    <string name="tab_calendar">Calendar</string>
+    <string name="tab_insights">Insights</string>
+    <string name="tab_settings">Me</string>
+    <string name="log_today_button">Log today</string>
+    <string name="privacy_local_badge">Local data</string>
+    <string name="privacy_badge_a11y">All your data is stored locally on this device</string>
+    <string name="cycle_day_label">Day %d</string>
+    <string name="next_period_in">In %d days</string>
+    <string name="cycle_progress_a11y">Cycle day %1$d. Next period in %2$d days.</string>
+    <string name="cycle_no_data_a11y">No cycle data yet</string>
+    <string name="log_sheet_title">Today</string>
+    <string name="mood_label">Mood</string>
+    <string name="energy_label">Energy</string>
+    <string name="flow_label">Flow</string>
+    <string name="flow_none">None</string>
+    <string name="flow_spotting">Spotting</string>
+    <string name="flow_light">Light</string>
+    <string name="flow_medium">Medium</string>
+    <string name="flow_heavy">Heavy</string>
+    <string name="symptoms_section_title">Symptoms</string>
+    <string name="advanced_section_title">Advanced (BBT, LH…)</string>
+    <string name="notes_label">Notes</string>
+    <string name="notes_placeholder">Add a note…</string>
+    <string name="notes_a11y">Free text note, encrypted and stored locally</string>
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="log_saved_a11y">Day logged</string>
+    <string name="symptom_cramps">Cramps</string>
+    <string name="symptom_bloating">Bloating</string>
+    <string name="symptom_fatigue">Fatigue</string>
+    <string name="symptom_headache">Headache</string>
+    <string name="symptom_breast_tenderness">Breast tenderness</string>
+    <string name="symptom_irritability">Irritability</string>
+    <string name="symptom_low_mood">Low mood</string>
+    <string name="symptom_high_energy">High energy</string>
+    <string name="symptom_motivation">Motivation</string>
+    <string name="symptom_nausea">Nausea</string>
+    <string name="symptom_lower_back_pain">Lower back pain</string>
+    <string name="symptom_acne">Acne</string>
+    <string name="symptom_anxiety">Anxiety</string>
+    <string name="symptom_insomnia">Insomnia</string>
+    <string name="symptom_migraine">Migraine</string>
+    <string name="symptom_hot_flash">Hot flash</string>
+    <string name="symptom_night_sweats">Night sweats</string>
+    <string name="bbt_label">Basal body temperature (BBT)</string>
+    <string name="bbt_hint">Measured upon waking, before any movement</string>
+    <string name="bbt_placeholder">36.7</string>
+    <string name="bbt_a11y_label">Basal Body Temperature</string>
+    <string name="bbt_a11y_hint">Enter your temperature in Celsius, measured upon waking before any movement</string>
+    <string name="tap_to_select_a11y">Double-tap to select</string>
+    <string name="tap_to_deselect_a11y">Double-tap to deselect</string>
+    <plurals name="days_until_period">
+        <item quantity="one">In %d day</item>
+        <item quantity="other">In %d days</item>
+    </plurals>
+    <plurals name="cycle_length_days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+
+    <!-- Settings -->
+    <string name="settings_delete_all_label">Delete all data</string>
+    <string name="settings_delete_all_a11y">Delete all data from this device</string>
+    <string name="settings_delete_all_hint_a11y">This action is irreversible and will permanently delete all your data</string>
+    <string name="export_csv_label">Export to CSV</string>
+    <string name="export_encrypted_backup_label">Encrypted backup</string>
+    <string name="panic_wipe_confirm_title">Delete all data?</string>
+    <string name="panic_wipe_confirm_message">This will permanently delete all your cycle data from this device. This action cannot be undone.</string>
+    <string name="panic_wipe_confirm_button">Delete everything</string>
+    <string name="panic_wipe_done_a11y">All data has been deleted</string>
+    <string name="lock_biometric_title">Luna</string>
+    <string name="lock_biometric_subtitle">Unlock to access your data</string>
+    <string name="lock_use_pin">Use PIN</string>
+    <string name="lock_wrong_pin">Incorrect PIN</string>
+    <string name="lock_max_attempts">Too many attempts. Please try again later.</string>
+    <string name="lock_unlocked_a11y">Vault unlocked</string>
+    <string name="pin_delete_a11y">Delete last digit</string>
+    <string name="pin_dots_a11y">%d digits entered</string>
+    <string name="previous_month_a11y">Previous month</string>
+    <string name="next_month_a11y">Next month</string>
+    <string name="phase_changed_a11y">Phase changed: %s</string>
+    <string name="app_name">Luna</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_step_a11y">Step %1$d of %2$d</string>
+    <string name="onboarding_welcome_title">Welcome to Luna</string>
+    <string name="onboarding_welcome_subtitle">Track your cycle with complete privacy. Your data never leaves your phone.</string>
+    <string name="onboarding_last_period_title">Last period</string>
+    <string name="onboarding_last_period_subtitle">When did your last period start?</string>
+    <string name="onboarding_cycle_profile_title">Your cycle</string>
+    <string name="onboarding_cycle_profile_subtitle">Help us personalize your predictions</string>
+    <string name="onboarding_goals_title">Your goals</string>
+    <string name="onboarding_goals_subtitle">What brings you to Luna? (choose all that apply)</string>
+    <string name="onboarding_privacy_title">Your privacy</string>
+    <string name="onboarding_privacy_subtitle">Set up your PIN to protect your data</string>
+    <string name="onboarding_next_button">Next</string>
+    <string name="onboarding_back">Back</string>
+    <string name="onboarding_start_button">Start</string>
+
+    <!-- Notifications labels -->
+    <string name="notif_daily_log_label">Daily log reminder</string>
+    <string name="notif_period_reminder_label">Period reminder</string>
+    <string name="notif_fertile_window_label">Fertile window alert</string>
+    <string name="notif_bbt_reminder_label">BBT morning reminder</string>
+</resources>

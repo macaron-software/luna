@@ -1,0 +1,43 @@
+# Rust build artifacts
+target/
+luna-core/target/
+
+# iOS build
+ios-app/LunaApp/Generated/         # UniFFI generated — build artifact
+ios-app/build/
+ios-app/*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcuserdata/
+DerivedData/
+*.ipa
+
+# Android build
+android-app/.gradle/
+android-app/build/
+android-app/app/build/
+android-app/app/src/main/jniLibs/  # cargo-ndk output — build artifact
+android-app/local.properties        # SDK path (machine-specific)
+*.apk
+*.aab
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# Secrets / keys — NEVER commit
+*.key
+*.pem
+*.p12
+*.keystore
+GoogleService-Info.plist
+google-services.json
+
+# Test artifacts
+*.lcov
+coverage/

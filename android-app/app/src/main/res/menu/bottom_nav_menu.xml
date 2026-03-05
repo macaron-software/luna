@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@android:drawable/ic_menu_today"
+        android:title="@string/tab_today"
+        android:contentDescription="@string/tab_today" />
+    <item
+        android:id="@+id/calendarFragment"
+        android:icon="@android:drawable/ic_menu_month"
+        android:title="@string/tab_calendar"
+        android:contentDescription="@string/tab_calendar" />
+    <item
+        android:id="@+id/insightsFragment"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="@string/tab_insights"
+        android:contentDescription="@string/tab_insights" />
+    <item
+        android:id="@+id/settingsActivity"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="@string/tab_settings"
+        android:contentDescription="@string/tab_settings" />
+</menu>

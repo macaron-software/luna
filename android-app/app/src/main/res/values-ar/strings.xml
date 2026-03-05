@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- strings.xml — Arabic (RTL) -->
+<resources>
+    <string name="tab_today">اليوم</string>
+    <string name="tab_calendar">التقويم</string>
+    <string name="tab_insights">رؤى</string>
+    <string name="tab_settings">أنا</string>
+    <string name="log_today_button">تسجيل اليوم</string>
+    <string name="privacy_local_badge">بيانات محلية</string>
+    <string name="privacy_badge_a11y">جميع بياناتك محفوظة محلياً على هذا الجهاز</string>
+    <string name="cycle_day_label">اليوم %d</string>
+    <string name="next_period_in">خلال %d يوم</string>
+    <string name="log_sheet_title">اليوم</string>
+    <string name="mood_label">المزاج</string>
+    <string name="energy_label">الطاقة</string>
+    <string name="flow_label">الدورة</string>
+    <string name="flow_none">لا شيء</string>
+    <string name="flow_spotting">بقع</string>
+    <string name="flow_light">خفيف</string>
+    <string name="flow_medium">متوسط</string>
+    <string name="flow_heavy">غزير</string>
+    <string name="symptoms_section_title">الأعراض</string>
+    <string name="notes_label">ملاحظات</string>
+    <string name="save_button">حفظ</string>
+    <string name="cancel_button">إلغاء</string>
+    <string name="log_saved_a11y">تم تسجيل اليوم</string>
+    <string name="symptom_cramps">تقلصات</string>
+    <string name="symptom_bloating">انتفاخ</string>
+    <string name="symptom_fatigue">إرهاق</string>
+    <string name="symptom_headache">صداع</string>
+    <string name="symptom_breast_tenderness">ألم الثدي</string>
+    <string name="symptom_irritability">تهيج</string>
+    <string name="symptom_low_mood">مزاج سيئ</string>
+    <string name="symptom_high_energy">طاقة عالية</string>
+    <string name="symptom_motivation">دافعية</string>
+    <!-- Arabic plurals: 6 forms (zero/one/two/few/many/other) -->
+    <plurals name="days_until_period">
+        <item quantity="zero">لا أيام</item>
+        <item quantity="one">خلال يوم واحد</item>
+        <item quantity="two">خلال يومين</item>
+        <item quantity="few">خلال %d أيام</item>
+        <item quantity="many">خلال %d يومًا</item>
+        <item quantity="other">خلال %d يوم</item>
+    </plurals>
+</resources>
