@@ -41,3 +41,4 @@ google-services.json
 # Test artifacts
 *.lcov
 coverage/
+ios-app/LunaApp/Generated/libluna_core.a

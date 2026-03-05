@@ -1,0 +1,22 @@
+LUNA is a privacy-first menstrual cycle and wellness tracker. Your health data never leaves your device — encrypted with AES-256, stored locally, with no third-party access ever.
+
+FEATURES
+Period & symptom tracking with smart predictions
+Basal body temperature (BBT) charting
+Mood and energy tracking
+4 modes: Regular, TTC (Trying to Conceive), Pregnancy, Perimenopause
+Fertile window and ovulation prediction
+6-cycle trend analysis and insights
+
+PRIVACY BY DESIGN
+AES-256 local encryption — your key, your data
+No account required
+No cloud sync (optional encrypted backup only)
+No advertising, no trackers, no analytics
+Open source: https://github.com/macaron-software/luna
+
+ACCESSIBILITY
+Full TalkBack support, Dynamic Text, 40+ languages
+
+SCIENCE-BACKED
+Predictions based on peer-reviewed research on cycle variability.

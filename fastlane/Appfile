@@ -1,0 +1,11 @@
+app_identifier "com.macaron.luna"
+apple_id "legland_s@hotmail.com"
+team_id "P36X572LL9"
+
+for_platform :ios do
+  app_identifier "com.macaron.luna"
+end
+
+for_lane :android do
+  package_name "app.luna"
+end

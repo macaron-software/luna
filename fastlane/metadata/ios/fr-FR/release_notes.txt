@@ -1,0 +1,7 @@
+Version 0.1.0 - Premiere version
+
+- Suivi du cycle : regles, symptomes, humeur, temperature basale
+- Chiffrement AES-256 local
+- 4 modes de suivi : Normal, PMA, Grossesse, Perimenopause
+- 40+ langues
+- Accessibilite complete
