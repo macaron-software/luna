@@ -63,17 +63,14 @@ jobs:
               /etc/nginx/sites-enabled/privacy.macaron-software.com
             sudo nginx -t && sudo systemctl reload nginx
 
-            # Get Let's Encrypt certificate
-            if ! sudo test -d /etc/letsencrypt/live/privacy.macaron-software.com; then
-              sudo certbot --nginx \
-                -d privacy.macaron-software.com \
-                --non-interactive \
-                --agree-tos \
-                --email privacy@macaron-software.com \
-                --redirect
-            else
-              sudo certbot renew --quiet
-            fi
+            # Get or renew Let's Encrypt certificate for this domain only
+            sudo certbot --nginx \
+              -d privacy.macaron-software.com \
+              --non-interactive \
+              --agree-tos \
+              --email privacy@macaron-software.com \
+              --redirect \
+              --keep-until-expiring
 
             echo "Deploy complete."
           REMOTE
