@@ -1,36 +1,71 @@
 <div align="center">
-# 🌙 LUNA — 日本語
-**サーバーなし、クラウドなし、妥協なしのサイクル追跡。**
+
+# LUNA
+
+**プライバシー重視の月経周期トラッキング — サーバーなし、クラウドなし、妥協なし。**
+
+[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
+[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
+
+[← README](../../README.md)
+
 </div>
 
 ---
-→ [🇬🇧 English (full docs)](../../README.md)
 
----
-## 🔒 プライバシーの約束
+## Privacy / Datenschutz / Privacidad / Confidentialité
 
 | | |
 |---|---|
-| 🔒 | **サーバーゼロ。** アカウント不要、外部依存なし。100% オフラインで動作。 |
-| 🔐 | **完全暗号化。** AES-256-GCM + Argon2id。PINはデバイスから出ることはありません。 |
-| 📱 | **100% ローカル。** すべてのデータはデバイス上に保存。例外はプッシュ通知のみ（任意、データ送信なし）。 |
-| ☁️ | **暗号化クラウドバックアップ。** iCloud/Google Driveのバックアップは不透明な暗号文。Apple/Googleでさえ読めません。 |
-| 🚫 | **データ共有ゼロ。** 分析なし、テレメトリーなし、広告なし。 |
-| 🌍 | **完全オープンソース。** MIT/Apache-2.0。すべてのコードは誰でも監査可能。 |
-| 🔬 | **科学的根拠あり。** 予測は査読済み研究に基づいています。疑似科学なし。 |
+| Zero server | No account · No registration · No external dependency · 100% offline |
+| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
+| Local storage | All data on your device · SQLCipher encrypted database |
+| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
+| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
+| Open source | MIT/Apache-2.0 · Every line auditable |
+| Panic wipe | Destroys vault + keys in < 500ms |
+| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
 
 ---
 
-## アーキテクチャ
+## Architecture
 
 ```
-Rustコア共有 (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher暗号化 · ゼロネットワーク
+luna-core/     Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
+ios-app/       SwiftUI iOS 16+ — Keychain — HealthKit (optional)
+android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
 ```
+
+**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
+
+---
+
+## Language: 日本語
+
+> プライバシー重視の月経周期トラッキング — サーバーなし、クラウドなし、妥協なし。
+
+---
+
+## Build
+
+```bash
+cargo test -p luna-core              # 41 Rust tests
+cd ios-app && xcodebuild build       # iOS (Xcode 15+)
+cd android-app && ./gradlew assembleDebug  # Android
+```
+
+---
+
+## i18n — 40 languages supported
+
+RTL: Arabic · Hebrew · Persian (full layout mirror)
+WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — [LICENSE](../../README.md)
+MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
 
-> ⚠️ このアプリは医療アドバイスを提供しません。
+> This app does not provide medical advice. Consult a healthcare professional for medical concerns.

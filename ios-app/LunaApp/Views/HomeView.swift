@@ -37,6 +37,11 @@ struct HomeView: View {
                         TTCBanner()
                             .padding(.horizontal)
                     }
+                    // ── Bannière mode péri-ménopause ───────────────────────
+                    if vm.trackingMode == "perimenopause" {
+                        PerimenopauseBanner()
+                            .padding(.horizontal)
+                    }
 
                     // ── Symptômes attendus (science-based) ────────────
                     if let phase = vm.currentPhase {

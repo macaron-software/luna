@@ -142,4 +142,9 @@
 
     <!-- Pill reminder -->
     <string name="settings_pill_reminder">Daily pill reminder</string>
+    <!-- Perimenopause banners and dashboard -->
+    <string name="perimeno_banner_title">Perimenopause Mode — Tap to open dashboard</string>
+    <string name="perimeno_banner_a11y">Open perimenopause dashboard</string>
+    <string name="ttc_banner_title">TTC Mode — Fertile window highlighted</string>
+
 </resources>

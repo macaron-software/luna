@@ -1,36 +1,71 @@
 <div align="center">
-# 🌙 LUNA — ภาษาไทย
-**ติดตามรอบเดือนโดยไม่มีเซิร์ฟเวอร์ ไม่มีคลาวด์ ไม่มีการประนีประนอม**
+
+# LUNA
+
+**การติดตามรอบประจำเดือนที่เคารพความเป็นส่วนตัว — ไม่มีเซิร์ฟเวอร์ ไม่มีคลาวด์ ไม่มีการประนีประนอม**
+
+[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
+[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
+
+[← README](../../README.md)
+
 </div>
 
 ---
-→ [🇬🇧 English (full docs)](../../README.md)
 
----
-## 🔒 Privacy
+## Privacy / Datenschutz / Privacidad / Confidentialité
 
 | | |
 |---|---|
-| 🔒 | **ศูนย์เซิร์ฟเวอร์** ไม่ต้องมีบัญชี ไม่มีการพึ่งพาภายนอก ทำงานแบบออฟไลน์ 100% |
-| 🔐 | **เข้ารหัสอย่างสมบูรณ์** AES-256-GCM + Argon2id PIN ของคุณไม่เคยออกจากอุปกรณ์ |
-| 📱 | **100% ในเครื่อง** ข้อมูลทั้งหมดอยู่ในอุปกรณ์ของคุณ ข้อยกเว้นเดียว: การแจ้งเตือนแบบพุช (ไม่บังคับ ไม่ส่งข้อมูล) |
-| ☁️ | **สำรองข้อมูลคลาวด์ที่เข้ารหัส** iCloud/Google Drive = blob ที่เข้ารหัสและทึบแสง แม้แต่ Apple/Google ก็อ่านไม่ได้ |
-| 🚫 | **ไม่แบ่งปันข้อมูล** ไม่มีการวิเคราะห์ ไม่มีการวัดประสิทธิภาพ ไม่มีโฆษณา |
-| 🌍 | **โอเพนซอร์ส 100%** MIT/Apache-2.0 ทุกบรรทัดของโค้ดตรวจสอบได้ |
-| 🔬 | **อิงตามวิทยาศาสตร์** การคาดการณ์อ้างอิงงานวิจัยที่ผ่านการทบทวนโดยผู้เชี่ยวชาญ ไม่มีวิทยาศาสตร์เทียม |
+| Zero server | No account · No registration · No external dependency · 100% offline |
+| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
+| Local storage | All data on your device · SQLCipher encrypted database |
+| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
+| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
+| Open source | MIT/Apache-2.0 · Every line auditable |
+| Panic wipe | Destroys vault + keys in < 500ms |
+| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
 
 ---
 
-## สถาปัตยกรรม
+## Architecture
 
 ```
-Rust คอร์ที่แชร์ (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher เข้ารหัส · ไม่มีเครือข่าย
+luna-core/     Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
+ios-app/       SwiftUI iOS 16+ — Keychain — HealthKit (optional)
+android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
 ```
+
+**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
+
+---
+
+## Language: ภาษาไทย
+
+> การติดตามรอบประจำเดือนที่เคารพความเป็นส่วนตัว — ไม่มีเซิร์ฟเวอร์ ไม่มีคลาวด์ ไม่มีการประนีประนอม
+
+---
+
+## Build
+
+```bash
+cargo test -p luna-core              # 41 Rust tests
+cd ios-app && xcodebuild build       # iOS (Xcode 15+)
+cd android-app && ./gradlew assembleDebug  # Android
+```
+
+---
+
+## i18n — 40 languages supported
+
+RTL: Arabic · Hebrew · Persian (full layout mirror)
+WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — [LICENSE](../../README.md)
+MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
 
-> ⚠️ แอปนี้ไม่ได้ให้คำแนะนำทางการแพทย์
+> This app does not provide medical advice. Consult a healthcare professional for medical concerns.

@@ -1,36 +1,71 @@
 <div align="center">
-# 🌙 LUNA — Bahasa Melayu
-**Penjejakan kitar tanpa pelayan, tanpa awan, tanpa kompromi.**
+
+# LUNA
+
+**Penjejakan kitaran haid yang menghormati privasi — sifar pelayan, sifar awan, sifar kompromi.**
+
+[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
+[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
+
+[← README](../../README.md)
+
 </div>
 
 ---
-→ [🇬🇧 English (full docs)](../../README.md)
 
----
-## 🔒 Privacy
+## Privacy / Datenschutz / Privacidad / Confidentialité
 
 | | |
 |---|---|
-| 🔒 | **Sifar pelayan.** Tiada akaun, tiada pergantungan luar. Berfungsi 100% luar talian. |
-| 🔐 | **Disulitkan sepenuhnya.** AES-256-GCM + Argon2id. PIN anda tidak pernah meninggalkan peranti. |
-| 📱 | **100% tempatan.** Semua data kekal pada peranti anda. Satu-satunya pengecualian: pemberitahuan tolak (pilihan, tiada data dihantar). |
-| ☁️ | **Sandaran awan disulitkan.** iCloud/Google Drive = blob disulitkan legap. Malah Apple/Google tidak boleh membacanya. |
-| 🚫 | **Sifar perkongsian data.** Tiada analitik, tiada telemetri, tiada pengiklanan. |
-| 🌍 | **100% sumber terbuka.** MIT/Apache-2.0. Setiap baris kod boleh diaudit. |
-| 🔬 | **Berasaskan sains.** Ramalan berdasarkan penyelidikan yang ditinjau rakan sejawat. Tiada pseudosains. |
+| Zero server | No account · No registration · No external dependency · 100% offline |
+| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
+| Local storage | All data on your device · SQLCipher encrypted database |
+| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
+| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
+| Open source | MIT/Apache-2.0 · Every line auditable |
+| Panic wipe | Destroys vault + keys in < 500ms |
+| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
 
 ---
 
-## Seni Bina
+## Architecture
 
 ```
-Teras Rust dikongsi (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher disulitkan · sifar rangkaian
+luna-core/     Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
+ios-app/       SwiftUI iOS 16+ — Keychain — HealthKit (optional)
+android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
 ```
+
+**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
+
+---
+
+## Language: Bahasa Melayu
+
+> Penjejakan kitaran haid yang menghormati privasi — sifar pelayan, sifar awan, sifar kompromi.
+
+---
+
+## Build
+
+```bash
+cargo test -p luna-core              # 41 Rust tests
+cd ios-app && xcodebuild build       # iOS (Xcode 15+)
+cd android-app && ./gradlew assembleDebug  # Android
+```
+
+---
+
+## i18n — 40 languages supported
+
+RTL: Arabic · Hebrew · Persian (full layout mirror)
+WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — [LICENSE](../../README.md)
+MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
 
-> ⚠️ Aplikasi ini tidak memberikan nasihat perubatan.
+> This app does not provide medical advice. Consult a healthcare professional for medical concerns.

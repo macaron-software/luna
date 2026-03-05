@@ -1,36 +1,71 @@
 <div align="center">
-# 🌙 LUNA — বাংলা
-**সার্ভার ছাড়া, ক্লাউড ছাড়া, আপোস ছাড়া মাসিক চক্র ট্র্যাকিং।**
+
+# LUNA
+
+**গোপনীয়তা-প্রথম মাসিক চক্র ট্র্যাকিং — শূন্য সার্ভার, শূন্য ক্লাউড, শূন্য আপোষ।**
+
+[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
+[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
+
+[← README](../../README.md)
+
 </div>
 
 ---
-→ [🇬🇧 English (full docs)](../../README.md)
 
----
-## 🔒 Privacy
+## Privacy / Datenschutz / Privacidad / Confidentialité
 
 | | |
 |---|---|
-| 🔒 | **শূন্য সার্ভার।** কোনো অ্যাকাউন্ট নেই, কোনো বাহ্যিক নির্ভরতা নেই। ১০০% অফলাইনে কাজ করে। |
-| 🔐 | **সম্পূর্ণ এনক্রিপ্টেড।** AES-256-GCM + Argon2id। আপনার PIN কখনো ডিভাইস ছেড়ে যায় না। |
-| 📱 | **১০০% স্থানীয়।** সমস্ত ডেটা আপনার ডিভাইসে থাকে। একমাত্র ব্যতিক্রম: পুশ বিজ্ঞপ্তি (ঐচ্ছিক, কোনো ডেটা পাঠানো হয় না)। |
-| ☁️ | **এনক্রিপ্টেড ক্লাউড ব্যাকআপ।** iCloud/Google Drive = অস্বচ্ছ এনক্রিপ্টেড ব্লব। Apple/Google-ও পড়তে পারে না। |
-| 🚫 | **শূন্য ডেটা শেয়ারিং।** কোনো বিশ্লেষণ নেই, কোনো টেলিমেট্রি নেই, কোনো বিজ্ঞাপন নেই। |
-| 🌍 | **১০০% ওপেন সোর্স।** MIT/Apache-2.0। প্রতিটি কোড লাইন অডিটযোগ্য। |
-| 🔬 | **বিজ্ঞান ভিত্তিক।** পূর্বাভাস সহকর্মী-পর্যালোচিত গবেষণার উপর ভিত্তি করে। কোনো ছদ্মবিজ্ঞান নেই। |
+| Zero server | No account · No registration · No external dependency · 100% offline |
+| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
+| Local storage | All data on your device · SQLCipher encrypted database |
+| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
+| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
+| Open source | MIT/Apache-2.0 · Every line auditable |
+| Panic wipe | Destroys vault + keys in < 500ms |
+| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
 
 ---
 
-## আর্কিটেকচার
+## Architecture
 
 ```
-শেয়ার্ড Rust কোর (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher এনক্রিপ্টেড · শূন্য নেটওয়ার্ক
+luna-core/     Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
+ios-app/       SwiftUI iOS 16+ — Keychain — HealthKit (optional)
+android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
 ```
+
+**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
+
+---
+
+## Language: বাংলা
+
+> গোপনীয়তা-প্রথম মাসিক চক্র ট্র্যাকিং — শূন্য সার্ভার, শূন্য ক্লাউড, শূন্য আপোষ।
+
+---
+
+## Build
+
+```bash
+cargo test -p luna-core              # 41 Rust tests
+cd ios-app && xcodebuild build       # iOS (Xcode 15+)
+cd android-app && ./gradlew assembleDebug  # Android
+```
+
+---
+
+## i18n — 40 languages supported
+
+RTL: Arabic · Hebrew · Persian (full layout mirror)
+WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — [LICENSE](../../README.md)
+MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
 
-> ⚠️ এই অ্যাপটি চিকিৎসা পরামর্শ দেয় না।
+> This app does not provide medical advice. Consult a healthcare professional for medical concerns.

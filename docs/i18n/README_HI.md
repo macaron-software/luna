@@ -1,36 +1,71 @@
 <div align="center">
-# 🌙 LUNA — हिंदी
-**बिना सर्वर, बिना क्लाउड, बिना समझौते के मासिक धर्म चक्र ट्रैकिंग।**
+
+# LUNA
+
+**गोपनीयता-प्रथम मासिक धर्म चक्र ट्रैकिंग — शून्य सर्वर, शून्य क्लाउड, शून्य समझौता।**
+
+[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
+[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
+
+[← README](../../README.md)
+
 </div>
 
 ---
-→ [🇬🇧 English (full docs)](../../README.md)
 
----
-## 🔒 Privacy
+## Privacy / Datenschutz / Privacidad / Confidentialité
 
 | | |
 |---|---|
-| 🔒 | **शून्य सर्वर।** कोई खाता नहीं, कोई बाहरी निर्भरता नहीं। 100% ऑफलाइन काम करता है। |
-| 🔐 | **पूरी तरह एन्क्रिप्टेड।** AES-256-GCM + Argon2id। आपका PIN कभी डिवाइस नहीं छोड़ता। |
-| 📱 | **100% स्थानीय।** सभी डेटा आपके डिवाइस पर रहता है। एकमात्र अपवाद: पुश नोटिफिकेशन (वैकल्पिक, कोई डेटा नहीं भेजा जाता)। |
-| ☁️ | **एन्क्रिप्टेड क्लाउड बैकअप।** iCloud/Google Drive = अपारदर्शी एन्क्रिप्टेड ब्लॉब। Apple/Google भी नहीं पढ़ सकते। |
-| 🚫 | **शून्य डेटा साझाकरण।** कोई एनालिटिक्स नहीं, कोई टेलीमेट्री नहीं, कोई विज्ञापन नहीं। |
-| 🌍 | **100% ओपन सोर्स।** MIT/Apache-2.0। हर कोड लाइन ऑडिट करने योग्य है। |
-| 🔬 | **विज्ञान आधारित।** पूर्वानुमान सहकर्मी-समीक्षित शोध पर आधारित हैं। कोई छद्म विज्ञान नहीं। |
+| Zero server | No account · No registration · No external dependency · 100% offline |
+| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
+| Local storage | All data on your device · SQLCipher encrypted database |
+| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
+| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
+| Open source | MIT/Apache-2.0 · Every line auditable |
+| Panic wipe | Destroys vault + keys in < 500ms |
+| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
 
 ---
 
-## वास्तुकला
+## Architecture
 
 ```
-साझा Rust कोर (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher एन्क्रिप्टेड · शून्य नेटवर्क
+luna-core/     Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
+ios-app/       SwiftUI iOS 16+ — Keychain — HealthKit (optional)
+android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
 ```
+
+**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
+
+---
+
+## Language: हिंदी
+
+> गोपनीयता-प्रथम मासिक धर्म चक्र ट्रैकिंग — शून्य सर्वर, शून्य क्लाउड, शून्य समझौता।
+
+---
+
+## Build
+
+```bash
+cargo test -p luna-core              # 41 Rust tests
+cd ios-app && xcodebuild build       # iOS (Xcode 15+)
+cd android-app && ./gradlew assembleDebug  # Android
+```
+
+---
+
+## i18n — 40 languages supported
+
+RTL: Arabic · Hebrew · Persian (full layout mirror)
+WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — [LICENSE](../../README.md)
+MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
 
-> ⚠️ यह ऐप चिकित्सा सलाह नहीं देता।
+> This app does not provide medical advice. Consult a healthcare professional for medical concerns.

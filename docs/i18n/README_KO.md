@@ -1,36 +1,71 @@
 <div align="center">
-# 🌙 LUNA — 한국어
-**서버 없이, 클라우드 없이, 타협 없이 하는 생리 주기 추적.**
+
+# LUNA
+
+**프라이버시 중심의 월경 주기 추적 — 서버 없음, 클라우드 없음, 타협 없음.**
+
+[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
+[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
+
+[← README](../../README.md)
+
 </div>
 
 ---
-→ [🇬🇧 English (full docs)](../../README.md)
 
----
-## 🔒 개인정보 약속
+## Privacy / Datenschutz / Privacidad / Confidentialité
 
 | | |
 |---|---|
-| 🔒 | **서버 제로.** 계정 없음, 외부 의존성 없음. 100% 오프라인 작동. |
-| 🔐 | **완전 암호화.** AES-256-GCM + Argon2id. PIN이 기기를 절대 벗어나지 않습니다. |
-| 📱 | **100% 로컬 저장.** 모든 데이터가 기기에 보관됩니다. 유일한 예외: 푸시 알림(선택 사항, 데이터 전송 없음). |
-| ☁️ | **암호화된 클라우드 백업.** iCloud/Google Drive = 불투명한 암호문 블롭. Apple/Google도 읽을 수 없습니다. |
-| 🚫 | **데이터 공유 제로.** 분석 없음, 원격 분석 없음, 광고 없음. |
-| 🌍 | **100% 오픈 소스.** MIT/Apache-2.0. 모든 코드 라인을 감사할 수 있습니다. |
-| 🔬 | **과학 기반.** 예측은 동료 심사를 받은 연구를 바탕으로 합니다. 의사 과학 없음. |
+| Zero server | No account · No registration · No external dependency · 100% offline |
+| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
+| Local storage | All data on your device · SQLCipher encrypted database |
+| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
+| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
+| Open source | MIT/Apache-2.0 · Every line auditable |
+| Panic wipe | Destroys vault + keys in < 500ms |
+| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
 
 ---
 
-## 아키텍처
+## Architecture
 
 ```
-공유 Rust 코어 (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher 암호화 · 네트워크 제로
+luna-core/     Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
+ios-app/       SwiftUI iOS 16+ — Keychain — HealthKit (optional)
+android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
 ```
+
+**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
+
+---
+
+## Language: 한국어
+
+> 프라이버시 중심의 월경 주기 추적 — 서버 없음, 클라우드 없음, 타협 없음.
+
+---
+
+## Build
+
+```bash
+cargo test -p luna-core              # 41 Rust tests
+cd ios-app && xcodebuild build       # iOS (Xcode 15+)
+cd android-app && ./gradlew assembleDebug  # Android
+```
+
+---
+
+## i18n — 40 languages supported
+
+RTL: Arabic · Hebrew · Persian (full layout mirror)
+WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — [LICENSE](../../README.md)
+MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
 
-> ⚠️ 이 앱은 의료 조언을 제공하지 않습니다.
+> This app does not provide medical advice. Consult a healthcare professional for medical concerns.

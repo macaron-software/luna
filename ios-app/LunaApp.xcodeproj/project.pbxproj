@@ -14,6 +14,7 @@
 		64DD10B597CB9F2A08466729 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7206D15DE48ECED3F80F9E /* KeychainService.swift */; };
 		6A1A4E3F68737A9153E99EAC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE0A33431EF3DA3DF529CC6 /* NotificationManager.swift */; };
 		6D6147029D5E55E480A1B69E /* PregnancyLogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6810FA093AD41D031AC57750 /* PregnancyLogSheet.swift */; };
+		C8EABA2D2BB44FE8BB07E873 /* PerimenopauseDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA92A24C8A4B56AB1AD327 /* PerimenopauseDashboardView.swift */; };
 		72792192F33427A6ABF0168B /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971DBB1CE53C346B5E17EF54 /* CalendarView.swift */; };
 		7AFC38796780CC88FB0F6B87 /* LunaTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A43E2CEB6A69A63C670D03 /* LunaTokens.swift */; };
 		897EC1321D8A8C1A21028649 /* LunaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EEFEE52106EEBC82C298C /* LunaUITests.swift */; };
@@ -65,6 +66,7 @@
 		55968AE93644270FC62BDB1F /* LunaApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LunaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B7206D15DE48ECED3F80F9E /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		6810FA093AD41D031AC57750 /* PregnancyLogSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregnancyLogSheet.swift; sourceTree = "<group>"; };
+		CBFA92A24C8A4B56AB1AD327 /* PerimenopauseDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerimenopauseDashboardView.swift; sourceTree = "<group>"; };
 		6878AAC48B5D9B0BAEBC5063 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		69FCE9EBD23B9D56B8DFE644 /* LunaServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunaServicesTests.swift; sourceTree = "<group>"; };
 		74BA8534C61AB308F4960CD5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				BA17C955E1B7D2F645802165 /* LogSheetView.swift */,
 				9FE78934C1502AE1AE0A2986 /* OnboardingView.swift */,
 				6810FA093AD41D031AC57750 /* PregnancyLogSheet.swift */,
+				CBFA92A24C8A4B56AB1AD327 /* PerimenopauseDashboardView.swift */,
 				2806FD6C7B23C5339FE48E02 /* RootView.swift */,
 				127D155598873B7D48A9E086 /* SettingsView.swift */,
 				102837199580CE13899B1BFC /* TrackingModeView.swift */,
@@ -363,6 +366,7 @@
 				6A1A4E3F68737A9153E99EAC /* NotificationManager.swift in Sources */,
 				D50AFF0479C820F949D69FDF /* OnboardingView.swift in Sources */,
 				6D6147029D5E55E480A1B69E /* PregnancyLogSheet.swift in Sources */,
+				C8EABA2D2BB44FE8BB07E873 /* PerimenopauseDashboardView.swift in Sources */,
 				08466D2DD3E6E3BE78018AF2 /* RootView.swift in Sources */,
 				DB7FA5B5C139EDFC23DB14C5 /* SettingsView.swift in Sources */,
 				A8B8B584B5F333932BA02D1F /* TrackingModeView.swift in Sources */,

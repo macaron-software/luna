@@ -1,36 +1,71 @@
 <div align="center">
-# 🌙 LUNA — മലയാളം
-**സെർവർ ഇല്ലാതെ, ക്ലൗഡ് ഇല്ലാതെ, വിട്ടുവീഴ്ചയില്ലാതെ ആർത്തവ ചക്രം ട്രാക്കിംഗ്.**
+
+# LUNA
+
+**സ്വകാര്യത ആദരിക്കുന്ന ആർത്തവ ചക്ര ട്രാക്കിങ് — സൂജ്ഞ സെർവർ, സൂജ്ഞ ക്ലൗഡ്, സൂജ്ഞ വിട്ടുവീഴ്ച.**
+
+[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
+[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
+
+[← README](../../README.md)
+
 </div>
 
 ---
-→ [🇬🇧 English (full docs)](../../README.md)
 
----
-## 🔒 Privacy
+## Privacy / Datenschutz / Privacidad / Confidentialité
 
 | | |
 |---|---|
-| 🔒 | **സെർവർ ഇല്ല.** അക്കൗണ്ട് ഇല്ല, ബാഹ്യ ആശ്രിതത്വം ഇല്ല. 100% ഓഫ്‌ലൈനിൽ പ്രവർത്തിക്കുന്നു. |
-| �� | **പൂർണ്ണമായും എൻക്രിപ്റ്റ് ചെയ്തത്.** AES-256-GCM + Argon2id. നിങ്ങളുടെ PIN ഒരിക്കലും ഉപകരണം വിടില്ല. |
-| 📱 | **100% ലോക്കൽ.** എല്ലാ ഡാറ്റയും നിങ്ങളുടെ ഉപകരണത്തിൽ നിൽക്കുന്നു. ഒരേ ഒരു ഒഴിവാക്കൽ: പുഷ് നോട്ടിഫിക്കേഷൻ (ഐഛികം, ഡാറ്റ അയക്കില്ല). |
-| ☁️ | **എൻക്രിപ്റ്റ് ചെയ്ത ക്ലൗഡ് ബാക്കപ്പ്.** iCloud/Google Drive = അതാര്യ എൻക്രിപ്റ്റ് ചെയ്ത ബ്ലോബ്. Apple/Google-നും വായിക്കാൻ കഴിയില്ല. |
-| 🚫 | **ഡാറ്റ പങ്കിടൽ ഇല്ല.** വിശകലനം ഇല്ല, ടെലിമെട്രി ഇല്ല, പരസ്യം ഇല്ല. |
-| 🌍 | **100% ഓപ്പൺ സോഴ്‌സ്.** MIT/Apache-2.0. ഓരോ കോഡ് ലൈനും ഓഡിറ്റ് ചെയ്യാം. |
-| 🔬 | **ശാസ്ത്ര അടിസ്ഥാനം.** സഹകര്‍മ്മ-അവലോകനം ചെയ്ത ഗവേഷണത്തിൽ അധിഷ്ഠിതമായ പ്രവചനങ്ങൾ. കപട-ശാസ്ത്രം ഇല്ല. |
+| Zero server | No account · No registration · No external dependency · 100% offline |
+| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
+| Local storage | All data on your device · SQLCipher encrypted database |
+| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
+| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
+| Open source | MIT/Apache-2.0 · Every line auditable |
+| Panic wipe | Destroys vault + keys in < 500ms |
+| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
 
 ---
 
-## ആർക്കിടെക്ചർ
+## Architecture
 
 ```
-പങ്കിട്ട Rust കോർ (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher എൻക്രിപ്റ്റ് · ശൂന്യ ശൃംഖല
+luna-core/     Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
+ios-app/       SwiftUI iOS 16+ — Keychain — HealthKit (optional)
+android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
 ```
+
+**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
+
+---
+
+## Language: മലയാളം
+
+> സ്വകാര്യത ആദരിക്കുന്ന ആർത്തവ ചക്ര ട്രാക്കിങ് — സൂജ്ഞ സെർവർ, സൂജ്ഞ ക്ലൗഡ്, സൂജ്ഞ വിട്ടുവീഴ്ച.
+
+---
+
+## Build
+
+```bash
+cargo test -p luna-core              # 41 Rust tests
+cd ios-app && xcodebuild build       # iOS (Xcode 15+)
+cd android-app && ./gradlew assembleDebug  # Android
+```
+
+---
+
+## i18n — 40 languages supported
+
+RTL: Arabic · Hebrew · Persian (full layout mirror)
+WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — [LICENSE](../../README.md)
+MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
 
-> ⚠️ ഈ ആപ്പ് മെഡിക്കൽ ഉപദേശം നൽകുന്നില്ല.
+> This app does not provide medical advice. Consult a healthcare professional for medical concerns.

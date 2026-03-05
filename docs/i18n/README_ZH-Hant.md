@@ -1,36 +1,71 @@
 <div align="center">
-# 🌙 LUNA — 繁體中文
-**無伺服器、無雲端、無妥協的月經週期追蹤。**
+
+# LUNA
+
+**注重隱私的月經週期追蹤 — 零伺服器、零雲端、零妥協。**
+
+[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
+[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
+
+[← README](../../README.md)
+
 </div>
 
 ---
-→ [🇬🇧 English (full docs)](../../README.md)
 
----
-## 🔒 Privacy
+## Privacy / Datenschutz / Privacidad / Confidentialité
 
 | | |
 |---|---|
-| 🔒 | **零伺服器。** 無需帳戶，無外部依賴。100% 離線運行。 |
-| 🔐 | **完全加密。** AES-256-GCM + Argon2id。您的PIN永不離開裝置。 |
-| 📱 | **100% 本地儲存。** 所有資料保存在您的裝置上。唯一例外：推播通知（選用，不傳輸資料）。 |
-| ☁️ | **加密雲端備份。** iCloud/Google Drive 備份是不透明的密文，即使 Apple/Google 也無法讀取。 |
-| 🚫 | **零資料共享。** 無分析、無遙測、無廣告。 |
-| 🌍 | **完全開源。** MIT/Apache-2.0。每行程式碼均可稽核。 |
-| 🔬 | **基於科學。** 預測基於同行評審研究。無偽科學。 |
+| Zero server | No account · No registration · No external dependency · 100% offline |
+| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
+| Local storage | All data on your device · SQLCipher encrypted database |
+| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
+| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
+| Open source | MIT/Apache-2.0 · Every line auditable |
+| Panic wipe | Destroys vault + keys in < 500ms |
+| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
 
 ---
 
-## 架構
+## Architecture
 
 ```
-共享Rust核心 (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher加密 · 零網路
+luna-core/     Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
+ios-app/       SwiftUI iOS 16+ — Keychain — HealthKit (optional)
+android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
 ```
+
+**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
+
+---
+
+## Language: 繁體中文
+
+> 注重隱私的月經週期追蹤 — 零伺服器、零雲端、零妥協。
+
+---
+
+## Build
+
+```bash
+cargo test -p luna-core              # 41 Rust tests
+cd ios-app && xcodebuild build       # iOS (Xcode 15+)
+cd android-app && ./gradlew assembleDebug  # Android
+```
+
+---
+
+## i18n — 40 languages supported
+
+RTL: Arabic · Hebrew · Persian (full layout mirror)
+WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — [LICENSE](../../README.md)
+MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
 
-> ⚠️ 本應用程式不提供醫療建議。
+> This app does not provide medical advice. Consult a healthcare professional for medical concerns.

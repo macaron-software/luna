@@ -1,6 +1,7 @@
 package app.luna.ui
 
 import android.os.Bundle
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -107,6 +108,20 @@ class HomeFragment : Fragment() {
             binding.insightText.text = it
         } ?: run {
             binding.insightCard.visibility = View.GONE
+        }
+
+        // Tracking mode banners
+        val trackingMode = requireContext()
+            .getSharedPreferences("luna_prefs", android.content.Context.MODE_PRIVATE)
+            .getString("tracking_mode", "regular") ?: "regular"
+
+        binding.perimenopauseBanner.visibility =
+            if (trackingMode == TrackingModeActivity.MODE_PERIMENOPAUSE) View.VISIBLE else View.GONE
+        binding.ttcBanner.visibility =
+            if (trackingMode == TrackingModeActivity.MODE_TTC) View.VISIBLE else View.GONE
+
+        binding.perimenopauseBannerArrow.setOnClickListener {
+            startActivity(Intent(requireContext(), TrackingModeActivity::class.java))
         }
 
         // a11y : annoncer le changement de phase si nouveau

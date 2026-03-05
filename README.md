@@ -8,7 +8,7 @@
 [![License: MIT/Apache-2.0](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/rust-1.93+-orange.svg)](https://www.rust-lang.org)
 [![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](ios-app/)
-[![Android](https://img.shields.io/badge/Android-API%2026%2B-green.svg)](android-app/)
+[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](android-app/)
 
 </div>
 

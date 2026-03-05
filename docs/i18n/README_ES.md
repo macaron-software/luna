@@ -1,36 +1,71 @@
 <div align="center">
-# 🌙 LUNA — Español
-**Seguimiento del ciclo sin servidor, sin nube, sin compromisos.**
+
+# LUNA
+
+**Seguimiento del ciclo menstrual respetuoso con la privacidad — sin servidor, sin nube, sin compromisos.**
+
+[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
+[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
+
+[← README](../../README.md)
+
 </div>
 
 ---
-→ [🇬🇧 English (full docs)](../../README.md)
 
----
-## 🔒 Privacy
+## Privacy / Datenschutz / Privacidad / Confidentialité
 
 | | |
 |---|---|
-| 🔒 | **Cero servidor.** Sin cuenta, sin dependencia externa. Funciona 100 % sin conexión. |
-| 🔐 | **Totalmente cifrado.** AES-256-GCM + Argon2id. Tu PIN nunca sale del dispositivo. |
-| 📱 | **100 % local.** Todos los datos permanecen en tu dispositivo. La única excepción: notificaciones push (opcionales, sin datos transmitidos). |
-| ☁️ | **Copia de seguridad cloud cifrada.** iCloud/Google Drive = blob cifrado opaco. Incluso Apple/Google no pueden leerlo. |
-| 🚫 | **Cero compartición de datos.** Sin analítica, sin telemetría, sin publicidad. |
-| 🌍 | **100 % código abierto.** MIT/Apache-2.0. Cada línea de código es auditable. |
-| 🔬 | **Basado en ciencia.** Predicciones fundamentadas en estudios revisados por pares. Sin pseudociencia. |
+| Zero server | No account · No registration · No external dependency · 100% offline |
+| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
+| Local storage | All data on your device · SQLCipher encrypted database |
+| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
+| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
+| Open source | MIT/Apache-2.0 · Every line auditable |
+| Panic wipe | Destroys vault + keys in < 500ms |
+| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
 
 ---
 
-## Arquitectura
+## Architecture
 
 ```
-Núcleo Rust compartido (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher cifrado · cero red
+luna-core/     Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
+ios-app/       SwiftUI iOS 16+ — Keychain — HealthKit (optional)
+android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
 ```
+
+**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
+
+---
+
+## Language: Español
+
+> Seguimiento del ciclo menstrual respetuoso con la privacidad — sin servidor, sin nube, sin compromisos.
+
+---
+
+## Build
+
+```bash
+cargo test -p luna-core              # 41 Rust tests
+cd ios-app && xcodebuild build       # iOS (Xcode 15+)
+cd android-app && ./gradlew assembleDebug  # Android
+```
+
+---
+
+## i18n — 40 languages supported
+
+RTL: Arabic · Hebrew · Persian (full layout mirror)
+WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — [LICENSE](../../README.md)
+MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
 
-> ⚠️ Esta aplicación no ofrece consejo médico.
+> This app does not provide medical advice. Consult a healthcare professional for medical concerns.

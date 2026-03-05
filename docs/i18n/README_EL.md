@@ -1,36 +1,71 @@
 <div align="center">
-# 🌙 LUNA — Ελληνικά
-**Παρακολούθηση κύκλου χωρίς διακομιστή, χωρίς cloud, χωρίς συμβιβασμούς.**
+
+# LUNA
+
+**Παρακολούθηση εμμηνορρυσιακού κύκλου με σεβασμό στην ιδιωτικότητα — μηδέν διακομιστές, μηδέν cloud, μηδέν συμβιβασμοί.**
+
+[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
+[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
+
+[← README](../../README.md)
+
 </div>
 
 ---
-→ [🇬🇧 English (full docs)](../../README.md)
 
----
-## 🔒 Privacy
+## Privacy / Datenschutz / Privacidad / Confidentialité
 
 | | |
 |---|---|
-| 🔒 | **Μηδέν διακομιστές.** Χωρίς λογαριασμό, χωρίς εξωτερικές εξαρτήσεις. Λειτουργεί 100% offline. |
-| 🔐 | **Πλήρως κρυπτογραφημένο.** AES-256-GCM + Argon2id. Το PIN σας δεν φεύγει ποτέ από τη συσκευή. |
-| 📱 | **100% τοπικό.** Όλα τα δεδομένα παραμένουν στη συσκευή σας. Μοναδική εξαίρεση: push ειδοποιήσεις (προαιρετικές, χωρίς μεταφορά δεδομένων). |
-| ☁️ | **Κρυπτογραφημένο backup στο cloud.** iCloud/Google Drive = αδιαφανές κρυπτογραφημένο blob. Ακόμα και Apple/Google δεν μπορούν να το διαβάσουν. |
-| 🚫 | **Μηδέν κοινοποίηση δεδομένων.** Χωρίς ανάλυση, χωρίς τηλεμετρία, χωρίς διαφήμιση. |
-| 🌍 | **100% ανοιχτού κώδικα.** MIT/Apache-2.0. Κάθε γραμμή κώδικα είναι ελέγξιμη. |
-| 🔬 | **Επιστημονικά τεκμηριωμένο.** Προβλέψεις βασισμένες σε αξιολογημένη έρευνα. Χωρίς ψευδοεπιστήμη. |
+| Zero server | No account · No registration · No external dependency · 100% offline |
+| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
+| Local storage | All data on your device · SQLCipher encrypted database |
+| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
+| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
+| Open source | MIT/Apache-2.0 · Every line auditable |
+| Panic wipe | Destroys vault + keys in < 500ms |
+| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
 
 ---
 
-## Αρχιτεκτονική
+## Architecture
 
 ```
-Κοινός πυρήνας Rust (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher κρυπτογραφημένο · μηδέν δίκτυο
+luna-core/     Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
+ios-app/       SwiftUI iOS 16+ — Keychain — HealthKit (optional)
+android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
 ```
+
+**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
+
+---
+
+## Language: Ελληνικά
+
+> Παρακολούθηση εμμηνορρυσιακού κύκλου με σεβασμό στην ιδιωτικότητα — μηδέν διακομιστές, μηδέν cloud, μηδέν συμβιβασμοί.
+
+---
+
+## Build
+
+```bash
+cargo test -p luna-core              # 41 Rust tests
+cd ios-app && xcodebuild build       # iOS (Xcode 15+)
+cd android-app && ./gradlew assembleDebug  # Android
+```
+
+---
+
+## i18n — 40 languages supported
+
+RTL: Arabic · Hebrew · Persian (full layout mirror)
+WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — [LICENSE](../../README.md)
+MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
 
-> ⚠️ Αυτή η εφαρμογή δεν παρέχει ιατρικές συμβουλές.
+> This app does not provide medical advice. Consult a healthcare professional for medical concerns.

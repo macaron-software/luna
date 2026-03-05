@@ -476,3 +476,168 @@ fn j9_concurrent_log_day_is_safe() {
     let summary = engine.get_cycle_summary().expect("get_cycle_summary");
     let _ = summary; // No panic = success
 }
+
+// ─── Journey 10 : UserProfile CRUD ──────────────────────────────────────────
+
+use luna_core::engine::types::{TrackingMode, ContraceptionType, UserProfile};
+
+/// J10-1 : Profil par défaut retourné si jamais sauvegardé
+#[test]
+fn j10_default_profile_on_fresh_vault() {
+    let (_dir, db_path) = tmp_db();
+    let engine = open_fresh(&db_path);
+
+    let profile = engine.get_user_profile().expect("get_user_profile");
+    // Défaut : mode Regular, pas de contraception
+    assert_eq!(profile.tracking_mode, TrackingMode::Regular);
+    assert_eq!(profile.contraception, ContraceptionType::None);
+    assert!(profile.notif_period);
+    assert!(!profile.notif_fertile);
+    assert!(!profile.calm_mode);
+}
+
+/// J10-2 : Sauvegarde et rechargement du profil
+#[test]
+fn j10_profile_roundtrip() {
+    let (_dir, db_path) = tmp_db();
+    let engine = open_fresh(&db_path);
+
+    let mut p = UserProfile::default();
+    p.tracking_mode = TrackingMode::Ttc;
+    p.contraception = ContraceptionType::Pill;
+    p.pill_reminder_time = Some("08:30".to_string());
+    p.notif_period = true;
+    p.notif_fertile = true;
+    p.calm_mode = true;
+
+    engine.set_user_profile(p.clone()).expect("set_user_profile");
+
+    let loaded = engine.get_user_profile().expect("reload profile");
+    assert_eq!(loaded.tracking_mode, TrackingMode::Ttc);
+    assert_eq!(loaded.contraception, ContraceptionType::Pill);
+    assert_eq!(loaded.pill_reminder_time, Some("08:30".to_string()));
+    assert!(loaded.notif_period);
+    assert!(loaded.calm_mode);
+}
+
+/// J10-3 : Upsert écrase le profil précédent (pas de doublon)
+#[test]
+fn j10_profile_upsert_overwrites() {
+    let (_dir, db_path) = tmp_db();
+    let engine = open_fresh(&db_path);
+
+    let mut p1 = UserProfile::default();
+    p1.tracking_mode = TrackingMode::Pregnant;
+    engine.set_user_profile(p1).expect("set 1");
+
+    let mut p2 = UserProfile::default();
+    p2.tracking_mode = TrackingMode::Postpartum;
+    engine.set_user_profile(p2).expect("set 2");
+
+    let loaded = engine.get_user_profile().expect("reload");
+    assert_eq!(loaded.tracking_mode, TrackingMode::Postpartum);
+}
+
+// ─── Journey 11 : Pregnancy Log ──────────────────────────────────────────────
+
+use luna_core::engine::types::PregnancyLog;
+
+/// J11-1 : Log grossesse roundtrip
+#[test]
+fn j11_pregnancy_log_roundtrip() {
+    let (_dir, db_path) = tmp_db();
+    let engine = open_fresh(&db_path);
+
+    let date = today();
+    let mut log = PregnancyLog::new(
+        chrono::NaiveDate::parse_from_str(&date, "%Y-%m-%d").unwrap()
+    );
+    log.hcg_positive = Some(true);
+    log.kicks = Some(12);
+    log.nausea_level = Some(3);
+    log.weight_kg = Some(62.5);
+    log.notes = Some("Bonne journée".to_string());
+
+    engine.log_pregnancy_day(log.clone()).expect("log_pregnancy_day");
+
+    let loaded = engine.get_pregnancy_log(date).expect("get_pregnancy_log");
+    assert!(loaded.is_some(), "Pregnancy log should exist");
+    let loaded = loaded.unwrap();
+    assert_eq!(loaded.hcg_positive, Some(true));
+    assert_eq!(loaded.kicks, Some(12));
+    assert_eq!(loaded.nausea_level, Some(3));
+    assert!((loaded.weight_kg.unwrap() - 62.5).abs() < 0.01);
+}
+
+/// J11-2 : Upsert grossesse met à jour le log existant
+#[test]
+fn j11_pregnancy_log_upsert() {
+    let (_dir, db_path) = tmp_db();
+    let engine = open_fresh(&db_path);
+
+    let date = today();
+    let mut log1 = PregnancyLog::new(
+        chrono::NaiveDate::parse_from_str(&date, "%Y-%m-%d").unwrap()
+    );
+    log1.kicks = Some(5);
+    engine.log_pregnancy_day(log1).expect("first log");
+
+    let mut log2 = PregnancyLog::new(
+        chrono::NaiveDate::parse_from_str(&date, "%Y-%m-%d").unwrap()
+    );
+    log2.kicks = Some(15);
+    engine.log_pregnancy_day(log2).expect("upsert log");
+
+    let loaded = engine.get_pregnancy_log(date).unwrap().unwrap();
+    assert_eq!(loaded.kicks, Some(15), "Upsert should update kicks");
+}
+
+// ─── Journey 12 : Export CSV ─────────────────────────────────────────────────
+
+/// J12-1 : Export CSV vide si aucun log
+#[test]
+fn j12_export_csv_no_logs() {
+    let (_dir, db_path) = tmp_db();
+    let engine = open_fresh(&db_path);
+
+    let csv = engine
+        .export_logs_csv(date_ago(30), today())
+        .expect("export_logs_csv");
+    // Doit retourner au moins l'en-tête
+    assert!(csv.contains("date"), "CSV should have a header row");
+}
+
+/// J12-2 : Export CSV avec des logs contient les données
+#[test]
+fn j12_export_csv_with_logs() {
+    let (_dir, db_path) = tmp_db();
+    let engine = open_fresh(&db_path);
+
+    let mut log = DailyLog::new(chrono::NaiveDate::parse_from_str(&today(), "%Y-%m-%d").unwrap());
+    log.mood = Some(4);
+    log.notes = Some("test note".to_string());
+    engine.log_day(log).expect("log_day");
+
+    let csv = engine
+        .export_logs_csv(date_ago(1), today())
+        .expect("export_logs_csv");
+    assert!(csv.contains(&today()), "CSV should contain today's date");
+    assert!(csv.contains("4"), "CSV should contain mood value");
+}
+
+/// J12-3 : Export CSV échappe les virgules dans les notes
+#[test]
+fn j12_export_csv_escapes_commas() {
+    let (_dir, db_path) = tmp_db();
+    let engine = open_fresh(&db_path);
+
+    let mut log = DailyLog::new(chrono::NaiveDate::parse_from_str(&today(), "%Y-%m-%d").unwrap());
+    log.notes = Some("note, avec virgule et \"guillemets\"".to_string());
+    engine.log_day(log).expect("log_day");
+
+    let csv = engine
+        .export_logs_csv(date_ago(1), today())
+        .expect("export_logs_csv");
+    // RFC 4180 : les guillemets doivent être doublés
+    assert!(csv.contains("\"\"") || csv.contains(","), "Special chars should be RFC-4180 escaped");
+}

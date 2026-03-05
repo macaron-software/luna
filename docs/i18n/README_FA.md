@@ -1,36 +1,71 @@
 <div align="center" dir="rtl">
-# 🌙 LUNA — فارسی
-**ردیابی چرخه بدون سرور، بدون ابر، بدون سازش.**
+
+# LUNA
+
+**ردیابی چرخه قاعدگی با احترام به حریم خصوصی — بدون سرور، بدون ابر، بدون مصالحه.**
+
+[![iOS](https://img.shields.io/badge/iOS-16%2B-lightblue.svg)](../../ios-app/)
+[![Android](https://img.shields.io/badge/Android-API%2023%2B-green.svg)](../../android-app/)
+[![License](https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-blue.svg)](../../LICENSE-MIT)
+
+[← README](../../README.md)
+
 </div>
 
 ---
-→ [🇬🇧 English (full docs)](../../README.md)
 
----
-## 🔒 Privacy
+## Privacy / Datenschutz / Privacidad / Confidentialité
 
 | | |
 |---|---|
-| 🔒 | **صفر سرور.** بدون حساب، بدون وابستگی خارجی. 100٪ آفلاین کار می‌کند. |
-| 🔐 | **کاملاً رمزگذاری شده.** AES-256-GCM + Argon2id. پین شما هرگز دستگاه را ترک نمی‌کند. |
-| 📱 | **100٪ محلی.** همه داده‌ها روی دستگاه شما می‌مانند. تنها استثنا: اعلان‌های فشاری (اختیاری، بدون ارسال داده). |
-| ☁️ | **پشتیبان‌گیری ابری رمزگذاری‌شده.** iCloud/Google Drive = بلوک رمزگذاری‌شده کدر. حتی Apple/Google هم نمی‌توانند آن را بخوانند. |
-| �� | **صفر اشتراک‌گذاری داده.** بدون تحلیلگر، بدون تله‌متری، بدون تبلیغات. |
-| 🌍 | **کاملاً متن‌باز.** MIT/Apache-2.0. هر خط کد قابل بازرسی است. |
-| 🔬 | **مبتنی بر علم.** پیش‌بینی‌ها بر اساس تحقیقات بررسی‌شده توسط همتایان. بدون شبه‌علم. |
+| Zero server | No account · No registration · No external dependency · 100% offline |
+| AES-256-GCM | Argon2id key derivation · HKDF-SHA256 subkeys · Keys zeroized on drop |
+| Local storage | All data on your device · SQLCipher encrypted database |
+| Encrypted backup | iCloud/Google Drive blob — opaque ciphertext even to Apple/Google |
+| Zero sharing | No analytics · No telemetry · No ads SDK · No crash reporting |
+| Open source | MIT/Apache-2.0 · Every line auditable |
+| Panic wipe | Destroys vault + keys in < 500ms |
+| Science | Evidence-based predictions · Weighted moving average · No pseudoscience |
 
 ---
 
-## معماری
+## Architecture
 
 ```
-هسته Rust مشترک (UniFFI) · SwiftUI iOS · Kotlin Android · SQLCipher رمزگذاری‌شده · صفر شبکه
+luna-core/     Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
+ios-app/       SwiftUI iOS 16+ — Keychain — HealthKit (optional)
+android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
 ```
+
+**41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
+
+---
+
+## Language: فارسی
+
+> ردیابی چرخه قاعدگی با احترام به حریم خصوصی — بدون سرور، بدون ابر، بدون مصالحه.
+
+---
+
+## Build
+
+```bash
+cargo test -p luna-core              # 41 Rust tests
+cd ios-app && xcodebuild build       # iOS (Xcode 15+)
+cd android-app && ./gradlew assembleDebug  # Android
+```
+
+---
+
+## i18n — 40 languages supported
+
+RTL: Arabic · Hebrew · Persian (full layout mirror)
+WCAG 2.2 AA · Calm Mode (psy accessibility) · Reduce Motion
 
 ---
 
 ## License
 
-MIT / Apache-2.0 — [LICENSE](../../README.md)
+MIT / Apache-2.0 — Copyright © 2026 LUNA contributors
 
-> ⚠️ این برنامه مشاوره پزشکی ارائه نمی‌دهد.
+> This app does not provide medical advice. Consult a healthcare professional for medical concerns.

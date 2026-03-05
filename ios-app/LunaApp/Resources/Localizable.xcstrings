@@ -283,67 +283,292 @@
     },
     "mood_very_bad": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Tres mauvaise" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Very bad" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "سيء جدا" } },
-        "de": { "stringUnit": { "state": "translated", "value": "Sehr schlecht" } },
-        "es": { "stringUnit": { "state": "translated", "value": "Muy mal" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "最悪" } },
-        "pt-BR": { "stringUnit": { "state": "translated", "value": "Muito mal" } },
-        "zh-Hans": { "stringUnit": { "state": "translated", "value": "很差" } },
-        "ko": { "stringUnit": { "state": "translated", "value": "매우 나쁨" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tres mauvaise"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Very bad"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سيء جدا"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sehr schlecht"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muy mal"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最悪"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muito mal"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "很差"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "매우 나쁨"
+          }
+        }
       }
     },
     "mood_bad": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Mauvaise" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Bad" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "سيء" } },
-        "de": { "stringUnit": { "state": "translated", "value": "Schlecht" } },
-        "es": { "stringUnit": { "state": "translated", "value": "Mal" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "悪い" } },
-        "pt-BR": { "stringUnit": { "state": "translated", "value": "Mal" } },
-        "zh-Hans": { "stringUnit": { "state": "translated", "value": "差" } },
-        "ko": { "stringUnit": { "state": "translated", "value": "나쁨" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mauvaise"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bad"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سيء"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlecht"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mal"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "悪い"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mal"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "差"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "나쁨"
+          }
+        }
       }
     },
     "mood_neutral": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Neutre" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Neutral" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "محايد" } },
-        "de": { "stringUnit": { "state": "translated", "value": "Neutral" } },
-        "es": { "stringUnit": { "state": "translated", "value": "Neutral" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "普通" } },
-        "pt-BR": { "stringUnit": { "state": "translated", "value": "Neutro" } },
-        "zh-Hans": { "stringUnit": { "state": "translated", "value": "一般" } },
-        "ko": { "stringUnit": { "state": "translated", "value": "보통" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neutre"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neutral"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "محايد"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neutral"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neutral"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "普通"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neutro"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一般"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "보통"
+          }
+        }
       }
     },
     "mood_good": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Bonne" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Good" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "جيد" } },
-        "de": { "stringUnit": { "state": "translated", "value": "Gut" } },
-        "es": { "stringUnit": { "state": "translated", "value": "Bien" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "良い" } },
-        "pt-BR": { "stringUnit": { "state": "translated", "value": "Bem" } },
-        "zh-Hans": { "stringUnit": { "state": "translated", "value": "好" } },
-        "ko": { "stringUnit": { "state": "translated", "value": "좋음" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bonne"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Good"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جيد"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gut"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bien"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "良い"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bem"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "好"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "좋음"
+          }
+        }
       }
     },
     "mood_great": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Excellente" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Great" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "ممتاز" } },
-        "de": { "stringUnit": { "state": "translated", "value": "Ausgezeichnet" } },
-        "es": { "stringUnit": { "state": "translated", "value": "Excelente" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "最高" } },
-        "pt-BR": { "stringUnit": { "state": "translated", "value": "Excelente" } },
-        "zh-Hans": { "stringUnit": { "state": "translated", "value": "极好" } },
-        "ko": { "stringUnit": { "state": "translated", "value": "매우 좋음" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excellente"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Great"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ممتاز"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ausgezeichnet"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excelente"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最高"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excelente"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "极好"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "매우 좋음"
+          }
+        }
       }
     },
     "energy_label": {
@@ -1027,6 +1252,7 @@
       }
     },
     "save_button": {
+      "extractionState": "manual",
       "localizations": {
         "fr": {
           "stringUnit": {
@@ -1038,30 +1264,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Save"
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "حفظ"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Speichern"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guardar"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "保存"
           }
         }
       }
@@ -2668,12 +2870,42 @@
     },
     "settings_section_wellbeing": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Bien-être" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Wellbeing" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "الرفاهية" } },
-        "de": { "stringUnit": { "state": "translated", "value": "Wohlbefinden" } },
-        "es": { "stringUnit": { "state": "translated", "value": "Bienestar" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "ウェルビーイング" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bien-être"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wellbeing"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الرفاهية"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wohlbefinden"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bienestar"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウェルビーイング"
+          }
+        }
       }
     },
     "settings_section_notifications": {
@@ -3958,429 +4190,1492 @@
     },
     "regularity_very_regular": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Très régulière" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Very regular" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "منتظمة جداً" } },
-        "de": { "stringUnit": { "state": "translated", "value": "Sehr regelmäßig" } },
-        "es": { "stringUnit": { "state": "translated", "value": "Muy regular" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "非常に規則的" } },
-        "pt-BR": { "stringUnit": { "state": "translated", "value": "Muito regular" } },
-        "zh-Hans": { "stringUnit": { "state": "translated", "value": "非常规律" } },
-        "zh-Hant": { "stringUnit": { "state": "translated", "value": "非常規律" } },
-        "ko": { "stringUnit": { "state": "translated", "value": "매우 규칙적" } },
-        "hi": { "stringUnit": { "state": "translated", "value": "बहुत नियमित" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Très régulière"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Very regular"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "منتظمة جداً"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sehr regelmäßig"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muy regular"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "非常に規則的"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muito regular"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "非常规律"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "非常規律"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "매우 규칙적"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बहुत नियमित"
+          }
+        }
       }
     },
     "regularity_regular": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Régulière" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Regular" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "منتظمة" } },
-        "de": { "stringUnit": { "state": "translated", "value": "Regelmäßig" } },
-        "es": { "stringUnit": { "state": "translated", "value": "Regular" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "規則的" } },
-        "pt-BR": { "stringUnit": { "state": "translated", "value": "Regular" } },
-        "zh-Hans": { "stringUnit": { "state": "translated", "value": "规律" } },
-        "zh-Hant": { "stringUnit": { "state": "translated", "value": "規律" } },
-        "ko": { "stringUnit": { "state": "translated", "value": "규칙적" } },
-        "hi": { "stringUnit": { "state": "translated", "value": "नियमित" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Régulière"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regular"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "منتظمة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regelmäßig"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regular"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "規則的"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regular"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "规律"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "規律"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "규칙적"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नियमित"
+          }
+        }
       }
     },
     "regularity_irregular": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Irrégulière" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Irregular" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "غير منتظمة" } },
-        "de": { "stringUnit": { "state": "translated", "value": "Unregelmäßig" } },
-        "es": { "stringUnit": { "state": "translated", "value": "Irregular" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "不規則" } },
-        "pt-BR": { "stringUnit": { "state": "translated", "value": "Irregular" } },
-        "zh-Hans": { "stringUnit": { "state": "translated", "value": "不规律" } },
-        "zh-Hant": { "stringUnit": { "state": "translated", "value": "不規律" } },
-        "ko": { "stringUnit": { "state": "translated", "value": "불규칙" } },
-        "hi": { "stringUnit": { "state": "translated", "value": "अनियमित" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Irrégulière"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Irregular"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "غير منتظمة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unregelmäßig"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Irregular"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不規則"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Irregular"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不规律"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不規律"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "불규칙"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अनियमित"
+          }
+        }
       }
     },
     "regularity_unknown": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Je ne sais pas encore" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Not sure yet" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "لست متأكدة بعد" } },
-        "de": { "stringUnit": { "state": "translated", "value": "Noch nicht sicher" } },
-        "es": { "stringUnit": { "state": "translated", "value": "No estoy segura aún" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "まだわからない" } },
-        "pt-BR": { "stringUnit": { "state": "translated", "value": "Ainda não sei" } },
-        "zh-Hans": { "stringUnit": { "state": "translated", "value": "还不确定" } },
-        "zh-Hant": { "stringUnit": { "state": "translated", "value": "還不確定" } },
-        "ko": { "stringUnit": { "state": "translated", "value": "아직 모름" } },
-        "hi": { "stringUnit": { "state": "translated", "value": "अभी पता नहीं" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je ne sais pas encore"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not sure yet"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لست متأكدة بعد"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch nicht sicher"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No estoy segura aún"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "まだわからない"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não sei"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还不确定"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "還不確定"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "아직 모름"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अभी पता नहीं"
+          }
+        }
       }
     },
     "day_abbr": {
       "comment": "Abbreviation for 'days' used in period duration selector (e.g. '5d' or '5j')",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "j" } },
-        "en": { "stringUnit": { "state": "translated", "value": "d" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "ي" } },
-        "de": { "stringUnit": { "state": "translated", "value": "T" } },
-        "es": { "stringUnit": { "state": "translated", "value": "d" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "日" } },
-        "pt-BR": { "stringUnit": { "state": "translated", "value": "d" } },
-        "zh-Hans": { "stringUnit": { "state": "translated", "value": "天" } },
-        "zh-Hant": { "stringUnit": { "state": "translated", "value": "天" } },
-        "ko": { "stringUnit": { "state": "translated", "value": "일" } },
-        "hi": { "stringUnit": { "state": "translated", "value": "दि" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "j"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "d"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ي"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "T"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "d"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "d"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "天"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "일"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दि"
+          }
+        }
       }
     },
     "settings_calm_mode": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Mode calme" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Calm mode" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "الوضع الهادئ" } },
-        "de": { "stringUnit": { "state": "translated", "value": "Ruhiger Modus" } },
-        "es": { "stringUnit": { "state": "translated", "value": "Modo calma" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "落ち着きモード" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode calme"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calm mode"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الوضع الهادئ"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruhiger Modus"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo calma"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "落ち着きモード"
+          }
+        }
       }
     },
     "settings_calm_mode_description": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Masquer les prédictions pour réduire l'anxiété" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Hide predictions to reduce anxiety" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "إخفاء التوقعات لتقليل القلق" } },
-        "de": { "stringUnit": { "state": "translated", "value": "Vorhersagen ausblenden, um Angst zu reduzieren" } },
-        "es": { "stringUnit": { "state": "translated", "value": "Ocultar predicciones para reducir la ansiedad" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "不安を軽減するために予測を非表示にする" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masquer les prédictions pour réduire l'anxiété"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide predictions to reduce anxiety"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إخفاء التوقعات لتقليل القلق"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vorhersagen ausblenden, um Angst zu reduzieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar predicciones para reducir la ansiedad"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不安を軽減するために予測を非表示にする"
+          }
+        }
       }
     },
     "home_calm_no_prediction": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Mode calme actif · prédictions masquées" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Calm mode on · predictions hidden" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "الوضع الهادئ نشط · التوقعات مخفية" } },
-        "de": { "stringUnit": { "state": "translated", "value": "Ruhiger Modus aktiv · Vorhersagen ausgeblendet" } },
-        "es": { "stringUnit": { "state": "translated", "value": "Modo calma activo · predicciones ocultas" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "落ち着きモード中 · 予測を非表示" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode calme actif · prédictions masquées"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calm mode on · predictions hidden"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الوضع الهادئ نشط · التوقعات مخفية"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruhiger Modus aktiv · Vorhersagen ausgeblendet"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo calma activo · predicciones ocultas"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "落ち着きモード中 · 予測を非表示"
+          }
+        }
       }
     },
     "a11y_reduce_motion_hint": {
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Animations réduites activées" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Reduced motion enabled" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Animations réduites activées"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reduced motion enabled"
+          }
+        }
       }
     },
     "notif_period_title": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Vos règles arrivent bientôt" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Your period is coming soon" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos règles arrivent bientôt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your period is coming soon"
+          }
+        }
       }
     },
     "notif_period_body": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Préparez-vous, les règles sont attendues dans 2 jours." } },
-        "en": { "stringUnit": { "state": "translated", "value": "Get ready, your period is expected in 2 days." } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Préparez-vous, les règles sont attendues dans 2 jours."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get ready, your period is expected in 2 days."
+          }
+        }
       }
     },
     "notif_fertile_title": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Fenêtre fertile" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Fertile window" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fenêtre fertile"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fertile window"
+          }
+        }
       }
     },
     "notif_fertile_body": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Votre fenêtre fertile commence aujourd'hui." } },
-        "en": { "stringUnit": { "state": "translated", "value": "Your fertile window starts today." } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre fenêtre fertile commence aujourd'hui."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your fertile window starts today."
+          }
+        }
       }
     },
     "notif_pill_title": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Rappel pilule" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Pill reminder" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rappel pilule"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pill reminder"
+          }
+        }
       }
     },
     "notif_pill_body": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "N'oubliez pas votre contraception." } },
-        "en": { "stringUnit": { "state": "translated", "value": "Don't forget your contraception." } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "N'oubliez pas votre contraception."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Don't forget your contraception."
+          }
+        }
       }
     },
     "charts_section_title": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Tendances" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Trends" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tendances"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trends"
+          }
+        }
       }
     },
     "charts_cycle_lengths": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Longueur des cycles" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Cycle lengths" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longueur des cycles"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle lengths"
+          }
+        }
       }
     },
     "charts_bbt_title": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Température basale" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Basal body temperature" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Température basale"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basal body temperature"
+          }
+        }
       }
     },
     "charts_cycle_lengths_a11y": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Graphique des longueurs de cycles" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Cycle lengths chart" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Graphique des longueurs de cycles"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle lengths chart"
+          }
+        }
       }
     },
     "charts_bbt_a11y": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Graphique de température basale" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Basal body temperature chart" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Graphique de température basale"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basal body temperature chart"
+          }
+        }
       }
     },
     "tracking_mode_regular": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Cycle standard" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Standard cycle" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle standard"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard cycle"
+          }
+        }
       }
     },
     "tracking_mode_ttc": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Conception (TTC)" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Trying to conceive (TTC)" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conception (TTC)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trying to conceive (TTC)"
+          }
+        }
       }
     },
     "tracking_mode_pregnant": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Grossesse" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Pregnancy" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grossesse"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregnancy"
+          }
+        }
       }
     },
     "tracking_mode_postpartum": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Post-partum" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Postpartum" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Post-partum"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Postpartum"
+          }
+        }
       }
     },
     "tracking_mode_perimenopause": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Péri-ménopause" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Perimenopause" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Péri-ménopause"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perimenopause"
+          }
+        }
       }
     },
     "tracking_mode_section_header": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Mode de suivi" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Tracking mode" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode de suivi"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tracking mode"
+          }
+        }
       }
     },
     "tracking_edd_label": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Activer la date prévue d'accouchement" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Enable estimated due date" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activer la date prévue d'accouchement"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable estimated due date"
+          }
+        }
       }
     },
     "tracking_edd_date": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Date prévue" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Due date" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date prévue"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Due date"
+          }
+        }
       }
     },
     "tracking_edd_section": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Date d'accouchement" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Due date" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date d'accouchement"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Due date"
+          }
+        }
       }
     },
     "settings_tracking_mode": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Mode de suivi" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Tracking mode" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode de suivi"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tracking mode"
+          }
+        }
       }
     },
     "settings_pill_reminder_section": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Rappel contraception" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Contraception reminder" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rappel contraception"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contraception reminder"
+          }
+        }
       }
     },
     "settings_pill_reminder_toggle": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Rappel quotidien" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Daily reminder" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rappel quotidien"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daily reminder"
+          }
+        }
       }
     },
     "settings_pill_time": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Heure du rappel" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Reminder time" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heure du rappel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reminder time"
+          }
+        }
       }
     },
     "settings_healthkit_section": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Santé (HealthKit)" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Health (HealthKit)" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Santé (HealthKit)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Health (HealthKit)"
+          }
+        }
       }
     },
     "settings_healthkit_toggle": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Synchroniser avec Santé" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Sync with Health" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synchroniser avec Santé"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync with Health"
+          }
+        }
       }
     },
     "home_pregnant_title": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Mode grossesse actif" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Pregnancy mode active" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode grossesse actif"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregnancy mode active"
+          }
+        }
       }
     },
     "home_pregnant_subtitle": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Enregistrez vos symptômes du jour" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Log your symptoms for today" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrez vos symptômes du jour"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log your symptoms for today"
+          }
+        }
       }
     },
     "home_ttc_title": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Mode TTC actif" } },
-        "en": { "stringUnit": { "state": "translated", "value": "TTC mode active" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode TTC actif"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TTC mode active"
+          }
+        }
       }
     },
     "home_ttc_subtitle": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Votre fenêtre fertile est mise en avant" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Your fertile window is highlighted" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre fenêtre fertile est mise en avant"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your fertile window is highlighted"
+          }
+        }
       }
     },
     "home_log_button": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Journal" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Log" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Journal"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log"
+          }
+        }
       }
     },
     "pregnancy_log_title": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Journal grossesse" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Pregnancy log" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Journal grossesse"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregnancy log"
+          }
+        }
       }
     },
     "pregnancy_hcg_section": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Test hCG" } },
-        "en": { "stringUnit": { "state": "translated", "value": "hCG test" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test hCG"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hCG test"
+          }
+        }
       }
     },
     "pregnancy_hcg_result": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Résultat" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Result" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Résultat"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Result"
+          }
+        }
       }
     },
     "pregnancy_hcg_not_done": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Non réalisé" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Not done" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non réalisé"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not done"
+          }
+        }
       }
     },
     "pregnancy_hcg_positive": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Positif" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Positive" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Positif"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Positive"
+          }
+        }
       }
     },
     "pregnancy_hcg_negative": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Négatif" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Negative" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Négatif"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Negative"
+          }
+        }
       }
     },
     "pregnancy_kicks_section": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Mouvements foetaux" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Fetal movements" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mouvements foetaux"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fetal movements"
+          }
+        }
       }
     },
     "pregnancy_kicks_label": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Mouvements comptés" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Movements counted" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mouvements comptés"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movements counted"
+          }
+        }
       }
     },
     "pregnancy_nausea_section": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Nausées" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Nausea" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nausées"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nausea"
+          }
+        }
       }
     },
     "pregnancy_nausea_level": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Intensité des nausées" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Nausea intensity" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intensité des nausées"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nausea intensity"
+          }
+        }
       }
     },
     "pregnancy_weight_section": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Poids" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Weight" } }
-      }
-    },
-    "save_button": {
-      "extractionState": "manual",
-      "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Enregistrer" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Save" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poids"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight"
+          }
+        }
       }
     },
     "selected_a11y": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Sélectionné" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Selected" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sélectionné"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selected"
+          }
+        }
       }
     },
     "export_csv_label": {
       "extractionState": "manual",
       "localizations": {
-        "fr": { "stringUnit": { "state": "translated", "value": "Exporter en CSV" } },
-        "en": { "stringUnit": { "state": "translated", "value": "Export as CSV" } }
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporter en CSV"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export as CSV"
+          }
+        }
+      }
+    },
+    "perimeno.dashboard_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perimenopause Dashboard"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Perimenopause Dashboard"
+          }
+        }
+      }
+    },
+    "perimeno.key_symptoms": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Key Symptoms"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Key Symptoms"
+          }
+        }
+      }
+    },
+    "perimeno.log_today_button": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log Today"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Log Today"
+          }
+        }
+      }
+    },
+    "perimeno.cycle_variability": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle Variability"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cycle Variability"
+          }
+        }
+      }
+    },
+    "perimeno.variance_label": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Std deviation:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Std deviation:"
+          }
+        }
+      }
+    },
+    "perimeno.info_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About Perimenopause"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "About Perimenopause"
+          }
+        }
+      }
+    },
+    "perimeno.info_body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perimenopause is a natural transition. Cycle length variability is expected. Track your symptoms to identify patterns and discuss them with your healthcare provider."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Perimenopause is a natural transition. Cycle length variability is expected. Track your symptoms to identify patterns and discuss them with your healthcare provider."
+          }
+        }
+      }
+    },
+    "perimeno.banner_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perimenopause Mode"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Perimenopause Mode"
+          }
+        }
+      }
+    },
+    "perimeno.banner_subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap to open dashboard"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tap to open dashboard"
+          }
+        }
+      }
+    },
+    "perimeno.banner_a11y": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open perimenopause dashboard"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Open perimenopause dashboard"
+          }
+        }
+      }
+    },
+    "symptom.hot_flash": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hot flash"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hot flash"
+          }
+        }
+      }
+    },
+    "symptom.night_sweats": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Night sweats"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Night sweats"
+          }
+        }
+      }
+    },
+    "symptom.vaginal_dryness": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vaginal dryness"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vaginal dryness"
+          }
+        }
+      }
+    },
+    "a11y.log_symptom": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log symptom: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Log symptom: %@"
+          }
+        }
+      }
+    },
+    "unit.days": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "days"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "days"
+          }
+        }
       }
     }
   },
