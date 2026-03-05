@@ -194,18 +194,4 @@ struct PINEntryView: View {
     }
 }
 
-// MARK: - KeychainService (stub)
 
-final class KeychainService {
-    static let shared = KeychainService()
-
-    func readPin() -> String? {
-        // TODO: lire le PIN depuis le Keychain iOS
-        // query = [kSecClass: kSecClassGenericPassword, kSecAttrAccount: "luna_pin", ...]
-        return nil
-    }
-
-    func storePin(_ pin: String) {
-        // TODO: stocker le PIN dans le Keychain avec kSecAttrAccessibleWhenUnlockedThisDeviceOnly
-    }
-}
