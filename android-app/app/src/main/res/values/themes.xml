@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  themes.xml — LUNA Material You theme (light mode)
+  Base: Theme.Material3.DayNight — auto dark mode switching.
+  @source: Material Design 3 color system mapping to LUNA brand palette.
+  For night mode overrides, see values-night/themes.xml.
+-->
+<resources>
+
+    <style name="Theme.Luna" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Primary brand — plum-500 -->
+        <item name="colorPrimary">@color/luna_plum_500</item>
+        <item name="colorOnPrimary">@color/luna_neutral_0</item>
+        <item name="colorPrimaryContainer">@color/luna_plum_100</item>
+        <item name="colorOnPrimaryContainer">@color/luna_plum_900</item>
+
+        <!-- Secondary — amber -->
+        <item name="colorSecondary">@color/luna_amber_500</item>
+        <item name="colorOnSecondary">@color/luna_neutral_0</item>
+        <item name="colorSecondaryContainer">@color/luna_amber_400</item>
+        <item name="colorOnSecondaryContainer">@color/luna_neutral_900</item>
+
+        <!-- Tertiary — coral (ovulation accent) -->
+        <item name="colorTertiary">@color/luna_coral_500</item>
+        <item name="colorOnTertiary">@color/luna_neutral_0</item>
+        <item name="colorTertiaryContainer">@color/luna_coral_400</item>
+        <item name="colorOnTertiaryContainer">@color/luna_neutral_900</item>
+
+        <!-- Error — rose (NOT red, to avoid East Asian danger connotation by default) -->
+        <item name="colorError">@color/luna_rose_500</item>
+        <item name="colorOnError">@color/luna_neutral_0</item>
+        <item name="colorErrorContainer">@color/luna_rose_400</item>
+        <item name="colorOnErrorContainer">@color/luna_neutral_900</item>
+
+        <!-- Surface / background -->
+        <item name="colorSurface">@color/luna_neutral_0</item>
+        <item name="colorOnSurface">@color/luna_neutral_900</item>
+        <item name="colorSurfaceVariant">@color/luna_neutral_100</item>
+        <item name="colorOnSurfaceVariant">@color/luna_neutral_600</item>
+        <item name="android:colorBackground">@color/luna_neutral_50</item>
+        <item name="colorOnBackground">@color/luna_neutral_900</item>
+
+        <!-- Outline -->
+        <item name="colorOutline">@color/luna_neutral_300</item>
+        <item name="colorOutlineVariant">@color/luna_neutral_200</item>
+
+        <!-- Status bar + navigation bar -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Typography — system default (no custom font dependency) -->
+        <item name="android:fontFamily">sans-serif</item>
+
+        <!-- Touch ripple — plum tinted -->
+        <item name="colorControlHighlight">@color/luna_plum_100</item>
+
+        <!-- Bottom navigation -->
+        <item name="bottomNavigationStyle">@style/Luna.BottomNavigation</item>
+
+    </style>
+
+    <!-- Bottom navigation styling -->
+    <style name="Luna.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemIconTint">@color/luna_bottom_nav_tint</item>
+        <item name="itemTextColor">@color/luna_bottom_nav_tint</item>
+        <item name="backgroundTint">@color/luna_neutral_0</item>
+    </style>
+
+    <!-- Lock / Onboarding screen — always dark -->
+    <style name="Theme.Luna.Lock" parent="Theme.Luna">
+        <item name="android:colorBackground">@color/luna_neutral_950</item>
+        <item name="colorOnBackground">@color/luna_neutral_50</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/luna_neutral_950</item>
+    </style>
+
+    <!-- Settings activity -->
+    <style name="Theme.Luna.Settings" parent="Theme.Luna">
+    </style>
+
+</resources>

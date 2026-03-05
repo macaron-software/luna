@@ -28,13 +28,25 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val prediction = engine.predictNext()
-                val today = LocalDate.now().toString()
-                val daysLeft = calculateDaysLeft(prediction.nextPeriodDate, today)
-                val phase = prediction.currentPhase
+                val cycles = engine.getCycles(1u)
+                val today = LocalDate.now()
+                val nextDate = prediction.nextPeriodStart
+                val daysLeft = calculateDaysLeft(nextDate, today.toString())
+
+                // Compute current cycle day from latest cycle start
+                val cycleDay = cycles.firstOrNull()?.let { cycle ->
+                    try {
+                        val start = LocalDate.parse(cycle.startDate)
+                        maxOf(1, java.time.temporal.ChronoUnit.DAYS.between(start, today).toInt() + 1)
+                    } catch (e: Exception) { 1 }
+                } ?: 1
+
+                // Derive phase from algorithm hint
+                val phase = prediction.algorithm
                 val phaseChanged = phase != lastPhase && lastPhase.isNotEmpty()
                 lastPhase = phase
                 _uiState.value = HomeUiState(
-                    cycleDay = prediction.currentCycleDay.toInt(),
+                    cycleDay = cycleDay,
                     daysUntilNextPeriod = daysLeft,
                     phaseName = phase,
                     insight = null, // TODO: générer un insight depuis l'historique

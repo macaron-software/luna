@@ -1,7 +1,7 @@
 package app.luna.services
 
 import android.content.Context
-import app.luna.generated.LunaEngine
+import uniffi.luna_core.LunaEngine
 
 /**
  * VaultService — singleton gérant l'état du vault Rust.

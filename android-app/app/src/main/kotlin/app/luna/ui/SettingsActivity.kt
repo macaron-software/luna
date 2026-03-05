@@ -86,9 +86,9 @@ class SettingsActivity : AppCompatActivity() {
             try {
                 when (format) {
                     "backup" -> {
-                        val backup = engine.exportEncryptedBackup()
+                        val backup = engine.exportEncryptedBackup("")
                         // TODO: proposer le partage via Android ShareSheet
-                        _ = backup
+                        @Suppress("UNUSED_VARIABLE") val ignored = backup
                     }
                 }
             } catch (e: Exception) {

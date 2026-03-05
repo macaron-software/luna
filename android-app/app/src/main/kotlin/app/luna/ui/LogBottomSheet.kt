@@ -13,7 +13,7 @@ import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import app.luna.R
 import app.luna.services.VaultService
-import app.luna.generated.DailyLog
+import uniffi.luna_core.DailyLog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import java.time.LocalDate

@@ -20,7 +20,7 @@ struct OnboardingView: View {
 
     var body: some View {
         ZStack {
-            Color("LockBackground").ignoresSafeArea()
+            Color("AppBackground").ignoresSafeArea()
 
             VStack(spacing: 0) {
                 // Barre de progression
@@ -203,13 +203,13 @@ struct CycleProfileStep: View {
                     .font(.subheadline.bold())
                 HStack(spacing: 8) {
                     ForEach(durations, id: \.self) { d in
-                        Button("\(d)j") {
+                        Button("\(d)\(String(localized: "day_abbr"))") {
                             duration = d
                         }
                         .buttonStyle(SelectableButtonStyle(isSelected: duration == d))
                         .frame(minWidth: 44, minHeight: 44)
                     }
-                    Button("7j+") { duration = 8 }
+                    Button("7\(String(localized: "day_abbr"))+") { duration = 8 }
                         .buttonStyle(SelectableButtonStyle(isSelected: duration >= 8))
                         .frame(minWidth: 44, minHeight: 44)
                 }
@@ -374,8 +374,8 @@ struct PINSetupView: View {
                 .textContentType(.newPassword)
                 .padding(12)
                 .background(Color("CardBackground"), in: RoundedRectangle(cornerRadius: 10))
-                .onChange(of: pin) { _, v in if v.count == 6 && !confirmActive { confirmActive = true } }
-                .onChange(of: pinConfirm) { _, v in
+                .onChange(of: pin) { v in if v.count == 6 && !confirmActive { confirmActive = true } }
+                .onChange(of: pinConfirm) { v in
                     if v.count == 6 {
                         error = v != pin ? NSLocalizedString("onboarding_pin_mismatch", comment: "") : nil
                     }

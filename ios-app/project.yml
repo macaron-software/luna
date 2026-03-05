@@ -1,0 +1,87 @@
+name: LunaApp
+options:
+  bundleIdPrefix: com.macaron
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "16.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+    ENABLE_BITCODE: NO
+    SWIFT_OPTIMIZATION_LEVEL: "-Onone"
+    # Module map for UniFFI C FFI header
+    SWIFT_INCLUDE_PATHS: "$(SRCROOT)/LunaApp/Generated"
+    LIBRARY_SEARCH_PATHS: "$(SRCROOT)/LunaApp/Generated"
+    OTHER_LDFLAGS: "-lluna_core -lc++"
+    # Privacy / security
+    ENABLE_HARDENED_RUNTIME: YES
+
+targets:
+  LunaApp:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: LunaApp
+        excludes:
+          - "**/*.md"
+          - "Generated/libluna_core.a"
+          - "Generated/luna_coreFFI.h"
+          - "Generated/luna_coreFFI.modulemap"
+    resources:
+      - path: LunaApp/Resources/Assets.xcassets
+    info:
+      path: LunaApp/Info.plist
+      properties:
+        CFBundleName: LUNA
+        CFBundleDisplayName: LUNA
+        CFBundleIdentifier: com.macaron.luna
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        LSRequiresIPhoneOS: YES
+        UILaunchStoryboardName: ""
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        NSFaceIDUsageDescription: "LUNA uses Face ID to quickly unlock your vault."
+        ITSAppUsesNonExemptEncryption: YES
+    settings:
+      base:
+        INFOPLIST_FILE: LunaApp/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.macaron.luna
+        SWIFT_VERSION: "5.9"
+        SWIFT_INCLUDE_PATHS: "$(SRCROOT)/LunaApp/Generated"
+        LIBRARY_SEARCH_PATHS: "$(inherited) $(SRCROOT)/LunaApp/Generated"
+        OTHER_LDFLAGS: "$(inherited) -lluna_core -lc++"
+        HEADER_SEARCH_PATHS: "$(SRCROOT)/LunaApp/Generated"
+
+  LunaTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - LunaTests
+    dependencies:
+      - target: LunaApp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.macaron.luna.tests
+
+  LunaUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - LunaUITests
+    dependencies:
+      - target: LunaApp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.macaron.luna.uitests

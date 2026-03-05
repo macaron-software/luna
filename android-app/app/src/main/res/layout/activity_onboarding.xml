@@ -46,6 +46,49 @@
         android:textSize="14sp"
         android:layout_marginBottom="32dp" />
 
+    <!-- Section PIN — visible uniquement à l'étape 4 -->
+    <LinearLayout
+        android:id="@+id/pin_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pin_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/onboarding_pin_hint"
+            android:layout_marginBottom="12dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pin_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:maxLength="8"
+                android:minWidth="200dp"
+                android:contentDescription="@string/onboarding_pin_hint" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pin_confirm_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/onboarding_pin_confirm_hint"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pin_confirm_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:maxLength="8"
+                android:contentDescription="@string/onboarding_pin_confirm_hint" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
     <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
 
     <!-- Boutons navigation -->

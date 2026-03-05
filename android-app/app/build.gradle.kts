@@ -83,6 +83,10 @@ tasks.register<Exec>("cargoBuildRust") {
         "--", "build", "--release"
     )
     description = "Build luna-core Rust library via cargo-ndk"
+    // Skip if .so files are already present (local dev — pre-built via cargo ndk manually)
+    onlyIf {
+        !file("${projectDir}/src/main/jniLibs/x86_64/libluna_core.so").exists()
+    }
 }
 
 // Liez la tâche Rust au preBuild pour que Gradle l'exécute automatiquement
@@ -92,6 +96,9 @@ tasks.named("preBuild") {
 
 // ── Dépendances ────────────────────────────────────────────────────────────
 dependencies {
+    // UniFFI Rust bindings (JNA — Java Native Access)
+    implementation("net.java.dev.jna:jna:5.14.0@aar")
+
     // Désugar pour java.time sur API < 26
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 

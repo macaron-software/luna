@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import app.luna.R
 import app.luna.databinding.ActivityLockBinding
+import uniffi.luna_core.LunaEngine
 import app.luna.services.KeystoreService
 import app.luna.services.VaultService
 import kotlinx.coroutines.launch
@@ -137,7 +138,7 @@ class LockActivity : AppCompatActivity() {
     private fun openVault(pin: String) {
         val dbPath = VaultService.getDbPath(this)
         try {
-            val engine = app.luna.generated.LunaEngine.openVault(dbPath, pin)
+            val engine = LunaEngine.openVault(dbPath, pin)
             VaultService.setEngine(engine)
             // Annoncer déverrouillage
             binding.root.announceForAccessibility(getString(R.string.lock_unlocked_a11y))

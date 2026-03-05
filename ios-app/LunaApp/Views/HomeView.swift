@@ -4,27 +4,35 @@ struct HomeView: View {
     @EnvironmentObject var appState: AppState
     @StateObject private var vm = HomeViewModel()
     @State private var showLogSheet = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
 
-                    // ── Cycle progress donut ──────────────────────────────
-                    CycleProgressWidget(prediction: vm.prediction, currentDay: vm.currentCycleDay)
-                        .padding(.horizontal)
+                    if appState.calmMode {
+                        // ── Mode calme — bannière empathique ─────────────
+                        CalmModeBanner()
+                            .padding(.horizontal)
+                    } else {
+                        // ── Cycle progress donut ──────────────────────────
+                        CycleProgressWidget(prediction: vm.prediction, currentDay: vm.currentCycleDay)
+                            .padding(.horizontal)
+                            .animation(reduceMotion ? .none : .spring(response: 0.5), value: vm.currentCycleDay)
 
-                    // ── Symptômes attendus (science-based) ────────────────
+                        // ── Mini calendrier 7 jours ───────────────────────
+                        WeekStripView(prediction: vm.prediction)
+                            .padding(.horizontal)
+                    }
+
+                    // ── Symptômes attendus (science-based) ────────────
                     if let phase = vm.currentPhase {
                         ExpectedSymptomsCard(phase: phase)
                             .padding(.horizontal)
                     }
 
-                    // ── Mini calendrier 7 jours ───────────────────────────
-                    WeekStripView(prediction: vm.prediction)
-                        .padding(.horizontal)
-
-                    // ── Insight du jour ───────────────────────────────────
+                    // ── Insight du jour ───────────────────────────────
                     if let insight = vm.dailyInsight {
                         InsightCard(text: insight)
                             .padding(.horizontal)
@@ -37,7 +45,6 @@ struct HomeView: View {
             .navigationTitle("nav_today")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    // Badge "données locales" — trust indicator
                     PrivacyBadge()
                 }
             }
@@ -54,6 +61,27 @@ struct HomeView: View {
                 await vm.load(engine: appState.engine)
             }
         }
+    }
+}
+
+// MARK: - CalmModeBanner
+
+private struct CalmModeBanner: View {
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "leaf.fill")
+                .foregroundStyle(Color("AccentSuccess"))
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("home_calm_no_prediction")
+                    .font(.subheadline)
+                    .foregroundStyle(.primary)
+            }
+            Spacer()
+        }
+        .padding(14)
+        .background(Color("CardBackground"), in: RoundedRectangle(cornerRadius: 12))
+        .accessibilityLabel(Text("home_calm_no_prediction"))
     }
 }
 

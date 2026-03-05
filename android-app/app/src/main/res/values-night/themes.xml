@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  values-night/themes.xml — LUNA dark mode theme overrides
+  Dark mode bg: #0D0A14 (plum-tinted) — preserves melatonin production.
+  @source: Chang PNAS 2015 — blue light suppresses melatonin; warm dark bg mitigates.
+-->
+<resources>
+
+    <style name="Theme.Luna" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/luna_plum_400</item>
+        <item name="colorOnPrimary">@color/luna_neutral_0</item>
+        <item name="colorPrimaryContainer">@color/luna_plum_800</item>
+        <item name="colorOnPrimaryContainer">@color/luna_plum_100</item>
+
+        <item name="colorSecondary">@color/luna_amber_400</item>
+        <item name="colorOnSecondary">@color/luna_neutral_900</item>
+        <item name="colorSecondaryContainer">@color/luna_amber_500</item>
+        <item name="colorOnSecondaryContainer">@color/luna_neutral_900</item>
+
+        <item name="colorTertiary">@color/luna_coral_400</item>
+        <item name="colorOnTertiary">@color/luna_neutral_0</item>
+
+        <item name="colorError">@color/luna_rose_400</item>
+        <item name="colorOnError">@color/luna_neutral_900</item>
+
+        <!-- Dark bg: plum-tinted #0D0A14 — NOT pure black (preserves melatonin) -->
+        <item name="android:colorBackground">@color/luna_neutral_950</item>
+        <item name="colorOnBackground">@color/luna_neutral_50</item>
+
+        <item name="colorSurface">@color/luna_neutral_900</item>
+        <item name="colorOnSurface">@color/luna_neutral_50</item>
+        <item name="colorSurfaceVariant">@color/luna_neutral_800</item>
+        <item name="colorOnSurfaceVariant">@color/luna_neutral_300</item>
+
+        <item name="colorOutline">@color/luna_neutral_600</item>
+        <item name="colorOutlineVariant">@color/luna_neutral_700</item>
+
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
+        <item name="colorControlHighlight">@color/luna_plum_900</item>
+        <item name="bottomNavigationStyle">@style/Luna.BottomNavigation.Dark</item>
+    </style>
+
+    <style name="Luna.BottomNavigation.Dark" parent="Widget.Material3.BottomNavigationView">
+        <item name="backgroundTint">@color/luna_neutral_900</item>
+    </style>
+
+</resources>

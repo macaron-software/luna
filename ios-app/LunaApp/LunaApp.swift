@@ -49,6 +49,13 @@ final class AppState: ObservableObject {
     }
     @Published var colorScheme: ColorScheme? = nil
 
+    // ── Mode Calme (psy a11y) ─────────────────────────────────────────────
+    /// Calm mode: hides cycle predictions to reduce anxiety.
+    /// Designed for users with anxiety, PTSD, or who find predictions triggering.
+    @Published var calmMode: Bool {
+        didSet { defaults.set(calmMode, forKey: "calm_mode") }
+    }
+
     // ── Données cycle (pour CalendarView) ──────────────────────────────────
     @Published var cycleEvents: [String: CycleEventType] = [:]
 
@@ -71,6 +78,7 @@ final class AppState: ObservableObject {
         isOnboardingDone = defaults.bool(forKey: "onboarding_done")
         userName = defaults.string(forKey: "user_name")
         lockEnabled = defaults.bool(forKey: "lock_enabled")
+        calmMode = defaults.bool(forKey: "calm_mode")
     }
 
     // ── Actions ────────────────────────────────────────────────────────────

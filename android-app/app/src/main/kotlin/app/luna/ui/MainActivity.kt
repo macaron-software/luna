@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         // a11y : décrire la navigation pour TalkBack
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             navController.navigate(item.itemId)
-            sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
+            binding.bottomNavigation.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
             true
         }
     }

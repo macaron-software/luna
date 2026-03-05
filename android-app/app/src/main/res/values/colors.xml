@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  colors.xml — LUNA Android color resources
+  Mirror of luna-design-system/tokens/colors.ts (TypeScript source of truth).
+
+  Color naming convention: luna_{semantic}_{variant}
+  Rationale: plum primary avoids pink cliché while retaining warmth.
+  @source: Epstein CHI 2017; Clement 2015; Maddocks 2021
+
+  ⚠️ RTL/East Asian cultural overrides handled in code (CulturalRules), not here.
+  ⚠️ Red-as-danger: NEVER use luna_status_danger in zh/ja/ko — use luna_status_warning.
+-->
+<resources>
+
+    <!-- ── Primitive Palette ─────────────────────────────────────────────── -->
+    <!-- Plum (primary brand) -->
+    <color name="luna_plum_50">#F2E8FD</color>
+    <color name="luna_plum_100">#E1CCFB</color>
+    <color name="luna_plum_200">#C59CF7</color>
+    <color name="luna_plum_300">#A96BF3</color>
+    <color name="luna_plum_400">#B04AEF</color>
+    <color name="luna_plum_500">#8B20DC</color>
+    <color name="luna_plum_600">#6F1AB0</color>
+    <color name="luna_plum_700">#531384</color>
+    <color name="luna_plum_800">#380C58</color>
+    <color name="luna_plum_900">#1C062C</color>
+    <color name="luna_plum_950">#0E0316</color>
+
+    <!-- Rose (menstrual phase) -->
+    <color name="luna_rose_400">#F04D60</color>
+    <color name="luna_rose_500">#E8253A</color>
+    <color name="luna_rose_600">#C01E30</color>
+
+    <!-- Coral (ovulation accent) -->
+    <color name="luna_coral_400">#FB7E3C</color>
+    <color name="luna_coral_500">#F5601A</color>
+    <color name="luna_coral_600">#CC4C13</color>
+
+    <!-- Amber (luteal / secondary) -->
+    <color name="luna_amber_400">#FFBB0F</color>
+    <color name="luna_amber_500">#E89E00</color>
+    <color name="luna_amber_600">#C47F00</color>
+
+    <!-- Sage (follicular / success) -->
+    <color name="luna_sage_400">#72C08E</color>
+    <color name="luna_sage_500">#4AA26E</color>
+    <color name="luna_sage_600">#3A8257</color>
+
+    <!-- Neutral -->
+    <color name="luna_neutral_0">#FFFFFF</color>
+    <color name="luna_neutral_50">#FAFAFA</color>
+    <color name="luna_neutral_100">#F0EFF7</color>
+    <color name="luna_neutral_200">#E0DFEE</color>
+    <color name="luna_neutral_300">#C0BFDA</color>
+    <color name="luna_neutral_400">#A0A0BE</color>
+    <color name="luna_neutral_500">#8585A0</color>
+    <color name="luna_neutral_600">#666680</color>
+    <color name="luna_neutral_700">#4A4A5E</color>
+    <color name="luna_neutral_800">#2F2F3E</color>
+    <color name="luna_neutral_900">#1A1A2E</color>
+    <color name="luna_neutral_950">#0D0A14</color>
+
+    <!-- ── Semantic Light Mode Tokens ────────────────────────────────────── -->
+    <color name="luna_bg_base">@color/luna_neutral_50</color>
+    <color name="luna_bg_surface">@color/luna_neutral_0</color>
+    <color name="luna_bg_muted">@color/luna_neutral_100</color>
+
+    <color name="luna_content_primary">@color/luna_neutral_900</color>
+    <color name="luna_content_secondary">@color/luna_neutral_500</color>
+    <color name="luna_content_inverse">@color/luna_neutral_0</color>
+
+    <color name="luna_brand_primary">@color/luna_plum_500</color>
+    <color name="luna_brand_secondary">@color/luna_amber_500</color>
+    <color name="luna_brand_accent">@color/luna_coral_500</color>
+    <color name="luna_brand_success">@color/luna_sage_500</color>
+
+    <!-- Phase colors (light mode defaults) -->
+    <color name="luna_phase_menstrual">@color/luna_rose_500</color>
+    <color name="luna_phase_follicular">@color/luna_sage_500</color>
+    <color name="luna_phase_ovulation">@color/luna_coral_500</color>
+    <color name="luna_phase_luteal">@color/luna_amber_500</color>
+    <color name="luna_phase_predicted">@color/luna_neutral_400</color>
+
+    <!-- Status -->
+    <color name="luna_status_success">@color/luna_sage_500</color>
+    <color name="luna_status_warning">@color/luna_amber_600</color>
+    <!-- ⚠️ Never use danger color in zh/ja/ko — use warning instead -->
+    <color name="luna_status_danger">@color/luna_rose_500</color>
+    <color name="luna_status_info">@color/luna_plum_500</color>
+
+    <!-- Interactive -->
+    <color name="luna_interactive_default">@color/luna_plum_500</color>
+    <color name="luna_interactive_hover">@color/luna_plum_600</color>
+    <color name="luna_interactive_disabled">#33000000</color>
+
+    <!-- Border -->
+    <color name="luna_border_default">@color/luna_neutral_200</color>
+    <color name="luna_border_focus">@color/luna_plum_500</color>
+
+</resources>

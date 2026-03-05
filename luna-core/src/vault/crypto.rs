@@ -126,6 +126,22 @@ pub fn secure_zero(data: &mut Vec<u8>) {
     data.zeroize();
 }
 
+// ─── Compression (zstd) ─────────────────────────────────────────────────────
+// Données compressées avant stockage → binaire compact + chiffrement AES-GCM.
+// Niveau 3 = bon compromis vitesse/taux sur mobile.
+
+/// Compression zstd niveau 3. Retourne les bytes compressés.
+pub fn compress_blob(data: &[u8]) -> Result<Vec<u8>, LunaError> {
+    zstd::stream::encode_all(data, 3)
+        .map_err(|e| LunaError::DatabaseCorrupted(format!("compress: {e}")))
+}
+
+/// Décompression zstd. Retourne les bytes originaux.
+pub fn decompress_blob(data: &[u8]) -> Result<Vec<u8>, LunaError> {
+    zstd::stream::decode_all(data)
+        .map_err(|e| LunaError::DatabaseCorrupted(format!("decompress: {e}")))
+}
+
 // ─── Tests ──────────────────────────────────────────────────────────────────
 
 #[cfg(test)]

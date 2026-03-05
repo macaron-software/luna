@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Crescent moon — Feather icon, path-only Android Vector Drawable -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorControlNormal">
+    <path
+        android:pathData="M21,12.79 C20.8427,14.4922 20.2039,16.1144 19.1582,17.4668 C18.1126,18.8192 16.7035,19.8458 15.0957,20.4265 C13.4879,21.0073 11.748,21.1181 10.0795,20.7461 C8.41,20.3741 6.8852,19.5345 5.6747,18.3252 C4.4642,17.116 3.6235,15.5921 3.2505,13.9237 C2.8775,12.2553 2.9873,10.5148 3.5671,8.9065 C4.1469,7.2983 5.1726,5.8887 6.5244,4.8424 C7.8762,3.7961 9.4983,3.1563 11.2,2.99 C10.1369,4.40065 9.5641,6.12753 9.5641,7.905 C9.5641,12.2028 13.0922,15.6559 17.405,15.6559 C19.1574,15.6559 20.806,15.0873 22.14,14.105 C21.7843,13.6919 21.3957,13.2152 21,12.79 Z"
+        android:strokeColor="?attr/colorControlNormal"
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+</vector>

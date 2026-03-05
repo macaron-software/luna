@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Lock icon — Feather icon, path-only Android Vector Drawable -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorControlNormal">
+    <path
+        android:pathData="M19,11 L5,11 C3.895,11 3,11.895 3,13 L3,20 C3,21.105 3.895,22 5,22 L19,22 C20.105,22 21,21.105 21,20 L21,13 C21,11.895 20.105,11 19,11 Z"
+        android:strokeColor="?attr/colorControlNormal"
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+    <path
+        android:pathData="M7,11 L7,7 C7,5.6739 7.5268,4.4021 8.4645,3.4645 C9.4021,2.5268 10.6739,2 12,2 C13.3261,2 14.5979,2.5268 15.5355,3.4645 C16.4732,4.4021 17,5.6739 17,7 L17,11"
+        android:strokeColor="?attr/colorControlNormal"
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+</vector>

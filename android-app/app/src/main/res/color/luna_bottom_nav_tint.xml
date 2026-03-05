@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bottom navigation icon/text tint state list -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:color="@color/luna_plum_500" />
+    <item android:color="@color/luna_neutral_500" />
+</selector>

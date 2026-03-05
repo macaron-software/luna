@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  data_extraction_rules.xml — Android Backup / Cloud Extraction rules
+  LUNA security policy: NO auto-backup; NO cloud extraction of app data.
+
+  Rationale: All sensitive menstrual data is stored encrypted via SQLCipher
+  with a key derived from the user's PIN (Argon2id). Auto-backup would write
+  the ciphertext to Google Drive without user consent or knowledge.
+  Users who want backup must use LUNA's explicit encrypted export feature.
+
+  @see: https://developer.android.com/guide/topics/data/autobackup
+  @see: AndroidManifest.xml android:dataExtractionRules="@xml/data_extraction_rules"
+-->
+<data-extraction-rules>
+
+    <cloud-backup disableIfNoEncryptionCapabilities="true">
+        <!--
+          Exclude ALL app data from Google Cloud backup.
+          This covers: databases, SharedPreferences, files, cache, external.
+          luna_vault.db contains encrypted SQLCipher data — never auto-backup.
+        -->
+        <exclude domain="database" />
+        <exclude domain="sharedpref" />
+        <exclude domain="file" />
+        <exclude domain="external" />
+        <exclude domain="root" />
+    </cloud-backup>
+
+    <device-transfer disableIfNoEncryptionCapabilities="true">
+        <!--
+          Exclude from device-to-device transfer (e.g., Android Backup Service
+          or device migration). User must re-onboard and restore via explicit
+          encrypted backup export.
+        -->
+        <exclude domain="database" />
+        <exclude domain="sharedpref" />
+        <exclude domain="file" />
+        <exclude domain="external" />
+        <exclude domain="root" />
+    </device-transfer>
+
+</data-extraction-rules>

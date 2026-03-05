@@ -1,34 +1,4008 @@
 {
-  "sourceLanguage" : "fr",
-  "strings" : {
-    "tab_today" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aujourd'hui" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Today" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "اليوم" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Heute" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Hoy" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "今日" } } } },
-    "tab_calendar" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Calendrier" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Calendar" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "التقويم" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Kalender" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Calendario" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "カレンダー" } } } },
-    "tab_insights" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Insights" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Insights" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "رؤى" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Einblicke" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Perspectivas" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "分析" } } } },
-    "tab_settings" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Moi" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Me" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "أنا" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Profil" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Perfil" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "プロフィール" } } } },
-    "log_today_button" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Logger aujourd'hui" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Log today" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "تسجيل اليوم" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Heute eintragen" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Registrar hoy" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "今日を記録" } } } },
-    "privacy_local_badge" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Données locales" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Local data" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "بيانات محلية" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Lokale Daten" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Datos locales" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "ローカルデータ" } } } },
-    "mood_label" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Humeur" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Mood" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "المزاج" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Stimmung" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Estado de ánimo" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "気分" } } } },
-    "energy_label" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Énergie" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Energy" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "الطاقة" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Energie" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Energía" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "エネルギー" } } } },
-    "flow_label" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Règles" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Flow" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "الدورة" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Blutung" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Flujo" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "生理" } } } },
-    "flow_none" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucun" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "None" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "لا شيء" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Keine" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Ninguno" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "なし" } } } },
-    "flow_spotting" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Spotting" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Spotting" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "بقع" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Schmierblutung" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Manchado" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "少量" } } } },
-    "flow_light" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Léger" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Light" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "خفيف" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Leicht" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Ligero" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "少ない" } } } },
-    "flow_medium" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Moyen" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Medium" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "متوسط" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Mittel" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Medio" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "普通" } } } },
-    "flow_heavy" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Abondant" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Heavy" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "غزير" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Stark" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Abundante" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "多い" } } } },
-    "symptom_cramps" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Crampes" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Cramps" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "تقلصات" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Krämpfe" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Calambres" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "腹痛" } } } },
-    "symptom_bloating" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ballonnements" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Bloating" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "انتفاخ" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Blähungen" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Hinchazón" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "膨満感" } } } },
-    "symptom_fatigue" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Fatigue" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Fatigue" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "إرهاق" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Müdigkeit" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Fatiga" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "疲労" } } } },
-    "symptom_headache" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Maux de tête" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Headache" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "صداع" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Kopfschmerzen" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Dolor de cabeza" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "頭痛" } } } },
-    "symptom_breast_tenderness" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Seins sensibles" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Breast tenderness" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "ألم الثدي" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Brustspannen" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Sensibilidad en senos" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "乳房の張り" } } } },
-    "symptom_irritability" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Irritabilité" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Irritability" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "تهيج" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Reizbarkeit" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Irritabilidad" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "イライラ" } } } },
-    "symptom_low_mood" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Humeur basse" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Low mood" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "مزاج سيئ" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Niedergeschlagenheit" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Estado de ánimo bajo" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "憂鬱" } } } },
-    "symptom_high_energy" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Énergie élevée" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "High energy" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "طاقة عالية" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Hohe Energie" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Alta energía" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "活力" } } } },
-    "symptom_motivation" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Motivation" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Motivation" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "دافعية" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Motivation" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Motivación" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "やる気" } } } },
-    "bbt_label" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Température basale (BBT)" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Basal body temp. (BBT)" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "درجة حرارة الجسم الأساسية" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Basaltemperatur (BBT)" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Temperatura basal (BBT)" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "基礎体温 (BBT)" } } } },
-    "save_button" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Enregistrer" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Save" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "حفظ" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Speichern" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Guardar" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "保存" } } } },
-    "cancel_button" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Annuler" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "إلغاء" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Abbrechen" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Cancelar" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "キャンセル" } } } },
-    "log_saved_a11y" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Journée enregistrée" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "Day logged" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "تم تسجيل اليوم" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Tag gespeichert" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Día guardado" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "記録しました" } } } },
-    "privacy_badge_a11y" : { "localizations" : { "fr" : { "stringUnit" : { "state" : "translated", "value" : "Toutes tes données sont stockées localement sur cet appareil" } }, "en" : { "stringUnit" : { "state" : "translated", "value" : "All your data is stored locally on this device" } }, "ar" : { "stringUnit" : { "state" : "translated", "value" : "جميع بياناتك محفوظة محلياً على هذا الجهاز" } }, "de" : { "stringUnit" : { "state" : "translated", "value" : "Alle Daten werden lokal auf diesem Gerät gespeichert" } }, "es" : { "stringUnit" : { "state" : "translated", "value" : "Todos tus datos se almacenan localmente en este dispositivo" } }, "ja" : { "stringUnit" : { "state" : "translated", "value" : "すべてのデータはこのデバイスにローカルに保存されています" } } } }
+  "sourceLanguage": "fr",
+  "strings": {
+    "tab_today": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aujourd'hui"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اليوم"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日"
+          }
+        }
+      }
+    },
+    "tab_calendar": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendrier"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendar"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التقويم"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalender"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendario"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カレンダー"
+          }
+        }
+      }
+    },
+    "tab_insights": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insights"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insights"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رؤى"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einblicke"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perspectivas"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分析"
+          }
+        }
+      }
+    },
+    "tab_settings": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moi"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Me"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أنا"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profil"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perfil"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "プロフィール"
+          }
+        }
+      }
+    },
+    "log_today_button": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logger aujourd'hui"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log today"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تسجيل اليوم"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute eintragen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrar hoy"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日を記録"
+          }
+        }
+      }
+    },
+    "privacy_local_badge": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Données locales"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local data"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بيانات محلية"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokale Daten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datos locales"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ローカルデータ"
+          }
+        }
+      }
+    },
+    "mood_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Humeur"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mood"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المزاج"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stimmung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estado de ánimo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "気分"
+          }
+        }
+      }
+    },
+    "energy_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Énergie"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energy"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الطاقة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energie"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energía"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "エネルギー"
+          }
+        }
+      }
+    },
+    "flow_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Règles"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flow"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الدورة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blutung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flujo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "生理"
+          }
+        }
+      }
+    },
+    "flow_none": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا شيء"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ninguno"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "なし"
+          }
+        }
+      }
+    },
+    "flow_spotting": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spotting"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spotting"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بقع"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schmierblutung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manchado"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "少量"
+          }
+        }
+      }
+    },
+    "flow_light": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Léger"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "خفيف"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leicht"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ligero"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "少ない"
+          }
+        }
+      }
+    },
+    "flow_medium": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moyen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medium"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "متوسط"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mittel"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medio"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "普通"
+          }
+        }
+      }
+    },
+    "flow_heavy": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abondant"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heavy"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "غزير"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stark"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abundante"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多い"
+          }
+        }
+      }
+    },
+    "symptom_cramps": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crampes"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cramps"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تقلصات"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Krämpfe"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calambres"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "腹痛"
+          }
+        }
+      }
+    },
+    "symptom_bloating": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballonnements"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloating"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انتفاخ"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blähungen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinchazón"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "膨満感"
+          }
+        }
+      }
+    },
+    "symptom_fatigue": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fatigue"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fatigue"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إرهاق"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Müdigkeit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fatiga"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "疲労"
+          }
+        }
+      }
+    },
+    "symptom_headache": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maux de tête"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Headache"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "صداع"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kopfschmerzen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dolor de cabeza"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "頭痛"
+          }
+        }
+      }
+    },
+    "symptom_breast_tenderness": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seins sensibles"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breast tenderness"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ألم الثدي"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brustspannen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensibilidad en senos"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乳房の張り"
+          }
+        }
+      }
+    },
+    "symptom_irritability": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Irritabilité"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Irritability"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تهيج"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reizbarkeit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Irritabilidad"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "イライラ"
+          }
+        }
+      }
+    },
+    "symptom_low_mood": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Humeur basse"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Low mood"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مزاج سيئ"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niedergeschlagenheit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estado de ánimo bajo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "憂鬱"
+          }
+        }
+      }
+    },
+    "symptom_high_energy": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Énergie élevée"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "High energy"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "طاقة عالية"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hohe Energie"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alta energía"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "活力"
+          }
+        }
+      }
+    },
+    "symptom_motivation": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motivation"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motivation"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دافعية"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motivation"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motivación"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "やる気"
+          }
+        }
+      }
+    },
+    "bbt_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Température basale (BBT)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basal body temp. (BBT)"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "درجة حرارة الجسم الأساسية"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basaltemperatur (BBT)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temperatura basal (BBT)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "基礎体温 (BBT)"
+          }
+        }
+      }
+    },
+    "save_button": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حفظ"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speichern"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存"
+          }
+        }
+      }
+    },
+    "cancel_button": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuler"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إلغاء"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abbrechen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キャンセル"
+          }
+        }
+      }
+    },
+    "log_saved_a11y": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Journée enregistrée"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day logged"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم تسجيل اليوم"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tag gespeichert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Día guardado"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記録しました"
+          }
+        }
+      }
+    },
+    "privacy_badge_a11y": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toutes tes données sont stockées localement sur cet appareil"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All your data is stored locally on this device"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جميع بياناتك محفوظة محلياً على هذا الجهاز"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Daten werden lokal auf diesem Gerät gespeichert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos tus datos se almacenan localmente en este dispositivo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべてのデータはこのデバイスにローカルに保存されています"
+          }
+        }
+      }
+    },
+    "onboarding_welcome_title": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bienvenue sur LUNA"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Welcome to LUNA"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مرحبًا بك في LUNA"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Willkommen bei LUNA"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bienvenida a LUNA"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNAへようこそ"
+          }
+        }
+      }
+    },
+    "onboarding_welcome_subtitle": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton cycle, tes données, chez toi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your cycle, your data, at home."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دورتك، بياناتك، في أمان."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Zyklus, deine Daten, privat."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu ciclo, tus datos, en casa."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたのサイクル、あなたのデータ、プライベートに。"
+          }
+        }
+      }
+    },
+    "onboarding_name_placeholder": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton prénom (optionnel)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your name (optional)"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسمك (اختياري)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Name (optional)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu nombre (opcional)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名前（任意）"
+          }
+        }
+      }
+    },
+    "onboarding_next_button": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suivant"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التالي"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weiter"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siguiente"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "次へ"
+          }
+        }
+      }
+    },
+    "onboarding_back": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retour"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رجوع"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zurück"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atrás"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "戻る"
+          }
+        }
+      }
+    },
+    "onboarding_skip": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passer"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skip"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تخطى"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überspringen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omitir"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スキップ"
+          }
+        }
+      }
+    },
+    "onboarding_start_button": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commencer"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get started"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ابدأ"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loslegen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "始める"
+          }
+        }
+      }
+    },
+    "onboarding_cycle_profile_title": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton profil cycle"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your cycle profile"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ملف دورتك"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Zyklusprofil"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu perfil de ciclo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイクルプロフィール"
+          }
+        }
+      }
+    },
+    "onboarding_cycle_profile_subtitle": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nous l'affinerons avec le temps."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We'll refine it over time."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سنحسّنه بمرور الوقت."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wir verfeinern es mit der Zeit."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo refinaremos con el tiempo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "時間をかけて精度を上げていきます。"
+          }
+        }
+      }
+    },
+    "onboarding_last_period_title": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dernières règles"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last period"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آخر دورة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letzte Periode"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Último período"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最後の生理"
+          }
+        }
+      }
+    },
+    "onboarding_last_period_subtitle": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quand ont commencé tes dernières règles ?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When did your last period start?"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "متى بدأت دورتك الأخيرة؟"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wann begann deine letzte Periode?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Cuándo comenzó tu último período?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最後の生理はいつ始まりましたか？"
+          }
+        }
+      }
+    },
+    "onboarding_last_period_picker_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date de début"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start date"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تاريخ البدء"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Startdatum"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fecha de inicio"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始日"
+          }
+        }
+      }
+    },
+    "onboarding_period_duration_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durée des règles (jours)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Period duration (days)"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مدة الدورة (أيام)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Periodendauer (Tage)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duración del período (días)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "生理期間（日）"
+          }
+        }
+      }
+    },
+    "onboarding_regularity_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Régularité du cycle"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle regularity"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انتظام الدورة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zyklusregelmäßigkeit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regularidad del ciclo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイクルの規則性"
+          }
+        }
+      }
+    },
+    "onboarding_goals_title": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tes objectifs"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your goals"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أهدافك"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Ziele"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus objetivos"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたの目標"
+          }
+        }
+      }
+    },
+    "onboarding_goals_subtitle": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qu'est-ce qui t'a amené ici ?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What brought you here?"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ما الذي قادك إلى هنا؟"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was hat dich hierher geführt?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Qué te trajo aquí?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ここに来た理由は？"
+          }
+        }
+      }
+    },
+    "onboarding_privacy_title": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta vie privée, protégée"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your privacy, protected"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "خصوصيتك، محمية"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Privatsphäre, geschützt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu privacidad, protegida"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたのプライバシー、守られています"
+          }
+        }
+      }
+    },
+    "onboarding_privacy_subtitle": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tes données ne quittent jamais ton téléphone."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your data never leaves your phone."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بياناتك لا تغادر هاتفك أبدًا."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Daten verlassen dein Telefon nie."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus datos nunca salen de tu teléfono."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "データは絶対にスマホの外に出ません。"
+          }
+        }
+      }
+    },
+    "onboarding_privacy_guarantee": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiffrement AES-256-GCM · Aucun serveur · Open source"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AES-256-GCM encryption · No servers · Open source"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تشفير AES-256-GCM · بدون خوادم · مفتوح المصدر"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AES-256-GCM-Verschlüsselung · Keine Server · Open Source"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cifrado AES-256-GCM · Sin servidores · Código abierto"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AES-256-GCM暗号化・サーバーなし・オープンソース"
+          }
+        }
+      }
+    },
+    "onboarding_lock_toggle": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verrouiller avec Face ID / Empreinte"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lock with Face ID / Fingerprint"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قفل بمعرف الوجه / البصمة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit Face ID / Fingerabdruck sperren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloquear con Face ID / huella"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID / 指紋でロック"
+          }
+        }
+      }
+    },
+    "onboarding_icloud_toggle": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synchroniser via iCloud (chiffré)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync via iCloud (encrypted)"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مزامنة عبر iCloud (مشفر)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Über iCloud synchronisieren (verschlüsselt)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizar via iCloud (cifrado)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud経由で同期（暗号化）"
+          }
+        }
+      }
+    },
+    "onboarding_pin_create_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crée ton code PIN (4–8 chiffres)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your PIN (4–8 digits)"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أنشئ رمز PIN (4–8 أرقام)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erstelle deine PIN (4–8 Ziffern)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea tu PIN (4–8 dígitos)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PINコードを作成（4〜8桁）"
+          }
+        }
+      }
+    },
+    "onboarding_pin_confirm_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirme ton PIN"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm your PIN"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تأكيد رمز PIN"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PIN bestätigen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirma tu PIN"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PINを確認"
+          }
+        }
+      }
+    },
+    "onboarding_pin_placeholder": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "••••••"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "••••••"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "••••••"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "••••••"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "••••••"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "••••••"
+          }
+        }
+      }
+    },
+    "onboarding_pin_confirm_placeholder": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "••••••"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "••••••"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "••••••"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "••••••"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "••••••"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "••••••"
+          }
+        }
+      }
+    },
+    "onboarding_pin_mismatch": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les PINs ne correspondent pas"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PINs don't match"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رمزا PIN غير متطابقين"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PINs stimmen nicht überein"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los PINs no coinciden"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PINが一致しません"
+          }
+        }
+      }
+    },
+    "lock_biometric_button": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déverrouiller"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فتح القفل"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entsperren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloquear"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ロック解除"
+          }
+        }
+      }
+    },
+    "lock_biometric_reason": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déverrouillez votre vault LUNA"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock your LUNA vault"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افتح خزنة LUNA"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entsperren Sie Ihren LUNA-Tresor"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloquea tu vault LUNA"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNAボールトをロック解除"
+          }
+        }
+      }
+    },
+    "lock_or_separator": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ou"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "or"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أو"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "oder"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "o"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "または"
+          }
+        }
+      }
+    },
+    "lock_wrong_pin": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PIN incorrect"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrong PIN"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رمز PIN خاطئ"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falsche PIN"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PIN incorrecto"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PINが違います"
+          }
+        }
+      }
+    },
+    "lock_attempts_left": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tentatives restantes"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "attempts remaining"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "محاولات متبقية"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "verbleibende Versuche"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "intentos restantes"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "回残っています"
+          }
+        }
+      }
+    },
+    "lock_max_attempts": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trop de tentatives — vault verrouillé"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too many attempts — vault locked"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "محاولات كثيرة جدًا — الخزنة مقفلة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu viele Versuche — Tresor gesperrt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demasiados intentos — vault bloqueado"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "試行回数超過 — ボールトがロックされました"
+          }
+        }
+      }
+    },
+    "panic_wipe_biometric_reason": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmer l'effacement d'urgence"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm emergency wipe"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تأكيد المسح الطارئ"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notlöschung bestätigen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmar borrado de emergencia"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "緊急ワイプを確認"
+          }
+        }
+      }
+    },
+    "settings_profile_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prénom"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الاسم"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名前"
+          }
+        }
+      }
+    },
+    "settings_section_profile": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profil"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profile"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الملف الشخصي"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profil"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perfil"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "プロフィール"
+          }
+        }
+      }
+    },
+    "settings_section_privacy": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confidentialité"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الخصوصية"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datenschutz"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacidad"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "プライバシー"
+          }
+        }
+      }
+    },
+    "settings_section_integrations": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intégrations"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Integrations"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التكاملات"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Integrationen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Integraciones"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連携"
+          }
+        }
+      }
+    },
+    "settings_section_wellbeing": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Bien-être" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Wellbeing" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "الرفاهية" } },
+        "de": { "stringUnit": { "state": "translated", "value": "Wohlbefinden" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Bienestar" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "ウェルビーイング" } }
+      }
+    },
+    "settings_section_notifications": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifications"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifications"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الإشعارات"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benachrichtigungen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificaciones"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通知"
+          }
+        }
+      }
+    },
+    "settings_section_about": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À propos"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حول"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Über"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "について"
+          }
+        }
+      }
+    },
+    "settings_lock_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verrouiller avec biométrie"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lock with biometrics"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "القفل بالبيومتري"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit Biometrie sperren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloquear con biometría"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "生体認証でロック"
+          }
+        }
+      }
+    },
+    "settings_storage_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stockage"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Storage"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التخزين"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speicher"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Almacenamiento"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ストレージ"
+          }
+        }
+      }
+    },
+    "settings_storage_local": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local — aucun serveur"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local — no server"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "محلي — بدون خادم"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokal — kein Server"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local — sin servidor"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ローカル — サーバーなし"
+          }
+        }
+      }
+    },
+    "settings_icloud_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync iCloud (chiffré)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud Sync (encrypted)"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مزامنة iCloud (مشفر)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud-Sync (verschlüsselt)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync iCloud (cifrado)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud同期（暗号化）"
+          }
+        }
+      }
+    },
+    "settings_health_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intégration Santé"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Health Integration"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تكامل الصحة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gesundheits-Integration"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Integración Salud"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ヘルスケア連携"
+          }
+        }
+      }
+    },
+    "settings_health_sync_toggle": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synchroniser avec Santé"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync with Health"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مزامنة مع الصحة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit Gesundheit synchronisieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizar con Salud"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ヘルスと同期"
+          }
+        }
+      }
+    },
+    "settings_health_sync_footer": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNA peut partager les données cycle avec l'app Santé."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNA can share cycle data with the Health app."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يمكن لـ LUNA مشاركة بيانات الدورة مع تطبيق الصحة."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNA kann Zyklus­daten mit der Gesundheits-App teilen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNA puede compartir datos del ciclo con la app Salud."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNAはサイクルデータをヘルスアプリと共有できます。"
+          }
+        }
+      }
+    },
+    "settings_export_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporter mes données"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export my data"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تصدير بياناتي"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meine Daten exportieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar mis datos"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "データをエクスポート"
+          }
+        }
+      }
+    },
+    "settings_delete_all_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer toutes les données"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete all data"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حذف جميع البيانات"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Daten löschen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar todos los datos"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべてのデータを削除"
+          }
+        }
+      }
+    },
+    "settings_privacy_policy_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Politique de confidentialité"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy policy"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سياسة الخصوصية"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datenschutzrichtlinie"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Política de privacidad"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "プライバシーポリシー"
+          }
+        }
+      }
+    },
+    "settings_version_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الإصدار"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versión"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バージョン"
+          }
+        }
+      }
+    },
+    "settings_footer_no_server": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNA ne transmet aucune donnée. Chiffrement AES-256-GCM."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNA transmits no data. AES-256-GCM encryption."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا ترسل LUNA أي بيانات. تشفير AES-256-GCM."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNA überträgt keine Daten. AES-256-GCM-Verschlüsselung."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNA no transmite datos. Cifrado AES-256-GCM."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNAはデータを送信しません。AES-256-GCM暗号化。"
+          }
+        }
+      }
+    },
+    "settings_trust_badge": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun serveur · Aucun tracker · Open source"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No server · No tracker · Open source"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بدون خادم · بدون متتبع · مفتوح المصدر"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Server · Kein Tracker · Open Source"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin servidor · Sin rastreador · Código abierto"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サーバーなし・トラッカーなし・オープンソース"
+          }
+        }
+      }
+    },
+    "home_greeting_morning": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bonjour"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Good morning"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "صباح الخير"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guten Morgen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buenos días"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "おはよう"
+          }
+        }
+      }
+    },
+    "home_greeting_afternoon": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bonjour"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Good afternoon"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مساء الخير"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guten Nachmittag"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buenas tardes"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "こんにちは"
+          }
+        }
+      }
+    },
+    "home_greeting_evening": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bonsoir"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Good evening"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مساء الخير"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guten Abend"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buenas noches"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "こんばんは"
+          }
+        }
+      }
+    },
+    "home_cycle_day_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jour du cycle"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle day"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يوم الدورة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zyklustag"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Día del ciclo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイクル日"
+          }
+        }
+      }
+    },
+    "home_phase_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مرحلة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フェーズ"
+          }
+        }
+      }
+    },
+    "home_next_period_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prochaines règles"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next period"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الدورة القادمة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nächste Periode"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximo período"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "次の生理"
+          }
+        }
+      }
+    },
+    "home_fertile_window_label": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fenêtre fertile"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fertile window"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نافذة الخصوبة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fruchtbares Fenster"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventana fértil"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "妊娠可能期間"
+          }
+        }
+      }
+    },
+    "calendar_title": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendrier"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendar"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التقويم"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalender"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendario"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カレンダー"
+          }
+        }
+      }
+    },
+    "insights_title": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insights"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insights"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رؤى"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einblicke"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perspectivas"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分析"
+          }
+        }
+      }
+    },
+    "insights_avg_cycle": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durée moy. du cycle"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avg. cycle length"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "متوسط طول الدورة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ø Zykluslänge"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duración media ciclo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "平均サイクル長"
+          }
+        }
+      }
+    },
+    "insights_avg_period": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durée moy. des règles"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avg. period length"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "متوسط طول الدورة الشهرية"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ø Periodenlänge"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duración media período"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "平均生理期間"
+          }
+        }
+      }
+    },
+    "insights_no_data": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistre quelques cycles pour voir tes insights."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log a few cycles to see your insights."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سجّل بعض الدورات لرؤية إحصاءاتك."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erfasse einige Zyklen, um Einblicke zu sehen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registra algunos ciclos para ver tus insights."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "いくつかのサイクルを記録してinsightsを確認しよう。"
+          }
+        }
+      }
+    },
+    "phase_menstrual": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menstruel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menstrual"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الحيض"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menstruation"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menstrual"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "月経期"
+          }
+        }
+      }
+    },
+    "phase_follicular": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folliculaire"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Follicular"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الجريبية"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Follikelphase"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folicular"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "卵胞期"
+          }
+        }
+      }
+    },
+    "phase_ovulatory": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ovulatoire"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ovulatory"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الإباضة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ovulationsphase"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ovulatoria"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "排卵期"
+          }
+        }
+      }
+    },
+    "phase_luteal": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lutéale"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Luteal"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الجسم الأصفر"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lutealphase"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lútea"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "黄体期"
+          }
+        }
+      }
+    },
+    "phase_unknown": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inconnu"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "غير معروف"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unbekannt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desconocido"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不明"
+          }
+        }
+      }
+    },
+    "regularity_very_regular": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Très régulière" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Very regular" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "منتظمة جداً" } },
+        "de": { "stringUnit": { "state": "translated", "value": "Sehr regelmäßig" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Muy regular" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "非常に規則的" } },
+        "pt-BR": { "stringUnit": { "state": "translated", "value": "Muito regular" } },
+        "zh-Hans": { "stringUnit": { "state": "translated", "value": "非常规律" } },
+        "zh-Hant": { "stringUnit": { "state": "translated", "value": "非常規律" } },
+        "ko": { "stringUnit": { "state": "translated", "value": "매우 규칙적" } },
+        "hi": { "stringUnit": { "state": "translated", "value": "बहुत नियमित" } }
+      }
+    },
+    "regularity_regular": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Régulière" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Regular" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "منتظمة" } },
+        "de": { "stringUnit": { "state": "translated", "value": "Regelmäßig" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Regular" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "規則的" } },
+        "pt-BR": { "stringUnit": { "state": "translated", "value": "Regular" } },
+        "zh-Hans": { "stringUnit": { "state": "translated", "value": "规律" } },
+        "zh-Hant": { "stringUnit": { "state": "translated", "value": "規律" } },
+        "ko": { "stringUnit": { "state": "translated", "value": "규칙적" } },
+        "hi": { "stringUnit": { "state": "translated", "value": "नियमित" } }
+      }
+    },
+    "regularity_irregular": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Irrégulière" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Irregular" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "غير منتظمة" } },
+        "de": { "stringUnit": { "state": "translated", "value": "Unregelmäßig" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Irregular" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "不規則" } },
+        "pt-BR": { "stringUnit": { "state": "translated", "value": "Irregular" } },
+        "zh-Hans": { "stringUnit": { "state": "translated", "value": "不规律" } },
+        "zh-Hant": { "stringUnit": { "state": "translated", "value": "不規律" } },
+        "ko": { "stringUnit": { "state": "translated", "value": "불규칙" } },
+        "hi": { "stringUnit": { "state": "translated", "value": "अनियमित" } }
+      }
+    },
+    "regularity_unknown": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Je ne sais pas encore" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Not sure yet" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "لست متأكدة بعد" } },
+        "de": { "stringUnit": { "state": "translated", "value": "Noch nicht sicher" } },
+        "es": { "stringUnit": { "state": "translated", "value": "No estoy segura aún" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "まだわからない" } },
+        "pt-BR": { "stringUnit": { "state": "translated", "value": "Ainda não sei" } },
+        "zh-Hans": { "stringUnit": { "state": "translated", "value": "还不确定" } },
+        "zh-Hant": { "stringUnit": { "state": "translated", "value": "還不確定" } },
+        "ko": { "stringUnit": { "state": "translated", "value": "아직 모름" } },
+        "hi": { "stringUnit": { "state": "translated", "value": "अभी पता नहीं" } }
+      }
+    },
+    "day_abbr": {
+      "comment": "Abbreviation for 'days' used in period duration selector (e.g. '5d' or '5j')",
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "j" } },
+        "en": { "stringUnit": { "state": "translated", "value": "d" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "ي" } },
+        "de": { "stringUnit": { "state": "translated", "value": "T" } },
+        "es": { "stringUnit": { "state": "translated", "value": "d" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "日" } },
+        "pt-BR": { "stringUnit": { "state": "translated", "value": "d" } },
+        "zh-Hans": { "stringUnit": { "state": "translated", "value": "天" } },
+        "zh-Hant": { "stringUnit": { "state": "translated", "value": "天" } },
+        "ko": { "stringUnit": { "state": "translated", "value": "일" } },
+        "hi": { "stringUnit": { "state": "translated", "value": "दि" } }
+      }
+    },
+    "settings_calm_mode": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Mode calme" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Calm mode" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "الوضع الهادئ" } },
+        "de": { "stringUnit": { "state": "translated", "value": "Ruhiger Modus" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Modo calma" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "落ち着きモード" } }
+      }
+    },
+    "settings_calm_mode_description": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Masquer les prédictions pour réduire l'anxiété" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Hide predictions to reduce anxiety" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "إخفاء التوقعات لتقليل القلق" } },
+        "de": { "stringUnit": { "state": "translated", "value": "Vorhersagen ausblenden, um Angst zu reduzieren" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Ocultar predicciones para reducir la ansiedad" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "不安を軽減するために予測を非表示にする" } }
+      }
+    },
+    "home_calm_no_prediction": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Mode calme actif · prédictions masquées" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Calm mode on · predictions hidden" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "الوضع الهادئ نشط · التوقعات مخفية" } },
+        "de": { "stringUnit": { "state": "translated", "value": "Ruhiger Modus aktiv · Vorhersagen ausgeblendet" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Modo calma activo · predicciones ocultas" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "落ち着きモード中 · 予測を非表示" } }
+      }
+    },
+    "a11y_reduce_motion_hint": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Animations réduites activées" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Reduced motion enabled" } }
+      }
+    }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

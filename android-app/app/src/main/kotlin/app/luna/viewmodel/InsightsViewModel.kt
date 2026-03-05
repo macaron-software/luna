@@ -24,8 +24,8 @@ class InsightsViewModel : ViewModel() {
             try {
                 val summary = engine.getCycleSummary()
                 _stats.value = InsightsStats(
-                    avgCycleLength = summary.avgCycleLength,
-                    avgPeriodLength = summary.avgPeriodLength,
+                    avgCycleLength = summary.averageCycleLength,
+                    avgPeriodLength = summary.averagePeriodLength,
                     topSymptoms = emptyList(), // TODO: agréger depuis les logs
                 )
             } catch (e: Exception) {

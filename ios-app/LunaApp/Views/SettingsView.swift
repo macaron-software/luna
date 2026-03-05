@@ -35,7 +35,7 @@ struct SettingsView: View {
                     Toggle(isOn: $lockEnabled) {
                         Label("settings_lock_label", systemImage: "faceid")
                     }
-                    .onChange(of: lockEnabled) { _, new in
+                    .onChange(of: lockEnabled) { new in
                         appState.lockEnabled = new
                     }
 
@@ -70,6 +70,28 @@ struct SettingsView: View {
                     .accessibilityHint(Text("settings_delete_all_hint_a11y"))
                 } header: {
                     Text("settings_section_privacy")
+                }
+
+                // ── Bien-être & Accessibilité (a11y psy) ─────────────
+                Section {
+                    Toggle(isOn: Binding(
+                        get: { appState.calmMode },
+                        set: { appState.calmMode = $0 }
+                    )) {
+                        Label {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("settings_calm_mode")
+                                Text("settings_calm_mode_description")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        } icon: {
+                            Image(systemName: "leaf")
+                        }
+                    }
+                    .accessibilityHint(Text("settings_calm_mode_description"))
+                } header: {
+                    Text("settings_section_wellbeing")
                 }
 
                 // ── Notifications ─────────────────────────────────────

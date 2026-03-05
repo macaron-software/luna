@@ -106,4 +106,9 @@
     <string name="notif_period_reminder_label">Period reminder</string>
     <string name="notif_fertile_window_label">Fertile window alert</string>
     <string name="notif_bbt_reminder_label">BBT morning reminder</string>
+    <string name="energy_slider_a11y">Energy level slider</string>
+    <string name="onboarding_pin_hint">Choose a 6–8 digit PIN</string>
+    <string name="onboarding_pin_confirm_hint">Confirm PIN</string>
+    <string name="onboarding_pin_mismatch">PINs do not match</string>
+    <string name="onboarding_pin_too_short">PIN must be 6–8 digits</string>
 </resources>

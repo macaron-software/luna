@@ -192,7 +192,7 @@ luna-core/src/
   api.rs              → Interface UniFFI publique (LunaEngine)
   engine/types.rs     → Cycle, DailyLog, Prediction, CycleSummary, symptoms::*
   engine/prediction.rs → PredictionEngine, CyclePhase (calendar|bbt|lh|combined)
-  vault/crypto.rs     → derive_key, encrypt, decrypt, generate_salt, secure_zero
+  vault/crypto.rs     → derive_key, encrypt, decrypt, compress_blob, decompress_blob, generate_salt, secure_zero
   vault/database.rs   → SQLCipher init, PRAGMA key, migrations
   error.rs            → LunaError (8 variants)
   lib.rs              → uniffi::setup_scaffolding!("luna_core")
@@ -210,7 +210,7 @@ ios-app/
   LunaApp/Views/
     OnboardingView.swift, LockView.swift, HomeView.swift
     CalendarView.swift, InsightsView.swift, SettingsView.swift
-  LunaApp/Resources/Localizable.xcstrings → 97 clés, sourceLanguage="fr", 40 langues
+  LunaApp/Resources/Localizable.xcstrings → 97+ clés, sourceLanguage="fr", 40 langues (RTL: ar✅ de✅ ja✅)
   LunaApp/Services/KeychainService.swift  → ✅ SecItemAdd/CopyMatching/Delete, no iCloud sync
 ```
 
@@ -291,7 +291,11 @@ android-app/app/src/main/
 | iOS build sur simulateur | ✅ iPhone 16 Pro (Xcode 26) |
 | Android build sur émulateur | ✅ Pixel6_API34 ARM64 |
 | Rust 23 tests | ✅ |
-| i18n 40 langues | ✅ xcstrings + strings.xml |
+| i18n 40 langues | ✅ xcstrings + strings.xml — AR RTL ✅ DE ✅ JA ✅ testé sur sim |
+| Light/Dark mode auto | ✅ suit le système — bug LockBackground corrigé (OnboardingView) |
+| Compression blobs | ✅ zstd — symptoms stockés en BLOB compressé (database.rs) |
+| Calm Mode (psy a11y) | ✅ UserDefaults + SettingsView + HomeView (masque prédictions) |
+| Reduce Motion a11y | ✅ `@Environment(\.accessibilityReduceMotion)` dans HomeView |
 | WCAG 2.2 AA | ✅ contentDescription, a11yLabel, RTL |
 | Parcours utilisateur déroulé | ⚠️ Partiel (onboarding visible, flow non validé) |
 
@@ -338,4 +342,4 @@ adb -s emulator-5554 shell logcat -d | grep -E "FATAL|AndroidRuntime|app.luna"
 
 ---
 
-*Dernière mise à jour: 2026-03-05 — iOS ✅ Android ✅ Rust ✅ 23 tests*
+*Dernière mise à jour: 2026-03-05 — iOS ✅ Android ✅ Rust ✅ 23 tests · light/dark ✅ · i18n AR/DE/JA testé ✅ · zstd compression ✅*

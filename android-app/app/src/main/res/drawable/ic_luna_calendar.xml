@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Calendar icon — rect+lines converted to paths — Feather icon, path-only Android Vector Drawable -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorControlNormal">
+    <path
+        android:pathData="M19,4 L5,4 C3.895,4 3,4.895 3,6 L3,20 C3,21.105 3.895,22 5,22 L19,22 C20.105,22 21,21.105 21,20 L21,6 C21,4.895 20.105,4 19,4 Z"
+        android:strokeColor="?attr/colorControlNormal"
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+    <path
+        android:pathData="M16,2 L16,6"
+        android:strokeColor="?attr/colorControlNormal"
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+    <path
+        android:pathData="M8,2 L8,6"
+        android:strokeColor="?attr/colorControlNormal"
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+    <path
+        android:pathData="M3,10 L21,10"
+        android:strokeColor="?attr/colorControlNormal"
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+</vector>

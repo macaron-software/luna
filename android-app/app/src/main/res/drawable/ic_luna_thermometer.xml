@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Thermometer / BBT — Feather icon, path-only Android Vector Drawable -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorControlNormal">
+    <path
+        android:pathData="M14,14.31 L14,5 C14,3.895 13.105,3 12,3 C10.895,3 10,3.895 10,5 L10,14.31 C8.793,14.931 8,16.186 8,17.6 C8,19.806 9.794,21.6 12,21.6 C14.206,21.6 16,19.806 16,17.6 C16,16.186 15.207,14.931 14,14.31 Z"
+        android:strokeColor="?attr/colorControlNormal"
+        android:fillColor="@android:color/transparent"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+</vector>

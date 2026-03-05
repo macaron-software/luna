@@ -3,7 +3,7 @@ use secrecy::{ExposeSecret, SecretVec};
 
 use crate::engine::types::{Cycle, DailyLog};
 use crate::error::LunaError;
-use crate::vault::crypto::key_to_sqlcipher_pragma;
+use crate::vault::crypto::{compress_blob, decompress_blob, key_to_sqlcipher_pragma};
 
 /// Couche base de données — SQLite chiffrée via SQLCipher.
 ///
@@ -135,7 +135,8 @@ impl LunaDb {
     // ─── DailyLogs ───────────────────────────────────────────────────────────
 
     pub fn upsert_log(&self, log: &DailyLog) -> Result<(), LunaError> {
-        let symptoms_json = serde_json::to_string(&log.symptoms)?;
+        // Sérialisation JSON → compression zstd → BLOB binaire chiffré par SQLCipher
+        let symptoms_blob = compress_blob(&serde_json::to_vec(&log.symptoms)?)?;
 
         self.conn.execute(
             "INSERT INTO daily_logs (id, date, symptoms, mood, energy, bbt, lh_test, cervical_mucus, sexual_activity, flow, notes, updated_at)
@@ -146,7 +147,7 @@ impl LunaDb {
                sexual_activity=excluded.sexual_activity, flow=excluded.flow,
                notes=excluded.notes, updated_at=datetime('now')",
             params![
-                log.id, log.date, symptoms_json,
+                log.id, log.date, symptoms_blob,
                 log.mood.map(|v| v as i64), log.energy.map(|v| v as i64),
                 log.bbt, log.lh_test, log.cervical_mucus,
                 log.sexual_activity, log.flow, log.notes,
@@ -161,23 +162,25 @@ impl LunaDb {
             .map_err(|e| LunaError::DatabaseCorrupted(e.to_string()))?;
 
         let mut rows = stmt.query_map(params![date], |row| {
-            let symptoms_json: String = row.get(2)?;
-            Ok((row.get(0)?, row.get(1)?, symptoms_json,
+            let symptoms_blob: Vec<u8> = row.get(2)?;
+            Ok((row.get(0)?, row.get(1)?, symptoms_blob,
                 row.get(3)?, row.get(4)?, row.get(5)?,
                 row.get(6)?, row.get(7)?, row.get(8)?,
                 row.get(9)?, row.get(10)?))
         }).map_err(|e| LunaError::DatabaseCorrupted(e.to_string()))?;
 
         if let Some(row) = rows.next() {
-            type LogRow = (String, String, String,
+            type LogRow = (String, String, Vec<u8>,
                 Option<i64>, Option<i64>, Option<f64>,
                 Option<String>, Option<String>, Option<String>,
                 Option<String>, Option<String>);
-            let (id, date, symptoms_json, mood, energy, bbt, lh_test,
+            let (id, date, symptoms_blob, mood, energy, bbt, lh_test,
                  cervical_mucus, sexual_activity, flow, notes): LogRow
                 = row.map_err(|e| LunaError::DatabaseCorrupted(e.to_string()))?;
 
-            let symptoms: Vec<String> = serde_json::from_str(&symptoms_json)
+            let symptoms: Vec<String> = decompress_blob(&symptoms_blob)
+                .ok()
+                .and_then(|b| serde_json::from_slice(&b).ok())
                 .unwrap_or_default();
 
             Ok(Some(DailyLog {
@@ -204,8 +207,8 @@ impl LunaDb {
             .map_err(|e| LunaError::DatabaseCorrupted(e.to_string()))?;
 
         let logs = stmt.query_map(params![from, to], |row| {
-            let symptoms_json: String = row.get(2)?;
-            Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, symptoms_json,
+            let symptoms_blob: Vec<u8> = row.get(2)?;
+            Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, symptoms_blob,
                 row.get::<_, Option<i64>>(3)?, row.get::<_, Option<i64>>(4)?,
                 row.get::<_, Option<f64>>(5)?, row.get::<_, Option<String>>(6)?,
                 row.get::<_, Option<String>>(7)?, row.get::<_, Option<String>>(8)?,
@@ -213,9 +216,12 @@ impl LunaDb {
         })
         .map_err(|e| LunaError::DatabaseCorrupted(e.to_string()))?
         .filter_map(|r| r.ok())
-        .map(|(id, date, symptoms_json, mood, energy, bbt, lh_test,
+        .map(|(id, date, symptoms_blob, mood, energy, bbt, lh_test,
                cervical_mucus, sexual_activity, flow, notes)| {
-            let symptoms = serde_json::from_str(&symptoms_json).unwrap_or_default();
+            let symptoms = decompress_blob(&symptoms_blob)
+                .ok()
+                .and_then(|b| serde_json::from_slice(&b).ok())
+                .unwrap_or_default();
             DailyLog { id, date, symptoms, mood: mood.map(|v| v as u8),
                        energy: energy.map(|v| v as u8), bbt, lh_test,
                        cervical_mucus, sexual_activity, flow, notes }

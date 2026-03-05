@@ -1,0 +1,4 @@
+module luna_coreFFI {
+    header "luna_coreFFI.h"
+    export *
+}
