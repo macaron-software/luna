@@ -1,0 +1,43 @@
+name: Upload Play Store Listings
+
+on:
+  workflow_dispatch:        # trigger manuel depuis GitHub Actions
+  push:
+    branches: [main]
+    paths:
+      - 'fastlane/metadata/android/**'
+
+jobs:
+  upload:
+    name: Upload listings + screenshots
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check key available
+        run: |
+          if [ -z "${{ secrets.GOOGLE_PLAY_JSON_KEY }}" ]; then
+            echo "⚠️  GOOGLE_PLAY_JSON_KEY secret not set — skipping upload"
+            echo "To enable: Play Console → Setup → API access → Service account → Download JSON"
+            echo "Then: GitHub repo → Settings → Secrets → GOOGLE_PLAY_JSON_KEY (paste JSON content)"
+            exit 0
+          fi
+
+      - name: Write service account key
+        if: ${{ secrets.GOOGLE_PLAY_JSON_KEY != '' }}
+        run: echo '${{ secrets.GOOGLE_PLAY_JSON_KEY }}' > fastlane/google-play-key.json
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install google-api-python-client google-auth
+
+      - name: Upload listings + screenshots
+        run: python3 scripts/upload_play_store.py --key fastlane/google-play-key.json
+
+      - name: Cleanup key
+        if: always()
+        run: rm -f fastlane/google-play-key.json
