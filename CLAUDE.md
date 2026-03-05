@@ -23,7 +23,7 @@ _FLO/
 | Chiffrement DB | SQLCipher (rusqlite bundled-sqlcipher-vendored-openssl) |
 | Dérivation clé | Argon2id (64MB, 3 iter, 4 threads) → AES-256-GCM |
 | Backup chiffré | AES-256-GCM + HKDF-SHA256 (sous-clés distinctes) |
-| iOS UI | SwiftUI + Keychain (stub → TODO implémenter) |
+| iOS UI | SwiftUI + Keychain (`Security.framework`, `kSecAttrAccessibleWhenUnlockedThisDeviceOnly`) |
 | Android UI | Kotlin Views (ViewBinding) + Android Keystore AES-256-GCM |
 | Bindings | UniFFI Swift + Kotlin (générés depuis dylib macOS) |
 | i18n | 40 langues (xcstrings iOS, strings.xml Android) — FR source |
@@ -172,7 +172,7 @@ LunaError    { WrongPin, DatabaseCorrupted, CryptoError, IoError, InvalidData,
 | Sous-clés HKDF-SHA256 | ✅ | Clé DB ≠ clé sync — compromission isolée |
 | Zeroize sur clés en mémoire | ✅ | `secrecy::SecretVec` + `zeroize` |
 | Android Keystore PIN | ✅ | `KeystoreService.kt` — AES-256-GCM hardware-backed |
-| iOS Keychain PIN | ⚠️ STUB | `KeychainService.swift` n'existe pas encore |
+| iOS Keychain PIN | ✅ | `KeychainService.swift` — `kSecAttrAccessibleWhenUnlockedThisDeviceOnly` |
 
 ### Permissions Android utilisées
 ```
@@ -211,7 +211,7 @@ ios-app/
     OnboardingView.swift, LockView.swift, HomeView.swift
     CalendarView.swift, InsightsView.swift, SettingsView.swift
   LunaApp/Resources/Localizable.xcstrings → 97 clés, sourceLanguage="fr", 40 langues
-  LunaApp/Services/KeychainService.swift  → ⚠️ STUB MANQUANT (TODO)
+  LunaApp/Services/KeychainService.swift  → ✅ SecItemAdd/CopyMatching/Delete, no iCloud sync
 ```
 
 ### Android (Kotlin Views)
@@ -234,20 +234,15 @@ android-app/app/src/main/
 
 ---
 
-## PROBLÈMES CONNUS / TODOs CRITIQUES
+## PROBLÈMES CONNUS / TODOs RESTANTS
 
-1. **`KeychainService.swift` manquant** — iOS stocke le PIN en UserDefaults non chiffré
-   - Fix: implémenter `Security.framework` (`SecItemAdd/CopyMatching`)
-   
-2. **OnboardingActivity Android utilise PIN "000000"** — À remplacer par le PIN saisi
+1. **Parcours utilisateur iOS non déroulé** — onboarding step 1 visible mais flux non testé end-to-end
 
-3. **Parcours utilisateur iOS non déroulé** — onboarding step 1 visible mais flux non testé end-to-end
+2. **`LunaApplication.kt` charge la lib au démarrage** — crash si `.so` absent pour l'ABI
 
-4. **`LunaApplication.kt` charge la lib au démarrage** — crash si `.so` absent pour l'ABI
+3. **`exportEncryptedBackup("")`** dans SettingsActivity — PIN vide, inutilisable en prod
 
-5. **`exportEncryptedBackup("")`** dans SettingsActivity — PIN vide, inutilisable en prod
-
-6. **Link statique `https://luna-app.privacy`** dans SettingsView.swift — URL fictive
+4. **Link statique `https://luna-app.privacy`** dans SettingsView.swift — URL fictive
 
 7. **arm64-v7a non buildé** — seul arm64-v8a et x86_64 présents (suffisant pour prod moderne)
 
@@ -290,7 +285,7 @@ android-app/app/src/main/
 | DB chiffrée AES-256 | ✅ |
 | PIN → Argon2id + SQLCipher | ✅ |
 | Android Keystore PIN | ✅ |
-| iOS Keychain PIN | ⚠️ TODO |
+| iOS Keychain PIN | ✅ |
 | Panic wipe | ✅ Rust `panic_wipe()` |
 | Export backup chiffré | ✅ API Rust (UI partielle) |
 | iOS build sur simulateur | ✅ iPhone 16 Pro (Xcode 26) |
