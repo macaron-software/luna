@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A0533"/>
+      <stop offset="100%" style="stop-color:#2D0B5E"/>
+    </linearGradient>
+    <linearGradient id="moon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8C4FF"/>
+      <stop offset="100%" style="stop-color:#C084FC"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F472B6"/>
+      <stop offset="100%" style="stop-color:#A855F7"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="12" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1024" height="1024" rx="230" fill="url(#bg)"/>
+  <circle cx="180" cy="200" r="4" fill="#E8C4FF" opacity="0.6"/>
+  <circle cx="820" cy="160" r="3" fill="#E8C4FF" opacity="0.5"/>
+  <circle cx="880" cy="380" r="2" fill="#F472B6" opacity="0.7"/>
+  <circle cx="140" cy="640" r="3" fill="#E8C4FF" opacity="0.4"/>
+  <circle cx="860" cy="780" r="4" fill="#C084FC" opacity="0.5"/>
+  <circle cx="300" cy="850" r="2" fill="#E8C4FF" opacity="0.6"/>
+  <circle cx="512" cy="490" r="310" fill="url(#moon)" filter="url(#glow)"/>
+  <circle cx="625" cy="420" r="260" fill="url(#bg)"/>
+  <circle cx="350" cy="790" r="22" fill="url(#acc)" opacity="0.9"/>
+  <circle cx="430" cy="790" r="22" fill="url(#acc)" opacity="0.7"/>
+  <circle cx="510" cy="790" r="22" fill="#F472B6" opacity="1"/>
+  <circle cx="590" cy="790" r="22" fill="url(#acc)" opacity="0.7"/>
+  <circle cx="670" cy="790" r="22" fill="url(#acc)" opacity="0.5"/>
+</svg>

@@ -1,7 +1,14 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 }
+
+// Load signing credentials from key.properties (not committed)
+val keyProps = Properties()
+val keyPropsFile = rootProject.file("key.properties")
+if (keyPropsFile.exists()) keyProps.load(keyPropsFile.inputStream())
 
 android {
     namespace = "app.luna"
@@ -12,7 +19,7 @@ android {
         minSdk = 23      // Android 6.0 Marshmallow — Keystore AES-GCM disponible, couvre ~98% des appareils actifs
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0.0"
+        versionName = "0.1.0"
 
         // i18n : inclure toutes les locales configurées
         resourceConfigurations += listOf(
@@ -35,8 +42,18 @@ android {
         viewBinding = true
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = keyProps["storeFile"]?.let { rootProject.file(it) }
+            storePassword = keyProps["storePassword"] as String?
+            keyAlias = keyProps["keyAlias"] as String?
+            keyPassword = keyProps["keyPassword"] as String?
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(

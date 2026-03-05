@@ -15,6 +15,7 @@
 		6A1A4E3F68737A9153E99EAC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE0A33431EF3DA3DF529CC6 /* NotificationManager.swift */; };
 		6D6147029D5E55E480A1B69E /* PregnancyLogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6810FA093AD41D031AC57750 /* PregnancyLogSheet.swift */; };
 		C8EABA2D2BB44FE8BB07E873 /* PerimenopauseDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA92A24C8A4B56AB1AD327 /* PerimenopauseDashboardView.swift */; };
+		96C6CAD24A504E558B46849F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DBCE037E93E541D4A7FA3BA9 /* PrivacyInfo.xcprivacy */; };
 		72792192F33427A6ABF0168B /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971DBB1CE53C346B5E17EF54 /* CalendarView.swift */; };
 		7AFC38796780CC88FB0F6B87 /* LunaTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A43E2CEB6A69A63C670D03 /* LunaTokens.swift */; };
 		897EC1321D8A8C1A21028649 /* LunaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EEFEE52106EEBC82C298C /* LunaUITests.swift */; };
@@ -67,6 +68,7 @@
 		5B7206D15DE48ECED3F80F9E /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		6810FA093AD41D031AC57750 /* PregnancyLogSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregnancyLogSheet.swift; sourceTree = "<group>"; };
 		CBFA92A24C8A4B56AB1AD327 /* PerimenopauseDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerimenopauseDashboardView.swift; sourceTree = "<group>"; };
+		DBCE037E93E541D4A7FA3BA9 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		6878AAC48B5D9B0BAEBC5063 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		69FCE9EBD23B9D56B8DFE644 /* LunaServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunaServicesTests.swift; sourceTree = "<group>"; };
 		74BA8534C61AB308F4960CD5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				9409D2A3AD2210B433B1170F /* Info.plist */,
 				914FFDD94F8F144CC9770FE4 /* LunaApp.swift */,
+				DBCE037E93E541D4A7FA3BA9 /* PrivacyInfo.xcprivacy */,
 				DADBCDA300B943853A51B2EC /* DesignSystem */,
 				3224B94EFCA3194F2EFA68F2 /* Generated */,
 				CEFD3E77B036CC585FC0A7B7 /* Resources */,
@@ -332,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB0026149A5F76602AF9637C /* Assets.xcassets in Resources */,
+				96C6CAD24A504E558B46849F /* PrivacyInfo.xcprivacy in Resources */,
 				403BDA1F6BB3BCC55766BA3A /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
