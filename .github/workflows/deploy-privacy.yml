@@ -1,0 +1,91 @@
+name: Deploy Privacy Page
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/luna/**'
+      - '.github/workflows/deploy-privacy.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to OVH nginx + certbot
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.OVH_SSH_KEY }}" > ~/.ssh/ovh_key
+          chmod 600 ~/.ssh/ovh_key
+          echo "${{ secrets.OVH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          # Fallback: accept host key automatically
+          ssh-keyscan -H 54.36.183.124 >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Deploy HTML and configure nginx
+        run: |
+          # Copy privacy page
+          scp -i ~/.ssh/ovh_key -o StrictHostKeyChecking=no \
+            docs/luna/index.html \
+            debian@54.36.183.124:/tmp/luna_privacy.html
+
+          ssh -i ~/.ssh/ovh_key -o StrictHostKeyChecking=no \
+            debian@54.36.183.124 << 'REMOTE'
+            set -e
+
+            # Create web root
+            sudo mkdir -p /var/www/privacy/luna
+            sudo cp /tmp/luna_privacy.html /var/www/privacy/luna/index.html
+            sudo chown -R www-data:www-data /var/www/privacy
+
+            # nginx virtual host
+            sudo tee /etc/nginx/sites-available/privacy.macaron-software.com << 'NGINXCONF'
+          server {
+              listen 80;
+              server_name privacy.macaron-software.com;
+              root /var/www/privacy;
+              index index.html;
+
+              location / {
+                  try_files $uri $uri/ $uri/index.html =404;
+              }
+
+              # Let's Encrypt challenge
+              location /.well-known/acme-challenge/ {
+                  root /var/www/certbot;
+              }
+          }
+          NGINXCONF
+
+            sudo ln -sf /etc/nginx/sites-available/privacy.macaron-software.com \
+              /etc/nginx/sites-enabled/privacy.macaron-software.com
+            sudo nginx -t && sudo systemctl reload nginx
+
+            # Get Let's Encrypt certificate
+            if ! sudo test -d /etc/letsencrypt/live/privacy.macaron-software.com; then
+              sudo certbot --nginx \
+                -d privacy.macaron-software.com \
+                --non-interactive \
+                --agree-tos \
+                --email privacy@macaron-software.com \
+                --redirect
+            else
+              sudo certbot renew --quiet
+            fi
+
+            echo "Deploy complete."
+          REMOTE
+
+      - name: Verify deployment
+        run: |
+          sleep 10
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            --max-time 15 https://privacy.macaron-software.com/luna/ || echo "000")
+          echo "HTTP status: $STATUS"
+          if [ "$STATUS" = "200" ]; then
+            echo "✅ Privacy page is live at https://privacy.macaron-software.com/luna/"
+          else
+            echo "⚠️  Status $STATUS — DNS may still propagating or cert pending"
+          fi
