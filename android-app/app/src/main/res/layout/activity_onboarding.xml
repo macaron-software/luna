@@ -17,12 +17,11 @@
         android:layout_marginBottom="32dp" />
 
     <!-- Icône -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_gravity="center_horizontal"
-        android:text="🌙"
-        android:textSize="64sp"
+        android:src="@drawable/ic_luna_moon"
         android:importantForAccessibility="no"
         android:layout_marginBottom="16dp" />
 

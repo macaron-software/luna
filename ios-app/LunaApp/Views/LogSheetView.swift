@@ -151,8 +151,7 @@ struct LogSheetView: View {
 
 struct MoodPicker: View {
     @Binding var selection: Int
-    private let emojis = ["😫", "😕", "😐", "🙂", "😊"]
-    private let labels = ["mood_very_bad", "mood_bad", "mood_neutral", "mood_good", "mood_great"]
+    private let keys = ["mood_very_bad", "mood_bad", "mood_neutral", "mood_good", "mood_great"]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -160,24 +159,37 @@ struct MoodPicker: View {
                 .font(.subheadline.bold())
                 .accessibilityAddTraits(.isHeader)
 
-            HStack(spacing: 12) {
+            HStack(spacing: 8) {
                 ForEach(1...5, id: \.self) { value in
                     Button {
                         selection = (selection == value) ? 0 : value
                     } label: {
-                        Text(emojis[value - 1])
-                            .font(.system(size: 32))
-                            .scaleEffect(selection == value ? 1.2 : 1.0)
-                            .opacity(selection == 0 || selection == value ? 1.0 : 0.4)
+                        ZStack {
+                            Circle()
+                                .fill(selection == value ? Color("AccentPrimary") : Color("CardBackground"))
+                            Circle()
+                                .strokeBorder(
+                                    selection == value ? Color("AccentPrimary") : Color.secondary.opacity(0.35),
+                                    lineWidth: 1.5
+                                )
+                            Text("\(value)")
+                                .font(.callout.weight(.medium))
+                                .foregroundColor(selection == value ? .white : .secondary)
+                        }
+                        .frame(width: 44, height: 44)
                     }
-                    // Cible tactile ≥ 44pt
-                    .frame(minWidth: 44, minHeight: 44)
-                    .accessibilityLabel(Text(LocalizedStringKey(labels[value - 1])))
+                    .accessibilityLabel(Text(LocalizedStringKey(keys[value - 1])))
                     .accessibilityAddTraits(selection == value ? .isSelected : [])
                     .accessibilityHint(
                         Text(selection == value ? "tap_to_deselect_a11y" : "tap_to_select_a11y")
                     )
                 }
+            }
+
+            if selection > 0 {
+                Text(LocalizedStringKey(keys[selection - 1]))
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
         }
     }

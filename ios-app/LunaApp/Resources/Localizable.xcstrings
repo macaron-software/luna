@@ -281,6 +281,71 @@
         }
       }
     },
+    "mood_very_bad": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Tres mauvaise" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Very bad" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "سيء جدا" } },
+        "de": { "stringUnit": { "state": "translated", "value": "Sehr schlecht" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Muy mal" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "最悪" } },
+        "pt-BR": { "stringUnit": { "state": "translated", "value": "Muito mal" } },
+        "zh-Hans": { "stringUnit": { "state": "translated", "value": "很差" } },
+        "ko": { "stringUnit": { "state": "translated", "value": "매우 나쁨" } }
+      }
+    },
+    "mood_bad": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Mauvaise" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Bad" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "سيء" } },
+        "de": { "stringUnit": { "state": "translated", "value": "Schlecht" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Mal" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "悪い" } },
+        "pt-BR": { "stringUnit": { "state": "translated", "value": "Mal" } },
+        "zh-Hans": { "stringUnit": { "state": "translated", "value": "差" } },
+        "ko": { "stringUnit": { "state": "translated", "value": "나쁨" } }
+      }
+    },
+    "mood_neutral": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Neutre" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Neutral" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "محايد" } },
+        "de": { "stringUnit": { "state": "translated", "value": "Neutral" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Neutral" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "普通" } },
+        "pt-BR": { "stringUnit": { "state": "translated", "value": "Neutro" } },
+        "zh-Hans": { "stringUnit": { "state": "translated", "value": "一般" } },
+        "ko": { "stringUnit": { "state": "translated", "value": "보통" } }
+      }
+    },
+    "mood_good": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Bonne" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Good" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "جيد" } },
+        "de": { "stringUnit": { "state": "translated", "value": "Gut" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Bien" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "良い" } },
+        "pt-BR": { "stringUnit": { "state": "translated", "value": "Bem" } },
+        "zh-Hans": { "stringUnit": { "state": "translated", "value": "好" } },
+        "ko": { "stringUnit": { "state": "translated", "value": "좋음" } }
+      }
+    },
+    "mood_great": {
+      "localizations": {
+        "fr": { "stringUnit": { "state": "translated", "value": "Excellente" } },
+        "en": { "stringUnit": { "state": "translated", "value": "Great" } },
+        "ar": { "stringUnit": { "state": "translated", "value": "ممتاز" } },
+        "de": { "stringUnit": { "state": "translated", "value": "Ausgezeichnet" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Excelente" } },
+        "ja": { "stringUnit": { "state": "translated", "value": "最高" } },
+        "pt-BR": { "stringUnit": { "state": "translated", "value": "Excelente" } },
+        "zh-Hans": { "stringUnit": { "state": "translated", "value": "极好" } },
+        "ko": { "stringUnit": { "state": "translated", "value": "매우 좋음" } }
+      }
+    },
     "energy_label": {
       "localizations": {
         "fr": {

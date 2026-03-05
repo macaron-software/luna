@@ -65,6 +65,10 @@ pub struct DailyLog {
     pub sexual_activity: Option<String>,
     /// Flux menstruel : "none" | "spotting" | "light" | "medium" | "heavy"
     pub flow: Option<String>,
+    /// Qualité du sommeil : 1 (très mauvaise) à 5 (excellente)
+    pub sleep_quality: Option<u8>,
+    /// Poids en kg, ex: 62.5
+    pub weight_kg: Option<f64>,
     pub notes: Option<String>,
 }
 
@@ -81,6 +85,8 @@ impl DailyLog {
             cervical_mucus: None,
             sexual_activity: None,
             flow: None,
+            sleep_quality: None,
+            weight_kg: None,
             notes: None,
         }
     }

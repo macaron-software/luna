@@ -62,7 +62,7 @@ impl LunaDb {
             CREATE TABLE IF NOT EXISTS daily_logs (
                 id              TEXT PRIMARY KEY,
                 date            TEXT NOT NULL UNIQUE,
-                symptoms        TEXT NOT NULL DEFAULT '[]',
+                symptoms        BLOB NOT NULL DEFAULT X'',
                 mood            INTEGER,
                 energy          INTEGER,
                 bbt             REAL,
@@ -70,6 +70,8 @@ impl LunaDb {
                 cervical_mucus  TEXT,
                 sexual_activity TEXT,
                 flow            TEXT,
+                sleep_quality   INTEGER,
+                weight_kg       REAL,
                 notes           TEXT,
                 created_at      TEXT NOT NULL DEFAULT (datetime('now')),
                 updated_at      TEXT NOT NULL DEFAULT (datetime('now'))
@@ -139,18 +141,21 @@ impl LunaDb {
         let symptoms_blob = compress_blob(&serde_json::to_vec(&log.symptoms)?)?;
 
         self.conn.execute(
-            "INSERT INTO daily_logs (id, date, symptoms, mood, energy, bbt, lh_test, cervical_mucus, sexual_activity, flow, notes, updated_at)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, datetime('now'))
+            "INSERT INTO daily_logs (id, date, symptoms, mood, energy, bbt, lh_test, cervical_mucus, sexual_activity, flow, sleep_quality, weight_kg, notes, updated_at)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, datetime('now'))
              ON CONFLICT(date) DO UPDATE SET
                symptoms=excluded.symptoms, mood=excluded.mood, energy=excluded.energy,
                bbt=excluded.bbt, lh_test=excluded.lh_test, cervical_mucus=excluded.cervical_mucus,
                sexual_activity=excluded.sexual_activity, flow=excluded.flow,
+               sleep_quality=excluded.sleep_quality, weight_kg=excluded.weight_kg,
                notes=excluded.notes, updated_at=datetime('now')",
             params![
                 log.id, log.date, symptoms_blob,
                 log.mood.map(|v| v as i64), log.energy.map(|v| v as i64),
                 log.bbt, log.lh_test, log.cervical_mucus,
-                log.sexual_activity, log.flow, log.notes,
+                log.sexual_activity, log.flow,
+                log.sleep_quality.map(|v| v as i64), log.weight_kg,
+                log.notes,
             ],
         ).map_err(|e| LunaError::DatabaseCorrupted(e.to_string()))?;
         Ok(())
@@ -158,7 +163,7 @@ impl LunaDb {
 
     pub fn get_log(&self, date: &str) -> Result<Option<DailyLog>, LunaError> {
         let mut stmt = self.conn
-            .prepare("SELECT id, date, symptoms, mood, energy, bbt, lh_test, cervical_mucus, sexual_activity, flow, notes FROM daily_logs WHERE date = ?1")
+            .prepare("SELECT id, date, symptoms, mood, energy, bbt, lh_test, cervical_mucus, sexual_activity, flow, sleep_quality, weight_kg, notes FROM daily_logs WHERE date = ?1")
             .map_err(|e| LunaError::DatabaseCorrupted(e.to_string()))?;
 
         let mut rows = stmt.query_map(params![date], |row| {
@@ -166,16 +171,16 @@ impl LunaDb {
             Ok((row.get(0)?, row.get(1)?, symptoms_blob,
                 row.get(3)?, row.get(4)?, row.get(5)?,
                 row.get(6)?, row.get(7)?, row.get(8)?,
-                row.get(9)?, row.get(10)?))
+                row.get(9)?, row.get(10)?, row.get(11)?, row.get(12)?))
         }).map_err(|e| LunaError::DatabaseCorrupted(e.to_string()))?;
 
         if let Some(row) = rows.next() {
             type LogRow = (String, String, Vec<u8>,
                 Option<i64>, Option<i64>, Option<f64>,
                 Option<String>, Option<String>, Option<String>,
-                Option<String>, Option<String>);
+                Option<String>, Option<i64>, Option<f64>, Option<String>);
             let (id, date, symptoms_blob, mood, energy, bbt, lh_test,
-                 cervical_mucus, sexual_activity, flow, notes): LogRow
+                 cervical_mucus, sexual_activity, flow, sleep_quality, weight_kg, notes): LogRow
                 = row.map_err(|e| LunaError::DatabaseCorrupted(e.to_string()))?;
 
             let symptoms: Vec<String> = decompress_blob(&symptoms_blob)
@@ -194,6 +199,8 @@ impl LunaDb {
                 cervical_mucus,
                 sexual_activity,
                 flow,
+                sleep_quality: sleep_quality.map(|v| v as u8),
+                weight_kg,
                 notes,
             }))
         } else {
@@ -203,7 +210,7 @@ impl LunaDb {
 
     pub fn get_logs_range(&self, from: &str, to: &str) -> Result<Vec<DailyLog>, LunaError> {
         let mut stmt = self.conn
-            .prepare("SELECT id, date, symptoms, mood, energy, bbt, lh_test, cervical_mucus, sexual_activity, flow, notes FROM daily_logs WHERE date BETWEEN ?1 AND ?2 ORDER BY date")
+            .prepare("SELECT id, date, symptoms, mood, energy, bbt, lh_test, cervical_mucus, sexual_activity, flow, sleep_quality, weight_kg, notes FROM daily_logs WHERE date BETWEEN ?1 AND ?2 ORDER BY date")
             .map_err(|e| LunaError::DatabaseCorrupted(e.to_string()))?;
 
         let logs = stmt.query_map(params![from, to], |row| {
@@ -212,19 +219,22 @@ impl LunaDb {
                 row.get::<_, Option<i64>>(3)?, row.get::<_, Option<i64>>(4)?,
                 row.get::<_, Option<f64>>(5)?, row.get::<_, Option<String>>(6)?,
                 row.get::<_, Option<String>>(7)?, row.get::<_, Option<String>>(8)?,
-                row.get::<_, Option<String>>(9)?, row.get::<_, Option<String>>(10)?))
+                row.get::<_, Option<String>>(9)?,
+                row.get::<_, Option<i64>>(10)?, row.get::<_, Option<f64>>(11)?,
+                row.get::<_, Option<String>>(12)?))
         })
         .map_err(|e| LunaError::DatabaseCorrupted(e.to_string()))?
         .filter_map(|r| r.ok())
         .map(|(id, date, symptoms_blob, mood, energy, bbt, lh_test,
-               cervical_mucus, sexual_activity, flow, notes)| {
+               cervical_mucus, sexual_activity, flow, sleep_quality, weight_kg, notes)| {
             let symptoms = decompress_blob(&symptoms_blob)
                 .ok()
                 .and_then(|b| serde_json::from_slice(&b).ok())
                 .unwrap_or_default();
             DailyLog { id, date, symptoms, mood: mood.map(|v| v as u8),
                        energy: energy.map(|v| v as u8), bbt, lh_test,
-                       cervical_mucus, sexual_activity, flow, notes }
+                       cervical_mucus, sexual_activity, flow,
+                       sleep_quality: sleep_quality.map(|v| v as u8), weight_kg, notes }
         })
         .collect();
 

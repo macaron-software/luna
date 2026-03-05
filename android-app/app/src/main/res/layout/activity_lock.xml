@@ -9,12 +9,13 @@
     android:padding="32dp">
 
     <!-- Logo -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🌙"
-        android:textSize="64sp"
-        android:importantForAccessibility="no" />
+    <ImageView
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_luna_moon"
+        android:importantForAccessibility="no"
+        android:layout_marginBottom="8dp" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -14,6 +14,11 @@
     <string name="cycle_no_data_a11y">No cycle data yet</string>
     <string name="log_sheet_title">Today</string>
     <string name="mood_label">Mood</string>
+    <string name="mood_very_bad">Very bad</string>
+    <string name="mood_bad">Bad</string>
+    <string name="mood_neutral">Neutral</string>
+    <string name="mood_good">Good</string>
+    <string name="mood_great">Great</string>
     <string name="energy_label">Energy</string>
     <string name="flow_label">Flow</string>
     <string name="flow_none">None</string>

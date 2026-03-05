@@ -62,18 +62,17 @@ class LogBottomSheet : BottomSheetDialogFragment() {
     // ── Humeur ─────────────────────────────────────────────────────────────
 
     private fun setupMoodButtons(view: View) {
-        val emojis = listOf("😫", "😕", "😐", "🙂", "😊")
+        val moodKeys = listOf("mood_very_bad", "mood_bad", "mood_neutral", "mood_good", "mood_great")
         val container = view.findViewById<LinearLayout>(R.id.mood_container)
-        emojis.forEachIndexed { i, emoji ->
+        for (i in 0..4) {
             val btn = android.widget.Button(requireContext()).apply {
-                text = emoji
-                textSize = 28f
+                text = "${i + 1}"
+                textSize = 16f
                 setOnClickListener { selectedMood = i + 1; updateMoodSelection(container, i) }
                 minWidth = dpToPx(48)
                 minHeight = dpToPx(48)
-                // a11y
                 contentDescription = getString(
-                    resources.getIdentifier("mood_level_$i", "string", requireContext().packageName)
+                    resources.getIdentifier(moodKeys[i], "string", requireContext().packageName)
                 )
             }
             container.addView(btn)
