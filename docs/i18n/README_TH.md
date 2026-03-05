@@ -32,9 +32,9 @@
 ## Architecture
 
 ```
-luna-core/     Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
-ios-app/       SwiftUI iOS 16+ — Keychain — HealthKit (optional)
-android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
+luna-core/ Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
+ios-app/ SwiftUI iOS 16+ — Keychain — HealthKit (optional)
+android-app/ Kotlin API 23+ — Keystore — HealthConnect (optional)
 ```
 
 **41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
@@ -50,9 +50,9 @@ android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
 ## Build
 
 ```bash
-cargo test -p luna-core              # 41 Rust tests
-cd ios-app && xcodebuild build       # iOS (Xcode 15+)
-cd android-app && ./gradlew assembleDebug  # Android
+cargo test -p luna-core # 41 Rust tests
+cd ios-app && xcodebuild build # iOS (Xcode 15+)
+cd android-app && ./gradlew assembleDebug # Android
 ```
 
 ---

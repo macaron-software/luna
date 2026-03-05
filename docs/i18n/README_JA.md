@@ -32,9 +32,9 @@
 ## Architecture
 
 ```
-luna-core/     Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
-ios-app/       SwiftUI iOS 16+ — Keychain — HealthKit (optional)
-android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
+luna-core/ Rust — UniFFI 0.28 — AES-256-GCM + Argon2id + SQLCipher
+ios-app/ SwiftUI iOS 16+ — Keychain — HealthKit (optional)
+android-app/ Kotlin API 23+ — Keystore — HealthConnect (optional)
 ```
 
 **41 tests** (Rust behavior + crypto + prediction + CSV + iOS + Android)
@@ -47,12 +47,21 @@ android-app/   Kotlin API 23+ — Keystore — HealthConnect (optional)
 
 ---
 
+
+## スクリーンショット
+
+### 機能一覧
+
+| ホーム | 日々の記録 | カレンダー | 分析 | プライバシー | TTCモード |
+|------|---------|---------|-----|-----------|---------|
+| ![](../../docs/screenshots/01_home_ja.png) | ![](../../docs/screenshots/02_log_en.png) | ![](../../docs/screenshots/03_calendar_en.png) | ![](../../docs/screenshots/04_insights_en.png) | ![](../../docs/screenshots/05_security_en.png) | ![](../../docs/screenshots/06_ttc_en.png) |
+
 ## Build
 
 ```bash
-cargo test -p luna-core              # 41 Rust tests
-cd ios-app && xcodebuild build       # iOS (Xcode 15+)
-cd android-app && ./gradlew assembleDebug  # Android
+cargo test -p luna-core # 41 Rust tests
+cd ios-app && xcodebuild build # iOS (Xcode 15+)
+cd android-app && ./gradlew assembleDebug # Android
 ```
 
 ---
