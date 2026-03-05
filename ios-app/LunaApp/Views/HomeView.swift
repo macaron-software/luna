@@ -148,32 +148,97 @@ private struct TTCBanner: View {
     }
 }
 
+// MARK: - SegmentedCycleRing
+
+/// Anneau segmenté : un arc par jour du cycle, coloré par phase.
+struct SegmentedCycleRing: View {
+    let totalDays: Int        // durée totale du cycle (ex. 28)
+    let currentDay: Int       // jour actuel dans le cycle
+    let menstrualEnd: Int     // dernier jour des règles (ex. 5)
+    let fertileStart: Int     // premier jour fenêtre fertile
+    let fertileEnd: Int       // dernier jour fenêtre fertile
+    let ovulationCycleDay: Int? // numéro de jour de l'ovulation
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    private let lineWidth: CGFloat = 13
+    private let gapDeg: Double = 2.5  // espace entre segments en degrés
+
+    // Couleurs par phase (correspond à la palette LUNA)
+    private let colorMenstrual   = Color(red: 0.761, green: 0.337, blue: 0.478) // #C2567A rose
+    private let colorFollicular  = Color(red: 0.910, green: 0.647, blue: 0.596) // #E8A598 pêche
+    private let colorFertile     = Color(red: 0.478, green: 0.722, blue: 0.569) // #7AB891 sauge
+    private let colorLuteal      = Color(red: 0.420, green: 0.306, blue: 0.443) // #6B4E71 prune
+
+    var body: some View {
+        Canvas { ctx, size in
+            let cx = size.width / 2
+            let cy = size.height / 2
+            let center = CGPoint(x: cx, y: cy)
+            let radius = (min(size.width, size.height) - lineWidth) / 2
+            let segDeg = 360.0 / Double(max(totalDays, 1))
+            let arcDeg = segDeg - gapDeg
+
+            for day in 1...max(totalDays, 1) {
+                let startDeg = Double(day - 1) * segDeg - 90.0 + gapDeg / 2
+                var path = Path()
+                path.addArc(
+                    center: center,
+                    radius: radius,
+                    startAngle: .degrees(startDeg),
+                    endAngle: .degrees(startDeg + arcDeg),
+                    clockwise: false
+                )
+                let isPast  = day <= currentDay
+                let isToday = day == currentDay
+                let width: CGFloat = isToday ? lineWidth + 3 : lineWidth
+                let color = segmentColor(day: day, past: isPast)
+                ctx.stroke(path, with: .color(color),
+                           style: StrokeStyle(lineWidth: width, lineCap: .butt))
+            }
+        }
+        .animation(reduceMotion ? .none : .easeInOut(duration: 0.4), value: currentDay)
+    }
+
+    private func segmentColor(day: Int, past: Bool) -> Color {
+        let alpha: Double = past ? 1.0 : 0.15
+        if day <= menstrualEnd { return colorMenstrual.opacity(alpha) }
+        if day >= fertileStart && day <= fertileEnd { return colorFertile.opacity(alpha) }
+        if let ov = ovulationCycleDay, day > ov { return colorLuteal.opacity(alpha) }
+        return colorFollicular.opacity(alpha)
+    }
+}
+
 // MARK: - CycleProgressWidget
 
 struct CycleProgressWidget: View {
     let prediction: Prediction?
     let currentDay: Int
 
+    private static let isoFmt: ISO8601DateFormatter = {
+        let f = ISO8601DateFormatter(); f.formatOptions = [.withFullDate]; return f
+    }()
+
     var body: some View {
         VStack(spacing: 12) {
-            // Donut progress
             ZStack {
-                Circle()
-                    .stroke(Color("PhaseColor").opacity(0.2), lineWidth: 12)
-                Circle()
-                    .trim(from: 0, to: progress)
-                    .stroke(Color("PhaseColor"), style: StrokeStyle(lineWidth: 12, lineCap: .round))
-                    .rotationEffect(.degrees(-90))
-                    .animation(.easeInOut(duration: 0.6), value: progress)
+                // Anneau segmenté jours du cycle
+                SegmentedCycleRing(
+                    totalDays: cycleLength,
+                    currentDay: currentDay,
+                    menstrualEnd: 5,
+                    fertileStart: fertileStartDay,
+                    fertileEnd: fertileEndDay,
+                    ovulationCycleDay: ovulationCycleDay
+                )
 
+                // Texte central
                 VStack(spacing: 4) {
                     Text("cycle_day_label \(currentDay)")
                         .font(.title2.bold())
-                    if let phase = phaseLabel {
-                        Text(phase)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
+                    Text(phaseLabel)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
             }
             .frame(width: 160, height: 160)
@@ -191,33 +256,55 @@ struct CycleProgressWidget: View {
         .background(Color("CardBackground"), in: RoundedRectangle(cornerRadius: 20))
     }
 
-    private var progress: Double {
-        guard let p = prediction, let next = nextPeriodDate(p) else { return 0 }
-        let cycleLen = Double(currentDay) + Double(daysUntilNext(p))
-        return cycleLen > 0 ? Double(currentDay) / cycleLen : 0
+    // MARK: Helpers
+
+    private func daysDiff(to isoString: String) -> Int {
+        guard let target = Self.isoFmt.date(from: isoString) else { return 0 }
+        return Calendar.current.dateComponents([.day], from: .now, to: target).day ?? 0
     }
 
-    private var phaseLabel: String? { nil } // TODO: via PredictionEngine.phaseForDate
+    private var cycleLength: Int {
+        guard let p = prediction else { return 28 }
+        return max(currentDay + max(daysUntilNext(p), 1), 20)
+    }
+
+    private var fertileStartDay: Int {
+        guard let p = prediction else { return 10 }
+        return max(currentDay + daysDiff(to: p.fertileWindowStart), 1)
+    }
+
+    private var fertileEndDay: Int {
+        guard let p = prediction else { return 16 }
+        return max(currentDay + daysDiff(to: p.fertileWindowEnd), fertileStartDay)
+    }
+
+    private var ovulationCycleDay: Int? {
+        guard let p = prediction, let ov = p.ovulationDay else { return nil }
+        let d = currentDay + daysDiff(to: ov)
+        return d > 0 ? d : nil
+    }
+
+    private var phaseLabel: String {
+        guard let p = prediction else { return "" }
+        let days = daysUntilNext(p)
+        if currentDay <= 5 { return NSLocalizedString("phase_menstrual", comment: "") }
+        if currentDay >= fertileStartDay && currentDay <= fertileEndDay {
+            return NSLocalizedString("phase_ovulatory", comment: "")
+        }
+        if days < 14 { return NSLocalizedString("phase_luteal", comment: "") }
+        return NSLocalizedString("phase_follicular", comment: "")
+    }
 
     private var accessibilityDescription: String {
         guard let p = prediction else {
-            return NSLocalizedString("cycle_no_data_a11y", comment: "Pas de données de cycle")
+            return NSLocalizedString("cycle_no_data_a11y", comment: "")
         }
-        return String(
-            format: NSLocalizedString("cycle_progress_a11y", comment: ""),
-            currentDay, daysUntilNext(p)
-        )
+        return String(format: NSLocalizedString("cycle_progress_a11y", comment: ""),
+                      currentDay, daysUntilNext(p))
     }
 
     private func daysUntilNext(_ p: Prediction) -> Int {
-        guard let next = nextPeriodDate(p) else { return 0 }
-        return Calendar.current.dateComponents([.day], from: Date(), to: next).day ?? 0
-    }
-
-    private func nextPeriodDate(_ p: Prediction) -> Date? {
-        let fmt = ISO8601DateFormatter()
-        fmt.formatOptions = [.withFullDate]
-        return fmt.date(from: p.nextPeriodStart)
+        daysDiff(to: p.nextPeriodStart)
     }
 }
 

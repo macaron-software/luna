@@ -79,6 +79,23 @@ final class AppState: ObservableObject {
         userName = defaults.string(forKey: "user_name")
         lockEnabled = defaults.bool(forKey: "lock_enabled")
         calmMode = defaults.bool(forKey: "calm_mode")
+
+        #if DEBUG
+        // UI testing bypass: -UITesting argument auto-opens vault with PIN "123456"
+        if ProcessInfo.processInfo.arguments.contains("-UITesting") {
+            isOnboardingDone = true
+            lockEnabled = false
+            if userName == nil { userName = "Luna" }
+            let dbPath = AppState.sharedDbPath
+            let debugFile = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("luna_debug.txt")
+            do {
+                engine = try LunaEngine.openVault(dbPath: dbPath, pin: "123456")
+                try? "OK: vault opened at \(dbPath)".write(to: debugFile, atomically: true, encoding: .utf8)
+            } catch {
+                try? "FAIL: \(error) at \(dbPath)".write(to: debugFile, atomically: true, encoding: .utf8)
+            }
+        }
+        #endif
     }
 
     // ── Actions ────────────────────────────────────────────────────────────
