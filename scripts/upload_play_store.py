@@ -24,10 +24,22 @@ METADATA_DIR = "fastlane/metadata/android"
 
 # Google Play locale codes that differ from our folder names
 LOCALE_MAP = {
-    "ar-SA": "ar",       # Play Store uses 'ar' not 'ar-SA'
-    "zh-CN": "zh-CN",
-    "pt-BR": "pt-BR",
-    "ko-KR": "ko-KR",
+    "ar-SA":  "ar",        # Play Store uses 'ar' not 'ar-SA'
+    "iw-IL":  "iw",        # Hebrew — Play Store uses old ISO code 'iw' not 'he'
+    "el-GR":  "el-GR",
+    "hi-IN":  "hi-IN",
+    "bn-BD":  "bn-BD",
+    "ta-IN":  "ta-IN",
+    "ms-MY":  "ms-MY",
+    "nb-NO":  "no-NO",     # Play Store uses 'no-NO' for Norwegian Bokmål; folder renamed to no-NO
+    "no-NO":  "no-NO",     # Canonical folder name
+    "zh-CN":  "zh-CN",
+    "zh-TW":  "zh-TW",
+    "pt-BR":  "pt-BR",
+    "pt-PT":  "pt-PT",
+    "ko-KR":  "ko-KR",
+    "es-419": "es-419",    # Latin American Spanish
+    "fr-CA":  "fr-CA",
 }
 
 
