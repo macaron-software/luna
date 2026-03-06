@@ -18,8 +18,8 @@ android {
         applicationId = "com.macaron.luna"
         minSdk = 23      // Android 6.0 Marshmallow — Keystore AES-GCM disponible, couvre ~98% des appareils actifs
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.1.1"
 
         // i18n : inclure toutes les locales configurées
         resourceConfigurations += listOf(
