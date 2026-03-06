@@ -15,7 +15,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "app.luna"
+        applicationId = "com.macaron.luna"
         minSdk = 23      // Android 6.0 Marshmallow — Keystore AES-GCM disponible, couvre ~98% des appareils actifs
         targetSdk = 35
         versionCode = 1

@@ -7,5 +7,5 @@ for_platform :ios do
 end
 
 for_lane :android do
-  package_name "app.luna"
+  package_name "com.macaron.luna"
 end
