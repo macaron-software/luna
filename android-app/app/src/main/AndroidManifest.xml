@@ -12,10 +12,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <!-- ZÉRO permissions réseau — aucun ACCESS_NETWORK_STATE ni INTERNET -->
-
-    <!-- Health Connect (optionnel — demandé à l'usage) -->
-    <uses-permission android:name="android.permission.health.READ_MENSTRUATION" />
-    <uses-permission android:name="android.permission.health.WRITE_MENSTRUATION" />
+    <!-- ZÉRO permissions santé — données 100% locales, aucun partage externe -->
 
     <application
         android:name=".LunaApplication"
@@ -81,11 +78,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
-        <!-- Health Connect provider -->
-        <activity
-            android:name="androidx.health.connect.client.PermissionController"
-            android:exported="false" />
 
     </application>
 
