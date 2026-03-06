@@ -1,0 +1,163 @@
+{
+  "en-US": {
+    "screenshots": true,
+    "fg": true,
+    "icon": true
+  },
+  "it-IT": {
+    "screenshots": true,
+    "fg": true
+  },
+  "nl-NL": {
+    "screenshots": true,
+    "fg": true
+  },
+  "pt-BR": {
+    "screenshots": true,
+    "fg": true
+  },
+  "sv-SE": {
+    "screenshots": true,
+    "fg": true
+  },
+  "no-NO": {
+    "screenshots": true,
+    "fg": true
+  },
+  "fr-FR": {
+    "fg": true,
+    "screenshots": true
+  },
+  "de-DE": {
+    "fg": true,
+    "screenshots": true
+  },
+  "ar-SA": {
+    "fg": true,
+    "screenshots": true
+  },
+  "bg": {
+    "screenshots": true,
+    "fg": true
+  },
+  "bn-BD": {
+    "screenshots": true,
+    "fg": true
+  },
+  "cs-CZ": {
+    "screenshots": true,
+    "fg": true
+  },
+  "da-DK": {
+    "screenshots": true,
+    "fg": true
+  },
+  "el-GR": {
+    "screenshots": true,
+    "fg": true
+  },
+  "es-419": {
+    "screenshots": true,
+    "fg": true
+  },
+  "es-ES": {
+    "screenshots": true,
+    "fg": true
+  },
+  "fa": {
+    "screenshots": true,
+    "fg": true
+  },
+  "fi-FI": {
+    "screenshots": true,
+    "fg": true
+  },
+  "fr-CA": {
+    "screenshots": true,
+    "fg": true
+  },
+  "hi-IN": {
+    "screenshots": true,
+    "fg": true
+  },
+  "hr": {
+    "screenshots": true,
+    "fg": true
+  },
+  "hu-HU": {
+    "screenshots": true,
+    "fg": true
+  },
+  "id": {
+    "screenshots": true,
+    "fg": true
+  },
+  "iw-IL": {
+    "screenshots": true,
+    "fg": true
+  },
+  "ja-JP": {
+    "screenshots": true,
+    "fg": true
+  },
+  "ko-KR": {
+    "screenshots": true,
+    "fg": true
+  },
+  "ms-MY": {
+    "screenshots": true,
+    "fg": true
+  },
+  "pl-PL": {
+    "screenshots": true,
+    "fg": true
+  },
+  "pt-PT": {
+    "screenshots": true,
+    "fg": true
+  },
+  "ro": {
+    "screenshots": true,
+    "fg": true
+  },
+  "ru-RU": {
+    "screenshots": true,
+    "fg": true
+  },
+  "sk": {
+    "screenshots": true,
+    "fg": true
+  },
+  "ta-IN": {
+    "screenshots": true,
+    "fg": true
+  },
+  "th": {
+    "screenshots": true,
+    "fg": true
+  },
+  "tr-TR": {
+    "screenshots": true,
+    "fg": true
+  },
+  "uk": {
+    "screenshots": true,
+    "fg": true
+  },
+  "ur": {
+    "screenshots": true,
+    "fg": true
+  },
+  "vi": {
+    "screenshots": true,
+    "fg": true
+  },
+  "zh-CN": {
+    "screenshots": true,
+    "fg": true
+  },
+  "zh-TW": {
+    "screenshots": true,
+    "fg": true
+  }
+}
