@@ -2,15 +2,21 @@
 """
 Upload LUNA Play Store listings + screenshots via Google Play Developer API.
 
-Usage:
-    python3 scripts/upload_play_store.py --key fastlane/google-play-key.json [--dry-run]
+Authentication options (pick one):
+
+  1. Service account JSON key (best for CI):
+     python3 scripts/upload_play_store.py --key fastlane/google-play-key.json
+
+  2. OAuth2 access token (fastest, no setup needed):
+     a. Go to https://developers.google.com/oauthplayground/
+     b. In "Input your own scopes": https://www.googleapis.com/auth/androidpublisher
+     c. Authorize APIs → sign in with your Google account
+     d. "Exchange authorization code for tokens"
+     e. Copy the access_token value (valid 1 hour)
+     python3 scripts/upload_play_store.py --token YOUR_ACCESS_TOKEN
 
 Requirements:
-    pip install google-api-python-client google-auth
-
-To get the JSON key:
-    Play Console → Setup → API access → Service accounts → Create / Grant access
-    Role needed: "Release manager" or "Play store listing editor"
+    pip install google-api-python-client google-auth requests
 """
 
 import argparse
@@ -53,22 +59,33 @@ def read_file(path: str) -> str:
     return ""
 
 
-def build_service(key_file: str):
-    from google.oauth2 import service_account
+def build_service(key_file: str = None, access_token: str = None):
     from googleapiclient.discovery import build
 
-    creds = service_account.Credentials.from_service_account_file(
-        key_file,
-        scopes=["https://www.googleapis.com/auth/androidpublisher"],
-    )
-    return build("androidpublisher", "v3", credentials=creds, cache_discovery=False)
+    if access_token:
+        # Direct OAuth2 token (from OAuth playground or gcloud auth print-access-token)
+        import google.oauth2.credentials
+        creds = google.oauth2.credentials.Credentials(token=access_token)
+        return build("androidpublisher", "v3", credentials=creds, cache_discovery=False)
+    else:
+        from google.oauth2 import service_account
+        creds = service_account.Credentials.from_service_account_file(
+            key_file,
+            scopes=["https://www.googleapis.com/auth/androidpublisher"],
+        )
+        return build("androidpublisher", "v3", credentials=creds, cache_discovery=False)
 
 
-def upload(key_file: str, dry_run: bool):
-    service = build_service(key_file)
+def upload(key_file: str = None, access_token: str = None, dry_run: bool = False,
+           only_locale: str = None, only_text: bool = False):
+    service = build_service(key_file=key_file, access_token=access_token)
     edits = service.edits()
 
     # ── Open edit ────────────────────────────────────────────────────────────
+    if dry_run:
+        print(f"[DRY RUN] Would open edit for {PACKAGE} and update {len(os.listdir(METADATA_DIR))} locales")
+        print(f"  Locales: {', '.join(sorted(os.listdir(METADATA_DIR)))}")
+        return
     edit = edits.insert(packageName=PACKAGE, body={}).execute()
     edit_id = edit["id"]
     print(f"Opened edit: {edit_id}")
@@ -79,6 +96,8 @@ def upload(key_file: str, dry_run: bool):
     for folder in locales:
         locale_dir = os.path.join(METADATA_DIR, folder)
         if not os.path.isdir(locale_dir):
+            continue
+        if only_locale and folder != only_locale:
             continue
 
         gp_loc = gp_locale(folder)
@@ -114,6 +133,9 @@ def upload(key_file: str, dry_run: bool):
                 print(f"  Listing ERROR: {e}")
 
         # ── Screenshots ─────────────────────────────────────────────────────
+        if only_text:
+            if not dry_run: print(f"  Screenshots: skipped (--text-only)")
+            continue
         screens_dir = os.path.join(locale_dir, "images", "phoneScreenshots")
         if os.path.isdir(screens_dir):
             screenshots = sorted(
@@ -193,21 +215,56 @@ def upload(key_file: str, dry_run: bool):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Upload LUNA Play Store metadata + screenshots")
-    parser.add_argument("--key",     default="fastlane/google-play-key.json", help="Path to service account JSON")
-    parser.add_argument("--dry-run", action="store_true", help="Validate without uploading")
+    parser = argparse.ArgumentParser(
+        description="Upload LUNA Play Store metadata + screenshots",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Auth options (pick one):
+  --token TOKEN      OAuth2 access token from https://developers.google.com/oauthplayground/
+                     Scope: https://www.googleapis.com/auth/androidpublisher
+  --key FILE         Service account JSON (default: fastlane/google-play-key.json)
+
+Examples:
+  python3 scripts/upload_play_store.py --token ya29.xxx
+  python3 scripts/upload_play_store.py --token ya29.xxx --locale en-US
+  python3 scripts/upload_play_store.py --token ya29.xxx --text-only
+  python3 scripts/upload_play_store.py --key fastlane/google-play-key.json
+""")
+    parser.add_argument("--key",       default="fastlane/google-play-key.json",
+                        help="Path to service account JSON key file")
+    parser.add_argument("--token",     default=None,
+                        help="OAuth2 access token (from OAuth playground, valid 1h)")
+    parser.add_argument("--dry-run",   action="store_true", help="Validate without uploading")
+    parser.add_argument("--locale",    default=None, help="Upload only this locale (e.g. en-US)")
+    parser.add_argument("--text-only", action="store_true",
+                        help="Upload only text (title/desc), skip screenshots")
     args = parser.parse_args()
 
-    if not os.path.exists(args.key):
-        print(f"ERROR: Key file not found: {args.key}")
-        print("""
-To get the key:
-  1. Play Console → Setup → API access
-  2. Link to a Google Cloud project (or create one)
-  3. Create service account → Download JSON
-  4. In Play Console → Grant access → Role: 'Release manager'
-  5. Place the JSON at: fastlane/google-play-key.json
-""")
+    # Validate auth
+    if not args.token and not os.path.exists(args.key):
+        print("ERROR: No authentication provided.\n")
+        print("Option A — OAuth2 token (no setup, 1 min):")
+        print("  1. Go to https://developers.google.com/oauthplayground/")
+        print("  2. Paste scope: https://www.googleapis.com/auth/androidpublisher")
+        print("  3. Authorize APIs → sign in → Exchange code for tokens")
+        print("  4. Copy 'access_token' → run:")
+        print("     python3 scripts/upload_play_store.py --token YOUR_TOKEN\n")
+        print("Option B — Service account JSON (best for CI):")
+        print("  Play Console → Setup → API access → Create service account → Download JSON")
+        print(f"  Place at: {args.key}")
         sys.exit(1)
 
-    upload(args.key, args.dry_run)
+    # Install deps if needed
+    try:
+        import googleapiclient
+        import google.oauth2
+    except ImportError:
+        os.system("pip install google-api-python-client google-auth --quiet")
+
+    upload(
+        key_file=args.key if not args.token else None,
+        access_token=args.token,
+        dry_run=args.dry_run,
+        only_locale=args.locale,
+        only_text=args.text_only,
+    )
